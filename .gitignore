@@ -5,3 +5,4 @@ out
 .vs
 .vscode
 .DS_Store
+external/SFML/.github
