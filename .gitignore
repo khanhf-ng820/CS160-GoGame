@@ -5,4 +5,7 @@ out
 .vs
 .vscode
 .DS_Store
+external/SFML/.git
 external/SFML/.github
+external/SFML/.gitignore
+external/SFML/.gitattributes
