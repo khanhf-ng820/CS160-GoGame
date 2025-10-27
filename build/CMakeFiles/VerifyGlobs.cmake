@@ -6,6 +6,8 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/CS160-GoGame/src/*.cpp")
 set(OLD_GLOB
   "/workspaces/CS160-GoGame/src/Board.cpp"
+  "/workspaces/CS160-GoGame/src/Game.cpp"
+  "/workspaces/CS160-GoGame/src/UI.cpp"
   "/workspaces/CS160-GoGame/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

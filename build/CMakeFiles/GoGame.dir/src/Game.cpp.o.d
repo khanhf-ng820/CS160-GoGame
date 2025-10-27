@@ -1,5 +1,5 @@
-CMakeFiles/GoGame.dir/src/Board.cpp.o: \
- /workspaces/CS160-GoGame/src/Board.cpp /usr/include/stdc-predef.h \
+CMakeFiles/GoGame.dir/src/Game.cpp.o: \
+ /workspaces/CS160-GoGame/src/Game.cpp /usr/include/stdc-predef.h \
  /workspaces/CS160-GoGame/include/Board.h \
  /workspaces/CS160-GoGame/external/SFML/include/SFML/Graphics.hpp \
  /workspaces/CS160-GoGame/external/SFML/include/SFML/Graphics/BlendMode.hpp \
@@ -308,4 +308,5 @@ CMakeFiles/GoGame.dir/src/Board.cpp.o: \
  /usr/include/c++/13/tr1/modified_bessel_func.tcc \
  /usr/include/c++/13/tr1/poly_hermite.tcc \
  /usr/include/c++/13/tr1/poly_laguerre.tcc \
- /usr/include/c++/13/tr1/riemann_zeta.tcc
+ /usr/include/c++/13/tr1/riemann_zeta.tcc \
+ /workspaces/CS160-GoGame/include/Game.h

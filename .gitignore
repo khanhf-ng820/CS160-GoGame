@@ -12,3 +12,4 @@ external/SFML/.gitignore
 external/SFML/.gitattributes
 
 build/CMakeCache.txt
+build/run_cmake.sh
