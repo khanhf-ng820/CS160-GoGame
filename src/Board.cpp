@@ -52,6 +52,7 @@ namespace Board {
 	}
 
 	int resolveTurn(int& player, int piecePos) {
+		// Resolve captures
 		// pass
 	}
 
