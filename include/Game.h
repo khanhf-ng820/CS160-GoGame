@@ -11,7 +11,7 @@ namespace Game {
 	extern int currentHistoryIdx, player;
 
 	void changePlayer();
-	bool placePiece(std::vector<int>& board, int piecePos);
+	bool playPiece(std::vector<int>& board, int piecePos);
 	void moveHistoryUp();
 	void pass(std::vector<int>& board);
 	void undo();

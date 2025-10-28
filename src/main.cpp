@@ -38,30 +38,11 @@ int main()
 	UI::RectButton playerToMoveTextbox(sf::Vector2f(150.f, 50.f), sf::Vector2f(600.f, 50.f), 
 		"Black to move", 18, sf::Color::Black, sf::Color::White, font);
 
-	// // Create text SFML entity
-	// sf::Text textEntity(font);
-	// textEntity.setString("Black to move");
-	// textEntity.setCharacterSize(18);
-	// textEntity.setFillColor(sf::Color::Black);
-	// // Set position of text entity
-	// sf::FloatRect textBoundingBox = textEntity.getGlobalBounds();
-	// textEntity.setOrigin(textBoundingBox.size / 2.f);
-	// textEntity.setPosition(playerToMoveTextbox.topLeft + playerToMoveTextbox.rectSize / 2.f);
-
+	
 
 	// Load UI buttons
 	UI::RectButton passButton(sf::Vector2f(150.f, 50.f), sf::Vector2f(600.f, 110.f), 
 		"Pass", 18, sf::Color::Black, sf::Color::White, sf::Color::Green, font);
-
-	// // Create text SFML entity
-	// sf::Text passtextEntity(font);
-	// passtextEntity.setString("Pass");
-	// passtextEntity.setCharacterSize(18);
-	// passtextEntity.setFillColor(sf::Color::Black);
-	// // Set position of text entity
-	// sf::FloatRect textBoundingBox = passtextEntity.getGlobalBounds();
-	// passtextEntity.setOrigin(textBoundingBox.size / 2.f);
-	// passtextEntity.setPosition(passButton.topLeft + passButton.rectSize / 2.f);
 
 	UI::RectButton undoButton(sf::Vector2f(70.f, 50.f), sf::Vector2f(600.f, 170.f), 
 		"Undo", 18, sf::Color::Black, sf::Color::White, sf::Color::Green, font);
@@ -129,9 +110,7 @@ int main()
 					int piecePos = Board::piecePosFromMousePos(localMousePosition, Game::player);
 
 					// Game mechanics
-					// Resolve (WIP)
-					bool placePieceSuccessful = Game::placePiece(Board::board, piecePos);
-
+					bool placePieceSuccessful = Game::playPiece(Board::board, piecePos);
 					if (placePieceSuccessful) {
 						Game::moveHistoryUp();
 					}
@@ -145,14 +124,11 @@ int main()
 			}
 
 
+
 			// ----- Mouse hover
-			// UI textbox hover
-			// if (playerToMoveTextbox.mouseOnButton(localMousePosition)) {
-			// 	playerToMoveTextbox.rectEntity.setFillColor(sf::Color::Green);
-			// } else {
-			// 	playerToMoveTextbox.rectEntity.setFillColor(sf::Color::White);
-			// }
+			// UI textboxes
 			playerToMoveTextbox.setString((Game::player == Board::BLACK) ? "Black to move" : "White to move");
+
 
 			// UI button hover
 			passButton.hoverChangeColor(localMousePosition);

@@ -3,7 +3,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 include(CMakeFindDependencyMacro)
 
 # When installing, save whether SFML was built using system dependencies.
-set(SFML_BUILT_USING_SYSTEM_DEPS ON)
+set(SFML_BUILT_USING_SYSTEM_DEPS OFF)
 
 # start with an empty list
 set(FIND_SFML_DEPENDENCIES_NOTFOUND)

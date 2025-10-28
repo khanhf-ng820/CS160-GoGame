@@ -1,0 +1,14 @@
+# Target labels
+ ogg-populate
+# Source files and their labels
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate-complete.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-mkdir.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-test.rule
+/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update.rule

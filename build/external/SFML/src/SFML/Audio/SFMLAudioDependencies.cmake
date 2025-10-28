@@ -8,7 +8,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(FIND_SFML_OS_LINUX 1)
 
-    if(OFF)
+    if()
         set(FIND_SFML_USE_DRM 1)
     endif()
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
@@ -22,7 +22,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif()
 
 # When installing, save whether SFML was built using system dependencies.
-set(SFML_BUILT_USING_SYSTEM_DEPS ON)
+set(SFML_BUILT_USING_SYSTEM_DEPS OFF)
 
 # start with an empty list
 set(FIND_SFML_DEPENDENCIES_NOTFOUND)

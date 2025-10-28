@@ -8,7 +8,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(FIND_SFML_OS_LINUX 1)
 
-    if(OFF)
+    if()
         set(FIND_SFML_USE_DRM 1)
     endif()
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")

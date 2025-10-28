@@ -1,0 +1,105 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/Applications/Sublime Text.app/Contents/SharedSupport/bin/"
+      - "/Users/admin/.nvm/versions/node/v22.18.0/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/admin/.dotnet/tools/"
+    searched_directories:
+      - "/Applications/Sublime Text.app/Contents/SharedSupport/bin/uname"
+      - "/Users/admin/.nvm/versions/node/v22.18.0/bin/uname"
+      - "/usr/local/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+        - "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+        - "/Users/admin/.nvm/versions/node/v22.18.0/bin"
+        - "/usr/local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/share/dotnet"
+        - "/Users/admin/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      The system is: Darwin - 21.6.0 - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/Darwin.cmake:76 (find_program)"
+      - "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_INSTALL_NAME_TOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "install_name_tool"
+    candidate_directories:
+      - "/Applications/Sublime Text.app/Contents/SharedSupport/bin/"
+      - "/Users/admin/.nvm/versions/node/v22.18.0/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/admin/.dotnet/tools/"
+    searched_directories:
+      - "/Applications/Sublime Text.app/Contents/SharedSupport/bin/install_name_tool"
+      - "/Users/admin/.nvm/versions/node/v22.18.0/bin/install_name_tool"
+      - "/usr/local/bin/install_name_tool"
+    found: "/usr/bin/install_name_tool"
+    search_context:
+      ENV{PATH}:
+        - "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+        - "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+        - "/Users/admin/.nvm/versions/node/v22.18.0/bin"
+        - "/usr/local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/share/dotnet"
+        - "/Users/admin/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+...

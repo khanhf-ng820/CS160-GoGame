@@ -15,7 +15,7 @@ namespace Game {
 	}
 
 	// Returns bool whether placing piece is successful
-	bool placePiece(std::vector<int>& board, int piecePos) {
+	bool playPiece(std::vector<int>& board, int piecePos) {
 		if (piecePos == Board::INVALID_INTERSECTION) return false;
 
 		// Game mechanics

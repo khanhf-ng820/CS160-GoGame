@@ -20,6 +20,7 @@ namespace Board {
 
 	void changeBoardSize(int bWidth, int bHeight);
 	int piecePosFromMousePos(sf::Vector2f mousePos, int& player);
+	int resolveTurn(int& player, int piecePos);
 	void displayBoard(sf::RenderWindow& window);
 	bool mouseOnBoard(sf::Vector2f mousePos);
 	void enable();

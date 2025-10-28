@@ -11,6 +11,8 @@ namespace Board {
 	const int EMPTY = 0;
 	const int BLACK = 1;
 	const int WHITE = 2;
+	const int NO_LIBERTY = 3;
+	const int HAS_LIBERTY = 4;
 
 	bool enabled = true;
 	int boardWidth = 19, boardHeight = 19;
@@ -21,6 +23,8 @@ namespace Board {
 	sf::FloatRect boardRect({25.f, 25.f}, {550.f, 550.f});
 
 	std::vector<int> board(boardWidth * boardHeight, EMPTY);
+	std::vector<int> hasLiberty(boardWidth * boardHeight, EMPTY);
+
 
 
 	void changeBoardSize(int bWidth, int bHeight) {
@@ -39,12 +43,16 @@ namespace Board {
 
 		if (intersectionX >= 0 && intersectionX < boardWidth && intersectionY >= 0
 		&& intersectionY < boardHeight && board[ix(intersectionX, intersectionY)] == EMPTY) {
-			// Place a stone
+			// Get 1D index of the intersection position on the board
 			int idx = ix(intersectionX, intersectionY);
 
-			return idx; // Returns if a stone is successfully placed
+			return idx; // Returns the 1D index
 		}
-		return INVALID_INTERSECTION;
+		return INVALID_INTERSECTION; // Not on any intersection of the board
+	}
+
+	int resolveTurn(int& player, int piecePos) {
+		
 	}
 
 	void displayBoard(sf::RenderWindow& window) {
