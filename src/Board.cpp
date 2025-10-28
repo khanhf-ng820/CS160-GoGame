@@ -52,7 +52,7 @@ namespace Board {
 	}
 
 	int resolveTurn(int& player, int piecePos) {
-		
+		// pass
 	}
 
 	void displayBoard(sf::RenderWindow& window) {
