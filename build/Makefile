@@ -351,6 +351,30 @@ vorbisfile/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build
 .PHONY : vorbisfile/fast
 
+src/AI.o: src/AI.cpp.o
+.PHONY : src/AI.o
+
+# target to build an object file
+src/AI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GoGame.dir/build.make CMakeFiles/GoGame.dir/src/AI.cpp.o
+.PHONY : src/AI.cpp.o
+
+src/AI.i: src/AI.cpp.i
+.PHONY : src/AI.i
+
+# target to preprocess a source file
+src/AI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GoGame.dir/build.make CMakeFiles/GoGame.dir/src/AI.cpp.i
+.PHONY : src/AI.cpp.i
+
+src/AI.s: src/AI.cpp.s
+.PHONY : src/AI.s
+
+# target to generate assembly for a file
+src/AI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GoGame.dir/build.make CMakeFiles/GoGame.dir/src/AI.cpp.s
+.PHONY : src/AI.cpp.s
+
 src/Board.o: src/Board.cpp.o
 .PHONY : src/Board.o
 
@@ -474,6 +498,9 @@ help:
 	@echo "... vorbis"
 	@echo "... vorbisenc"
 	@echo "... vorbisfile"
+	@echo "... src/AI.o"
+	@echo "... src/AI.i"
+	@echo "... src/AI.s"
 	@echo "... src/Board.o"
 	@echo "... src/Board.i"
 	@echo "... src/Board.s"

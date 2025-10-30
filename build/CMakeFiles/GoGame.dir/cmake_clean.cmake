@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/GoGame.dir/src/AI.cpp.o"
+  "CMakeFiles/GoGame.dir/src/AI.cpp.o.d"
   "CMakeFiles/GoGame.dir/src/Board.cpp.o"
   "CMakeFiles/GoGame.dir/src/Board.cpp.o.d"
   "CMakeFiles/GoGame.dir/src/Game.cpp.o"

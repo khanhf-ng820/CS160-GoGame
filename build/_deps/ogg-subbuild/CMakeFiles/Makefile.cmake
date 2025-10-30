@@ -7,10 +7,8 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeGenericSystem.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeInitializeConfigs.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystem.cmake.in"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInitialize.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject.cmake"
@@ -38,7 +36,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/4.1.2/CMakeSystem.cmake"
   "ogg-populate-prefix/tmp/ogg-populate-mkdirs.cmake"
   "ogg-populate-prefix/tmp/ogg-populate-gitclone.cmake"
   "ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-gitinfo.txt"

@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/AI.cpp" "CMakeFiles/GoGame.dir/src/AI.cpp.o" "gcc" "CMakeFiles/GoGame.dir/src/AI.cpp.o.d"
   "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/Board.cpp" "CMakeFiles/GoGame.dir/src/Board.cpp.o" "gcc" "CMakeFiles/GoGame.dir/src/Board.cpp.o.d"
   "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/Game.cpp" "CMakeFiles/GoGame.dir/src/Game.cpp.o" "gcc" "CMakeFiles/GoGame.dir/src/Game.cpp.o.d"
   "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/UI.cpp" "CMakeFiles/GoGame.dir/src/UI.cpp.o" "gcc" "CMakeFiles/GoGame.dir/src/UI.cpp.o.d"

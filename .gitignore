@@ -13,3 +13,4 @@ external/SFML/.gitattributes
 
 build/CMakeCache.txt
 build/run_cmake.sh
+commit_submodules.sh

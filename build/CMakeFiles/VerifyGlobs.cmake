@@ -4,6 +4,7 @@
 # SOURCES at CMakeLists.txt:14 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/*.cpp")
 set(OLD_GLOB
+  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/AI.cpp"
   "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/Board.cpp"
   "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/Game.cpp"
   "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/UI.cpp"

@@ -72,10 +72,24 @@ include CMakeFiles/GoGame.dir/flags.make
 CMakeFiles/GoGame.dir/codegen:
 .PHONY : CMakeFiles/GoGame.dir/codegen
 
+CMakeFiles/GoGame.dir/src/AI.cpp.o: CMakeFiles/GoGame.dir/flags.make
+CMakeFiles/GoGame.dir/src/AI.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/src/AI.cpp
+CMakeFiles/GoGame.dir/src/AI.cpp.o: CMakeFiles/GoGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GoGame.dir/src/AI.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GoGame.dir/src/AI.cpp.o -MF CMakeFiles/GoGame.dir/src/AI.cpp.o.d -o CMakeFiles/GoGame.dir/src/AI.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/AI.cpp"
+
+CMakeFiles/GoGame.dir/src/AI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GoGame.dir/src/AI.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/AI.cpp" > CMakeFiles/GoGame.dir/src/AI.cpp.i
+
+CMakeFiles/GoGame.dir/src/AI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GoGame.dir/src/AI.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/AI.cpp" -o CMakeFiles/GoGame.dir/src/AI.cpp.s
+
 CMakeFiles/GoGame.dir/src/Board.cpp.o: CMakeFiles/GoGame.dir/flags.make
 CMakeFiles/GoGame.dir/src/Board.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/src/Board.cpp
 CMakeFiles/GoGame.dir/src/Board.cpp.o: CMakeFiles/GoGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GoGame.dir/src/Board.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GoGame.dir/src/Board.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GoGame.dir/src/Board.cpp.o -MF CMakeFiles/GoGame.dir/src/Board.cpp.o.d -o CMakeFiles/GoGame.dir/src/Board.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/Board.cpp"
 
 CMakeFiles/GoGame.dir/src/Board.cpp.i: cmake_force
@@ -89,7 +103,7 @@ CMakeFiles/GoGame.dir/src/Board.cpp.s: cmake_force
 CMakeFiles/GoGame.dir/src/Game.cpp.o: CMakeFiles/GoGame.dir/flags.make
 CMakeFiles/GoGame.dir/src/Game.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/src/Game.cpp
 CMakeFiles/GoGame.dir/src/Game.cpp.o: CMakeFiles/GoGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GoGame.dir/src/Game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GoGame.dir/src/Game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GoGame.dir/src/Game.cpp.o -MF CMakeFiles/GoGame.dir/src/Game.cpp.o.d -o CMakeFiles/GoGame.dir/src/Game.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/Game.cpp"
 
 CMakeFiles/GoGame.dir/src/Game.cpp.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/GoGame.dir/src/Game.cpp.s: cmake_force
 CMakeFiles/GoGame.dir/src/UI.cpp.o: CMakeFiles/GoGame.dir/flags.make
 CMakeFiles/GoGame.dir/src/UI.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/src/UI.cpp
 CMakeFiles/GoGame.dir/src/UI.cpp.o: CMakeFiles/GoGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GoGame.dir/src/UI.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GoGame.dir/src/UI.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GoGame.dir/src/UI.cpp.o -MF CMakeFiles/GoGame.dir/src/UI.cpp.o.d -o CMakeFiles/GoGame.dir/src/UI.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/UI.cpp"
 
 CMakeFiles/GoGame.dir/src/UI.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/GoGame.dir/src/UI.cpp.s: cmake_force
 CMakeFiles/GoGame.dir/src/main.cpp.o: CMakeFiles/GoGame.dir/flags.make
 CMakeFiles/GoGame.dir/src/main.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/src/main.cpp
 CMakeFiles/GoGame.dir/src/main.cpp.o: CMakeFiles/GoGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GoGame.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GoGame.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GoGame.dir/src/main.cpp.o -MF CMakeFiles/GoGame.dir/src/main.cpp.o.d -o CMakeFiles/GoGame.dir/src/main.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/src/main.cpp"
 
 CMakeFiles/GoGame.dir/src/main.cpp.i: cmake_force
@@ -130,6 +144,7 @@ CMakeFiles/GoGame.dir/src/main.cpp.s: cmake_force
 
 # Object files for target GoGame
 GoGame_OBJECTS = \
+"CMakeFiles/GoGame.dir/src/AI.cpp.o" \
 "CMakeFiles/GoGame.dir/src/Board.cpp.o" \
 "CMakeFiles/GoGame.dir/src/Game.cpp.o" \
 "CMakeFiles/GoGame.dir/src/UI.cpp.o" \
@@ -138,6 +153,7 @@ GoGame_OBJECTS = \
 # External object files for target GoGame
 GoGame_EXTERNAL_OBJECTS =
 
+GoGame: CMakeFiles/GoGame.dir/src/AI.cpp.o
 GoGame: CMakeFiles/GoGame.dir/src/Board.cpp.o
 GoGame: CMakeFiles/GoGame.dir/src/Game.cpp.o
 GoGame: CMakeFiles/GoGame.dir/src/UI.cpp.o
@@ -149,7 +165,7 @@ GoGame: external/SFML/lib/libsfml-system-s.a
 GoGame: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework
 GoGame: external/SFML/lib/libfreetype.a
 GoGame: CMakeFiles/GoGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable GoGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable GoGame"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GoGame.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
