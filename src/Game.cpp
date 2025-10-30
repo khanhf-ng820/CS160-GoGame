@@ -6,16 +6,20 @@
 
 
 namespace Game {
-	std::vector<std::vector<int>> history(1, Board::board); // Board playing history
+	std::vector<std::vector<Board::State>> history(1, Board::board); // Board playing history
 	int currentHistoryIdx = 0;
-	int player = Board::BLACK;
+	Board::State player = Board::State::BLACK;
 
 	void changePlayer() {
-		player = Board::WHITE + Board::BLACK - player;
+		if (player == Board::State::BLACK) {
+			player = Board::State::WHITE;
+		} else if (player == Board::State::WHITE) {
+			player = Board::State::BLACK;
+		}
 	}
 
 	// Returns bool whether placing piece is successful
-	bool playPiece(std::vector<int>& board, int piecePos) {
+	bool playPiece(std::vector<Board::State>& board, int piecePos) {
 		if (piecePos == Board::INVALID_INTERSECTION) return false;
 
 		// Game mechanics
@@ -32,7 +36,7 @@ namespace Game {
 		currentHistoryIdx++;
 	}
 
-	void pass(std::vector<int>& board) {
+	void pass(std::vector<Board::State>& board) {
 		changePlayer();
 
 		history.erase(history.begin() + currentHistoryIdx + 1, history.end());

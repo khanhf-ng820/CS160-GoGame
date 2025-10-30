@@ -5,19 +5,26 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#define MAIN_MENU 100
-#define IN_GAME 101
-#define END_GAME 102
-#define PVP 200
-#define PVE 201
+
+
+enum class AppState {
+	MAIN_MENU,
+	IN_GAME,
+	SCORING
+};
+
+enum class GameMode {
+	PVP,
+	PVAI
+};
 
 
 int main()
 {
 	std::cout << "CS160 Go Game Final Project" << std::endl;
 
-	int appState = IN_GAME;
-	int gameMode = PVP;
+	AppState appState = AppState::IN_GAME;
+	GameMode gameMode = GameMode::PVP;
 
 
 	// Screen size
@@ -84,7 +91,7 @@ int main()
 
 
 		// If in game
-		if (appState == IN_GAME) {
+		if (appState == AppState::IN_GAME) {
 			// ----- Mouse left down
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 				// Clicked Pass button
@@ -127,7 +134,8 @@ int main()
 
 			// ----- Mouse hover
 			// UI textboxes
-			playerToMoveTextbox.setString((Game::player == Board::BLACK) ? "Black to move" : "White to move");
+			playerToMoveTextbox.setString((Game::player == Board::State::BLACK) 
+				? "Black to move" : "White to move");
 
 
 			// UI button hover

@@ -7,12 +7,23 @@
 
 
 namespace Board {
+	// Consts
+	// enum class State {
+	// 	INVALID_INTERSECTION,
+	// 	EMPTY,
+	// 	BLACK,
+	// 	WHITE
+	// };
+
+	// enum class Liberty {
+	// 	EMPTY_INT,
+	// 	NO_LIBERTY,
+	// 	HAS_LIBERTY
+	// };
+
 	const int INVALID_INTERSECTION = -1;
-	const int EMPTY = 0;
-	const int BLACK = 1;
-	const int WHITE = 2;
-	const int NO_LIBERTY = 3;
-	const int HAS_LIBERTY = 4;
+
+
 
 	bool enabled = true;
 	int boardWidth = 19, boardHeight = 19;
@@ -22,27 +33,29 @@ namespace Board {
 
 	sf::FloatRect boardRect({25.f, 25.f}, {550.f, 550.f});
 
-	std::vector<int> board(boardWidth * boardHeight, EMPTY);
-	std::vector<int> hasLiberty(boardWidth * boardHeight, EMPTY);
+	// 1D vector of 2D playing board
+	std::vector<State> board(boardWidth * boardHeight, State::EMPTY);
+	std::vector<State> hasLiberty(boardWidth * boardHeight, State::EMPTY);
 
 
 
+	// Change the board size and reset new game
 	void changeBoardSize(int bWidth, int bHeight) {
 		boardWidth = bWidth;
 		boardHeight = bHeight;
 		squareLength = boardSize / (boardWidth - 1);
 
-		board = std::vector<int>(boardWidth * boardHeight, EMPTY);
+		board = std::vector<State>(boardWidth * boardHeight, State::EMPTY);
 	}
 
-	int piecePosFromMousePos(sf::Vector2f mousePos, int& player) {
+	int piecePosFromMousePos(sf::Vector2f mousePos, Board::State& player) {
 		sf::Vector2f boardMousePos = mousePos - sf::Vector2f({50.f, 50.f});
 		sf::Vector2f intersectionPos = boardMousePos / squareLength;
 		int intersectionX = round(intersectionPos.x);
 		int intersectionY = round(intersectionPos.y);
 
 		if (intersectionX >= 0 && intersectionX < boardWidth && intersectionY >= 0
-		&& intersectionY < boardHeight && board[ix(intersectionX, intersectionY)] == EMPTY) {
+		&& intersectionY < boardHeight && board[ix(intersectionX, intersectionY)] == State::EMPTY) {
 			// Get 1D index of the intersection position on the board
 			int idx = ix(intersectionX, intersectionY);
 
@@ -51,9 +64,9 @@ namespace Board {
 		return INVALID_INTERSECTION; // Not on any intersection of the board
 	}
 
+	// Resolve captures when trying to place a piece
 	int resolveTurn(int& player, int piecePos) {
-		// Resolve captures
-		// pass
+		
 	}
 
 	void displayBoard(sf::RenderWindow& window) {
@@ -80,9 +93,9 @@ namespace Board {
 				piece.setOrigin({pieceRadius, pieceRadius});
 				piece.setPosition(position);
 
-				if (board[j * boardWidth + i] == WHITE) {
+				if (board[j * boardWidth + i] == State::WHITE) {
 					piece.setFillColor(sf::Color::White);
-				} else if (board[j * boardWidth + i] == BLACK) {
+				} else if (board[j * boardWidth + i] == State::BLACK) {
 					piece.setFillColor(sf::Color::Black);
 				}
 
