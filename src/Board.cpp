@@ -67,7 +67,8 @@ namespace Board {
 
 	// Resolve captures when trying to place a piece
 	int resolveTurn(int& player, int piecePos) {
-		
+		// WIP
+		std::vector<bool> visited(boardWidth * boardHeight, false);
 	}
 
 	void displayBoard(sf::RenderWindow& window) {
