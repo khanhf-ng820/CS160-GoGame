@@ -149,6 +149,7 @@ int main()
 			Board::displayBoard(window);
 
 
+			// ----- Draw UI
 			// Draw textboxes
 			playerToMoveTextbox.draw(window);
 

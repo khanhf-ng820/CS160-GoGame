@@ -31,6 +31,7 @@ namespace Board {
 	extern sf::FloatRect boardRect;
 
 	extern std::vector<State> board, hasLiberty;
+	extern std::vector<bool> visited;
 
 	void changeBoardSize(int bWidth, int bHeight);
 	int piecePosFromMousePos(sf::Vector2f mousePos, Board::State& player);

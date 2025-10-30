@@ -36,6 +36,7 @@ namespace Board {
 	// 1D vector of 2D playing board
 	std::vector<State> board(boardWidth * boardHeight, State::EMPTY);
 	std::vector<State> hasLiberty(boardWidth * boardHeight, State::EMPTY);
+	std::vector<bool> visited(boardWidth * boardHeight, false);
 
 
 
