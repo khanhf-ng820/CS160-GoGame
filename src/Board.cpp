@@ -33,6 +33,7 @@ namespace Board {
 
 	sf::FloatRect boardRect({25.f, 25.f}, {550.f, 550.f});
 
+
 	// 1D vector of 2D playing board
 	std::vector<State> board(boardWidth * boardHeight, State::EMPTY);
 	std::vector<State> hasLiberty(boardWidth * boardHeight, State::EMPTY);
