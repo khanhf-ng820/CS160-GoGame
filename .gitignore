@@ -15,5 +15,7 @@ build/CMakeCache.txt
 build/run_cmake.sh
 commit_submodules.sh
 
+# Testing commits
 testfile
 testfile.sig
+test.txt
