@@ -104,3 +104,4 @@ void UI::RectButton::enable() {
 void UI::RectButton::disable() {
 	enabled = false;
 }
+
