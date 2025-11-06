@@ -16,12 +16,17 @@ Make sure you have:
 Open a terminal in the project folder and run:
 
 ```bash
+#!/bin/bash
 # Create a build folder
+
+rm -rf build/
 mkdir build
 cd build
 
+cp -r ../assets/ assets/
+
 # Generate build files
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 
 # Build the project
 cmake --build .
