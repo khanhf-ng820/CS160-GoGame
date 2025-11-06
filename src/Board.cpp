@@ -1,125 +1,88 @@
 #include "Board.h"
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <cmath>
-#include <vector>
 
+// Utilities
+Stone opposite(Stone s) {
+    return (s == Stone::BLACK ? Stone::WHITE : Stone::BLACK);
+}
 
+char stone_char(Stone s) {
+    if (s == Stone::BLACK) return 'X';
+    if (s == Stone::WHITE) return 'O';
+    return '.';
+}
 
-namespace Board {
-	// Consts
-	// enum class State {
-	// 	INVALID_INTERSECTION,
-	// 	EMPTY,
-	// 	BLACK,
-	// 	WHITE
-	// };
+int col_from_char(char ch) {
+    if (ch >= 'a' && ch <= 'z') ch = char(ch - 'a' + 'A');
+    if (!(ch >= 'A' && ch <= 'Z')) return -1;
+    if (ch >= 'J') return (ch - 'A') - 1; // bỏ I
+    return ch - 'A';
+}
 
-	// enum class Liberty {
-	// 	EMPTY_INT,
-	// 	NO_LIBERTY,
-	// 	HAS_LIBERTY
-	// };
+char char_from_col(int c) {
+    char col = char('A' + c);
+    if (col >= 'I') col++;
+    return col;
+}
 
-	const int INVALID_INTERSECTION = -1;
+std::string trim(std::string s) {
+    size_t a = 0, b = s.size();
+    while (a < b && std::isspace((unsigned char)s[a])) ++a;
+    while (b > a && std::isspace((unsigned char)s[b - 1])) --b;
+    return s.substr(a, b - a);
+}
 
+// Board implementation
+Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY) {}
 
+int Board::size() const { return N; }
 
-	bool enabled = true;
-	int boardWidth = 19, boardHeight = 19;
-	float boardSize = 500.f;
-	float squareLength = boardSize / (boardWidth - 1);
-	float pieceRadius = squareLength / 2 - 2.f;
+bool Board::in_bounds(int r, int c) const {
+    return r >= 0 && r < N && c >= 0 && c < N;
+}
 
-	sf::FloatRect boardRect({25.f, 25.f}, {550.f, 550.f});
+Stone Board::get(int r, int c) const {
+    assert(in_bounds(r, c));
+    return grid[r * N + c];
+}
 
+void Board::set(int r, int c, Stone s) {
+    assert(in_bounds(r, c));
+    grid[r * N + c] = s;
+}
 
-	// 1D vector of 2D playing board
-	std::vector<State> board(boardWidth * boardHeight, State::EMPTY);
-	std::vector<State> hasLiberty(boardWidth * boardHeight, State::EMPTY);
-	std::vector<bool> visited(boardWidth * boardHeight, false);
+void Board::clear() {
+    std::fill(grid.begin(), grid.end(), Stone::EMPTY);
+}
 
+void Board::count(int& black, int& white) const {
+    black = white = 0;
+    for (auto s : grid) {
+        if (s == Stone::BLACK) ++black;
+        else if (s == Stone::WHITE) ++white;
+    }
+}
 
+std::string Board::dump_rows() const {
+    std::string out; out.reserve(N * (N + 1));
+    for (int r = 0; r < N; ++r) {
+        for (int c = 0; c < N; ++c)
+            out.push_back(stone_char(get(r, c)));
+        out.push_back('\n');
+    }
+    return out;
+}
 
-	// Change the board size and reset new game
-	void changeBoardSize(int bWidth, int bHeight) {
-		boardWidth = bWidth;
-		boardHeight = bHeight;
-		squareLength = boardSize / (boardWidth - 1);
-
-		board = std::vector<State>(boardWidth * boardHeight, State::EMPTY);
-	}
-
-	int piecePosFromMousePos(sf::Vector2f mousePos, Board::State& player) {
-		sf::Vector2f boardMousePos = mousePos - sf::Vector2f({50.f, 50.f});
-		sf::Vector2f intersectionPos = boardMousePos / squareLength;
-		int intersectionX = round(intersectionPos.x);
-		int intersectionY = round(intersectionPos.y);
-
-		if (intersectionX >= 0 && intersectionX < boardWidth && intersectionY >= 0
-		&& intersectionY < boardHeight && board[ix(intersectionX, intersectionY)] == State::EMPTY) {
-			// Get 1D index of the intersection position on the board
-			int idx = ix(intersectionX, intersectionY);
-
-			return idx; // Returns the 1D index
-		}
-		return INVALID_INTERSECTION; // Not on any intersection of the board
-	}
-
-	// Resolve captures when trying to place a piece
-	int resolveTurn(int& player, int piecePos) {
-		// WIP
-		std::vector<bool> visited(boardWidth * boardHeight, false);
-	}
-
-	void displayBoard(sf::RenderWindow& window) {
-		// Display board
-		for (int i = 0; i < boardWidth; i++) {
-			for (int j = 0; j < boardHeight; j++) {
-				sf::Vector2f position = {50.f + squareLength * i, 50.f + squareLength * j};
-
-				// Draw the board
-				if (i < boardWidth - 1 && j < boardHeight - 1) {
-					sf::RectangleShape square({squareLength, squareLength});
-					square.setFillColor(sf::Color::Transparent);
-					square.setOutlineThickness(1.f);
-					square.setOutlineColor(sf::Color::Black);
-
-					square.setPosition(position);
-
-					window.draw(square);
-				}
-
-				// Draw the pieces
-				sf::CircleShape piece(pieceRadius);
-				piece.setFillColor(sf::Color::Transparent);
-				piece.setOrigin({pieceRadius, pieceRadius});
-				piece.setPosition(position);
-
-				if (board[j * boardWidth + i] == State::WHITE) {
-					piece.setFillColor(sf::Color::White);
-				} else if (board[j * boardWidth + i] == State::BLACK) {
-					piece.setFillColor(sf::Color::Black);
-				}
-
-				window.draw(piece);
-			}
-		}
-	}
-
-	bool mouseOnBoard(sf::Vector2f mousePos) {
-		return boardRect.contains(mousePos);
-	}
-
-	void enable() {
-		enabled = true;
-	}
-
-	void disable() {
-		enabled = false;
-	}
-
-	int ix(int x, int y) {
-		return y * boardWidth + x;
-	}
+bool Board::load_rows(const std::vector<std::string>& rows) {
+    if ((int)rows.size() != N) return false;
+    for (int r = 0; r < N; ++r) {
+        if ((int)rows[r].size() != N) return false;
+        for (int c = 0; c < N; ++c) {
+            char ch = rows[r][c];
+            Stone s = Stone::EMPTY;
+            if (ch == 'X') s = Stone::BLACK;
+            else if (ch == 'O') s = Stone::WHITE;
+            set(r, c, s);
+        }
+    }
+    return true;
 }

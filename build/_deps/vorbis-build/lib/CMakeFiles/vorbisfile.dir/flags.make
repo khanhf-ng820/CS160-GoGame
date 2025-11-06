@@ -4,7 +4,9 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build/include"
+C_INCLUDES = -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build/include
 
-C_FLAGS = -O3 -DNDEBUG
+C_FLAGSarm64 = -O3 -DNDEBUG -arch arm64
+
+C_FLAGS = -O3 -DNDEBUG -arch arm64
 

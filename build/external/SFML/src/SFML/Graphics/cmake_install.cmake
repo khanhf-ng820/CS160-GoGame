@@ -1,4 +1,4 @@
-# Install script for directory: /Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Graphics
+# Install script for directory: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Graphics
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "devel" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/lib/libsfml-graphics-s.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/lib/libsfml-graphics-s.a")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-graphics-s.a" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-graphics-s.a")
     execute_process(COMMAND "/usr/bin/ranlib" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-graphics-s.a")
@@ -46,17 +46,17 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "devel" OR NOT CMAKE_INSTALL_COMPONENT)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "devel" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Graphics/SFMLGraphicsDependencies.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Graphics/SFMLGraphicsDependencies.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build/cmake_install.cmake")
+  include("/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build/cmake_install.cmake")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Graphics/install_local_manifest.txt"
+  file(WRITE "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Graphics/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

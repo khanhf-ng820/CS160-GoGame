@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
+CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
+CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && /Applications/CMake.app/Contents/bin/cpack --config ./CPackConfig.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && /opt/homebrew/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && /Applications/CMake.app/Contents/bin/cpack --config ./CPackSourceConfig.cmake /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/build/CPackSourceConfig.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && /opt/homebrew/bin/cpack --config ./CPackSourceConfig.cmake /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -88,7 +88,7 @@ package_source/fast: package_source
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/Applications/CMake.app/Contents/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -98,7 +98,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/Applications/CMake.app/Contents/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -117,49 +117,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib//CMakeFiles/progress.marks"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" 0
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib//CMakeFiles/progress.marks
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/clean
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -168,23 +168,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/preinstall
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/preinstall
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/rule:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/rule
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/rule
 .PHONY : _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/rule
 
 # Convenience name for target.
@@ -193,12 +193,12 @@ vorbis: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/rule
 
 # fast build rule for target.
 vorbis/fast:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build
 .PHONY : vorbis/fast
 
 # Convenience name for target.
 _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/rule:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/rule
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/rule
 .PHONY : _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/rule
 
 # Convenience name for target.
@@ -207,12 +207,12 @@ vorbisenc: _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/rule
 
 # fast build rule for target.
 vorbisenc/fast:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build
 .PHONY : vorbisenc/fast
 
 # Convenience name for target.
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/rule:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/rule
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/rule
 .PHONY : _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/rule
 
 # Convenience name for target.
@@ -221,7 +221,7 @@ vorbisfile: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/rule
 
 # fast build rule for target.
 vorbisfile/fast:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build
 .PHONY : vorbisfile/fast
 
 analysis.o: analysis.c.o
@@ -229,7 +229,7 @@ analysis.o: analysis.c.o
 
 # target to build an object file
 analysis.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/analysis.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/analysis.c.o
 .PHONY : analysis.c.o
 
 analysis.i: analysis.c.i
@@ -237,7 +237,7 @@ analysis.i: analysis.c.i
 
 # target to preprocess a source file
 analysis.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/analysis.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/analysis.c.i
 .PHONY : analysis.c.i
 
 analysis.s: analysis.c.s
@@ -245,7 +245,7 @@ analysis.s: analysis.c.s
 
 # target to generate assembly for a file
 analysis.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/analysis.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/analysis.c.s
 .PHONY : analysis.c.s
 
 bitrate.o: bitrate.c.o
@@ -253,7 +253,7 @@ bitrate.o: bitrate.c.o
 
 # target to build an object file
 bitrate.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/bitrate.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/bitrate.c.o
 .PHONY : bitrate.c.o
 
 bitrate.i: bitrate.c.i
@@ -261,7 +261,7 @@ bitrate.i: bitrate.c.i
 
 # target to preprocess a source file
 bitrate.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/bitrate.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/bitrate.c.i
 .PHONY : bitrate.c.i
 
 bitrate.s: bitrate.c.s
@@ -269,7 +269,7 @@ bitrate.s: bitrate.c.s
 
 # target to generate assembly for a file
 bitrate.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/bitrate.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/bitrate.c.s
 .PHONY : bitrate.c.s
 
 block.o: block.c.o
@@ -277,7 +277,7 @@ block.o: block.c.o
 
 # target to build an object file
 block.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/block.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/block.c.o
 .PHONY : block.c.o
 
 block.i: block.c.i
@@ -285,7 +285,7 @@ block.i: block.c.i
 
 # target to preprocess a source file
 block.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/block.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/block.c.i
 .PHONY : block.c.i
 
 block.s: block.c.s
@@ -293,7 +293,7 @@ block.s: block.c.s
 
 # target to generate assembly for a file
 block.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/block.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/block.c.s
 .PHONY : block.c.s
 
 codebook.o: codebook.c.o
@@ -301,7 +301,7 @@ codebook.o: codebook.c.o
 
 # target to build an object file
 codebook.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/codebook.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/codebook.c.o
 .PHONY : codebook.c.o
 
 codebook.i: codebook.c.i
@@ -309,7 +309,7 @@ codebook.i: codebook.c.i
 
 # target to preprocess a source file
 codebook.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/codebook.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/codebook.c.i
 .PHONY : codebook.c.i
 
 codebook.s: codebook.c.s
@@ -317,7 +317,7 @@ codebook.s: codebook.c.s
 
 # target to generate assembly for a file
 codebook.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/codebook.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/codebook.c.s
 .PHONY : codebook.c.s
 
 envelope.o: envelope.c.o
@@ -325,7 +325,7 @@ envelope.o: envelope.c.o
 
 # target to build an object file
 envelope.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/envelope.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/envelope.c.o
 .PHONY : envelope.c.o
 
 envelope.i: envelope.c.i
@@ -333,7 +333,7 @@ envelope.i: envelope.c.i
 
 # target to preprocess a source file
 envelope.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/envelope.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/envelope.c.i
 .PHONY : envelope.c.i
 
 envelope.s: envelope.c.s
@@ -341,7 +341,7 @@ envelope.s: envelope.c.s
 
 # target to generate assembly for a file
 envelope.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/envelope.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/envelope.c.s
 .PHONY : envelope.c.s
 
 floor0.o: floor0.c.o
@@ -349,7 +349,7 @@ floor0.o: floor0.c.o
 
 # target to build an object file
 floor0.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor0.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor0.c.o
 .PHONY : floor0.c.o
 
 floor0.i: floor0.c.i
@@ -357,7 +357,7 @@ floor0.i: floor0.c.i
 
 # target to preprocess a source file
 floor0.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor0.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor0.c.i
 .PHONY : floor0.c.i
 
 floor0.s: floor0.c.s
@@ -365,7 +365,7 @@ floor0.s: floor0.c.s
 
 # target to generate assembly for a file
 floor0.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor0.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor0.c.s
 .PHONY : floor0.c.s
 
 floor1.o: floor1.c.o
@@ -373,7 +373,7 @@ floor1.o: floor1.c.o
 
 # target to build an object file
 floor1.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor1.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor1.c.o
 .PHONY : floor1.c.o
 
 floor1.i: floor1.c.i
@@ -381,7 +381,7 @@ floor1.i: floor1.c.i
 
 # target to preprocess a source file
 floor1.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor1.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor1.c.i
 .PHONY : floor1.c.i
 
 floor1.s: floor1.c.s
@@ -389,7 +389,7 @@ floor1.s: floor1.c.s
 
 # target to generate assembly for a file
 floor1.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor1.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/floor1.c.s
 .PHONY : floor1.c.s
 
 info.o: info.c.o
@@ -397,7 +397,7 @@ info.o: info.c.o
 
 # target to build an object file
 info.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/info.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/info.c.o
 .PHONY : info.c.o
 
 info.i: info.c.i
@@ -405,7 +405,7 @@ info.i: info.c.i
 
 # target to preprocess a source file
 info.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/info.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/info.c.i
 .PHONY : info.c.i
 
 info.s: info.c.s
@@ -413,7 +413,7 @@ info.s: info.c.s
 
 # target to generate assembly for a file
 info.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/info.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/info.c.s
 .PHONY : info.c.s
 
 lookup.o: lookup.c.o
@@ -421,7 +421,7 @@ lookup.o: lookup.c.o
 
 # target to build an object file
 lookup.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lookup.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lookup.c.o
 .PHONY : lookup.c.o
 
 lookup.i: lookup.c.i
@@ -429,7 +429,7 @@ lookup.i: lookup.c.i
 
 # target to preprocess a source file
 lookup.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lookup.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lookup.c.i
 .PHONY : lookup.c.i
 
 lookup.s: lookup.c.s
@@ -437,7 +437,7 @@ lookup.s: lookup.c.s
 
 # target to generate assembly for a file
 lookup.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lookup.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lookup.c.s
 .PHONY : lookup.c.s
 
 lpc.o: lpc.c.o
@@ -445,7 +445,7 @@ lpc.o: lpc.c.o
 
 # target to build an object file
 lpc.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lpc.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lpc.c.o
 .PHONY : lpc.c.o
 
 lpc.i: lpc.c.i
@@ -453,7 +453,7 @@ lpc.i: lpc.c.i
 
 # target to preprocess a source file
 lpc.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lpc.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lpc.c.i
 .PHONY : lpc.c.i
 
 lpc.s: lpc.c.s
@@ -461,7 +461,7 @@ lpc.s: lpc.c.s
 
 # target to generate assembly for a file
 lpc.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lpc.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lpc.c.s
 .PHONY : lpc.c.s
 
 lsp.o: lsp.c.o
@@ -469,7 +469,7 @@ lsp.o: lsp.c.o
 
 # target to build an object file
 lsp.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lsp.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lsp.c.o
 .PHONY : lsp.c.o
 
 lsp.i: lsp.c.i
@@ -477,7 +477,7 @@ lsp.i: lsp.c.i
 
 # target to preprocess a source file
 lsp.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lsp.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lsp.c.i
 .PHONY : lsp.c.i
 
 lsp.s: lsp.c.s
@@ -485,7 +485,7 @@ lsp.s: lsp.c.s
 
 # target to generate assembly for a file
 lsp.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lsp.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/lsp.c.s
 .PHONY : lsp.c.s
 
 mapping0.o: mapping0.c.o
@@ -493,7 +493,7 @@ mapping0.o: mapping0.c.o
 
 # target to build an object file
 mapping0.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mapping0.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mapping0.c.o
 .PHONY : mapping0.c.o
 
 mapping0.i: mapping0.c.i
@@ -501,7 +501,7 @@ mapping0.i: mapping0.c.i
 
 # target to preprocess a source file
 mapping0.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mapping0.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mapping0.c.i
 .PHONY : mapping0.c.i
 
 mapping0.s: mapping0.c.s
@@ -509,7 +509,7 @@ mapping0.s: mapping0.c.s
 
 # target to generate assembly for a file
 mapping0.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mapping0.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mapping0.c.s
 .PHONY : mapping0.c.s
 
 mdct.o: mdct.c.o
@@ -517,7 +517,7 @@ mdct.o: mdct.c.o
 
 # target to build an object file
 mdct.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mdct.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mdct.c.o
 .PHONY : mdct.c.o
 
 mdct.i: mdct.c.i
@@ -525,7 +525,7 @@ mdct.i: mdct.c.i
 
 # target to preprocess a source file
 mdct.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mdct.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mdct.c.i
 .PHONY : mdct.c.i
 
 mdct.s: mdct.c.s
@@ -533,7 +533,7 @@ mdct.s: mdct.c.s
 
 # target to generate assembly for a file
 mdct.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mdct.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/mdct.c.s
 .PHONY : mdct.c.s
 
 psy.o: psy.c.o
@@ -541,7 +541,7 @@ psy.o: psy.c.o
 
 # target to build an object file
 psy.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/psy.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/psy.c.o
 .PHONY : psy.c.o
 
 psy.i: psy.c.i
@@ -549,7 +549,7 @@ psy.i: psy.c.i
 
 # target to preprocess a source file
 psy.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/psy.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/psy.c.i
 .PHONY : psy.c.i
 
 psy.s: psy.c.s
@@ -557,7 +557,7 @@ psy.s: psy.c.s
 
 # target to generate assembly for a file
 psy.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/psy.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/psy.c.s
 .PHONY : psy.c.s
 
 registry.o: registry.c.o
@@ -565,7 +565,7 @@ registry.o: registry.c.o
 
 # target to build an object file
 registry.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/registry.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/registry.c.o
 .PHONY : registry.c.o
 
 registry.i: registry.c.i
@@ -573,7 +573,7 @@ registry.i: registry.c.i
 
 # target to preprocess a source file
 registry.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/registry.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/registry.c.i
 .PHONY : registry.c.i
 
 registry.s: registry.c.s
@@ -581,7 +581,7 @@ registry.s: registry.c.s
 
 # target to generate assembly for a file
 registry.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/registry.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/registry.c.s
 .PHONY : registry.c.s
 
 res0.o: res0.c.o
@@ -589,7 +589,7 @@ res0.o: res0.c.o
 
 # target to build an object file
 res0.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/res0.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/res0.c.o
 .PHONY : res0.c.o
 
 res0.i: res0.c.i
@@ -597,7 +597,7 @@ res0.i: res0.c.i
 
 # target to preprocess a source file
 res0.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/res0.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/res0.c.i
 .PHONY : res0.c.i
 
 res0.s: res0.c.s
@@ -605,7 +605,7 @@ res0.s: res0.c.s
 
 # target to generate assembly for a file
 res0.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/res0.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/res0.c.s
 .PHONY : res0.c.s
 
 sharedbook.o: sharedbook.c.o
@@ -613,7 +613,7 @@ sharedbook.o: sharedbook.c.o
 
 # target to build an object file
 sharedbook.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/sharedbook.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/sharedbook.c.o
 .PHONY : sharedbook.c.o
 
 sharedbook.i: sharedbook.c.i
@@ -621,7 +621,7 @@ sharedbook.i: sharedbook.c.i
 
 # target to preprocess a source file
 sharedbook.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/sharedbook.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/sharedbook.c.i
 .PHONY : sharedbook.c.i
 
 sharedbook.s: sharedbook.c.s
@@ -629,7 +629,7 @@ sharedbook.s: sharedbook.c.s
 
 # target to generate assembly for a file
 sharedbook.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/sharedbook.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/sharedbook.c.s
 .PHONY : sharedbook.c.s
 
 smallft.o: smallft.c.o
@@ -637,7 +637,7 @@ smallft.o: smallft.c.o
 
 # target to build an object file
 smallft.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/smallft.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/smallft.c.o
 .PHONY : smallft.c.o
 
 smallft.i: smallft.c.i
@@ -645,7 +645,7 @@ smallft.i: smallft.c.i
 
 # target to preprocess a source file
 smallft.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/smallft.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/smallft.c.i
 .PHONY : smallft.c.i
 
 smallft.s: smallft.c.s
@@ -653,7 +653,7 @@ smallft.s: smallft.c.s
 
 # target to generate assembly for a file
 smallft.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/smallft.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/smallft.c.s
 .PHONY : smallft.c.s
 
 synthesis.o: synthesis.c.o
@@ -661,7 +661,7 @@ synthesis.o: synthesis.c.o
 
 # target to build an object file
 synthesis.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/synthesis.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/synthesis.c.o
 .PHONY : synthesis.c.o
 
 synthesis.i: synthesis.c.i
@@ -669,7 +669,7 @@ synthesis.i: synthesis.c.i
 
 # target to preprocess a source file
 synthesis.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/synthesis.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/synthesis.c.i
 .PHONY : synthesis.c.i
 
 synthesis.s: synthesis.c.s
@@ -677,7 +677,7 @@ synthesis.s: synthesis.c.s
 
 # target to generate assembly for a file
 synthesis.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/synthesis.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/synthesis.c.s
 .PHONY : synthesis.c.s
 
 vorbisenc.o: vorbisenc.c.o
@@ -685,7 +685,7 @@ vorbisenc.o: vorbisenc.c.o
 
 # target to build an object file
 vorbisenc.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/vorbisenc.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/vorbisenc.c.o
 .PHONY : vorbisenc.c.o
 
 vorbisenc.i: vorbisenc.c.i
@@ -693,7 +693,7 @@ vorbisenc.i: vorbisenc.c.i
 
 # target to preprocess a source file
 vorbisenc.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/vorbisenc.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/vorbisenc.c.i
 .PHONY : vorbisenc.c.i
 
 vorbisenc.s: vorbisenc.c.s
@@ -701,7 +701,7 @@ vorbisenc.s: vorbisenc.c.s
 
 # target to generate assembly for a file
 vorbisenc.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/vorbisenc.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/vorbisenc.c.s
 .PHONY : vorbisenc.c.s
 
 vorbisfile.o: vorbisfile.c.o
@@ -709,7 +709,7 @@ vorbisfile.o: vorbisfile.c.o
 
 # target to build an object file
 vorbisfile.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o
 .PHONY : vorbisfile.c.o
 
 vorbisfile.i: vorbisfile.c.i
@@ -717,7 +717,7 @@ vorbisfile.i: vorbisfile.c.i
 
 # target to preprocess a source file
 vorbisfile.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.i
 .PHONY : vorbisfile.c.i
 
 vorbisfile.s: vorbisfile.c.s
@@ -725,7 +725,7 @@ vorbisfile.s: vorbisfile.c.s
 
 # target to generate assembly for a file
 vorbisfile.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.s
 .PHONY : vorbisfile.c.s
 
 window.o: window.c.o
@@ -733,7 +733,7 @@ window.o: window.c.o
 
 # target to build an object file
 window.c.o:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/window.c.o
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/window.c.o
 .PHONY : window.c.o
 
 window.i: window.c.i
@@ -741,7 +741,7 @@ window.i: window.c.i
 
 # target to preprocess a source file
 window.c.i:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/window.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/window.c.i
 .PHONY : window.c.i
 
 window.s: window.c.s
@@ -749,7 +749,7 @@ window.s: window.c.s
 
 # target to generate assembly for a file
 window.c.s:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/window.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/window.c.s
 .PHONY : window.c.s
 
 # Help Target
@@ -846,7 +846,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

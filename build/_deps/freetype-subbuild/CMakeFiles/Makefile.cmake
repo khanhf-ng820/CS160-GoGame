@@ -7,25 +7,27 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeGenericSystem.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeInitializeConfigs.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInitialize.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/PatchInfo.txt.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/RepositoryInfo.txt.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/UpdateInfo.txt.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/cfgcmd.txt.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/gitclone.cmake.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/gitupdate.cmake.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/mkdirs.cmake.in"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/ExternalProject/shared_internal_commands.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/Darwin-Initialize.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/Darwin.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/UnixPaths.cmake"
   "CMakeFiles/4.1.2/CMakeSystem.cmake"
   "CMakeLists.txt"
   "freetype-populate-prefix/tmp/freetype-populate-mkdirs.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeGenericSystem.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeInitializeConfigs.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeSystem.cmake.in"
+  "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject.cmake"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/PatchInfo.txt.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/RepositoryInfo.txt.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/UpdateInfo.txt.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/cfgcmd.txt.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/gitclone.cmake.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/gitupdate.cmake.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/mkdirs.cmake.in"
+  "/opt/homebrew/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake"
+  "/opt/homebrew/share/cmake/Modules/Platform/Darwin-Initialize.cmake"
+  "/opt/homebrew/share/cmake/Modules/Platform/Darwin.cmake"
+  "/opt/homebrew/share/cmake/Modules/Platform/UnixPaths.cmake"
   )
 
 # The corresponding makefile is:
@@ -36,6 +38,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/4.1.2/CMakeSystem.cmake"
   "freetype-populate-prefix/tmp/freetype-populate-mkdirs.cmake"
   "freetype-populate-prefix/tmp/freetype-populate-gitclone.cmake"
   "freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-gitinfo.txt"

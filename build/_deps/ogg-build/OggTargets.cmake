@@ -50,14 +50,14 @@ unset(_cmake_expected_targets)
 add_library(Ogg::ogg STATIC IMPORTED)
 
 set_target_properties(Ogg::ogg PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/include;/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/include;/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build/include"
 )
 
 # Import target "Ogg::ogg" for configuration "Release"
 set_property(TARGET Ogg::ogg APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(Ogg::ogg PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
-  IMPORTED_LOCATION_RELEASE "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/lib/libogg.a"
+  IMPORTED_LOCATION_RELEASE "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/lib/libogg.a"
   )
 
 # This file does not depend on other imported targets which have

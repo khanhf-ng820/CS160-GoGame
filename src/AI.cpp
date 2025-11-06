@@ -1,0 +1,32 @@
+#include "AI.h"
+#include <vector>
+#include <algorithm>
+
+GoAI::GoAI(AIDifficulty d): diff(d) {}
+
+Move GoAI::choose_move(const Game& game, std::mt19937& rng){
+    const int N = game.size();
+    std::vector<Move> cand; cand.reserve(N*N+1);
+
+    for (int r=0;r<N;++r)
+        for (int c=0;c<N;++c)
+            if (game.board().get(r,c)==Stone::EMPTY)
+                cand.push_back({r,c,false});
+
+    if (cand.empty()) return {0,0,true}; // pass
+
+    if (diff==AIDifficulty::EASY){
+        std::uniform_int_distribution<int> D(0,(int)cand.size()-1);
+        return cand[D(rng)];
+    } else {
+        const float cr=(N-1)*0.5f, cc=(N-1)*0.5f;
+        auto sc=[&](const Move& m){ float dr=m.r-cr, dc=m.c-cc; return dr*dr+dc*dc; };
+        std::sort(cand.begin(), cand.end(),
+                  [&](auto&a,auto&b){ return sc(a)<sc(b); });
+        size_t k = (diff==AIDifficulty::HARD)
+                   ? std::max<size_t>(1, cand.size()/33)
+                   : std::max<size_t>(1, cand.size()/10);
+        std::uniform_int_distribution<size_t> D(0,k-1);
+        return cand[D(rng)];
+    }
+}

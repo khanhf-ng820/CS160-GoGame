@@ -1,14 +1,14 @@
 # Target labels
  freetype-populate
 # Source files and their labels
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate-complete.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-mkdir.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-test.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate-complete.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-mkdir.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-test.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update.rule

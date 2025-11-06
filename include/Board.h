@@ -1,46 +1,40 @@
 #pragma once
-#ifndef BOARD_H
-#define BOARD_H
-
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <cmath>
 #include <vector>
+#include <string>
+#include <cctype>
+#include <algorithm>
+#include <cassert>
 
-namespace Board {
-	// Consts
-	enum class State {
-		EMPTY,
-		BLACK,
-		WHITE
-	};
+// Utilities
+enum class Stone { EMPTY = 0, BLACK = 1, WHITE = 2 };
 
-	enum class Liberty {
-		EMPTY_INT,
-		NO_LIBERTY,
-		HAS_LIBERTY
-	};
+Stone        opposite(Stone s);
+char         stone_char(Stone s);
+int          col_from_char(char ch);
+char         char_from_col(int c);
+std::string  trim(std::string s);
 
+// Board class
+class Board {
+public:
+    explicit Board(int n = 19);
 
-	extern const int INVALID_INTERSECTION;
-	
-	extern bool enabled;
-	extern int boardWidth, boardHeight;
-	extern float boardSize, squareLength, pieceRadius;
+    int  size() const;
+    bool in_bounds(int r, int c) const;
 
-	extern sf::FloatRect boardRect;
+    Stone get(int r, int c) const;
+    void  set(int r, int c, Stone s);
 
-	extern std::vector<State> board, hasLiberty;
-	extern std::vector<bool> visited;
+    void clear();
 
-	void changeBoardSize(int bWidth, int bHeight);
-	int piecePosFromMousePos(sf::Vector2f mousePos, Board::State& player);
-	int resolveTurn(int& player, int piecePos);
-	void displayBoard(sf::RenderWindow& window);
-	bool mouseOnBoard(sf::Vector2f mousePos);
-	void enable();
-	void disable();
-	int ix(int x, int y);
-}
+    // Count stones
+    void count(int& black, int& white) const;
 
-#endif
+    // Serialize
+    std::string dump_rows() const;
+    bool        load_rows(const std::vector<std::string>& rows);
+
+private:
+    int N;
+    std::vector<Stone> grid;
+};

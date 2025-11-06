@@ -1,4 +1,4 @@
-# Install script for directory: /Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-subbuild
+# Install script for directory: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,7 +35,7 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-subbuild/install_local_manifest.txt"
+  file(WRITE "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-subbuild/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -51,6 +51,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-subbuild/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

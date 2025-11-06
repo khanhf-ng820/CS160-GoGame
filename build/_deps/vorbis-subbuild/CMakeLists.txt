@@ -18,18 +18,18 @@ project(vorbis-populate NONE)
 
 # Pass through things we've already detected in the main project to avoid
 # paying the cost of redetecting them again in ExternalProject_Add()
-set(GIT_EXECUTABLE [==[/usr/local/bin/git]==])
-set(GIT_VERSION_STRING [==[2.50.1]==])
+set(GIT_EXECUTABLE [==[/opt/homebrew/bin/git]==])
+set(GIT_VERSION_STRING [==[2.51.2]==])
 set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
-  [==[/usr/local/bin/git;2.50.1]==]
+  [==[/opt/homebrew/bin/git;2.51.2]==]
 )
 
 
 include(ExternalProject)
 ExternalProject_Add(vorbis-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/xiph/vorbis.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v1.3.7" "GIT_SHALLOW" "ON" "PATCH_COMMAND" "/Applications/CMake.app/Contents/bin/cmake" "-DVORBIS_DIR=/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src" "-P" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/tools/vorbis/PatchVorbis.cmake"
-                    SOURCE_DIR          "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src"
-                    BINARY_DIR          "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/xiph/vorbis.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v1.3.7" "GIT_SHALLOW" "ON" "PATCH_COMMAND" "/opt/homebrew/bin/cmake" "-DVORBIS_DIR=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src" "-P" "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/tools/vorbis/PatchVorbis.cmake"
+                    SOURCE_DIR          "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src"
+                    BINARY_DIR          "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

@@ -20,6 +20,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     sfml-graphics
     sfml-window
     sfml-system
+    sfml-audio
 )
 
 # Optionally specify where to output the binary

@@ -6,22 +6,22 @@ cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 # If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
 # existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
 # would cause a fatal error, even though it would be a no-op.
-if(NOT EXISTS "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src")
-  file(MAKE_DIRECTORY "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src")
+if(NOT EXISTS "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src")
+  file(MAKE_DIRECTORY "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src")
 endif()
 file(MAKE_DIRECTORY
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

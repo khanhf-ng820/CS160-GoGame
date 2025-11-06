@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild"
+CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild"
+CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild
 
 # Utility rule file for ogg-populate.
 
@@ -77,60 +77,60 @@ CMakeFiles/ogg-populate-complete: ogg-populate-prefix/src/ogg-populate-stamp/ogg
 CMakeFiles/ogg-populate-complete: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build
 CMakeFiles/ogg-populate-complete: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install
 CMakeFiles/ogg-populate-complete: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-test
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Completed 'ogg-populate'"
-	/Applications/CMake.app/Contents/bin/cmake -E make_directory "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles"
-	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate-complete"
-	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-done"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'ogg-populate'"
+	/opt/homebrew/bin/cmake -E make_directory /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles
+	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate-complete
+	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-done
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update:
 .PHONY : ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure: ogg-populate-prefix/tmp/ogg-populate-cfgcmd.txt
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-gitinfo.txt
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps" && /Applications/CMake.app/Contents/bin/cmake -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/tmp/ogg-populate-gitclone.cmake"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps && /opt/homebrew/bin/cmake -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/tmp/ogg-populate-gitclone.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'ogg-populate'"
-	/Applications/CMake.app/Contents/bin/cmake -Dcfgdir= -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/tmp/ogg-populate-mkdirs.cmake"
-	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-mkdir"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'ogg-populate'"
+	/opt/homebrew/bin/cmake -Dcfgdir= -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/tmp/ogg-populate-mkdirs.cmake
+	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-mkdir
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch-info.txt
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Performing patch step for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src" && /Applications/CMake.app/Contents/bin/cmake "-DOGG_DIR=/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src" -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/tools/ogg/PatchOgg.cmake"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Performing patch step for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src && /opt/homebrew/bin/cmake -DOGG_DIR=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/tools/ogg/PatchOgg.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update:
 .PHONY : ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-test: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-test
 
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update: ogg-populate-prefix/tmp/ogg-populate-gitupdate.cmake
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update-info.txt
 ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update: ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'ogg-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src" && /Applications/CMake.app/Contents/bin/cmake -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/tmp/ogg-populate-gitupdate.cmake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'ogg-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src && /opt/homebrew/bin/cmake -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/tmp/ogg-populate-gitupdate.cmake
 
 CMakeFiles/ogg-populate.dir/codegen:
 .PHONY : CMakeFiles/ogg-populate.dir/codegen
@@ -157,6 +157,6 @@ CMakeFiles/ogg-populate.dir/clean:
 .PHONY : CMakeFiles/ogg-populate.dir/clean
 
 CMakeFiles/ogg-populate.dir/depend:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/ogg-populate.dir/depend
 

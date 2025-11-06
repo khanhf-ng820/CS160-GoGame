@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
+CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
+CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
 
 # Include any dependencies generated for this target.
 include _deps/ogg-build/CMakeFiles/ogg.dir/depend.make
@@ -75,30 +75,30 @@ _deps/ogg-build/CMakeFiles/ogg.dir/codegen:
 _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o: _deps/ogg-build/CMakeFiles/ogg.dir/flags.make
 _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o: _deps/ogg-src/src/bitwise.c
 _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o: _deps/ogg-build/CMakeFiles/ogg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o -MF CMakeFiles/ogg.dir/src/bitwise.c.o.d -o CMakeFiles/ogg.dir/src/bitwise.c.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/src/bitwise.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o -MF CMakeFiles/ogg.dir/src/bitwise.c.o.d -o CMakeFiles/ogg.dir/src/bitwise.c.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/src/bitwise.c
 
 _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ogg.dir/src/bitwise.c.i"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/src/bitwise.c" > CMakeFiles/ogg.dir/src/bitwise.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/src/bitwise.c > CMakeFiles/ogg.dir/src/bitwise.c.i
 
 _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ogg.dir/src/bitwise.c.s"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/src/bitwise.c" -o CMakeFiles/ogg.dir/src/bitwise.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/src/bitwise.c -o CMakeFiles/ogg.dir/src/bitwise.c.s
 
 _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o: _deps/ogg-build/CMakeFiles/ogg.dir/flags.make
 _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o: _deps/ogg-src/src/framing.c
 _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o: _deps/ogg-build/CMakeFiles/ogg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o -MF CMakeFiles/ogg.dir/src/framing.c.o.d -o CMakeFiles/ogg.dir/src/framing.c.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/src/framing.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o -MF CMakeFiles/ogg.dir/src/framing.c.o.d -o CMakeFiles/ogg.dir/src/framing.c.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/src/framing.c
 
 _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ogg.dir/src/framing.c.i"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/src/framing.c" > CMakeFiles/ogg.dir/src/framing.c.i
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/src/framing.c > CMakeFiles/ogg.dir/src/framing.c.i
 
 _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ogg.dir/src/framing.c.s"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src/src/framing.c" -o CMakeFiles/ogg.dir/src/framing.c.s
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src/src/framing.c -o CMakeFiles/ogg.dir/src/framing.c.s
 
 # Object files for target ogg
 ogg_OBJECTS = \
@@ -112,19 +112,19 @@ external/SFML/lib/libogg.a: _deps/ogg-build/CMakeFiles/ogg.dir/src/bitwise.c.o
 external/SFML/lib/libogg.a: _deps/ogg-build/CMakeFiles/ogg.dir/src/framing.c.o
 external/SFML/lib/libogg.a: _deps/ogg-build/CMakeFiles/ogg.dir/build.make
 external/SFML/lib/libogg.a: _deps/ogg-build/CMakeFiles/ogg.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library ../../external/SFML/lib/libogg.a"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && $(CMAKE_COMMAND) -P CMakeFiles/ogg.dir/cmake_clean_target.cmake
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ogg.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library ../../external/SFML/lib/libogg.a"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && $(CMAKE_COMMAND) -P CMakeFiles/ogg.dir/cmake_clean_target.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ogg.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 _deps/ogg-build/CMakeFiles/ogg.dir/build: external/SFML/lib/libogg.a
 .PHONY : _deps/ogg-build/CMakeFiles/ogg.dir/build
 
 _deps/ogg-build/CMakeFiles/ogg.dir/clean:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" && $(CMAKE_COMMAND) -P CMakeFiles/ogg.dir/cmake_clean.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build && $(CMAKE_COMMAND) -P CMakeFiles/ogg.dir/cmake_clean.cmake
 .PHONY : _deps/ogg-build/CMakeFiles/ogg.dir/clean
 
 _deps/ogg-build/CMakeFiles/ogg.dir/depend:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-src" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/ogg-build/CMakeFiles/ogg.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-src /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-build/CMakeFiles/ogg.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : _deps/ogg-build/CMakeFiles/ogg.dir/depend
 

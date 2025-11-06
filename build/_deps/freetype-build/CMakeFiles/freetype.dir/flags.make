@@ -4,7 +4,9 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DFT2_BUILD_LIBRARY
 
-C_INCLUDES = -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build/include/freetype/config"
+C_INCLUDES = -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build/include/freetype/config
 
-C_FLAGS = -O3 -DNDEBUG -fvisibility=hidden
+C_FLAGSarm64 = -O3 -DNDEBUG -arch arm64 -fvisibility=hidden
+
+C_FLAGS = -O3 -DNDEBUG -arch arm64 -fvisibility=hidden
 

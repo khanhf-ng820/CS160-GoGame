@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild"
+CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild"
+CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild
 
 # Utility rule file for freetype-populate.
 
@@ -77,60 +77,60 @@ CMakeFiles/freetype-populate-complete: freetype-populate-prefix/src/freetype-pop
 CMakeFiles/freetype-populate-complete: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build
 CMakeFiles/freetype-populate-complete: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install
 CMakeFiles/freetype-populate-complete: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-test
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Completed 'freetype-populate'"
-	/Applications/CMake.app/Contents/bin/cmake -E make_directory "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles"
-	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate-complete"
-	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-done"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'freetype-populate'"
+	/opt/homebrew/bin/cmake -E make_directory /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles
+	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate-complete
+	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-done
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update:
 .PHONY : freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure: freetype-populate-prefix/tmp/freetype-populate-cfgcmd.txt
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-configure
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-gitinfo.txt
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps" && /Applications/CMake.app/Contents/bin/cmake -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-gitclone.cmake"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps && /opt/homebrew/bin/cmake -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-gitclone.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'freetype-populate'"
-	/Applications/CMake.app/Contents/bin/cmake -Dcfgdir= -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-mkdirs.cmake"
-	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-mkdir"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'freetype-populate'"
+	/opt/homebrew/bin/cmake -Dcfgdir= -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-mkdirs.cmake
+	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-mkdir
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch-info.txt
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Performing patch step for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src" && /Applications/CMake.app/Contents/bin/cmake "-DFREETYPE_DIR=/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src" -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/tools/freetype/PatchFreetype.cmake"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Performing patch step for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src && /opt/homebrew/bin/cmake -DFREETYPE_DIR=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/tools/freetype/PatchFreetype.cmake
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-patch
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update:
 .PHONY : freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-test: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E echo_append
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-test
 
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update: freetype-populate-prefix/tmp/freetype-populate-gitupdate.cmake
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update-info.txt
 freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-update: freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'freetype-populate'"
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src" && /Applications/CMake.app/Contents/bin/cmake -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-gitupdate.cmake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'freetype-populate'"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src && /opt/homebrew/bin/cmake -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-gitupdate.cmake
 
 CMakeFiles/freetype-populate.dir/codegen:
 .PHONY : CMakeFiles/freetype-populate.dir/codegen
@@ -157,6 +157,6 @@ CMakeFiles/freetype-populate.dir/clean:
 .PHONY : CMakeFiles/freetype-populate.dir/clean
 
 CMakeFiles/freetype-populate.dir/depend:
-	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/CMakeFiles/freetype-populate.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/freetype-populate.dir/depend
 

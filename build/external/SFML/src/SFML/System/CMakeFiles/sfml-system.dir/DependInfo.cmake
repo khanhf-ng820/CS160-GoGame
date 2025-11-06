@@ -8,16 +8,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Clock.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Err.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/FileInputStream.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/MemoryInputStream.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Sleep.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/String.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Unix/SleepImpl.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Utils.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Vector2.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.o.d"
-  "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/System/Vector3.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Clock.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Err.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/FileInputStream.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/MemoryInputStream.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Sleep.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/String.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Unix/SleepImpl.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Utils.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Vector2.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.o.d"
+  "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/System/Vector3.cpp" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.o" "gcc" "external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

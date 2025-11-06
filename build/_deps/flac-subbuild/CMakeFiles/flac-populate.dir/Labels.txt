@@ -1,14 +1,14 @@
 # Target labels
  flac-populate
 # Source files and their labels
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate-complete.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-build.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-download.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-install.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-test.rule
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-update.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate-complete.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-build.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-download.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-install.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-test.rule
+/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-update.rule
