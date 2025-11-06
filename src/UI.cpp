@@ -12,6 +12,44 @@ namespace fs = std::filesystem;
 static constexpr float PANEL_W   = 120.f;
 static constexpr float PANEL_GAP = 60.f;
 static constexpr float RIGHT_PAD = 10.f;
+static constexpr unsigned MIN_WIN_H = 720;
+
+float UI::panel_top_y() const {
+    float floorY = (BOARD_SIZE == 9 ? 120.f : 170.f);
+    if (infoText) {
+        auto gb = infoText->getGlobalBounds();
+        float extra =
+            (BOARD_SIZE == 9  ? 12.f :
+             BOARD_SIZE >= 13 ? 6.f :
+                                16.f);
+        return std::max(floorY, gb.position.y + gb.size.y + extra);
+    }
+    return floorY;
+}
+
+float UI::panel_min_height() const {
+    const float BTN_H   = 32.f;
+    const float ROW_GAP = (BOARD_SIZE == 9 ? 8.f : 10.f);
+
+    float y = panel_top_y();
+
+    if (BOARD_SIZE == 9) {
+        // Size
+        y += BTN_H + ROW_GAP;
+        y += (BTN_H + ROW_GAP) * 5; // Undo/ Redo, Pass/ Mode, NewGame/ Save, Load/ Theme, Music/ Quit
+        y += 8.f;
+    } else {
+        // Size, Undo/ Redo, Pass, Mode
+        // New Game, Save/ Load, Theme/ Music, Quit
+        const int span_rows = 5;
+        const int pair_rows = 3;
+
+        y += (BTN_H + ROW_GAP) * span_rows;
+        y += (BTN_H + ROW_GAP) * pair_rows;
+        y += 10.f;
+    }
+    return y;
+}
 
 // Console UI
 UI::UI(Game& g, GoAI& a, std::mt19937& rng_)
@@ -138,6 +176,7 @@ void UI::run_graphical() {
 	);
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
+	gui_update_window_size();
 
 	// Assets
 	(void)font.openFromFile("assets/fonts/OpenSans-Regular.ttf");
@@ -245,11 +284,11 @@ void UI::run_graphical() {
 }
 
 void UI::build_main_buttons(int gridW) {
-	buttons.clear();
+    buttons.clear();
 
 	auto makeBtn = [&](const std::string& txt, float x, float y,
-					   std::function<void()> fn,
-					   sf::Vector2f size = {120.f, 32.f})
+					std::function<void()> fn,
+					sf::Vector2f size = {120.f, 32.f})
 	{
 		Button b;
 		b.rect.setSize(size);
@@ -260,8 +299,29 @@ void UI::build_main_buttons(int gridW) {
 
 		b.label.emplace(font);
 		b.label->setString(txt);
-		b.label->setCharacterSize(16);
+
+		// Auto fit text width
+		unsigned minSize = 12;
+		unsigned curSize = 16;     // default size
+		b.label->setCharacterSize(curSize);
 		b.label->setFillColor(sf::Color::Black);
+
+		auto fits = [&](unsigned s)->bool{
+			b.label->setCharacterSize(s);
+			auto lb = b.label->getLocalBounds();
+			float avail = size.x - 20.f; // 10px padding each side
+			return lb.size.x <= avail;
+		};
+		while (curSize > minSize && !fits(curSize)) --curSize;
+		// If not fit, cut and replace with ...
+		if (!fits(curSize)) {
+			std::string t = txt;
+			while (t.size() > 1 && !fits(curSize)) {
+				t.pop_back();
+				b.label->setString(t + "…");
+			}
+		}
+
 		auto lb = b.label->getLocalBounds();
 		b.label->setPosition({
 			x + 10.f,
@@ -272,53 +332,100 @@ void UI::build_main_buttons(int gridW) {
 		buttons.push_back(std::move(b));
 	};
 
-	const float bx = float(MARGIN + (BOARD_SIZE - 1) * CELL + PANEL_GAP);
+    const float bx = float(MARGIN + (BOARD_SIZE - 1) * CELL + PANEL_GAP);
+    float y = panel_top_y();
 
-	// Start bellow infoText
-	float y = 180.f;
-	if (infoText) {
-		auto gb = infoText->getGlobalBounds();
-		y = std::max(y, gb.position.y + gb.size.y + 20.f);
-	}
+    // Column
+    const float COL_GAP = 10.f;
+    const float ROW_GAP = (BOARD_SIZE == 9 ? 8.f : 10.f);
+    const float BTN_H   = 32.f;
+    const float colW    = (PANEL_W - COL_GAP) * 0.5f;
 
-	// Board Size
-	makeBtn("Size", bx, y, [this, gridW]{
-		build_board_size_modal(gridW);
-	});
-	y += 40.f;
+    auto addRow2 = [&](const std::string& left, std::function<void()> lfn,
+                       const std::string& right, std::function<void()> rfn)
+    {
+        makeBtn(left,  bx,                 y, std::move(lfn), {colW, BTN_H});
+        makeBtn(right, bx + colW + COL_GAP, y, std::move(rfn), {colW, BTN_H});
+        y += BTN_H + ROW_GAP;
+    };
+    auto addSpan2 = [&](const std::string& txt, std::function<void()> fn)
+    {
+        makeBtn(txt, bx, y, std::move(fn), {PANEL_W, BTN_H});
+        y += BTN_H + ROW_GAP;
+    };
 
-	// Undo/ Redo
-	const float halfW = 58.f;
-	makeBtn("Undo", bx, y, [&]{ if (!aiThinking) { game.undo(); lastMove.reset(); } }, {halfW, 32.f});
-	makeBtn("Redo", bx + halfW + 4.f, y, [&]{ if (!aiThinking) { game.redo(); lastMove.reset(); } }, {halfW, 32.f});
-	y += 44.f;
+    // Size
+    addSpan2("Size", [this, gridW]{ build_board_size_modal(gridW); });
 
-	// Pass
-	makeBtn("Pass", bx, y, [&]{
-		if (!aiThinking) {
-			game.pass(); lastMove.reset();
-			if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
-		}
-	});
-	y += 40.f;
+    if (BOARD_SIZE == 9) {
+        // 5-5 layout
+        addRow2("Undo",
+            [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
+                "Redo",
+            [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
 
-	makeBtn("Mode", bx, y, [this, gridW]{ request_switch_mode(gridW); }); 
-	y += 40.f;
-	
-	// Others Buttons
-	makeBtn("New Game", bx, y, [this, gridW]{
-		if (board_has_any_stone()) {
-			// Ask before reset
-			build_confirm_newgame_modal(gridW);
-		} else {
-			gui_reset();
-		}
-	});                               y += 40.f;
-	makeBtn("Save",     bx, y, [&]{ build_save_load_modal(Modal::Save, gridW); }); y += 40.f;
-	makeBtn("Load",     bx, y, [&]{ build_save_load_modal(Modal::Load, gridW); }); y += 40.f;
-	makeBtn("Theme",    bx, y, [&]{ build_theme_modal(gridW); });                  y += 40.f;
-	makeBtn("Music",    bx, y, [&]{ build_music_modal(gridW); });                  y += 40.f;
-	makeBtn("Quit",     bx, y, [&]{ window.close(); });                            y += 40.f;
+        addRow2("Pass",
+            [this]{
+                if (!aiThinking) {
+                    game.pass(); lastMove.reset();
+                    if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
+                }
+            },
+                "Mode",
+            [this, gridW]{ request_switch_mode(gridW); });
+
+        addRow2("New Game",
+            [this, gridW]{
+                if (board_has_any_stone()) build_confirm_newgame_modal(gridW);
+                else gui_reset();
+            },
+                "Save",
+            [this, gridW]{ build_save_load_modal(Modal::Save, gridW); });
+
+        addRow2("Load",
+            [this, gridW]{ build_save_load_modal(Modal::Load, gridW); },
+                "Theme",
+            [this, gridW]{ build_theme_modal(gridW); });
+
+        addRow2("Music",
+            [this, gridW]{ build_music_modal(gridW); },
+                "Quit",
+            [this]{ window.close(); });
+    } else {
+        // Layout for 13×13 or 19×19
+        addRow2("Undo",
+            [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
+                "Redo",
+            [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
+
+        addSpan2("Pass", [this]{
+            if (!aiThinking) {
+                game.pass(); lastMove.reset();
+                if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
+            }
+        });
+
+        addSpan2("Mode", [this, gridW]{ request_switch_mode(gridW); });
+
+        addSpan2("New Game", [this, gridW]{
+            if (board_has_any_stone()) build_confirm_newgame_modal(gridW);
+            else gui_reset();
+        });
+
+        addRow2("Save",
+            [this, gridW]{ build_save_load_modal(Modal::Save, gridW); },
+                "Load",
+            [this, gridW]{ build_save_load_modal(Modal::Load, gridW); });
+
+        addRow2("Theme",
+            [this, gridW]{ build_theme_modal(gridW); },
+                "Music",
+            [this, gridW]{ build_music_modal(gridW); });
+
+        addSpan2("Quit", [this]{ window.close(); });
+    }
+
+    gui_update_window_size();
 }
 
 namespace {
@@ -329,134 +436,146 @@ namespace {
             && std::filesystem::file_size(p, ec) > 0;
     }
 }
+
 // Save/ load modal
-void UI::build_save_load_modal(Modal type, int gridW) {
-	activeModal = type;
-	modalButtons.clear();
-	fs::create_directories("saves");
-	const int SLOTS = 6;
+void UI::build_save_load_modal(Modal type, int /*gridW*/) {
+    activeModal = type;
+    modalButtons.clear();
+    fs::create_directories("saves");
+    const int SLOTS = 6;
 
-	auto makeBtn = [&](const std::string& txt, float x, float y, std::function<void()> fn) {
-		Button b;
-		b.rect.setSize({200.f, 32.f});
-		b.rect.setFillColor(sf::Color(240,220,150));
-		b.rect.setOutlineColor(sf::Color::Black);
-		b.rect.setOutlineThickness(1.f);
-		b.rect.setPosition({x, y});
-		b.label.emplace(font);
-		b.label->setString(txt);
-		b.label->setCharacterSize(16);
-		b.label->setFillColor(sf::Color::Black);
-		b.label->setPosition({x + 10.f, y + 6.f});
-		b.onClick = std::move(fn);
-		modalButtons.push_back(std::move(b));
-	};
+    const float panelW = 260.f;
+    const float panelX = float(window.getSize().x) - panelW - 20.f;
+    const float panelY = 160.f;
+    const float pad    = 14.f;
 
-	float px = float(gridW + 10);
-	float py = 200.f;
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
 
-	for (int i = 1; i <= SLOTS; ++i) {
-		std::string path = "saves/slot" + std::to_string(i) + ".sav";
-		bool occupied = file_nonempty(path);
+    auto makeBtn = [&](const std::string& txt, float x, float y, std::function<void()> fn) {
+        Button b;
+        b.rect.setSize({panelW - 2*pad, 32.f});
+        b.rect.setFillColor(sf::Color(240,220,150));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(1.f);
+        b.rect.setPosition({x, y});
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(16);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (32.f - lb.size.y) * 0.5f - lb.position.y });
+        b.onClick = std::move(fn);
+        modalButtons.push_back(std::move(b));
+    };
 
-		std::string label;
-		if (type == Modal::Save) {
-			label = "Save to Slot " + std::to_string(i);
-			label += occupied ? " (occupied)" : " (empty)";
-		} else { // Load
-			label = "Load Slot " + std::to_string(i);
-			label += occupied ? " (saved)" : " (empty)";
-		}
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f; // Below title
 
-		makeBtn(label, px+10, py + (i-1)*40.f,
-			[this, path, occupied, type, gridW]{
-				if (type == Modal::Save) {
-					if (occupied) {
-						build_confirm_overwrite_modal(gridW, path);
-						return;
-					}
-					std::ofstream f(path, std::ios::binary);
-					if (f) {
-						f << game.serialize();
-						if (deferredAction) {
-							auto act = std::move(deferredAction);
-							deferredAction = nullptr;
-							act();
-							return;
-						}
-					}
-					activeModal = Modal::None;
-				} else {
-					if (occupied) {
-						std::ifstream f(path, std::ios::binary);
-						if (f) {
-							std::string s((std::istreambuf_iterator<char>(f)), {});
-							game.deserialize(s);
-							lastMove.reset();
-						}
-					}
-					activeModal = Modal::None;
-				}
-			}
-		);
-	}
-	
-	// Cancel
-	makeBtn("Cancel", px+10, py + SLOTS*40.f + 8.f, [this]{ activeModal = Modal::None; });
+    for (int i = 1; i <= SLOTS; ++i) {
+        std::string path = "saves/slot" + std::to_string(i) + ".sav";
+        bool occupied = file_nonempty(path);
+        std::string label = (type == Modal::Save)
+            ? ("Save to Slot " + std::to_string(i) + (occupied ? " (occupied)" : " (empty)"))
+            : ("Load Slot "    + std::to_string(i) + (occupied ? " (saved)"    : " (empty)"));
+
+        makeBtn(label, xLeft, y, [this, path, occupied, type]{
+            if (type == Modal::Save) {
+                if (occupied) { build_confirm_overwrite_modal( /*gridW*/ 0, path ); return; }
+                std::ofstream f(path, std::ios::binary);
+                if (f) {
+                    f << game.serialize();
+                    if (deferredAction) { auto act = std::move(deferredAction); deferredAction = nullptr; act(); }
+                }
+                activeModal = Modal::None;
+            } else {
+                if (occupied) {
+                    std::ifstream f(path, std::ios::binary);
+                    if (f) { std::string s((std::istreambuf_iterator<char>(f)), {}); game.deserialize(s); lastMove.reset(); }
+                }
+                activeModal = Modal::None;
+            }
+        });
+        y += 40.f;
+    }
+
+    makeBtn("Cancel", xLeft, y + 8.f, [this]{ activeModal = Modal::None; });
+    modalPanelRect.size.y = (y + 8.f + 32.f + pad) - panelY;
 }
 
-void UI::build_theme_modal(int gridW) {
-	activeModal = Modal::Theme;
-	modalButtons.clear();
+void UI::build_theme_modal(int /*gridW*/) {
+    activeModal = Modal::Theme;
+    modalButtons.clear();
 
-	auto makeBtn = [&](const std::string& name, float x, float y, int idx) {
-		Button b;
+    // Panel frame
+    const float panelW = 260.f;
+    const float panelX = float(window.getSize().x) - panelW - 20.f;
+    const float panelY = 160.f;
+    const float pad    = 14.f;
 
-		const auto& th = themes[idx];
-		b.rect.setSize({200.f, 32.f});
-		b.rect.setFillColor(th.board);
-		b.rect.setOutlineColor(th.border);
-		b.rect.setOutlineThickness(2.f);
-		b.rect.setPosition({x, y});
+    // Assign size/ panel position for draw_modal
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
 
-		b.label.emplace(font);
-		b.label->setString(name);
-		b.label->setCharacterSize(16);
+    auto makeBtn = [&](const std::string& name, float x, float y, int idx) {
+        Button b;
 
-		float br = 0.299f*th.board.r + 0.587f*th.board.g + 0.114f*th.board.b;
-		b.label->setFillColor(br < 110 ? sf::Color::White : sf::Color::Black);
+        const auto& th = themes[idx];
+        b.rect.setSize({ panelW - 2*pad, 32.f });
+        b.rect.setFillColor(th.board);
+        b.rect.setOutlineColor(th.border);
+        b.rect.setOutlineThickness(2.f);
+        b.rect.setPosition({ x, y });
 
-		b.label->setPosition({x + 10.f, y + 6.f});
-		b.onClick = [this, idx] {
-			gui_change_theme(idx);
-			activeModal = Modal::None;
-		};
-		modalButtons.push_back(std::move(b));
-	};
+        b.label.emplace(font);
+        b.label->setString(name);
+        b.label->setCharacterSize(16);
 
-	float px = float(gridW + 10);
-	float py = 200.f;
+        float br = 0.299f*th.board.r + 0.587f*th.board.g + 0.114f*th.board.b;
+        b.label->setFillColor(br < 110 ? sf::Color::White : sf::Color::Black);
 
-	makeBtn("Classic", px+10, py + 0*40.f, 0);
-	makeBtn("Light",   px+10, py + 1*40.f, 1);
-	makeBtn("Dark",    px+10, py + 2*40.f, 2);
-	makeBtn("Green",   px+10, py + 3*40.f, 3);
-	makeBtn("Blue",    px+10, py + 4*40.f, 4);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (32.f - lb.size.y) * 0.5f - lb.position.y });
 
-	// Cancel button
-	Button c;
-	c.rect.setSize({200.f, 32.f});
-	c.rect.setFillColor(sf::Color(240,220,150));
-	c.rect.setOutlineColor(sf::Color::Black);
-	c.rect.setOutlineThickness(1.f);
-	c.rect.setPosition({px+10, py + 5*40.f + 8.f});
-	c.label.emplace(font);
-	c.label->setString("Cancel");
-	c.label->setCharacterSize(16);
-	c.label->setFillColor(sf::Color::Black);
-	c.label->setPosition({px + 20.f, py + 5*40.f + 14.f});
-	c.onClick = [this]{ activeModal = Modal::None; };
-	modalButtons.push_back(std::move(c));
+        b.onClick = [this, idx] {
+            gui_change_theme(idx);
+            activeModal = Modal::None;
+        };
+
+        modalButtons.push_back(std::move(b));
+    };
+
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f;
+
+    makeBtn("Classic", xLeft, y, 0); y += 40.f;
+    makeBtn("Light",   xLeft, y, 1); y += 40.f;
+    makeBtn("Dark",    xLeft, y, 2); y += 40.f;
+    makeBtn("Green",   xLeft, y, 3); y += 40.f;
+    makeBtn("Blue",    xLeft, y, 4);  y += 48.f;
+
+    // Cancel
+    {
+        Button c;
+        c.rect.setSize({ panelW - 2*pad, 32.f });
+        c.rect.setFillColor(sf::Color(240,220,150));
+        c.rect.setOutlineColor(sf::Color::Black);
+        c.rect.setOutlineThickness(1.f);
+        c.rect.setPosition({ xLeft, y });
+
+        c.label.emplace(font);
+        c.label->setString("Cancel");
+        c.label->setCharacterSize(16);
+        auto lb = c.label->getLocalBounds();
+        c.label->setFillColor(sf::Color::Black);
+        c.label->setPosition({ xLeft + 10.f, y + (32.f - lb.size.y) * 0.5f - lb.position.y });
+
+        c.onClick = [this]{ activeModal = Modal::None; };
+        modalButtons.push_back(std::move(c));
+
+        y += 32.f;
+    }
+
+    // Update panel height
+    modalPanelRect.size.y = (y + pad) - panelY;
 }
 
 void UI::request_switch_mode(int gridW) {
@@ -660,6 +779,7 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
 void UI::gui_apply_board_size(int newN) {
     if (newN != 9 && newN != 13 && newN != 19) return;
     BOARD_SIZE = newN;
+	gui_update_window_size();
     gui_reset(); // Reset game
     int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
     build_main_buttons(gridW);
@@ -1027,7 +1147,7 @@ void UI::build_music_modal(int gridW) {
 	const float rowH       = 32.f;
 	const float rowGap     = 2.f;
 
-	// FloatRect (new)
+	// FloatRect
 	musicListRect = sf::FloatRect({xLeft, listTopY}, {panelW - 2*pad, listHeight});
 
 	const int total = (int)musicFiles.size();
@@ -1275,6 +1395,28 @@ bool UI::board_has_any_stone() const {
     return false;
 }
 
+sf::Vector2u UI::compute_window_px() const {
+    const int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+    const int gridH = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+    const unsigned winW = static_cast<unsigned>(gridW + PANEL_GAP + PANEL_W + RIGHT_PAD);
+
+    unsigned panelMin = static_cast<unsigned>(std::ceil(panel_min_height()));
+    unsigned winH = std::max<unsigned>(gridH, panelMin);
+    return { winW, winH };
+}
+
+void UI::gui_update_window_size() {
+    auto size = compute_window_px();
+    // Change window size
+    window.setSize(size);
+    // Update view
+	sf::View v;
+    v.setSize(sf::Vector2f(static_cast<float>(size.x), static_cast<float>(size.y)));
+    v.setCenter(sf::Vector2f(static_cast<float>(size.x) * 0.5f,
+                             static_cast<float>(size.y) * 0.5f));
+	window.setView(v);
+}
+
 void UI::gui_render() {
 	window.clear(theme.border);
 	draw_board();
@@ -1455,7 +1597,7 @@ void UI::draw_hud() {
 		ribbon.setOutlineColor(sf::Color(0,0,0,60));
 		ribbon.setOutlineThickness(1.f);
 
-		//window.draw(ribbon);
+		// window.draw(ribbon);
 		window.draw(*trackText);
 	}
 
