@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
+CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
+CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
 
 # Include any dependencies generated for this target.
 include external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend.make
@@ -73,326 +73,326 @@ external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/codegen:
 .PHONY : external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/codegen
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o -MF CMakeFiles/sfml-audio.dir/AudioResource.cpp.o.d -o CMakeFiles/sfml-audio.dir/AudioResource.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o -MF CMakeFiles/sfml-audio.dir/AudioResource.cpp.o.d -o CMakeFiles/sfml-audio.dir/AudioResource.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/AudioResource.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp > CMakeFiles/sfml-audio.dir/AudioResource.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp" > CMakeFiles/sfml-audio.dir/AudioResource.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/AudioResource.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp -o CMakeFiles/sfml-audio.dir/AudioResource.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioResource.cpp" -o CMakeFiles/sfml-audio.dir/AudioResource.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o -MF CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o.d -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o -MF CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o.d -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp > CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp" > CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/AudioDevice.cpp" -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o -MF CMakeFiles/sfml-audio.dir/Listener.cpp.o.d -o CMakeFiles/sfml-audio.dir/Listener.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o -MF CMakeFiles/sfml-audio.dir/Listener.cpp.o.d -o CMakeFiles/sfml-audio.dir/Listener.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Listener.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp > CMakeFiles/sfml-audio.dir/Listener.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp" > CMakeFiles/sfml-audio.dir/Listener.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Listener.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp -o CMakeFiles/sfml-audio.dir/Listener.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Listener.cpp" -o CMakeFiles/sfml-audio.dir/Listener.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o -MF CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o.d -o CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o -MF CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o.d -o CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Miniaudio.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp > CMakeFiles/sfml-audio.dir/Miniaudio.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp" > CMakeFiles/sfml-audio.dir/Miniaudio.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Miniaudio.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp -o CMakeFiles/sfml-audio.dir/Miniaudio.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Miniaudio.cpp" -o CMakeFiles/sfml-audio.dir/Miniaudio.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o -MF CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o.d -o CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o -MF CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o.d -o CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp > CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp" > CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp -o CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/MiniaudioUtils.cpp" -o CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o -MF CMakeFiles/sfml-audio.dir/Music.cpp.o.d -o CMakeFiles/sfml-audio.dir/Music.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o -MF CMakeFiles/sfml-audio.dir/Music.cpp.o.d -o CMakeFiles/sfml-audio.dir/Music.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Music.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp > CMakeFiles/sfml-audio.dir/Music.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp" > CMakeFiles/sfml-audio.dir/Music.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Music.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp -o CMakeFiles/sfml-audio.dir/Music.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Music.cpp" -o CMakeFiles/sfml-audio.dir/Music.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o -MF CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o.d -o CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o -MF CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o.d -o CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp > CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp" > CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp -o CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/PlaybackDevice.cpp" -o CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o -MF CMakeFiles/sfml-audio.dir/Sound.cpp.o.d -o CMakeFiles/sfml-audio.dir/Sound.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o -MF CMakeFiles/sfml-audio.dir/Sound.cpp.o.d -o CMakeFiles/sfml-audio.dir/Sound.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Sound.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp > CMakeFiles/sfml-audio.dir/Sound.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp" > CMakeFiles/sfml-audio.dir/Sound.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Sound.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp -o CMakeFiles/sfml-audio.dir/Sound.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/Sound.cpp" -o CMakeFiles/sfml-audio.dir/Sound.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp > CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp" > CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBuffer.cpp" -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp > CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp" > CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundBufferRecorder.cpp" -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o -MF CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o.d -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o -MF CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o.d -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp > CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp" > CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/InputSoundFile.cpp" -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o -MF CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o.d -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o -MF CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o.d -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp > CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp" > CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/OutputSoundFile.cpp" -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp > CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp" > CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundRecorder.cpp" -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundSource.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundSource.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundSource.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp > CMakeFiles/sfml-audio.dir/SoundSource.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp" > CMakeFiles/sfml-audio.dir/SoundSource.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundSource.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundSource.cpp" -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundStream.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundStream.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundStream.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp > CMakeFiles/sfml-audio.dir/SoundStream.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp" > CMakeFiles/sfml-audio.dir/SoundStream.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundStream.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundStream.cpp" -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp > CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp" > CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileFactory.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp" > CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderFlac.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp" > CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderMp3.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp" > CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderOgg.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp" > CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileReaderWav.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp" > CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterFlac.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp" > CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterOgg.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o -MF CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o.d -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp"
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp" > CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio/SoundFileWriterWav.cpp" -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s
 
 # Object files for target sfml-audio
 sfml__audio_OBJECTS = \
@@ -448,19 +448,19 @@ external/SFML/lib/libsfml-audio-s.a: external/SFML/src/SFML/Audio/CMakeFiles/sfm
 external/SFML/lib/libsfml-audio-s.a: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o
 external/SFML/lib/libsfml-audio-s.a: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make
 external/SFML/lib/libsfml-audio-s.a: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX static library ../../../lib/libsfml-audio-s.a"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && $(CMAKE_COMMAND) -P CMakeFiles/sfml-audio.dir/cmake_clean_target.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-audio.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX static library ../../../lib/libsfml-audio-s.a"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && $(CMAKE_COMMAND) -P CMakeFiles/sfml-audio.dir/cmake_clean_target.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-audio.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build: external/SFML/lib/libsfml-audio-s.a
 .PHONY : external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/clean:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio && $(CMAKE_COMMAND) -P CMakeFiles/sfml-audio.dir/cmake_clean.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" && $(CMAKE_COMMAND) -P CMakeFiles/sfml-audio.dir/cmake_clean.cmake
 .PHONY : external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/clean
 
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Audio /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Audio" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend
 

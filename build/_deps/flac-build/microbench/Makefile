@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
+CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
+CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && /opt/homebrew/bin/cpack --config ./CPackConfig.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && /Applications/CMake.app/Contents/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && /opt/homebrew/bin/cpack --config ./CPackSourceConfig.cmake /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CPackSourceConfig.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && /Applications/CMake.app/Contents/bin/cpack --config ./CPackSourceConfig.cmake /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -88,7 +88,7 @@ package_source/fast: package_source
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CMake.app/Contents/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -98,7 +98,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CMake.app/Contents/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -117,49 +117,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/bin/cmake -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/bin/cmake -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build/microbench//CMakeFiles/progress.marks
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles 0
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build/microbench//CMakeFiles/progress.marks"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/clean
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/clean
 .PHONY : clean
 
 # The main clean target
@@ -168,23 +168,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/preinstall
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/preinstall
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/rule:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/rule
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/rule
 .PHONY : _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/rule
 
 # Convenience name for target.
@@ -193,7 +193,7 @@ benchmark_residual: _deps/flac-build/microbench/CMakeFiles/benchmark_residual.di
 
 # fast build rule for target.
 benchmark_residual/fast:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build
 .PHONY : benchmark_residual/fast
 
 benchmark_residual.o: benchmark_residual.c.o
@@ -201,7 +201,7 @@ benchmark_residual.o: benchmark_residual.c.o
 
 # target to build an object file
 benchmark_residual.c.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/benchmark_residual.c.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/benchmark_residual.c.o
 .PHONY : benchmark_residual.c.o
 
 benchmark_residual.i: benchmark_residual.c.i
@@ -209,7 +209,7 @@ benchmark_residual.i: benchmark_residual.c.i
 
 # target to preprocess a source file
 benchmark_residual.c.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/benchmark_residual.c.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/benchmark_residual.c.i
 .PHONY : benchmark_residual.c.i
 
 benchmark_residual.s: benchmark_residual.c.s
@@ -217,7 +217,7 @@ benchmark_residual.s: benchmark_residual.c.s
 
 # target to generate assembly for a file
 benchmark_residual.c.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/benchmark_residual.c.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/benchmark_residual.c.s
 .PHONY : benchmark_residual.c.s
 
 util.o: util.c.o
@@ -225,7 +225,7 @@ util.o: util.c.o
 
 # target to build an object file
 util.c.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/util.c.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/util.c.o
 .PHONY : util.c.o
 
 util.i: util.c.i
@@ -233,7 +233,7 @@ util.i: util.c.i
 
 # target to preprocess a source file
 util.c.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/util.c.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/util.c.i
 .PHONY : util.c.i
 
 util.s: util.c.s
@@ -241,7 +241,7 @@ util.s: util.c.s
 
 # target to generate assembly for a file
 util.c.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/util.c.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/util.c.s
 .PHONY : util.c.s
 
 # Help Target
@@ -276,7 +276,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

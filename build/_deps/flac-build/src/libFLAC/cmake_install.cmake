@@ -1,4 +1,4 @@
-# Install script for directory: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-src/src/libFLAC
+# Install script for directory: /Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-src/src/libFLAC
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/lib/libFLAC.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/lib/libFLAC.a")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libFLAC.a" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libFLAC.a")
     execute_process(COMMAND "/usr/bin/ranlib" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libFLAC.a")
@@ -48,6 +48,6 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build/src/libFLAC/install_local_manifest.txt"
+  file(WRITE "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build/src/libFLAC/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

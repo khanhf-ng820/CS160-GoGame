@@ -51,7 +51,7 @@ add_library(FLAC::FLAC STATIC IMPORTED)
 
 set_target_properties(FLAC::FLAC PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "\$<\$<NOT:\$<BOOL:OFF>>:FLAC__NO_DLL>"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-src/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-src/include"
   INTERFACE_LINK_LIBRARIES "\$<\$<BOOL:1>:m>;Ogg::ogg"
 )
 
@@ -59,7 +59,7 @@ set_target_properties(FLAC::FLAC PROPERTIES
 set_property(TARGET FLAC::FLAC APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(FLAC::FLAC PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
-  IMPORTED_LOCATION_RELEASE "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/lib/libFLAC.a"
+  IMPORTED_LOCATION_RELEASE "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/lib/libFLAC.a"
   )
 
 # Make sure the targets which have been exported in some other

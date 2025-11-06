@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
+CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
+CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
 
 # Include any dependencies generated for this target.
 include external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/depend.make
@@ -73,144 +73,144 @@ external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/codegen:
 .PHONY : external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/codegen
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o -MF CMakeFiles/sfml-network.dir/Ftp.cpp.o.d -o CMakeFiles/sfml-network.dir/Ftp.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.o -MF CMakeFiles/sfml-network.dir/Ftp.cpp.o.d -o CMakeFiles/sfml-network.dir/Ftp.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/Ftp.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp > CMakeFiles/sfml-network.dir/Ftp.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp" > CMakeFiles/sfml-network.dir/Ftp.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/Ftp.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp -o CMakeFiles/sfml-network.dir/Ftp.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Ftp.cpp" -o CMakeFiles/sfml-network.dir/Ftp.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o -MF CMakeFiles/sfml-network.dir/Http.cpp.o.d -o CMakeFiles/sfml-network.dir/Http.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.o -MF CMakeFiles/sfml-network.dir/Http.cpp.o.d -o CMakeFiles/sfml-network.dir/Http.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/Http.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp > CMakeFiles/sfml-network.dir/Http.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp" > CMakeFiles/sfml-network.dir/Http.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Http.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/Http.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp -o CMakeFiles/sfml-network.dir/Http.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Http.cpp" -o CMakeFiles/sfml-network.dir/Http.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o -MF CMakeFiles/sfml-network.dir/IpAddress.cpp.o.d -o CMakeFiles/sfml-network.dir/IpAddress.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.o -MF CMakeFiles/sfml-network.dir/IpAddress.cpp.o.d -o CMakeFiles/sfml-network.dir/IpAddress.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/IpAddress.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp > CMakeFiles/sfml-network.dir/IpAddress.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp" > CMakeFiles/sfml-network.dir/IpAddress.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/IpAddress.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/IpAddress.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp -o CMakeFiles/sfml-network.dir/IpAddress.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/IpAddress.cpp" -o CMakeFiles/sfml-network.dir/IpAddress.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o -MF CMakeFiles/sfml-network.dir/Packet.cpp.o.d -o CMakeFiles/sfml-network.dir/Packet.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.o -MF CMakeFiles/sfml-network.dir/Packet.cpp.o.d -o CMakeFiles/sfml-network.dir/Packet.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/Packet.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp > CMakeFiles/sfml-network.dir/Packet.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp" > CMakeFiles/sfml-network.dir/Packet.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Packet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/Packet.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp -o CMakeFiles/sfml-network.dir/Packet.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Packet.cpp" -o CMakeFiles/sfml-network.dir/Packet.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o -MF CMakeFiles/sfml-network.dir/Socket.cpp.o.d -o CMakeFiles/sfml-network.dir/Socket.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.o -MF CMakeFiles/sfml-network.dir/Socket.cpp.o.d -o CMakeFiles/sfml-network.dir/Socket.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/Socket.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp > CMakeFiles/sfml-network.dir/Socket.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp" > CMakeFiles/sfml-network.dir/Socket.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/Socket.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp -o CMakeFiles/sfml-network.dir/Socket.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Socket.cpp" -o CMakeFiles/sfml-network.dir/Socket.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o -MF CMakeFiles/sfml-network.dir/SocketSelector.cpp.o.d -o CMakeFiles/sfml-network.dir/SocketSelector.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.o -MF CMakeFiles/sfml-network.dir/SocketSelector.cpp.o.d -o CMakeFiles/sfml-network.dir/SocketSelector.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/SocketSelector.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp > CMakeFiles/sfml-network.dir/SocketSelector.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp" > CMakeFiles/sfml-network.dir/SocketSelector.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/SocketSelector.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp -o CMakeFiles/sfml-network.dir/SocketSelector.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/SocketSelector.cpp" -o CMakeFiles/sfml-network.dir/SocketSelector.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o -MF CMakeFiles/sfml-network.dir/TcpListener.cpp.o.d -o CMakeFiles/sfml-network.dir/TcpListener.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.o -MF CMakeFiles/sfml-network.dir/TcpListener.cpp.o.d -o CMakeFiles/sfml-network.dir/TcpListener.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/TcpListener.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp > CMakeFiles/sfml-network.dir/TcpListener.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp" > CMakeFiles/sfml-network.dir/TcpListener.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpListener.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/TcpListener.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp -o CMakeFiles/sfml-network.dir/TcpListener.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpListener.cpp" -o CMakeFiles/sfml-network.dir/TcpListener.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o -MF CMakeFiles/sfml-network.dir/TcpSocket.cpp.o.d -o CMakeFiles/sfml-network.dir/TcpSocket.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.o -MF CMakeFiles/sfml-network.dir/TcpSocket.cpp.o.d -o CMakeFiles/sfml-network.dir/TcpSocket.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/TcpSocket.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp > CMakeFiles/sfml-network.dir/TcpSocket.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp" > CMakeFiles/sfml-network.dir/TcpSocket.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/TcpSocket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/TcpSocket.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp -o CMakeFiles/sfml-network.dir/TcpSocket.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/TcpSocket.cpp" -o CMakeFiles/sfml-network.dir/TcpSocket.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o -MF CMakeFiles/sfml-network.dir/UdpSocket.cpp.o.d -o CMakeFiles/sfml-network.dir/UdpSocket.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.o -MF CMakeFiles/sfml-network.dir/UdpSocket.cpp.o.d -o CMakeFiles/sfml-network.dir/UdpSocket.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/UdpSocket.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp > CMakeFiles/sfml-network.dir/UdpSocket.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp" > CMakeFiles/sfml-network.dir/UdpSocket.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/UdpSocket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/UdpSocket.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp -o CMakeFiles/sfml-network.dir/UdpSocket.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/UdpSocket.cpp" -o CMakeFiles/sfml-network.dir/UdpSocket.cpp.s
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/flags.make
-external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o: /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp
+external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o: /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o -MF CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o.d -o CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o -MF CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o.d -o CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp"
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp > CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp" > CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.i
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp -o CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network/Unix/SocketImpl.cpp" -o CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.s
 
 # Object files for target sfml-network
 sfml__network_OBJECTS = \
@@ -240,19 +240,19 @@ external/SFML/lib/libsfml-network-s.a: external/SFML/src/SFML/Network/CMakeFiles
 external/SFML/lib/libsfml-network-s.a: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/Unix/SocketImpl.cpp.o
 external/SFML/lib/libsfml-network-s.a: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/build.make
 external/SFML/lib/libsfml-network-s.a: external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library ../../../lib/libsfml-network-s.a"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && $(CMAKE_COMMAND) -P CMakeFiles/sfml-network.dir/cmake_clean_target.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-network.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library ../../../lib/libsfml-network-s.a"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && $(CMAKE_COMMAND) -P CMakeFiles/sfml-network.dir/cmake_clean_target.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-network.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/build: external/SFML/lib/libsfml-network-s.a
 .PHONY : external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/build
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/clean:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network && $(CMAKE_COMMAND) -P CMakeFiles/sfml-network.dir/cmake_clean.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" && $(CMAKE_COMMAND) -P CMakeFiles/sfml-network.dir/cmake_clean.cmake
 .PHONY : external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/clean
 
 external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/depend:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Network /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Network" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : external/SFML/src/SFML/Network/CMakeFiles/sfml-network.dir/depend
 

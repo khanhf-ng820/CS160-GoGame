@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
+CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
+CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && /opt/homebrew/bin/cpack --config ./CPackConfig.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && /Applications/CMake.app/Contents/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && /opt/homebrew/bin/cpack --config ./CPackSourceConfig.cmake /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CPackSourceConfig.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && /Applications/CMake.app/Contents/bin/cpack --config ./CPackSourceConfig.cmake /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -88,7 +88,7 @@ package_source/fast: package_source
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CMake.app/Contents/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -98,7 +98,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CMake.app/Contents/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -117,49 +117,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/bin/cmake -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/bin/cmake -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/external/SFML/src/SFML/Window//CMakeFiles/progress.marks
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles 0
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/external/SFML/src/SFML/Window//CMakeFiles/progress.marks"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/clean
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/clean
 .PHONY : clean
 
 # The main clean target
@@ -168,23 +168,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/preinstall
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/preinstall
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/rule:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/rule
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/rule
 .PHONY : external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/rule
 
 # Convenience name for target.
@@ -193,7 +193,7 @@ sfml-window: external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/rule
 
 # fast build rule for target.
 sfml-window/fast:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build
 .PHONY : sfml-window/fast
 
 Clipboard.o: Clipboard.cpp.o
@@ -201,7 +201,7 @@ Clipboard.o: Clipboard.cpp.o
 
 # target to build an object file
 Clipboard.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Clipboard.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Clipboard.cpp.o
 .PHONY : Clipboard.cpp.o
 
 Clipboard.i: Clipboard.cpp.i
@@ -209,7 +209,7 @@ Clipboard.i: Clipboard.cpp.i
 
 # target to preprocess a source file
 Clipboard.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Clipboard.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Clipboard.cpp.i
 .PHONY : Clipboard.cpp.i
 
 Clipboard.s: Clipboard.cpp.s
@@ -217,7 +217,7 @@ Clipboard.s: Clipboard.cpp.s
 
 # target to generate assembly for a file
 Clipboard.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Clipboard.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Clipboard.cpp.s
 .PHONY : Clipboard.cpp.s
 
 Context.o: Context.cpp.o
@@ -225,7 +225,7 @@ Context.o: Context.cpp.o
 
 # target to build an object file
 Context.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o
 .PHONY : Context.cpp.o
 
 Context.i: Context.cpp.i
@@ -233,7 +233,7 @@ Context.i: Context.cpp.i
 
 # target to preprocess a source file
 Context.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.i
 .PHONY : Context.cpp.i
 
 Context.s: Context.cpp.s
@@ -241,7 +241,7 @@ Context.s: Context.cpp.s
 
 # target to generate assembly for a file
 Context.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.s
 .PHONY : Context.cpp.s
 
 Cursor.o: Cursor.cpp.o
@@ -249,7 +249,7 @@ Cursor.o: Cursor.cpp.o
 
 # target to build an object file
 Cursor.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Cursor.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Cursor.cpp.o
 .PHONY : Cursor.cpp.o
 
 Cursor.i: Cursor.cpp.i
@@ -257,7 +257,7 @@ Cursor.i: Cursor.cpp.i
 
 # target to preprocess a source file
 Cursor.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Cursor.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Cursor.cpp.i
 .PHONY : Cursor.cpp.i
 
 Cursor.s: Cursor.cpp.s
@@ -265,7 +265,7 @@ Cursor.s: Cursor.cpp.s
 
 # target to generate assembly for a file
 Cursor.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Cursor.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Cursor.cpp.s
 .PHONY : Cursor.cpp.s
 
 GlContext.o: GlContext.cpp.o
@@ -273,7 +273,7 @@ GlContext.o: GlContext.cpp.o
 
 # target to build an object file
 GlContext.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o
 .PHONY : GlContext.cpp.o
 
 GlContext.i: GlContext.cpp.i
@@ -281,7 +281,7 @@ GlContext.i: GlContext.cpp.i
 
 # target to preprocess a source file
 GlContext.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.i
 .PHONY : GlContext.cpp.i
 
 GlContext.s: GlContext.cpp.s
@@ -289,7 +289,7 @@ GlContext.s: GlContext.cpp.s
 
 # target to generate assembly for a file
 GlContext.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.s
 .PHONY : GlContext.cpp.s
 
 GlResource.o: GlResource.cpp.o
@@ -297,7 +297,7 @@ GlResource.o: GlResource.cpp.o
 
 # target to build an object file
 GlResource.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o
 .PHONY : GlResource.cpp.o
 
 GlResource.i: GlResource.cpp.i
@@ -305,7 +305,7 @@ GlResource.i: GlResource.cpp.i
 
 # target to preprocess a source file
 GlResource.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.i
 .PHONY : GlResource.cpp.i
 
 GlResource.s: GlResource.cpp.s
@@ -313,7 +313,7 @@ GlResource.s: GlResource.cpp.s
 
 # target to generate assembly for a file
 GlResource.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.s
 .PHONY : GlResource.cpp.s
 
 Joystick.o: Joystick.cpp.o
@@ -321,7 +321,7 @@ Joystick.o: Joystick.cpp.o
 
 # target to build an object file
 Joystick.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o
 .PHONY : Joystick.cpp.o
 
 Joystick.i: Joystick.cpp.i
@@ -329,7 +329,7 @@ Joystick.i: Joystick.cpp.i
 
 # target to preprocess a source file
 Joystick.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.i
 .PHONY : Joystick.cpp.i
 
 Joystick.s: Joystick.cpp.s
@@ -337,7 +337,7 @@ Joystick.s: Joystick.cpp.s
 
 # target to generate assembly for a file
 Joystick.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.s
 .PHONY : Joystick.cpp.s
 
 JoystickManager.o: JoystickManager.cpp.o
@@ -345,7 +345,7 @@ JoystickManager.o: JoystickManager.cpp.o
 
 # target to build an object file
 JoystickManager.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o
 .PHONY : JoystickManager.cpp.o
 
 JoystickManager.i: JoystickManager.cpp.i
@@ -353,7 +353,7 @@ JoystickManager.i: JoystickManager.cpp.i
 
 # target to preprocess a source file
 JoystickManager.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.i
 .PHONY : JoystickManager.cpp.i
 
 JoystickManager.s: JoystickManager.cpp.s
@@ -361,7 +361,7 @@ JoystickManager.s: JoystickManager.cpp.s
 
 # target to generate assembly for a file
 JoystickManager.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.s
 .PHONY : JoystickManager.cpp.s
 
 Keyboard.o: Keyboard.cpp.o
@@ -369,7 +369,7 @@ Keyboard.o: Keyboard.cpp.o
 
 # target to build an object file
 Keyboard.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o
 .PHONY : Keyboard.cpp.o
 
 Keyboard.i: Keyboard.cpp.i
@@ -377,7 +377,7 @@ Keyboard.i: Keyboard.cpp.i
 
 # target to preprocess a source file
 Keyboard.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.i
 .PHONY : Keyboard.cpp.i
 
 Keyboard.s: Keyboard.cpp.s
@@ -385,7 +385,7 @@ Keyboard.s: Keyboard.cpp.s
 
 # target to generate assembly for a file
 Keyboard.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.s
 .PHONY : Keyboard.cpp.s
 
 Mouse.o: Mouse.cpp.o
@@ -393,7 +393,7 @@ Mouse.o: Mouse.cpp.o
 
 # target to build an object file
 Mouse.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o
 .PHONY : Mouse.cpp.o
 
 Mouse.i: Mouse.cpp.i
@@ -401,7 +401,7 @@ Mouse.i: Mouse.cpp.i
 
 # target to preprocess a source file
 Mouse.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.i
 .PHONY : Mouse.cpp.i
 
 Mouse.s: Mouse.cpp.s
@@ -409,7 +409,7 @@ Mouse.s: Mouse.cpp.s
 
 # target to generate assembly for a file
 Mouse.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.s
 .PHONY : Mouse.cpp.s
 
 Sensor.o: Sensor.cpp.o
@@ -417,7 +417,7 @@ Sensor.o: Sensor.cpp.o
 
 # target to build an object file
 Sensor.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o
 .PHONY : Sensor.cpp.o
 
 Sensor.i: Sensor.cpp.i
@@ -425,7 +425,7 @@ Sensor.i: Sensor.cpp.i
 
 # target to preprocess a source file
 Sensor.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.i
 .PHONY : Sensor.cpp.i
 
 Sensor.s: Sensor.cpp.s
@@ -433,7 +433,7 @@ Sensor.s: Sensor.cpp.s
 
 # target to generate assembly for a file
 Sensor.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.s
 .PHONY : Sensor.cpp.s
 
 SensorManager.o: SensorManager.cpp.o
@@ -441,7 +441,7 @@ SensorManager.o: SensorManager.cpp.o
 
 # target to build an object file
 SensorManager.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o
 .PHONY : SensorManager.cpp.o
 
 SensorManager.i: SensorManager.cpp.i
@@ -449,7 +449,7 @@ SensorManager.i: SensorManager.cpp.i
 
 # target to preprocess a source file
 SensorManager.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.i
 .PHONY : SensorManager.cpp.i
 
 SensorManager.s: SensorManager.cpp.s
@@ -457,7 +457,7 @@ SensorManager.s: SensorManager.cpp.s
 
 # target to generate assembly for a file
 SensorManager.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.s
 .PHONY : SensorManager.cpp.s
 
 Touch.o: Touch.cpp.o
@@ -465,7 +465,7 @@ Touch.o: Touch.cpp.o
 
 # target to build an object file
 Touch.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o
 .PHONY : Touch.cpp.o
 
 Touch.i: Touch.cpp.i
@@ -473,7 +473,7 @@ Touch.i: Touch.cpp.i
 
 # target to preprocess a source file
 Touch.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.i
 .PHONY : Touch.cpp.i
 
 Touch.s: Touch.cpp.s
@@ -481,7 +481,7 @@ Touch.s: Touch.cpp.s
 
 # target to generate assembly for a file
 Touch.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.s
 .PHONY : Touch.cpp.s
 
 VideoMode.o: VideoMode.cpp.o
@@ -489,7 +489,7 @@ VideoMode.o: VideoMode.cpp.o
 
 # target to build an object file
 VideoMode.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o
 .PHONY : VideoMode.cpp.o
 
 VideoMode.i: VideoMode.cpp.i
@@ -497,7 +497,7 @@ VideoMode.i: VideoMode.cpp.i
 
 # target to preprocess a source file
 VideoMode.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.i
 .PHONY : VideoMode.cpp.i
 
 VideoMode.s: VideoMode.cpp.s
@@ -505,7 +505,7 @@ VideoMode.s: VideoMode.cpp.s
 
 # target to generate assembly for a file
 VideoMode.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.s
 .PHONY : VideoMode.cpp.s
 
 Vulkan.o: Vulkan.cpp.o
@@ -513,7 +513,7 @@ Vulkan.o: Vulkan.cpp.o
 
 # target to build an object file
 Vulkan.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Vulkan.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Vulkan.cpp.o
 .PHONY : Vulkan.cpp.o
 
 Vulkan.i: Vulkan.cpp.i
@@ -521,7 +521,7 @@ Vulkan.i: Vulkan.cpp.i
 
 # target to preprocess a source file
 Vulkan.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Vulkan.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Vulkan.cpp.i
 .PHONY : Vulkan.cpp.i
 
 Vulkan.s: Vulkan.cpp.s
@@ -529,7 +529,7 @@ Vulkan.s: Vulkan.cpp.s
 
 # target to generate assembly for a file
 Vulkan.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Vulkan.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Vulkan.cpp.s
 .PHONY : Vulkan.cpp.s
 
 Window.o: Window.cpp.o
@@ -537,7 +537,7 @@ Window.o: Window.cpp.o
 
 # target to build an object file
 Window.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o
 .PHONY : Window.cpp.o
 
 Window.i: Window.cpp.i
@@ -545,7 +545,7 @@ Window.i: Window.cpp.i
 
 # target to preprocess a source file
 Window.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.i
 .PHONY : Window.cpp.i
 
 Window.s: Window.cpp.s
@@ -553,7 +553,7 @@ Window.s: Window.cpp.s
 
 # target to generate assembly for a file
 Window.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.s
 .PHONY : Window.cpp.s
 
 WindowBase.o: WindowBase.cpp.o
@@ -561,7 +561,7 @@ WindowBase.o: WindowBase.cpp.o
 
 # target to build an object file
 WindowBase.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowBase.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowBase.cpp.o
 .PHONY : WindowBase.cpp.o
 
 WindowBase.i: WindowBase.cpp.i
@@ -569,7 +569,7 @@ WindowBase.i: WindowBase.cpp.i
 
 # target to preprocess a source file
 WindowBase.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowBase.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowBase.cpp.i
 .PHONY : WindowBase.cpp.i
 
 WindowBase.s: WindowBase.cpp.s
@@ -577,7 +577,7 @@ WindowBase.s: WindowBase.cpp.s
 
 # target to generate assembly for a file
 WindowBase.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowBase.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowBase.cpp.s
 .PHONY : WindowBase.cpp.s
 
 WindowImpl.o: WindowImpl.cpp.o
@@ -585,7 +585,7 @@ WindowImpl.o: WindowImpl.cpp.o
 
 # target to build an object file
 WindowImpl.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o
 .PHONY : WindowImpl.cpp.o
 
 WindowImpl.i: WindowImpl.cpp.i
@@ -593,7 +593,7 @@ WindowImpl.i: WindowImpl.cpp.i
 
 # target to preprocess a source file
 WindowImpl.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.i
 .PHONY : WindowImpl.cpp.i
 
 WindowImpl.s: WindowImpl.cpp.s
@@ -601,7 +601,7 @@ WindowImpl.s: WindowImpl.cpp.s
 
 # target to generate assembly for a file
 WindowImpl.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.s
 .PHONY : WindowImpl.cpp.s
 
 macOS/AutoreleasePoolWrapper.o: macOS/AutoreleasePoolWrapper.mm.o
@@ -609,7 +609,7 @@ macOS/AutoreleasePoolWrapper.o: macOS/AutoreleasePoolWrapper.mm.o
 
 # target to build an object file
 macOS/AutoreleasePoolWrapper.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/AutoreleasePoolWrapper.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/AutoreleasePoolWrapper.mm.o
 .PHONY : macOS/AutoreleasePoolWrapper.mm.o
 
 macOS/ClipboardImpl.o: macOS/ClipboardImpl.mm.o
@@ -617,7 +617,7 @@ macOS/ClipboardImpl.o: macOS/ClipboardImpl.mm.o
 
 # target to build an object file
 macOS/ClipboardImpl.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/ClipboardImpl.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/ClipboardImpl.mm.o
 .PHONY : macOS/ClipboardImpl.mm.o
 
 macOS/CursorImpl.o: macOS/CursorImpl.mm.o
@@ -625,7 +625,7 @@ macOS/CursorImpl.o: macOS/CursorImpl.mm.o
 
 # target to build an object file
 macOS/CursorImpl.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/CursorImpl.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/CursorImpl.mm.o
 .PHONY : macOS/CursorImpl.mm.o
 
 macOS/HIDInputManager.o: macOS/HIDInputManager.mm.o
@@ -633,7 +633,7 @@ macOS/HIDInputManager.o: macOS/HIDInputManager.mm.o
 
 # target to build an object file
 macOS/HIDInputManager.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDInputManager.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDInputManager.mm.o
 .PHONY : macOS/HIDInputManager.mm.o
 
 macOS/HIDJoystickManager.o: macOS/HIDJoystickManager.cpp.o
@@ -641,7 +641,7 @@ macOS/HIDJoystickManager.o: macOS/HIDJoystickManager.cpp.o
 
 # target to build an object file
 macOS/HIDJoystickManager.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDJoystickManager.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDJoystickManager.cpp.o
 .PHONY : macOS/HIDJoystickManager.cpp.o
 
 macOS/HIDJoystickManager.i: macOS/HIDJoystickManager.cpp.i
@@ -649,7 +649,7 @@ macOS/HIDJoystickManager.i: macOS/HIDJoystickManager.cpp.i
 
 # target to preprocess a source file
 macOS/HIDJoystickManager.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDJoystickManager.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDJoystickManager.cpp.i
 .PHONY : macOS/HIDJoystickManager.cpp.i
 
 macOS/HIDJoystickManager.s: macOS/HIDJoystickManager.cpp.s
@@ -657,7 +657,7 @@ macOS/HIDJoystickManager.s: macOS/HIDJoystickManager.cpp.s
 
 # target to generate assembly for a file
 macOS/HIDJoystickManager.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDJoystickManager.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/HIDJoystickManager.cpp.s
 .PHONY : macOS/HIDJoystickManager.cpp.s
 
 macOS/InputImpl.o: macOS/InputImpl.mm.o
@@ -665,7 +665,7 @@ macOS/InputImpl.o: macOS/InputImpl.mm.o
 
 # target to build an object file
 macOS/InputImpl.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/InputImpl.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/InputImpl.mm.o
 .PHONY : macOS/InputImpl.mm.o
 
 macOS/JoystickImpl.o: macOS/JoystickImpl.cpp.o
@@ -673,7 +673,7 @@ macOS/JoystickImpl.o: macOS/JoystickImpl.cpp.o
 
 # target to build an object file
 macOS/JoystickImpl.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/JoystickImpl.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/JoystickImpl.cpp.o
 .PHONY : macOS/JoystickImpl.cpp.o
 
 macOS/JoystickImpl.i: macOS/JoystickImpl.cpp.i
@@ -681,7 +681,7 @@ macOS/JoystickImpl.i: macOS/JoystickImpl.cpp.i
 
 # target to preprocess a source file
 macOS/JoystickImpl.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/JoystickImpl.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/JoystickImpl.cpp.i
 .PHONY : macOS/JoystickImpl.cpp.i
 
 macOS/JoystickImpl.s: macOS/JoystickImpl.cpp.s
@@ -689,7 +689,7 @@ macOS/JoystickImpl.s: macOS/JoystickImpl.cpp.s
 
 # target to generate assembly for a file
 macOS/JoystickImpl.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/JoystickImpl.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/JoystickImpl.cpp.s
 .PHONY : macOS/JoystickImpl.cpp.s
 
 macOS/NSImage+raw.o: macOS/NSImage+raw.mm.o
@@ -697,7 +697,7 @@ macOS/NSImage+raw.o: macOS/NSImage+raw.mm.o
 
 # target to build an object file
 macOS/NSImage+raw.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/NSImage+raw.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/NSImage+raw.mm.o
 .PHONY : macOS/NSImage+raw.mm.o
 
 macOS/SFApplication.o: macOS/SFApplication.m.o
@@ -705,7 +705,7 @@ macOS/SFApplication.o: macOS/SFApplication.m.o
 
 # target to build an object file
 macOS/SFApplication.m.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFApplication.m.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFApplication.m.o
 .PHONY : macOS/SFApplication.m.o
 
 macOS/SFApplicationDelegate.o: macOS/SFApplicationDelegate.m.o
@@ -713,7 +713,7 @@ macOS/SFApplicationDelegate.o: macOS/SFApplicationDelegate.m.o
 
 # target to build an object file
 macOS/SFApplicationDelegate.m.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFApplicationDelegate.m.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFApplicationDelegate.m.o
 .PHONY : macOS/SFApplicationDelegate.m.o
 
 macOS/SFContext.o: macOS/SFContext.mm.o
@@ -721,7 +721,7 @@ macOS/SFContext.o: macOS/SFContext.mm.o
 
 # target to build an object file
 macOS/SFContext.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFContext.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFContext.mm.o
 .PHONY : macOS/SFContext.mm.o
 
 macOS/SFKeyboardModifiersHelper.o: macOS/SFKeyboardModifiersHelper.mm.o
@@ -729,7 +729,7 @@ macOS/SFKeyboardModifiersHelper.o: macOS/SFKeyboardModifiersHelper.mm.o
 
 # target to build an object file
 macOS/SFKeyboardModifiersHelper.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFKeyboardModifiersHelper.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFKeyboardModifiersHelper.mm.o
 .PHONY : macOS/SFKeyboardModifiersHelper.mm.o
 
 macOS/SFOpenGLView+keyboard.o: macOS/SFOpenGLView+keyboard.mm.o
@@ -737,7 +737,7 @@ macOS/SFOpenGLView+keyboard.o: macOS/SFOpenGLView+keyboard.mm.o
 
 # target to build an object file
 macOS/SFOpenGLView+keyboard.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFOpenGLView+keyboard.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFOpenGLView+keyboard.mm.o
 .PHONY : macOS/SFOpenGLView+keyboard.mm.o
 
 macOS/SFOpenGLView+mouse.o: macOS/SFOpenGLView+mouse.mm.o
@@ -745,7 +745,7 @@ macOS/SFOpenGLView+mouse.o: macOS/SFOpenGLView+mouse.mm.o
 
 # target to build an object file
 macOS/SFOpenGLView+mouse.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFOpenGLView+mouse.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFOpenGLView+mouse.mm.o
 .PHONY : macOS/SFOpenGLView+mouse.mm.o
 
 macOS/SFOpenGLView.o: macOS/SFOpenGLView.mm.o
@@ -753,7 +753,7 @@ macOS/SFOpenGLView.o: macOS/SFOpenGLView.mm.o
 
 # target to build an object file
 macOS/SFOpenGLView.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFOpenGLView.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFOpenGLView.mm.o
 .PHONY : macOS/SFOpenGLView.mm.o
 
 macOS/SFSilentResponder.o: macOS/SFSilentResponder.m.o
@@ -761,7 +761,7 @@ macOS/SFSilentResponder.o: macOS/SFSilentResponder.m.o
 
 # target to build an object file
 macOS/SFSilentResponder.m.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFSilentResponder.m.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFSilentResponder.m.o
 .PHONY : macOS/SFSilentResponder.m.o
 
 macOS/SFViewController.o: macOS/SFViewController.mm.o
@@ -769,7 +769,7 @@ macOS/SFViewController.o: macOS/SFViewController.mm.o
 
 # target to build an object file
 macOS/SFViewController.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFViewController.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFViewController.mm.o
 .PHONY : macOS/SFViewController.mm.o
 
 macOS/SFWindow.o: macOS/SFWindow.m.o
@@ -777,7 +777,7 @@ macOS/SFWindow.o: macOS/SFWindow.m.o
 
 # target to build an object file
 macOS/SFWindow.m.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFWindow.m.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFWindow.m.o
 .PHONY : macOS/SFWindow.m.o
 
 macOS/SFWindowController.o: macOS/SFWindowController.mm.o
@@ -785,7 +785,7 @@ macOS/SFWindowController.o: macOS/SFWindowController.mm.o
 
 # target to build an object file
 macOS/SFWindowController.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFWindowController.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SFWindowController.mm.o
 .PHONY : macOS/SFWindowController.mm.o
 
 macOS/SensorImpl.o: macOS/SensorImpl.cpp.o
@@ -793,7 +793,7 @@ macOS/SensorImpl.o: macOS/SensorImpl.cpp.o
 
 # target to build an object file
 macOS/SensorImpl.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SensorImpl.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SensorImpl.cpp.o
 .PHONY : macOS/SensorImpl.cpp.o
 
 macOS/SensorImpl.i: macOS/SensorImpl.cpp.i
@@ -801,7 +801,7 @@ macOS/SensorImpl.i: macOS/SensorImpl.cpp.i
 
 # target to preprocess a source file
 macOS/SensorImpl.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SensorImpl.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SensorImpl.cpp.i
 .PHONY : macOS/SensorImpl.cpp.i
 
 macOS/SensorImpl.s: macOS/SensorImpl.cpp.s
@@ -809,7 +809,7 @@ macOS/SensorImpl.s: macOS/SensorImpl.cpp.s
 
 # target to generate assembly for a file
 macOS/SensorImpl.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SensorImpl.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/SensorImpl.cpp.s
 .PHONY : macOS/SensorImpl.cpp.s
 
 macOS/VideoModeImpl.o: macOS/VideoModeImpl.cpp.o
@@ -817,7 +817,7 @@ macOS/VideoModeImpl.o: macOS/VideoModeImpl.cpp.o
 
 # target to build an object file
 macOS/VideoModeImpl.cpp.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/VideoModeImpl.cpp.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/VideoModeImpl.cpp.o
 .PHONY : macOS/VideoModeImpl.cpp.o
 
 macOS/VideoModeImpl.i: macOS/VideoModeImpl.cpp.i
@@ -825,7 +825,7 @@ macOS/VideoModeImpl.i: macOS/VideoModeImpl.cpp.i
 
 # target to preprocess a source file
 macOS/VideoModeImpl.cpp.i:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/VideoModeImpl.cpp.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/VideoModeImpl.cpp.i
 .PHONY : macOS/VideoModeImpl.cpp.i
 
 macOS/VideoModeImpl.s: macOS/VideoModeImpl.cpp.s
@@ -833,7 +833,7 @@ macOS/VideoModeImpl.s: macOS/VideoModeImpl.cpp.s
 
 # target to generate assembly for a file
 macOS/VideoModeImpl.cpp.s:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/VideoModeImpl.cpp.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/VideoModeImpl.cpp.s
 .PHONY : macOS/VideoModeImpl.cpp.s
 
 macOS/WindowImplCocoa.o: macOS/WindowImplCocoa.mm.o
@@ -841,7 +841,7 @@ macOS/WindowImplCocoa.o: macOS/WindowImplCocoa.mm.o
 
 # target to build an object file
 macOS/WindowImplCocoa.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/WindowImplCocoa.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/WindowImplCocoa.mm.o
 .PHONY : macOS/WindowImplCocoa.mm.o
 
 macOS/cg_sf_conversion.o: macOS/cg_sf_conversion.mm.o
@@ -849,7 +849,7 @@ macOS/cg_sf_conversion.o: macOS/cg_sf_conversion.mm.o
 
 # target to build an object file
 macOS/cg_sf_conversion.mm.o:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/cg_sf_conversion.mm.o
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/build.make external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/macOS/cg_sf_conversion.mm.o
 .PHONY : macOS/cg_sf_conversion.mm.o
 
 # Help Target
@@ -960,7 +960,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles/VerifyGlobs.cmake"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

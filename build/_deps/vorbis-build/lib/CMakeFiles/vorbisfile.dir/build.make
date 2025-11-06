@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame
+CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build
+CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build"
 
 # Include any dependencies generated for this target.
 include _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/depend.make
@@ -75,16 +75,16 @@ _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/codegen:
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/flags.make
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o: _deps/vorbis-src/lib/vorbisfile.c
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o -MF CMakeFiles/vorbisfile.dir/vorbisfile.c.o.d -o CMakeFiles/vorbisfile.dir/vorbisfile.c.o -c /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src/lib/vorbisfile.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o -MF CMakeFiles/vorbisfile.dir/vorbisfile.c.o.d -o CMakeFiles/vorbisfile.dir/vorbisfile.c.o -c "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src/lib/vorbisfile.c"
 
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/vorbisfile.dir/vorbisfile.c.i"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src/lib/vorbisfile.c > CMakeFiles/vorbisfile.dir/vorbisfile.c.i
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src/lib/vorbisfile.c" > CMakeFiles/vorbisfile.dir/vorbisfile.c.i
 
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/vorbisfile.dir/vorbisfile.c.s"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src/lib/vorbisfile.c -o CMakeFiles/vorbisfile.dir/vorbisfile.c.s
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src/lib/vorbisfile.c" -o CMakeFiles/vorbisfile.dir/vorbisfile.c.s
 
 # Object files for target vorbisfile
 vorbisfile_OBJECTS = \
@@ -96,19 +96,19 @@ vorbisfile_EXTERNAL_OBJECTS =
 external/SFML/lib/libvorbisfile.a: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/vorbisfile.c.o
 external/SFML/lib/libvorbisfile.a: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make
 external/SFML/lib/libvorbisfile.a: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library ../../../external/SFML/lib/libvorbisfile.a"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib && $(CMAKE_COMMAND) -P CMakeFiles/vorbisfile.dir/cmake_clean_target.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vorbisfile.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library ../../../external/SFML/lib/libvorbisfile.a"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" && $(CMAKE_COMMAND) -P CMakeFiles/vorbisfile.dir/cmake_clean_target.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vorbisfile.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build: external/SFML/lib/libvorbisfile.a
 .PHONY : _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build
 
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/clean:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib && $(CMAKE_COMMAND) -P CMakeFiles/vorbisfile.dir/cmake_clean.cmake
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" && $(CMAKE_COMMAND) -P CMakeFiles/vorbisfile.dir/cmake_clean.cmake
 .PHONY : _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/clean
 
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/depend:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-src/lib /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-src/lib" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/depend
 

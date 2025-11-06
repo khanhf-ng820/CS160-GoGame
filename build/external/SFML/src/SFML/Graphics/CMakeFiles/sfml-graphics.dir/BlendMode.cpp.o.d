@@ -1,6 +1,6 @@
 external/SFML/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/BlendMode.cpp.o: \
-  /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src/SFML/Graphics/BlendMode.cpp \
-  /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include/SFML/Graphics/BlendMode.hpp \
-  /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include/SFML/Graphics/Export.hpp \
-  /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include/SFML/Config.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h
+  /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/src/SFML/Graphics/BlendMode.cpp \
+  /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/include/SFML/Graphics/BlendMode.hpp \
+  /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/include/SFML/Graphics/Export.hpp \
+  /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/external/SFML/include/SFML/Config.hpp \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h

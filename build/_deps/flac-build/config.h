@@ -7,7 +7,7 @@
 #define CPU_IS_BIG_ENDIAN 0
 
 /* Target processor ARM64 */
-#define FLAC__CPU_ARM64
+/* #undef FLAC__CPU_ARM64 */
 
 /* Set FLAC__BYTES_PER_WORD to 8 (4 is the default) */
 #define ENABLE_64_BIT_WORDS 1
@@ -23,13 +23,13 @@
 #define FLAC__HAS_OGG OGG_FOUND
 
 /* Set to 1 if <x86intrin.h> is available. */
-#define FLAC__HAS_X86INTRIN 0
+#define FLAC__HAS_X86INTRIN 1
 
 /* Set to 1 if <arm_neon.h> is available. */
-#define FLAC__HAS_NEONINTRIN 1
+#define FLAC__HAS_NEONINTRIN 0
 
 /* Set to 1 if <arm_neon.h> contains A64 intrinsics */
-#define FLAC__HAS_A64NEONINTRIN 1
+#define FLAC__HAS_A64NEONINTRIN 0
 
 /* define if building for Darwin / MacOS X */
 /* #undef FLAC__SYS_DARWIN */
@@ -65,7 +65,7 @@
 /* #undef HAVE_CLOCK_GETTIME */
 
 /* Define to 1 if you have the <cpuid.h> header file. */
-/* #undef HAVE_CPUID_H */
+#define HAVE_CPUID_H
 
 /* Define to 1 if fseeko (and presumably ftello) exists and is declared. */
 #define HAVE_FSEEKO

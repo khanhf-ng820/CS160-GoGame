@@ -2,37 +2,37 @@
 	"sources" : 
 	[
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate-complete.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate-complete.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-build.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-build.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-download.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-download.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-install.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-install.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-test.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-test.rule"
 		},
 		{
-			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-update.rule"
+			"file" : "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-update.rule"
 		}
 	],
 	"target" : 

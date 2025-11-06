@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild
+CMAKE_SOURCE_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild
+CMAKE_BINARY_DIR = "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild"
 
 # Utility rule file for flac-populate.
 
@@ -77,60 +77,60 @@ CMakeFiles/flac-populate-complete: flac-populate-prefix/src/flac-populate-stamp/
 CMakeFiles/flac-populate-complete: flac-populate-prefix/src/flac-populate-stamp/flac-populate-build
 CMakeFiles/flac-populate-complete: flac-populate-prefix/src/flac-populate-stamp/flac-populate-install
 CMakeFiles/flac-populate-complete: flac-populate-prefix/src/flac-populate-stamp/flac-populate-test
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'flac-populate'"
-	/opt/homebrew/bin/cmake -E make_directory /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles
-	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate-complete
-	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-done
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Completed 'flac-populate'"
+	/Applications/CMake.app/Contents/bin/cmake -E make_directory "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles"
+	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate-complete"
+	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-done"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-update:
 .PHONY : flac-populate-prefix/src/flac-populate-stamp/flac-populate-update
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-build: flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E echo_append
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-build"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure: flac-populate-prefix/tmp/flac-populate-cfgcmd.txt
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure: flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E echo_append
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-configure"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-download: flac-populate-prefix/src/flac-populate-stamp/flac-populate-gitinfo.txt
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-download: flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps && /opt/homebrew/bin/cmake -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/tmp/flac-populate-gitclone.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-download
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps" && /Applications/CMake.app/Contents/bin/cmake -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/tmp/flac-populate-gitclone.cmake"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-download"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-install: flac-populate-prefix/src/flac-populate-stamp/flac-populate-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E echo_append
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-install
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-install"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'flac-populate'"
-	/opt/homebrew/bin/cmake -Dcfgdir= -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/tmp/flac-populate-mkdirs.cmake
-	/opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'flac-populate'"
+	/Applications/CMake.app/Contents/bin/cmake -Dcfgdir= -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/tmp/flac-populate-mkdirs.cmake"
+	/Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-mkdir"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch: flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch-info.txt
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch: flac-populate-prefix/src/flac-populate-stamp/flac-populate-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Performing patch step for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-src && /opt/homebrew/bin/cmake -DFLAC_DIR=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-src -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/tools/flac/PatchFLAC.cmake
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-src && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Performing patch step for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-src" && /Applications/CMake.app/Contents/bin/cmake "-DFLAC_DIR=/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-src" -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/tools/flac/PatchFLAC.cmake"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-src" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-patch"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-update:
 .PHONY : flac-populate-prefix/src/flac-populate-stamp/flac-populate-update
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-test: flac-populate-prefix/src/flac-populate-stamp/flac-populate-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E echo_append
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-build && /opt/homebrew/bin/cmake -E touch /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-test
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E echo_append
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-build" && /Applications/CMake.app/Contents/bin/cmake -E touch "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/src/flac-populate-stamp/flac-populate-test"
 
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-update: flac-populate-prefix/tmp/flac-populate-gitupdate.cmake
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-update: flac-populate-prefix/src/flac-populate-stamp/flac-populate-update-info.txt
 flac-populate-prefix/src/flac-populate-stamp/flac-populate-update: flac-populate-prefix/src/flac-populate-stamp/flac-populate-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'flac-populate'"
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-src && /opt/homebrew/bin/cmake -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/tmp/flac-populate-gitupdate.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'flac-populate'"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-src" && /Applications/CMake.app/Contents/bin/cmake -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/flac-populate-prefix/tmp/flac-populate-gitupdate.cmake"
 
 CMakeFiles/flac-populate.dir/codegen:
 .PHONY : CMakeFiles/flac-populate.dir/codegen
@@ -157,6 +157,6 @@ CMakeFiles/flac-populate.dir/clean:
 .PHONY : CMakeFiles/flac-populate.dir/clean
 
 CMakeFiles/flac-populate.dir/depend:
-	cd /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild /Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild" "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : CMakeFiles/flac-populate.dir/depend
 

@@ -6,25 +6,19 @@
 # compile OBJCXX with /usr/bin/c++
 CXX_DEFINES = -DSFML_STATIC
 
-CXX_INCLUDES = -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src -isystem /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/extlibs/headers/glad/include -isystem /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/extlibs/headers/vulkan -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+CXX_INCLUDES = -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src" -isystem "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/extlibs/headers/glad/include" -isystem "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/extlibs/headers/vulkan" -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-CXX_FLAGSarm64 = -O3 -DNDEBUG -std=gnu++17 -arch arm64 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
-
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch arm64 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
 
 OBJC_DEFINES = -DSFML_STATIC
 
-OBJC_INCLUDES = -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src -isystem /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/extlibs/headers/glad/include -isystem /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/extlibs/headers/vulkan -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+OBJC_INCLUDES = -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src" -isystem "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/extlibs/headers/glad/include" -isystem "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/extlibs/headers/vulkan" -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-OBJC_FLAGSarm64 = -O3 -DNDEBUG -std=gnu17 -arch arm64 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
-
-OBJC_FLAGS = -O3 -DNDEBUG -std=gnu17 -arch arm64 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
+OBJC_FLAGS = -O3 -DNDEBUG -std=gnu17 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
 
 OBJCXX_DEFINES = -DSFML_STATIC
 
-OBJCXX_INCLUDES = -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/src -isystem /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/extlibs/headers/glad/include -isystem /Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/extlibs/headers/vulkan -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+OBJCXX_INCLUDES = -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/src" -isystem "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/extlibs/headers/glad/include" -isystem "/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/extlibs/headers/vulkan" -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-OBJCXX_FLAGSarm64 = -O3 -DNDEBUG -std=gnu++17 -arch arm64 -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
-
-OBJCXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch arm64 -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
+OBJCXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
 

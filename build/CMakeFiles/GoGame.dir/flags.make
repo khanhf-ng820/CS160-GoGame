@@ -4,9 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSFML_STATIC
 
-CXX_INCLUDES = -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/include -I/Users/nguyenphubaokhang/Desktop/CS160-GoGame/external/SFML/include
+CXX_INCLUDES = -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/include" -I"/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/external/SFML/include"
 
-CXX_FLAGSarm64 = -O3 -DNDEBUG -std=gnu++17 -arch arm64
-
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch arm64
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17
 

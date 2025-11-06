@@ -3,9 +3,9 @@
 # No other meaning or use of this file is supported.
 
 method=git
-command=/opt/homebrew/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-gitclone.cmake
-source_dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/freetype-src
-work_dir=/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps
+command=/Applications/CMake.app/Contents/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-subbuild/freetype-populate-prefix/tmp/freetype-populate-gitclone.cmake
+source_dir=/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/freetype-src
+work_dir=/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps
 repository=https://github.com/freetype/freetype.git
 remote=origin
 init_submodules=TRUE
