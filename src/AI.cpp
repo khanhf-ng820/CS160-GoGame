@@ -15,7 +15,7 @@ Move GoAI::choose_move(const Game& game, std::mt19937& rng){
 
     if (cand.empty()) return {0,0,true}; // pass
 
-    if (diff==AIDifficulty::EASY){
+    if (diff == AIDifficulty::EASY){
         std::uniform_int_distribution<int> D(0,(int)cand.size()-1);
         return cand[D(rng)];
     } else {

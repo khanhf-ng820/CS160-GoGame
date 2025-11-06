@@ -6,10 +6,18 @@
 #include <sstream>
 #include "Board.h"
 
-enum class GameMode { PVP, PVE };
+enum class GameMode {
+    PVP,
+    PVE
+};
 
-struct Move { int r = 0, c = 0; bool is_pass = false; };
-struct Score { int black = 0, white = 0; };
+struct Move {
+    int r = 0, c = 0;
+    bool is_pass = false;
+};
+struct Score {
+    int black = 0, white = 0;
+};
 
 class Game {
 public:

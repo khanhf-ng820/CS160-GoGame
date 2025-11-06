@@ -11,7 +11,10 @@
 #include "Game.h"
 #include "AI.h"
 
-enum class UIType { CONSOLE, GRAPHICAL };
+enum class UIType {
+	CONSOLE,
+	GRAPHICAL
+};
 
 class UI {
 	public: 

@@ -1,7 +1,7 @@
 # CS160-GoGame
 Go Game Final Project for CS160.
 
-Uses C++, CMake, and SFML.
+This project uses C++, CMake, and SFML library.
 
 ## Building
 
