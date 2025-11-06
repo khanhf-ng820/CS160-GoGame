@@ -9,9 +9,9 @@
 using namespace std::chrono_literals;
 namespace fs = std::filesystem;
 
-static constexpr float PANEL_W   = 260.f;
+static constexpr float PANEL_W   = 120.f;
 static constexpr float PANEL_GAP = 60.f;
-static constexpr float RIGHT_PAD = 20.f;
+static constexpr float RIGHT_PAD = 10.f;
 
 // Console UI
 UI::UI(Game& g, GoAI& a, std::mt19937& rng_)
@@ -281,6 +281,12 @@ void UI::build_main_buttons(int gridW) {
 		y = std::max(y, gb.position.y + gb.size.y + 20.f);
 	}
 
+	// Board Size
+	makeBtn("Size", bx, y, [this, gridW]{
+		build_board_size_modal(gridW);
+	});
+	y += 40.f;
+
 	// Undo/ Redo
 	const float halfW = 58.f;
 	makeBtn("Undo", bx, y, [&]{ if (!aiThinking) { game.undo(); lastMove.reset(); } }, {halfW, 32.f});
@@ -300,7 +306,14 @@ void UI::build_main_buttons(int gridW) {
 	y += 40.f;
 	
 	// Others Buttons
-	makeBtn("New Game", bx, y, [&]{ gui_reset(); });                               y += 40.f;
+	makeBtn("New Game", bx, y, [this, gridW]{
+		if (board_has_any_stone()) {
+			// Ask before reset
+			build_confirm_newgame_modal(gridW);
+		} else {
+			gui_reset();
+		}
+	});                               y += 40.f;
 	makeBtn("Save",     bx, y, [&]{ build_save_load_modal(Modal::Save, gridW); }); y += 40.f;
 	makeBtn("Load",     bx, y, [&]{ build_save_load_modal(Modal::Load, gridW); }); y += 40.f;
 	makeBtn("Theme",    bx, y, [&]{ build_theme_modal(gridW); });                  y += 40.f;
@@ -641,6 +654,180 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
             {panelW - 2*pad, 32.f});
     y += 40.f;
 
+    modalPanelRect.size.y = (y + pad) - panelY;
+}
+
+void UI::gui_apply_board_size(int newN) {
+    if (newN != 9 && newN != 13 && newN != 19) return;
+    BOARD_SIZE = newN;
+    gui_reset(); // Reset game
+    int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+    build_main_buttons(gridW);
+    activeModal = Modal::None;
+}
+
+void UI::build_board_size_modal(int gridW) {
+    activeModal = Modal::BoardSize;
+    modalButtons.clear();
+
+    const float panelW = 260.f;
+    const float panelX = float(window.getSize().x) - panelW - 20.f;
+    const float panelY = 160.f;
+    const float pad    = 14.f;
+
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+
+    auto makeBtn = [&](const std::string& txt, float x, float y,
+                       std::function<void()> fn, sf::Vector2f size) {
+        Button b;
+        b.rect.setSize(size);
+        b.rect.setFillColor(sf::Color(240,220,150));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(1.f);
+        b.rect.setPosition({x, y});
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(16);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (size.y - lb.size.y) * 0.5f - lb.position.y });
+        b.onClick = std::move(fn);
+        modalButtons.push_back(std::move(b));
+    };
+
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f;
+
+    auto pick = [&](int targetN){
+        if (board_has_any_stone()) {
+            build_confirm_resize_modal(targetN, gridW);
+        } else {
+            gui_apply_board_size(targetN);
+        }
+    };
+
+    makeBtn("9 x 9",   xLeft, y, [this, pick]{ pick(9);   }, {panelW - 2*pad, 32.f}); y += 40.f;
+    makeBtn("13 x 13", xLeft, y, [this, pick]{ pick(13);  }, {panelW - 2*pad, 32.f}); y += 40.f;
+    makeBtn("19 x 19", xLeft, y, [this, pick]{ pick(19);  }, {panelW - 2*pad, 32.f}); y += 48.f;
+
+    makeBtn("Cancel",  xLeft, y, [this]{ activeModal = Modal::None; }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    modalPanelRect.size.y = (y + pad) - panelY;
+}
+
+void UI::build_confirm_resize_modal(int newN, int gridW) {
+    activeModal = Modal::ConfirmResize;
+    modalButtons.clear();
+
+    const float panelW = 260.f;
+    const float panelX = float(window.getSize().x) - panelW - 20.f;
+    const float panelY = 160.f;
+    const float pad    = 14.f;
+
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+
+    auto makeBtn = [&](const std::string& txt, float x, float y,
+                       std::function<void()> fn, sf::Vector2f size) {
+        Button b;
+        b.rect.setSize(size);
+        b.rect.setFillColor(sf::Color(240,220,150));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(1.f);
+        b.rect.setPosition({x, y});
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(16);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (size.y - lb.size.y) * 0.5f - lb.position.y });
+        b.onClick = std::move(fn);
+        modalButtons.push_back(std::move(b));
+    };
+
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f;
+
+    // Save & Resize
+    makeBtn("Save & Resize", xLeft, y, [this, newN, gridW]{
+        deferredAction = [this, newN]{
+            gui_apply_board_size(newN);
+            activeModal = Modal::None;
+        };
+        build_save_load_modal(Modal::Save, gridW);
+    }, {panelW - 2*pad, 32.f}); y += 40.f;
+
+    // Resize (Don't Save)
+    makeBtn("Resize (Don't Save)", xLeft, y, [this, newN]{
+        gui_apply_board_size(newN);
+        activeModal = Modal::None;
+    }, {panelW - 2*pad, 32.f}); y += 40.f;
+
+    // Cancel
+    makeBtn("Cancel", xLeft, y, [this]{ activeModal = Modal::None; },
+            {panelW - 2*pad, 32.f}); y += 40.f;
+
+    modalPanelRect.size.y = (y + pad) - panelY;
+}
+
+void UI::build_confirm_newgame_modal(int gridW) {
+    activeModal = Modal::ConfirmNewGame;
+    modalButtons.clear();
+
+    const float panelW = 260.f;
+    const float panelX = float(window.getSize().x) - panelW - 20.f;
+    const float panelY = 160.f;
+    const float pad    = 14.f;
+
+    // Panel
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+
+    auto makeBtn = [&](const std::string& txt, float x, float y,
+                       std::function<void()> fn, sf::Vector2f size) {
+        Button b;
+        b.rect.setSize(size);
+        b.rect.setFillColor(sf::Color(240,220,150));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(1.f);
+        b.rect.setPosition({x, y});
+
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(16);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (size.y - lb.size.y) * 0.5f - lb.position.y });
+
+        b.onClick = std::move(fn);
+        modalButtons.push_back(std::move(b));
+    };
+
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f; // Below Title
+
+    // 1) Save & New Game
+    makeBtn("Save & New Game", xLeft, y, [this, gridW]{
+        deferredAction = [this]{
+            gui_reset();
+            activeModal = Modal::None;
+        };
+        build_save_load_modal(Modal::Save, gridW);
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    // 2) New Game (Don't Save)
+    makeBtn("New (Don't Save)", xLeft, y, [this]{
+        gui_reset();
+        activeModal = Modal::None;
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    // 3) Cancel
+    makeBtn("Cancel", xLeft, y, [this]{ activeModal = Modal::None; },
+            {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    // Update panel height
     modalPanelRect.size.y = (y + pad) - panelY;
 }
 
@@ -1080,6 +1267,14 @@ void UI::update_hover_state() {
 	else							refresh(buttons);
 }
 
+bool UI::board_has_any_stone() const {
+    for (int y = 0; y < BOARD_SIZE; ++y)
+        for (int x = 0; x < BOARD_SIZE; ++x)
+            if (game.board().get(y, x) != Stone::EMPTY)
+                return true;
+    return false;
+}
+
 void UI::gui_render() {
 	window.clear(theme.border);
 	draw_board();
@@ -1373,8 +1568,11 @@ void UI::draw_modal() {
 		activeModal==Modal::Load             ? "Load Game"          :
 		activeModal==Modal::Theme            ? "Themes"             :
 		activeModal==Modal::Music            ? "Music Picker"       :
+    	activeModal==Modal::BoardSize        ? "Board Size"         :
+		activeModal==Modal::ConfirmResize    ? "Change Board Size?" :
 		activeModal==Modal::ConfirmDifficulty? "Change Difficulty?" :
 		activeModal==Modal::ConfirmOverwrite ? "Overwrite"          : 
+		activeModal==Modal::ConfirmNewGame   ? "Start New Game?"    :
 											   "Switch Mode?"
 	);
 	title.setPosition({x + 12.f, y + 10.f});
