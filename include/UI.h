@@ -39,7 +39,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize };
 
 		void gui_handle_events();
 		void gui_update();
@@ -104,6 +104,11 @@ class UI {
 		int placeVoiceIdx = 0;
 		
 		void play_place_sound();
+    	void build_confirm_newgame_modal(int gridW);
+		void build_board_size_modal(int gridW);
+    	void build_confirm_resize_modal(int newN, int gridW);
+    	void gui_apply_board_size(int newN);
+    	bool board_has_any_stone() const;
 
 		std::vector<Theme> themes;
 		int themeIdx = 0;
