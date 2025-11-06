@@ -73,6 +73,8 @@ class UI {
   		void build_confirm_switch_modal(int gridW);
 		void build_confirm_diff_modal(AIDifficulty newDiff, int gridW);
 		void build_confirm_overwrite_modal(int gridW, const std::string& path);
+		void gui_update_window_size();
+		sf::Vector2u compute_window_px() const;
 
 		// Ultilities
 		static inline sf::Vector2f gridToPixel(int x, int y, int CELL, int MARGIN) {
@@ -118,6 +120,8 @@ class UI {
 		sf::CircleShape blackCircle{0.f}, whiteCircle{0.f};
 
 		std::optional<sf::Text> turnText, infoText, thinkingText;
+		float panel_top_y() const;
+		float panel_min_height() const;
 
 		std::optional<sf::Text> turnSideText; // "Black" or "White"
 		std::optional<sf::Text> trackText; // Now plaing
