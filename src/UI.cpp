@@ -499,7 +499,13 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
     }
 
     makeBtn("Cancel", xLeft, y + 8.f, [this]{ activeModal = Modal::None; });
-    modalPanelRect.size.y = (y + 8.f + 32.f + pad) - panelY;
+	y += 8.f + 32.f;
+
+	// Update panel size
+	modalPanelRect.size.y = (y + 8.f + pad) - panelY;
+
+	// Centraline
+	center_modal_vertically();
 }
 
 void UI::build_theme_modal(int /*gridW*/) {
@@ -576,6 +582,9 @@ void UI::build_theme_modal(int /*gridW*/) {
 
     // Update panel height
     modalPanelRect.size.y = (y + pad) - panelY;
+
+	// Centraline
+	center_modal_vertically();
 }
 
 void UI::request_switch_mode(int gridW) {
@@ -650,6 +659,8 @@ void UI::build_confirm_switch_modal(int gridW) {
 
     // Panel height
     modalPanelRect.size.y = (y + pad) - panelY;
+
+	center_modal_vertically();
 }
 
 void UI::build_confirm_overwrite_modal(int gridW, const std::string& path) {
@@ -704,6 +715,8 @@ void UI::build_confirm_overwrite_modal(int gridW, const std::string& path) {
 
 	// Panel height
 	modalPanelRect.size.y = (y + pad) - panelY;
+
+	center_modal_vertically();
 }
 
 void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
@@ -774,6 +787,8 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
     y += 40.f;
 
     modalPanelRect.size.y = (y + pad) - panelY;
+
+	center_modal_vertically();
 }
 
 void UI::gui_apply_board_size(int newN) {
@@ -834,6 +849,8 @@ void UI::build_board_size_modal(int gridW) {
     y += 40.f;
 
     modalPanelRect.size.y = (y + pad) - panelY;
+
+	center_modal_vertically();
 }
 
 void UI::build_confirm_resize_modal(int newN, int gridW) {
@@ -888,6 +905,8 @@ void UI::build_confirm_resize_modal(int newN, int gridW) {
             {panelW - 2*pad, 32.f}); y += 40.f;
 
     modalPanelRect.size.y = (y + pad) - panelY;
+
+	center_modal_vertically();
 }
 
 void UI::build_confirm_newgame_modal(int gridW) {
@@ -949,6 +968,8 @@ void UI::build_confirm_newgame_modal(int gridW) {
 
     // Update panel height
     modalPanelRect.size.y = (y + pad) - panelY;
+
+	center_modal_vertically();
 }
 
 // Music picker
@@ -1177,6 +1198,39 @@ void UI::build_music_modal(int gridW) {
 	// 7) Update panel size
 	float panelBottom = cancelY + 32.f + pad;
 	modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, panelBottom - panelY});
+
+	center_modal_vertically();
+}
+
+void UI::center_modal_vertically() {
+	if (activeModal == Modal::None) return;
+	if (modalPanelRect.size.y <= 0.f) return;
+
+	float winH    = static_cast<float>(window.getSize().y);
+	float wantY   = std::max(12.f, (winH - modalPanelRect.size.y) * 0.5f);
+	float dy      = wantY - modalPanelRect.position.y;
+
+	// Relocate panel frame
+	modalPanelRect.position.y += dy;
+
+	// Relocate all buttons in panel
+	for (auto& b : modalButtons) {
+		auto p = b.rect.getPosition();
+		b.rect.setPosition({ p.x, p.y + dy });
+		if (b.label) {
+			auto lp = b.label->getPosition();
+			b.label->setPosition({ lp.x, lp.y + dy });
+		}
+	}
+
+	if (activeModal == Modal::Music) {
+		if (volLabel) { auto p = volLabel->getPosition(); volLabel->setPosition({ p.x, p.y + dy }); }
+		{ auto p = volTrack.getPosition(); volTrack.setPosition({ p.x, p.y + dy }); }
+		{ auto p = volFill .getPosition(); volFill .setPosition({ p.x, p.y + dy }); }
+		{ auto p = volThumb.getPosition(); volThumb.setPosition({ p.x, p.y + dy }); }
+		volBounds.position.y   += dy;
+		musicListRect.position.y += dy;
+	}
 }
 
 void UI::gui_handle_events() {

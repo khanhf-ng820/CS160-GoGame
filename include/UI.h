@@ -74,6 +74,7 @@ class UI {
 		void build_confirm_diff_modal(AIDifficulty newDiff, int gridW);
 		void build_confirm_overwrite_modal(int gridW, const std::string& path);
 		void gui_update_window_size();
+		void center_modal_vertically();
 		sf::Vector2u compute_window_px() const;
 
 		// Ultilities
