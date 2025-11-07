@@ -76,6 +76,9 @@ class UI {
 		void gui_update_window_size();
 		void center_modal_vertically();
 		sf::Vector2u compute_window_px() const;
+		float panelScroll = 0.f;
+		float panelScrollMax = 0.f;
+		sf::FloatRect panelViewport;
 
 		// Ultilities
 		static inline sf::Vector2f gridToPixel(int x, int y, int CELL, int MARGIN) {

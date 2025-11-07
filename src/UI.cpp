@@ -333,7 +333,7 @@ void UI::build_main_buttons(int gridW) {
 	};
 
     const float bx = float(MARGIN + (BOARD_SIZE - 1) * CELL + PANEL_GAP);
-    float y = panel_top_y();
+    float y = panel_top_y() - panelScroll;
 
     // Column
     const float COL_GAP = 10.f;
@@ -426,6 +426,18 @@ void UI::build_main_buttons(int gridW) {
     }
 
     gui_update_window_size();
+
+	// Update scroll limit
+	float topY = panel_top_y();
+	float visibleH = float(window.getSize().y) - topY - 10.f;
+	float totalH = panel_min_height() - topY;
+	panelScrollMax = std::max(0.f, totalH - visibleH);
+
+	// Panel
+	panelViewport = sf::FloatRect(
+		{ bx, topY },
+		{ PANEL_W, std::max(0.f, visibleH) }
+	);
 }
 
 namespace {
@@ -1322,6 +1334,16 @@ void UI::gui_handle_events() {
 				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
 				build_music_modal(gridW);
 			}
+			else {
+				sf::Vector2f mp(float(mw->position.x), float(mw->position.y));
+				if (panelViewport.contains(mp)) {
+					float step = 24.f * (mw->delta > 0 ? -1.f : 1.f);
+					panelScroll = std::clamp(panelScroll + step, 0.f, panelScrollMax);
+
+					int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+					build_main_buttons(gridW);
+				}
+			}
 		}
 
 		// 4) Mouse Scrolling (Update volume slider while scrolling in Music modal)
@@ -1455,7 +1477,14 @@ sf::Vector2u UI::compute_window_px() const {
     const unsigned winW = static_cast<unsigned>(gridW + PANEL_GAP + PANEL_W + RIGHT_PAD);
 
     unsigned panelMin = static_cast<unsigned>(std::ceil(panel_min_height()));
-    unsigned winH = std::max<unsigned>(gridH, panelMin);
+    unsigned wantH = std::max<unsigned>(gridH, panelMin);
+
+    // Limit the height
+    auto desk = sf::VideoMode::getDesktopMode();
+    unsigned safe = 96; // Changeable
+    unsigned maxH = (desk.size.y > safe ? desk.size.y - safe : desk.size.y);
+
+    unsigned winH = std::min<unsigned>(wantH, std::max<unsigned>(MIN_WIN_H, maxH));
     return { winW, winH };
 }
 
