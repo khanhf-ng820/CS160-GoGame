@@ -39,56 +39,56 @@ struct Score { int black = 0, white = 0; };
 class Game {
 // Class game này quản lý trạng thái với luật cơ bản của ván cờ (kiểu luân phiên, tính hợp lệ hay lịch sử)
 public:
-    explicit Game(int n = 19);
     // Khởi tạo ván game mới với bàn cờ 19x19
-    int size() const;
+    explicit Game(int n = 19);
     // Trả về kích thước của bàn cờ
-    Board&       board();
+    int size() const;
     // Cho phép truy cập tới Board. Vd như cho UI vẽ,...
-    const Board& board() const;
+    Board&       board();
     // Truy cập const tới Board
-    Stone side_to_move() const;
+    const Board& board() const;
     // Trả về màu quân đang tới lượt
-    bool  is_over() const;
+    Stone side_to_move() const;
     // Trả về true nếu ván đã kết thúc (ở đây chưa có gì nhiều)
-    Score score() const;
+    bool  is_over() const;
     // Đếm số quân đen, trắng hiện có (không có đếm vùng, chỉ mới đếm quân đặt)
-    void reset();
+    Score score() const;
     // Xoá bàn cờ, đưa về trạng thái bắt đầu, đặt lại history
-    bool undo();
+    void reset();
     // Hoàn tác 1 nước (trả quân, đảo lượt, giảm pass,...)
-    bool redo();
+    bool undo();
     // Làm lại 1 nước mới undo (nếu có trong redo_stack)
-    void pass();
+    bool redo();
     // Thực hiện hành động pass, ghi vào history, đổi lượt,...
-    bool legal(const Move& m) const;
+    void pass();
     // Kiểm tra tính hợp lệ của nước đi (trong biên và ô trống/ pass)
-    bool play(const Move& m);
+    bool legal(const Move& m) const;
     // Thực hiện nước đi nếu valid bao gồm đặt quân, ghi history, xoá redo_stack, đổi lượt,...
-    std::string serialize() const;
+    bool play(const Move& m);
     // Xuất toàn bộ trạng thái trò chơi thành chuỗi
-    bool        deserialize(const std::string& data);
+    std::string serialize() const;
     // Nạp lại trạng thái từ chuỗi
-    static Move parse_move(const std::string& raw, int N);
+    bool        deserialize(const std::string& data);
     // Chuyển chuỗi "D4", "Q11", pass, ... thành Move theo kích thước N
-    std::string render_ascii() const;
+    static Move parse_move(const std::string& raw, int N);
     // Vẽ bàn ra chuỗi "ASCII art" (nhãn A...T, số hàng, ...)
+    std::string render_ascii() const;
 
 public:
-    double komi = 6.5;
     // Điểm bù cho trắng
+    double komi = 6.5;
 
 private:
-    int   N;
     // Kích thước bàn
-    Board bd;
+    int   N;
     // Bàn cờ: mảng ô Stone
-    Stone to_move;
+    Board bd;
     // Màu quân đang tới lượt
-    int   consecutive_passes = 0;
+    Stone to_move;
     // Số lượt pass liên tiếp
-    std::vector<Move> history;
+    int   consecutive_passes = 0;
     // Lịch sử các nước đã chơi
-    std::vector<Move> redo_stack;
+    std::vector<Move> history;
     // Các nước hoàn tác gần nhất
+    std::vector<Move> redo_stack;
 };

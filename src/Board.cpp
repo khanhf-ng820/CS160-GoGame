@@ -2,6 +2,7 @@
 TÓM TẮT TRƯỚC CÁC HÀM
 - opposite(s): trả màu còn lại
 - stone_char(s): '.'/'X'/'O' để xuất ra ASCII
++ ***** (X: BLACK, O: WHITE) *****
 - col_from_char(ch): chuyển 'A'..'T' -> 0..(N-1). Input có thể là chữ thường, sẽ có chuẩn hoá thành chữ hoa
 - char_from_col(c): 0..N-1 -> 'A'..'T'
 - trim(s): xóa khoảng trống 2 đầu (lệnh này bên UI xài nhiều hơn, nó viết bên Board vậy thôi)
@@ -18,7 +19,7 @@ TÓM TẮT TRƯỚC CÁC HÀM
 // ULTILITIES
 Stone opposite(Stone s) {
 // Đây là hàm trả về quân đối, kiểu BLACK trả về WHITE và ngược lại
-// Lưu ý là nếu truyền EMPTY nó vẫn trả về BLACK để tiện cho luân phiên lượt, nhưng mà cái này hiếm trong trường hợp bthuong=))
+// *** Lưu ý là nếu truyền EMPTY nó vẫn trả về BLACK để tiện cho luân phiên lượt, nhưng mà cái này hiếm trong trường hợp bthuong=)) ***
     return (s == Stone::BLACK ? Stone::WHITE : Stone::BLACK);
 }
 
