@@ -51,6 +51,15 @@ float UI::panel_min_height() const {
     return y;
 }
 
+sf::FloatRect UI::view_rect() const {
+    sf::Vector2f sz  = logicalView.getSize();
+    sf::Vector2f ctr = logicalView.getCenter();
+    return {
+        { ctr.x - sz.x * 0.5f, ctr.y - sz.y * 0.5f },
+        { sz.x, sz.y }
+    };
+}
+
 // Console UI
 UI::UI(Game& g, GoAI& a, std::mt19937& rng_)
 	: game(g), ai(a), rng(rng_) {}
@@ -172,8 +181,15 @@ void UI::run_graphical() {
 	window.create(
 		sf::VideoMode({winW, winH}),
 		"CS 160 - Go Game Project",
-		sf::Style::Titlebar | sf::Style::Close
+		sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize
 	);
+	sync_view_to_window();
+	baseWindow = window.getSize();
+	logicalView.setSize({float(baseWindow.x), float(baseWindow.y)});
+	logicalView.setCenter({float(baseWindow.x)*0.5f, float(baseWindow.y)*0.5f});
+	logicalView.setViewport(sf::FloatRect({0.f, 0.f}, {1.f, 1.f}));
+
+	window.setView(logicalView);
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
 	gui_update_window_size();
@@ -425,7 +441,7 @@ void UI::build_main_buttons(int gridW) {
         addSpan2("Quit", [this]{ window.close(); });
     }
 
-    gui_update_window_size();
+    // gui_update_window_size();
 
 	// Update scroll limit
 	float topY = panel_top_y();
@@ -434,10 +450,7 @@ void UI::build_main_buttons(int gridW) {
 	panelScrollMax = std::max(0.f, totalH - visibleH);
 
 	// Panel
-	panelViewport = sf::FloatRect(
-		{ bx, topY },
-		{ PANEL_W, std::max(0.f, visibleH) }
-	);
+	panelViewport = sf::FloatRect({ bx, topY }, { PANEL_W, std::max(0.f, visibleH) });
 }
 
 namespace {
@@ -457,8 +470,9 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
     const int SLOTS = 6;
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
+	auto vr   = view_rect();
+	float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+	float panelY = vr.position.y + 160.f;
     const float pad    = 14.f;
 
     modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
@@ -516,7 +530,7 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
 	// Update panel size
 	modalPanelRect.size.y = (y + 8.f + pad) - panelY;
 
-	// Centraline
+	// Centerline
 	center_modal_vertically();
 }
 
@@ -524,14 +538,14 @@ void UI::build_theme_modal(int /*gridW*/) {
     activeModal = Modal::Theme;
     modalButtons.clear();
 
-    // Panel frame
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    // Assign size/ panel position for draw_modal
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& name, float x, float y, int idx) {
         Button b;
@@ -564,10 +578,10 @@ void UI::build_theme_modal(int /*gridW*/) {
     const float xLeft = panelX + pad;
     float y = panelY + 40.f;
 
-    makeBtn("Classic", xLeft, y, 0); y += 40.f;
-    makeBtn("Light",   xLeft, y, 1); y += 40.f;
-    makeBtn("Dark",    xLeft, y, 2); y += 40.f;
-    makeBtn("Green",   xLeft, y, 3); y += 40.f;
+    makeBtn("Wood", xLeft, y, 0); y += 40.f;
+    makeBtn("Sand",   xLeft, y, 1); y += 40.f;
+    makeBtn("Caramel",    xLeft, y, 2); y += 40.f;
+    makeBtn("Sage",   xLeft, y, 3); y += 40.f;
     makeBtn("Blue",    xLeft, y, 4);  y += 48.f;
 
     // Cancel
@@ -595,7 +609,7 @@ void UI::build_theme_modal(int /*gridW*/) {
     // Update panel height
     modalPanelRect.size.y = (y + pad) - panelY;
 
-	// Centraline
+	// Centerline
 	center_modal_vertically();
 }
 
@@ -617,12 +631,13 @@ void UI::build_confirm_switch_modal(int gridW) {
     modalButtons.clear();
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    // Title and frame
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn, sf::Vector2f size) {
@@ -680,12 +695,13 @@ void UI::build_confirm_overwrite_modal(int gridW, const std::string& path) {
     modalButtons.clear();
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    // Title and frame
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+	
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn, sf::Vector2f size) {
@@ -736,11 +752,13 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
     modalButtons.clear();
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+	
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn, sf::Vector2f size) {
@@ -818,11 +836,13 @@ void UI::build_board_size_modal(int gridW) {
     modalButtons.clear();
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+	
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn, sf::Vector2f size) {
@@ -870,11 +890,13 @@ void UI::build_confirm_resize_modal(int newN, int gridW) {
     modalButtons.clear();
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+	
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn, sf::Vector2f size) {
@@ -926,12 +948,13 @@ void UI::build_confirm_newgame_modal(int gridW) {
     modalButtons.clear();
 
     const float panelW = 260.f;
-    const float panelX = float(window.getSize().x) - panelW - 20.f;
-    const float panelY = 160.f;
     const float pad    = 14.f;
 
-    // Panel
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+	
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn, sf::Vector2f size) {
@@ -1102,10 +1125,14 @@ void UI::build_music_modal(int gridW) {
 	activeModal = Modal::Music;
 	modalButtons.clear();
 
-	const float panelW = 260.f;
-	const float panelX = float(window.getSize().x) - panelW - 20.f;
-	const float panelY = 160.f;
-	const float pad    = 14.f;
+    const float panelW = 260.f;
+    const float pad    = 14.f;
+
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+	
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
 
 	// Default argument
 	auto makeBtn = [&](const std::string& txt, float x, float y,
@@ -1174,13 +1201,20 @@ void UI::build_music_modal(int gridW) {
 	makeBtn("Max", xLeft + halfW + gap, y, [this, gridW]{ set_volume(100.f); build_music_modal(gridW); }, {halfW, 28.f});
 	y += 28.f + 12.f;
 
-	// 5) Music list (scroll viewport)
-	const float listTopY   = y;
-	const float listHeight = 160.f;
-	const float rowH       = 32.f;
-	const float rowGap     = 2.f;
+	// 5) Music list
+	const float listTopY = y;
+	float       listHeight;
 
-	// FloatRect
+	// List height calculating base on view
+	const float bottomPad   = pad + 14.f + 32.f + pad;
+	const float usedAbove   = listTopY - panelY;
+	float avail = (vr.position.y + vr.size.y) - (panelY + usedAbove) - bottomPad;
+	// Limit
+	listHeight = std::clamp(avail, 80.f, 260.f);
+
+	const float rowH   = 32.f;
+	const float rowGap = 2.f;
+
 	musicListRect = sf::FloatRect({xLeft, listTopY}, {panelW - 2*pad, listHeight});
 
 	const int total = (int)musicFiles.size();
@@ -1203,7 +1237,7 @@ void UI::build_music_modal(int gridW) {
 		yy += rowH + rowGap;
 	}
 
-	// 6) Cancel (below viewport)
+	// 6) Cancel
 	float cancelY = listTopY + listHeight + 14.f;
 	makeBtn("Cancel", xLeft, cancelY, [this]{ activeModal = Modal::None; }, {panelW - 2*pad, 32.f});
 
@@ -1215,34 +1249,97 @@ void UI::build_music_modal(int gridW) {
 }
 
 void UI::center_modal_vertically() {
-	if (activeModal == Modal::None) return;
-	if (modalPanelRect.size.y <= 0.f) return;
+    if (activeModal == Modal::None) return;
+    if (modalPanelRect.size.y <= 0.f) return;
 
-	float winH    = static_cast<float>(window.getSize().y);
-	float wantY   = std::max(12.f, (winH - modalPanelRect.size.y) * 0.5f);
-	float dy      = wantY - modalPanelRect.position.y;
+    auto vr  = view_rect();
+    float winH = vr.size.y;
 
-	// Relocate panel frame
-	modalPanelRect.position.y += dy;
+    float wantY = std::max(12.f, vr.position.y + (winH - modalPanelRect.size.y) * 0.5f);
 
-	// Relocate all buttons in panel
-	for (auto& b : modalButtons) {
-		auto p = b.rect.getPosition();
-		b.rect.setPosition({ p.x, p.y + dy });
-		if (b.label) {
-			auto lp = b.label->getPosition();
-			b.label->setPosition({ lp.x, lp.y + dy });
-		}
-	}
+    float bottomLimit = vr.position.y + winH - 12.f;
+    if (wantY + modalPanelRect.size.y > bottomLimit) {
+        wantY = bottomLimit - modalPanelRect.size.y;
+    }
 
-	if (activeModal == Modal::Music) {
-		if (volLabel) { auto p = volLabel->getPosition(); volLabel->setPosition({ p.x, p.y + dy }); }
-		{ auto p = volTrack.getPosition(); volTrack.setPosition({ p.x, p.y + dy }); }
-		{ auto p = volFill .getPosition(); volFill .setPosition({ p.x, p.y + dy }); }
-		{ auto p = volThumb.getPosition(); volThumb.setPosition({ p.x, p.y + dy }); }
-		volBounds.position.y   += dy;
-		musicListRect.position.y += dy;
-	}
+    float dy = wantY - modalPanelRect.position.y;
+
+    modalPanelRect.position.y += dy;
+    for (auto& b : modalButtons) {
+        auto p = b.rect.getPosition();
+        b.rect.setPosition({ p.x, p.y + dy });
+        if (b.label) {
+            auto lp = b.label->getPosition();
+            b.label->setPosition({ lp.x, lp.y + dy });
+        }
+    }
+    if (activeModal == Modal::Music) {
+        if (volLabel) { auto p = volLabel->getPosition(); volLabel->setPosition({ p.x, p.y + dy }); }
+        { auto p = volTrack.getPosition(); volTrack.setPosition({ p.x, p.y + dy }); }
+        { auto p = volFill .getPosition(); volFill .setPosition({ p.x, p.y + dy }); }
+        { auto p = volThumb.getPosition(); volThumb.setPosition({ p.x, p.y + dy }); }
+        volBounds.position.y     += dy;
+        musicListRect.position.y += dy;
+    }
+}
+
+sf::FloatRect UI::make_letterbox(sf::Vector2u win, sf::Vector2u base) {
+    float winAspect  = win.x  / float(win.y ? win.y : 1);
+    float baseAspect = base.x / float(base.y ? base.y : 1);
+
+    if (winAspect > baseAspect) {
+        float width = baseAspect / winAspect;
+        float left  = (1.f - width) * 0.5f;
+        return sf::FloatRect({ left, 0.f }, { width, 1.f });
+    } else {
+        float height = winAspect / baseAspect;
+        float top    = (1.f - height) * 0.5f;
+        return sf::FloatRect({ 0.f, top }, { 1.f, height });
+    }
+}
+
+void UI::on_window_resized(sf::Vector2u ns) {
+    if (suppressResize) return;
+
+    if (lockAspect) {
+        const float R = baseWindow.x / float(baseWindow.y); // original ratio
+        unsigned w = ns.x, h = ns.y;
+
+        // Calculate the height by R
+        unsigned h1 = unsigned(std::lround(w / R));
+        // If ! -> calculate again
+        if (std::abs(int(h1) - int(h)) > 1) {
+            unsigned w1 = unsigned(std::lround(h * R));
+            if (w1 != w) { w = w1; }
+            else { h = h1; }
+        } else {
+            h = h1;
+        }
+
+        if (w != ns.x || h != ns.y) {
+            suppressResize = true;
+            window.setSize({w, h});
+            suppressResize = false;
+            ns = {w, h};
+        }
+    }
+
+
+    logicalView.setViewport(make_letterbox(ns, baseWindow));
+    window.setView(logicalView);
+
+    int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+    build_main_buttons(gridW);
+
+    center_modal_vertically();
+}
+
+void UI::sync_view_to_window() {
+    baseWindow = window.getSize();
+    logicalView.setSize({ float(baseWindow.x), float(baseWindow.y) });
+    logicalView.setCenter({ float(baseWindow.x)*0.5f, float(baseWindow.y)*0.5f });
+    logicalView.setViewport(sf::FloatRect({0.f, 0.f}, {1.f, 1.f}));
+    window.setView(logicalView);
 }
 
 void UI::gui_handle_events() {
@@ -1252,11 +1349,15 @@ void UI::gui_handle_events() {
 		if (event->is<sf::Event::Closed>()) {
 			window.close();
 		}
-		
+
+		else if (const auto* rz = event->getIf<sf::Event::Resized>()) {
+			on_window_resized(rz->size);
+		}
+
 		// 2) Left-mouse click
 		else if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
 			if (mb->button == sf::Mouse::Button::Left) {
-				sf::Vector2f mp(float(mb->position.x), float(mb->position.y));
+				sf::Vector2f mp = to_world({ mb->position.x, mb->position.y });
 
 				// If modal is opening, prioritize modal
 				if (activeModal != Modal::None) {
@@ -1335,11 +1436,10 @@ void UI::gui_handle_events() {
 				build_music_modal(gridW);
 			}
 			else {
-				sf::Vector2f mp(float(mw->position.x), float(mw->position.y));
+				sf::Vector2f mp = to_world({ mw->position.x, mw->position.y });
 				if (panelViewport.contains(mp)) {
 					float step = 24.f * (mw->delta > 0 ? -1.f : 1.f);
 					panelScroll = std::clamp(panelScroll + step, 0.f, panelScrollMax);
-
 					int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
 					build_main_buttons(gridW);
 				}
@@ -1349,7 +1449,7 @@ void UI::gui_handle_events() {
 		// 4) Mouse Scrolling (Update volume slider while scrolling in Music modal)
 		else if (const auto* mm = event->getIf<sf::Event::MouseMoved>()) {
 			if (activeModal == Modal::Music && volDragging) {
-				sf::Vector2f mp(float(mm->position.x), float(mm->position.y));
+				sf::Vector2f mp = to_world({ mm->position.x, mm->position.y });
 				set_volume(volume_from_x(mp.x));
 			}
 		}
@@ -1451,7 +1551,7 @@ void UI::gui_update() {
 void UI::update_hover_state() {
 	// Take mouse's position (relative)
 	auto p = sf::Mouse::getPosition(window);
-	mousePos = { float(p.x), float(p.y) };
+	mousePos = to_world({ p.x, p.y });
 
 	auto refresh = [&](std::vector<Button>& arr){
 		for (auto& b : arr) {
@@ -1492,12 +1592,13 @@ void UI::gui_update_window_size() {
     auto size = compute_window_px();
     // Change window size
     window.setSize(size);
+	sync_view_to_window();
     // Update view
-	sf::View v;
-    v.setSize(sf::Vector2f(static_cast<float>(size.x), static_cast<float>(size.y)));
+	// sf::View v;
+    /* v.setSize(sf::Vector2f(static_cast<float>(size.x), static_cast<float>(size.y)));
     v.setCenter(sf::Vector2f(static_cast<float>(size.x) * 0.5f,
                              static_cast<float>(size.y) * 0.5f));
-	window.setView(v);
+	window.setView(v); */
 }
 
 void UI::gui_render() {
@@ -1603,56 +1704,41 @@ void UI::draw_board() {
 }
 
 void UI::draw_stones() {
-	for (int y = 0; y < BOARD_SIZE; ++y) {
-		for (int x = 0; x < BOARD_SIZE; ++x) {
-			Stone s = game.board().get(y, x);
-			if (s == Stone::EMPTY) continue;
+    sf::CircleShape specCircle(std::max(6.f, CELL * 0.12f));
+    specCircle.setOrigin({ specCircle.getRadius(), specCircle.getRadius() });
 
-			// Central of a stone
-			sf::Vector2f p = gridToPixel(x, y, CELL, MARGIN);
+    for (int y = 0; y < BOARD_SIZE; ++y) {
+        for (int x = 0; x < BOARD_SIZE; ++x) {
+            Stone s = game.board().get(y, x);
+            if (s == Stone::EMPTY) continue;
 
-			// Shadow (**) - Maybe we will need some improve here cause it doesnt work well
-			{
-				sf::CircleShape shadow(CELL * 0.45f);
-				shadow.setOrigin({ shadow.getRadius(), shadow.getRadius() });
-				shadow.setPosition(p + sf::Vector2f{2.f, 2.f});
-				shadow.setFillColor(sf::Color(0, 0, 0, 60));
-				window.draw(shadow);
-			}
+            sf::Vector2f p = gridToPixel(x, y, CELL, MARGIN);
 
-			// Main stone (No outline)
-			{
-				sf::CircleShape stone(CELL * 0.45f);
-				stone.setOrigin({ stone.getRadius(), stone.getRadius() });
-				stone.setPosition(p);
+            // Shadow
+            sf::CircleShape shadow(CELL * 0.45f);
+            shadow.setOrigin({ shadow.getRadius(), shadow.getRadius() });
+            shadow.setPosition(p + sf::Vector2f{2.f, 2.f});
+            shadow.setFillColor(sf::Color(0, 0, 0, 60));
+            window.draw(shadow);
 
-				if (s == Stone::BLACK) {
-					stone.setFillColor(sf::Color(30, 30, 30));
-				} else {
-					stone.setFillColor(sf::Color(250, 250, 245));
-				}
+            // Stone
+            sf::CircleShape& base = (s == Stone::BLACK ? blackCircle : whiteCircle);
+            base.setPosition(p);
+            window.draw(base);
 
-				stone.setOutlineThickness(0.f);
-				window.draw(stone);
+            specCircle.setPosition(p + sf::Vector2f{-base.getRadius()*0.35f, -base.getRadius()*0.35f});
+            specCircle.setFillColor(sf::Color(255, 255, 255, (s == Stone::BLACK ? 50 : 35)));
+            window.draw(specCircle);
+        }
+    }
 
-				// Highlight (light)
-				sf::CircleShape spec(std::max(6.f, CELL * 0.12f));
-				spec.setOrigin({ spec.getRadius(), spec.getRadius() });
-				spec.setPosition(p + sf::Vector2f{-stone.getRadius()*0.35f, -stone.getRadius()*0.35f});
-				spec.setFillColor(sf::Color(255, 255, 255, (s == Stone::BLACK ? 50 : 35)));
-				window.draw(spec);
-			}
-		}
-	}
-
-	// Highlight previous move
-	if (lastMove) {
-		sf::CircleShape glow(CELL * 0.48f);
-		glow.setOrigin({ glow.getRadius(), glow.getRadius() });
-		glow.setPosition(gridToPixel(lastMove->x, lastMove->y, CELL, MARGIN));
-		glow.setFillColor(sf::Color(255, 240, 0, 40));
-		window.draw(glow);
-	}
+    if (lastMove) {
+        sf::CircleShape glow(CELL * 0.48f);
+        glow.setOrigin({ glow.getRadius(), glow.getRadius() });
+        glow.setPosition(gridToPixel(lastMove->x, lastMove->y, CELL, MARGIN));
+        glow.setFillColor(sf::Color(255, 240, 0, 40));
+        window.draw(glow);
+    }
 }
 
 void UI::draw_hud() {
@@ -1756,76 +1842,71 @@ void UI::draw_hud() {
 }
 
 void UI::draw_modal() {
-	if (activeModal == Modal::None) return;
+    if (activeModal == Modal::None) return;
 
-	// Dim background
-	sf::RectangleShape dim({float(window.getSize().x), float(window.getSize().y)});
-	dim.setFillColor(sf::Color(0,0,0,80));
-	window.draw(dim);
+    auto vr = view_rect();
 
-	//
-	float x, y, w, h;
-	if (modalPanelRect.size.x > 0.f && modalPanelRect.size.y > 0.f) {
-		x = modalPanelRect.position.x;
-		y = modalPanelRect.position.y;
-		w = modalPanelRect.size.x;
-		h = modalPanelRect.size.y;
-	} else {
-		w = 260.f; h = 320.f;
-		x = float(window.getSize().x) - w - 20.f;
-		y = 160.f;
-	}
+    // Dim
+    sf::RectangleShape dim({ vr.size.x, vr.size.y });
+    dim.setPosition({ vr.position.x, vr.position.y });
+    dim.setFillColor(sf::Color(0,0,0,80));
+    window.draw(dim);
 
-	// Draw Panel
-	sf::RectangleShape panel({w, h});
-	panel.setFillColor(sf::Color(255,245,200));
-	panel.setOutlineColor(sf::Color::Black);
-	panel.setOutlineThickness(2.f);
-	panel.setPosition({x, y});
-	window.draw(panel);
+    // Position + panel size
+    float x = modalPanelRect.size.x > 0 ? modalPanelRect.position.x
+                                        : (vr.position.x + vr.size.x - 260.f - 20.f);
+    float y = modalPanelRect.size.y > 0 ? modalPanelRect.position.y
+                                        : (vr.position.y + 160.f);
+    float w = modalPanelRect.size.x > 0 ? modalPanelRect.size.x : 260.f;
+    float h = modalPanelRect.size.y > 0 ? modalPanelRect.size.y : 320.f;
 
-	// Title
-	sf::Text title(font);
-	title.setCharacterSize(18);
-	title.setFillColor(sf::Color::Black);
-	title.setString(
-		activeModal==Modal::Save             ? "Save Game"          :
-		activeModal==Modal::Load             ? "Load Game"          :
-		activeModal==Modal::Theme            ? "Themes"             :
-		activeModal==Modal::Music            ? "Music Picker"       :
-    	activeModal==Modal::BoardSize        ? "Board Size"         :
-		activeModal==Modal::ConfirmResize    ? "Change Board Size?" :
-		activeModal==Modal::ConfirmDifficulty? "Change Difficulty?" :
-		activeModal==Modal::ConfirmOverwrite ? "Overwrite"          : 
-		activeModal==Modal::ConfirmNewGame   ? "Start New Game?"    :
-											   "Switch Mode?"
-	);
-	title.setPosition({x + 12.f, y + 10.f});
-	window.draw(title);
+    // Panel
+    sf::RectangleShape panel({w, h});
+    panel.setFillColor(sf::Color(255,245,200));
+    panel.setOutlineColor(sf::Color::Black);
+    panel.setOutlineThickness(2.f);
+    panel.setPosition({x, y});
+    window.draw(panel);
 
-	// Music's UI (border viewport, slider, etc)
-	if (activeModal == Modal::Music) {
-		// Border of music list
-		if (musicListRect.size.x > 0.f && musicListRect.size.y > 0.f) {
-			sf::RectangleShape listBorder;
-			listBorder.setSize({ musicListRect.size.x, musicListRect.size.y });
-			listBorder.setPosition({ musicListRect.position.x, musicListRect.position.y });
-			listBorder.setFillColor(sf::Color(0,0,0,0));
-			listBorder.setOutlineColor(sf::Color::Black);
-			listBorder.setOutlineThickness(1.f);
-			window.draw(listBorder);
-		}
+    // Title
+    sf::Text title(font);
+    title.setCharacterSize(18);
+    title.setFillColor(sf::Color::Black);
+    title.setString(
+        activeModal==Modal::Save             ? "Save Game"          :
+        activeModal==Modal::Load             ? "Load Game"          :
+        activeModal==Modal::Theme            ? "Themes"             :
+        activeModal==Modal::Music            ? "Music Picker"       :
+        activeModal==Modal::BoardSize        ? "Board Size"         :
+        activeModal==Modal::ConfirmResize    ? "Change Board Size?" :
+        activeModal==Modal::ConfirmDifficulty? "Change Difficulty?" :
+        activeModal==Modal::ConfirmOverwrite ? "Overwrite"          :
+        activeModal==Modal::ConfirmNewGame   ? "Start New Game?"    :
+                                               "Switch Mode?"
+    );
+    title.setPosition({x + 12.f, y + 10.f});
+    window.draw(title);
 
-		//Slider
-		if (volLabel) window.draw(*volLabel);
-		window.draw(volTrack);
-		window.draw(volFill);
-		window.draw(volThumb);
-	}
+    // UI of Music
+    if (activeModal == Modal::Music) {
+        if (musicListRect.size.x > 0.f && musicListRect.size.y > 0.f) {
+            sf::RectangleShape listBorder;
+            listBorder.setSize({ musicListRect.size.x, musicListRect.size.y });
+            listBorder.setPosition({ musicListRect.position.x, musicListRect.position.y });
+            listBorder.setFillColor(sf::Color(0,0,0,0));
+            listBorder.setOutlineColor(sf::Color::Black);
+            listBorder.setOutlineThickness(1.f);
+            window.draw(listBorder);
+        }
+        if (volLabel) window.draw(*volLabel);
+        window.draw(volTrack);
+        window.draw(volFill);
+        window.draw(volThumb);
+    }
 
-	// Final
-	for (auto& b : modalButtons) {
-		window.draw(b.rect);
-		if (b.label) window.draw(*b.label);
-	}
+    // Buttons in modal
+    for (auto& b : modalButtons) {
+        window.draw(b.rect);
+        if (b.label) window.draw(*b.label);
+    }
 }
