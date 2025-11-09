@@ -411,15 +411,15 @@ external/SFML/src/SFML/Window/clean: external/SFML/src/SFML/Window/CMakeFiles/sf
 
 # All Build rule for target.
 CMakeFiles/GoGame.dir/all: external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/all
+CMakeFiles/GoGame.dir/all: _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/all
+CMakeFiles/GoGame.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
+CMakeFiles/GoGame.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all
+CMakeFiles/GoGame.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all
 CMakeFiles/GoGame.dir/all: external/SFML/src/SFML/Window/CMakeFiles/sfml-window.dir/all
 CMakeFiles/GoGame.dir/all: external/SFML/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
 CMakeFiles/GoGame.dir/all: _deps/freetype-build/CMakeFiles/freetype.dir/all
 CMakeFiles/GoGame.dir/all: external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all
 CMakeFiles/GoGame.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
-CMakeFiles/GoGame.dir/all: _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/all
-CMakeFiles/GoGame.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
-CMakeFiles/GoGame.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all
-CMakeFiles/GoGame.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GoGame.dir/build.make CMakeFiles/GoGame.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GoGame.dir/build.make CMakeFiles/GoGame.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=15,16,17 "Built target GoGame"
@@ -614,11 +614,11 @@ _deps/freetype-build/CMakeFiles/freetype.dir/clean:
 
 # All Build rule for target.
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: external/SFML/src/SFML/System/CMakeFiles/sfml-system.dir/all
-external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/all
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all
 external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all
+external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 	$(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make external/SFML/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=39,40,41,42,43,44,45,46,47,48,49 "Built target sfml-audio"
@@ -714,8 +714,8 @@ _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/clean:
 # Target rules for target _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir
 
 # All Build rule for target.
-_deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/all: _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/all
+_deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=18 "Built target benchmark_residual"
@@ -779,8 +779,8 @@ _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/clean:
 # Target rules for target _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir
 
 # All Build rule for target.
-_deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
+_deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=99 "Built target vorbisenc"
@@ -812,8 +812,8 @@ _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/clean:
 # Target rules for target _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir
 
 # All Build rule for target.
-_deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
+_deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/CMakeFiles" --progress-num=100 "Built target vorbisfile"

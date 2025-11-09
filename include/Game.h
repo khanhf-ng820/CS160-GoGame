@@ -74,7 +74,7 @@ public:
     // Vẽ bàn ra chuỗi "ASCII art" (nhãn A...T, số hàng, ...)
     std::string render_ascii() const;
 
-public:
+
     // Điểm bù cho trắng
     double komi = 6.5;
 

@@ -93,82 +93,84 @@ bool Game::undo() {
     return true;
 }
 
-bool Game::redo() {
 // Làm lại 1 nước đã undo (nếu có)
-    if (redo_stack.empty()) return false;
+bool Game::redo() {
     // Không có gì để redo
-    Move mv = redo_stack.back(); redo_stack.pop_back();
+    if (redo_stack.empty()) return false;
     // Lấy nước từ redo_stack và bỏ khỏi stack
-    return play(mv);
+    Move mv = redo_stack.back(); redo_stack.pop_back();
     // Áp dụng lại logic của play để làm lại nước đi
+    return play(mv);
 }
 
-void Game::pass() {
 // Thực hiện hành động pass
-    history.push_back(Move{0,0,true});
+void Game::pass() {
     // Ghi vào lịch sử một nước is_pass = true
-    redo_stack.clear();
+    history.push_back(Move{0,0,true});
     // Sau khi có nước mới (kể cả pass), redo_stack bị xoá
-    ++consecutive_passes;
-    // Tăng số lượng pass liên tiếp
-    to_move = opposite(to_move);
-    // Đổi lượt cho bên còn lại
-}
-
-bool Game::legal(const Move& m) const {
-// Kiểm tra tính hợp lệ
-    if (m.is_pass) return true;
-    // Pass luôn hợp lệ
-    if (!bd.in_bounds(m.r, m.c)) return false;
-    // Ngoài biên -> không hợp lệ
-    return bd.get(m.r, m.c) == Stone::EMPTY;
-    // Ô phải đang trống
-}
-
-bool Game::play(const Move& m) {
-// Thực hiện nước đi nếu hợp lệ
-    if (!legal(m)) return false;
-    // Reject nếu không hợp lệ
-    if (m.is_pass) { pass(); return true; }
-    // Nếu là pass thì dùng logic pass ở trên, xong trả về true
-    bd.set(m.r, m.c, to_move);
-    // Đặt quân của bên tới lượt vào ô (r, c)
-    history.push_back(m);
-    // Ghi vào lịch sử để có thể undo
     redo_stack.clear();
-    // Có nước mới thì không thể redo các nước cũ
-    consecutive_passes = 0;
-    // Một nước đặt quân sẽ phá chuỗi PASS
+    // Tăng số lượng pass liên tiếp
+    ++consecutive_passes;
+    // Đổi lượt cho bên còn lại
     to_move = opposite(to_move);
+}
+
+// Kiểm tra tính hợp lệ
+bool Game::legal(const Move& m) const {
+    // Pass luôn hợp lệ
+    if (m.is_pass) return true;
+    // Ngoài biên -> không hợp lệ
+    if (!bd.in_bounds(m.r, m.c)) return false;
+    // Ô phải đang trống
+    return bd.get(m.r, m.c) == Stone::EMPTY;
+}
+
+// Thực hiện nước đi nếu hợp lệ
+bool Game::play(const Move& m) {
+    // Reject nếu không hợp lệ
+    if (!legal(m)) return false;
+    // Nếu là pass thì dùng logic pass ở trên, xong trả về true
+    if (m.is_pass) { pass(); return true; }
+    
+    // Đặt quân của bên tới lượt vào ô (r, c), thực hiện tất cả logic về bàn cờ và quân cờ
+    bd.set(m.r, m.c, to_move);
+    // Ghi vào lịch sử để có thể undo
+    history.push_back(m);
+    // Có nước mới thì không thể redo các nước cũ
+    redo_stack.clear();
+    // Một nước đặt quân sẽ phá chuỗi PASS
+    consecutive_passes = 0;
     // Đổi lượt
+    to_move = opposite(to_move);
+    
     return true;
 }
 
-std::string Game::serialize() const {
 // Xuất trạng thái game thành chuỗi (để ghi file)
-    std::ostringstream oss;
+std::string Game::serialize() const {
     // Tạo bộ đệm string stream
+    std::ostringstream oss;
     oss << "GOSAVE N=" << N
-        << " side=" << (to_move == Stone::BLACK ? 0 : 1)
         // Mã hoá lượt đi (Black = 0, White = 1)
-        << " komi=" << komi
+        << " side=" << (to_move == Stone::BLACK ? 0 : 1)
         // Ghi komi hiện tại
-        << " passes=" << consecutive_passes << "\n";
+        << " komi=" << komi
         // Ghi số PASS liên tiếp
-    oss << bd.dump_rows();
+        << " passes=" << consecutive_passes << "\n";
     // Viết ma trận bàn (N dòng, mỗi dòng N kí tự)
-    return oss.str();
+    oss << bd.dump_rows();
     // Trả về chuỗi kết quả
+    return oss.str();
 }
 
-bool Game::deserialize(const std::string& data) {
 // Nạp lại trạng thái từ chuỗi đã lưu
-    std::istringstream iss(data);
+bool Game::deserialize(const std::string& data) {
     // Tạo input stream đọc theo dòng
-    std::string first;
+    std::istringstream iss(data);
     // Dòng đầu tiên (header hoặc bàn)
-    if (!std::getline(iss, first)) return false;
+    std::string first;
     // Nếu không đọc được dòng đầu thì trả lỗi
+    if (!std::getline(iss, first)) return false;
 
     if (first.size() >= 3 &&
         (unsigned char)first[0] == 0xEF &&
@@ -177,42 +179,42 @@ bool Game::deserialize(const std::string& data) {
         first.erase(0, 3);
     // Gỡ Byte Order Mark (BOM UTF-8)
 
+    // Hàm Lambda giúp loại bỏ '\r' ở cuối dòng nếu có để tương thích
     auto rstrip_cr = [](std::string& s){
         if (!s.empty() && s.back() == '\r') s.pop_back();
     };
-    // Hàm Lambda giúp loại bỏ '\r' ở cuối dòng nếu có để tương thích
 
     auto only_rows = [&](std::string head)->bool{
-        rstrip_cr(head);
         // Clear CR ở cuối
-        if ((int)head.size() < N) return false;
+        rstrip_cr(head);
         // Dòng đầu tiên phải có ít nhất N kí tự (nếu thiếu = không hợp lệ)
+        if ((int)head.size() < N) return false;
 
-        std::vector<std::string> rows; rows.reserve(N);
         // Chuẩn bị chứa N dòng bàn
-        rows.push_back(head.substr(0, N));
+        std::vector<std::string> rows; rows.reserve(N);
         // Lấy đúng N kí tự đầu cho dòng 0
+        rows.push_back(head.substr(0, N));
 
         while ((int)rows.size() < N) {
             std::string line;
-            if (!std::getline(iss, line)) return false;
             // Đọc thêm cho đủ N dòng, nếu thiếu -> lỗi
-            rstrip_cr(line);
+            if (!std::getline(iss, line)) return false;
             // Bỏ CR nếu có
-            if ((int)line.size() < N) continue;
+            rstrip_cr(line);
             // Nếu dòng ngắn (< N) thì bỏ qua (đợi dòng khác)
-            rows.push_back(line.substr(0, N));
+            if ((int)line.size() < N) continue;
             // Chỉ lấy đúng N kí tự cho dòng tiếp theo
+            rows.push_back(line.substr(0, N));
         }
 
-        bd = Board(N);
         // Khởi tạo lại bảng NxN rỗng
-        to_move = Stone::BLACK;
+        bd = Board(N);
         // Nếu chỉ có bảng không thì mặc định tới lượt là đen
-        consecutive_passes = 0;
+        to_move = Stone::BLACK;
         // Mặc định pass liên tiếp về 0
-        return bd.load_rows(rows);
+        consecutive_passes = 0;
         // Load các dòng vào Board
+        return bd.load_rows(rows);
     };
 
     // Trường hợp file không có HEADER GOSAVE mà chỉ có ma trận N dòng

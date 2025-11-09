@@ -43,105 +43,210 @@ int col_from_char(char ch) {
     // Với kí tự (AB..H) mà không qua I thì chỉ cần ch - 'A' là được
 }
 
-char char_from_col(int c) {
 // Ngược lại từ chỉ số cột thành kí tự cột, vai trò giống trên thôi
+char char_from_col(int c) {
     char col = char('A' + c);
     if (col >= 'I') col++;
     return col;
 }
 
-std::string trim(std::string s) {
 // Hàm giúp cắt khoảng trắng thừa ở đầu/ cuối chuỗi
-    size_t a = 0, b = s.size();
+std::string trim(std::string s) {
     // a sẽ chạy từ đầu chuỗi còn b chạy từ cuối chuỗi
-    while (a < b && std::isspace((unsigned char)s[a])) ++a;
+    size_t a = 0, b = s.size();
     // Tăng a tới khi gặp kí tự không phải khoảng trắng, ở dưới thì ngược lại giảm b
+    while (a < b && std::isspace((unsigned char)s[a])) ++a;
     while (b > a && std::isspace((unsigned char)s[b - 1])) --b;
-    return s.substr(a, b - a);
     // Xong sẽ trả về đoạn [a, b)
+    return s.substr(a, b - a);
 }
 
+
+
+// ********************
 // BOARD IMPLEMENTATION
-Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY) {}
-// Đây là constructor, nó lưu kích thước N của bảng, và tạo mảng (grid) có NxN phần tử, tất cả đều ở dạng EMPTY
-int Board::size() const { return N; }
+// ********************
+// Đây là constructor, nó lưu kích thước N của bảng, và tạo mảng (grid, hasLiberty) có NxN phần tử, tất cả đều ở dạng EMPTY
+Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY), hasLiberty(n * n, Liberty::EMPTY) {}
+
 // Hàm này sẽ trả về kích thước bảng, giúp truy vấn...
-bool Board::in_bounds(int r, int c) const {
+int Board::size() const { return N; }
+
+// Returns 1D index of 2D coordinates (r, c)
+int Board::idx1D(int r, int c) const { return c + N * r; }
+
 // Đây là hàm sẽ kiểm tra toạ độ (r, c) có nằm trong phạm vi của bảng không
-    return r >= 0 && r < N && c >= 0 && c < N;
+bool Board::in_bounds(int r, int c) const {
     // Valid nếu 0 ≤ r, c ≤ N
+    return r >= 0 && r < N && c >= 0 && c < N;
 }
 
-Stone Board::get(int r, int c) const {
+// Get the coordinates of an intersection's neighbors (stones adjacent to it)
+std::vector<std::pair<int, int>> Board::getNeighbors(int r, int c) const {
+    std::vector<std::pair<int, int>> neighbors;
+    
+    for (const auto& [dx, dy] : offsets) {
+        if (in_bounds(r + dx, c + dy)) {
+            neighbors.push_back(std::make_pair(r + dx, c + dy));
+        }
+    }
+    return neighbors;
+}
+
 // Hàm này sẽ lấy (touch, get) quân ở ô (r, c)
-    assert(in_bounds(r, c));
+Stone Board::get(int r, int c) const {
     // Nó đảm bảo việc chỉ lấy quân như vậy khi vị trí đúng (valid)
-    return grid[r * N + c];
-    // Chuyển ánh xạ 2D -> 1D theo công thức chuẩn là index = r*N + c á
-}
-
-void Board::set(int r, int c, Stone s) {
-// Hàm này gán quân s vào ô (r, c)
     assert(in_bounds(r, c));
+    // Chuyển ánh xạ 2D -> 1D theo công thức chuẩn là index = r*N + c á
+    return grid[r * N + c];
+}
+
+// Hàm này gán quân s vào ô (r, c)
+void Board::set(int r, int c, Stone s) {
     // Phải check vị trí có nằm valid ko
-    grid[r * N + c] = s;
+    assert(in_bounds(r, c));
     // Xong sẽ gán vào mảng 1D như trên thôi
+    // Step 1: Playing a stone
+    grid[r * N + c] = s;
+    // Step 2: Capture opponent's stones with no liberties
+    checkLiberty();
+    std::vector<std::pair<int, int>> opponentCaptured = toBeCaptured(opposite(s));
+    for (const auto& [r0, c0] : opponentCaptured) { grid[idx1D(r0, c0)] = Stone::EMPTY; }
+    // Step 3: Capture own stones with no liberties
+    std::vector<std::pair<int, int>> ownCaptured = toBeCaptured(s);
+    for (const auto& [r0, c0] : ownCaptured) { grid[idx1D(r0, c0)] = Stone::EMPTY; }
 }
 
-void Board::clear() {
 // Hàm giúp reset bàn cờ
-    std::fill(grid.begin(), grid.end(), Stone::EMPTY);
+void Board::clear() {
     // std::fill để đảm bảo mọi ô đều về EMPTY
+    std::fill(grid.begin(), grid.end(), Stone::EMPTY);
 }
 
-void Board::count(int& black, int& white) const {
 // Hàm này sẽ đếm số quân đen/ trắng hiện có trên bàn cờ
-    black = white = 0;
+void Board::count(int& black, int& white) const {
     // Reset bộ đếm ban đầu là 0
-    for (auto s : grid) {
+    black = white = 0;
     // Duyệt qua mọi ô trong grid
+    for (auto s : grid) {
         if (s == Stone::BLACK) ++black; // Đếm như bthuong thôi
         else if (s == Stone::WHITE) ++white;
     }
 }
 
-std::string Board::dump_rows() const {
-// Hàm này để Serialize, kiểu xuất toàn bộ bàn này những dòng text á
-    std::string out; out.reserve(N * (N + 1));
-    // Dự trù dung lượng: kiểu N dòng, mỗi dòng có N kí tự + 1 dòng mới (newline)
-    for (int r = 0; r < N; ++r) {
-    // Quét qua từng row
-        for (int c = 0; c < N; ++c)
-        // Quét qua từng column
-            out.push_back(stone_char(get(r, c)));
-            // Thêm kí tự đại diện cho từng ô (./X/O)
-        out.push_back('\n');
-        // Kết thúc dòng bằng newline
+// Check if an intersection has liberty or not
+bool Board::interHasLiberty(int r, int c) const {
+    std::vector<std::pair<int, int>> neighbors = getNeighbors(r, c);
+    for (const auto& [r0, c0] : neighbors) {
+        if (get(r0, c0) == Stone::EMPTY) return true;
     }
-    return out;
-    // Trả về chuỗi kết quả
+    return false;
 }
 
-bool Board::load_rows(const std::vector<std::string>& rows) {
-// Hàm nạp bàn cờ từ mảng chuỗi (trong đó mỗi chuỗi là 1 dòng)
-    if ((int)rows.size() != N) return false;
-    // Bắt buộc phải có đúng N dòng
+// private member of Board class
+// Recursive DFS algorithm function for Board::checkLiberty() member function
+void Board::dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const {
+    int idx = idx1D(r, c);
+    if (visited[idx]) return;
+    visited[idx] = true;
+    components.push_back(std::make_pair(r, c));
+
+    std::vector<std::pair<int, int>> neighbors = getNeighbors(r, c);
+    for (const auto& [r0, c0] : neighbors) {
+        if (get(r0, c0) == stone) dfs(r0, c0, stone, components, visited);
+    }
+}
+
+// Check liberties of all intersections and output them to the hasLiberty vector
+void Board::checkLiberty() {
+    // Perform DFS to find all components of intersections of the same type
+    std::vector<bool> visited(N * N, false);
+
+    for (int r = 0; r < N; r++) {
+        for (int c = 0; c < N; c++) {
+            std::vector<std::pair<int, int>> components;
+            Stone componentStone = get(r, c);
+            dfs(r, c, componentStone, components, visited); // Perform DFS
+
+            bool libertyExists = false;
+            // Check each intersection of component whether it has liberty
+            for (const auto& [r0, c0] : components) {
+                if (interHasLiberty(r0, c0)) {
+                    libertyExists = true;
+                    break;
+                }
+            }
+
+            // Output results to the hasLiberty vector
+            for (const auto& [r0, c0] : components) {
+                int idx0 = idx1D(r0, c0);
+                // We only care about liberties of stones, not liberties of an empty space
+                if (componentStone == Stone::EMPTY) {
+                    hasLiberty[idx0] = Liberty::EMPTY;
+                } else {
+                    hasLiberty[idx0] = (libertyExists ? Liberty::HAS_LIBERTY : Liberty::NO_LIBERTY);
+                }
+            }
+        }
+    }
+}
+
+// Returns a vector of all stones of a player that will be captured (removed) due to no liberties
+std::vector<std::pair<int, int>> Board::toBeCaptured(Stone player) const {
+    std::vector<std::pair<int, int>> noLiberties;
+
+    for (int r = 0; r < N; r++) {
+        for (int c = 0; c < N; c++) {
+            int idx = idx1D(r, c);
+            // Check if stone has no liberties and belongs to player
+            if (hasLiberty[idx] == Liberty::NO_LIBERTY && get(r, c) == player)
+                noLiberties.push_back(std::make_pair(r, c));
+        }
+    }
+
+    return noLiberties;
+}
+
+
+
+// *** SERIALIZE
+// Hàm này để Serialize, kiểu xuất toàn bộ bàn này những dòng text á
+std::string Board::dump_rows() const {
+    // Dự trù dung lượng: kiểu N dòng, mỗi dòng có N kí tự + 1 dòng mới (newline)
+    std::string out; out.reserve(N * (N + 1));
+    // Quét qua từng row
     for (int r = 0; r < N; ++r) {
+        // Quét qua từng column
+        for (int c = 0; c < N; ++c)
+            // Thêm kí tự đại diện cho từng ô (./X/O)
+            out.push_back(stone_char(get(r, c)));
+        // Kết thúc dòng bằng newline
+        out.push_back('\n');
+    }
+    // Trả về chuỗi kết quả
+    return out;
+}
+
+// Hàm nạp bàn cờ từ mảng chuỗi (trong đó mỗi chuỗi là 1 dòng)
+bool Board::load_rows(const std::vector<std::string>& rows) {
+    // Bắt buộc phải có đúng N dòng
+    if ((int)rows.size() != N) return false;
     // Duyệt qua từng dòng
-        if ((int)rows[r].size() != N) return false;
+    for (int r = 0; r < N; ++r) {
         // Mỗi dòng phải có đúng N kí tự
-        for (int c = 0; c < N; ++c) {
+        if ((int)rows[r].size() != N) return false;
         // Duyệt từng cột trên dòng
-            char ch = rows[r][c];
+        for (int c = 0; c < N; ++c) {
             // Lấy kí tự ch tại vị trí (r, c)
-            Stone s = Stone::EMPTY;
+            char ch = rows[r][c];
             // Mặc định gốc là EMPTY
-            if (ch == 'X') s = Stone::BLACK;
+            Stone s = Stone::EMPTY;
             // Nếu kí tự đó là 'X' thì sẽ gán là quân đen
-            else if (ch == 'O') s = Stone::WHITE;
+            if (ch == 'X') s = Stone::BLACK;
             // Nếu kí tự đó là 'O' thì sẽ gán là quân trắng
-            set(r, c, s);
+            else if (ch == 'O') s = Stone::WHITE;
             // Gán lại vào board
+            set(r, c, s);
         }
     }
     return true;

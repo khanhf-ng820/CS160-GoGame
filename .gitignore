@@ -13,7 +13,8 @@ external/SFML/.gitattributes
 
 build/CMakeCache.txt
 build/run_cmake.sh
-add_submodules.sh
+# add_submodules.sh
+remake.sh
 
 # Testing commits
 testfile
