@@ -41,55 +41,55 @@ LƯU Ý
 #include "Game.h"
 #include <algorithm> // Dùng std::max khi parse header,...
 
-Game::Game(int n) : N(n), bd(n), to_move(Stone::BLACK) {}
 // Khởi tạo N = n, tạo Board NxN rỗng với lượt đi đầu là BLACK
-int Game::size() const { return N; }
+Game::Game(int n) : N(n), bd(n), previousBd(n), to_move(Stone::BLACK) {}
 // Trả về kích thước bàn
-Board& Game::board() { return bd; }
+int Game::size() const { return N; }
 // Truy cập mutable tới Board (hàm khác const)
-const Board& Game::board() const { return bd; }
+Board& Game::board() { return bd; }
 // Truy cập const tới Board (hàm const)
-Stone Game::side_to_move() const { return to_move; }
+const Board& Game::board() const { return bd; }
 // Trả về quân đang tới lượt
-bool Game::is_over() const { return consecutive_passes >= 2; }
+Stone Game::side_to_move() const { return to_move; }
 // Ván kết thúc nếu có ≥ 2 lượt pass liên tiếp
-Score Game::score() const {
+bool Game::is_over() const { return consecutive_passes >= 2; }
 // Đếm tổng quân đen/ trắng hiện trên bàn (không tính TERRITORY)
-    Score s{}; bd.count(s.black, s.white); return s;
+Score Game::score() const {
     // Gọi Board::count để lấy số lượng quân mỗi bên
+    Score s{}; bd.count(s.black, s.white); return s;
 }
 
-void Game::reset() {
 // Đặt lại game về trạng thái ban đầu
-    bd.clear(); to_move = Stone::BLACK;
+void Game::reset() {
     // Xoá bàn, đặt lượt về BLACK
-    history.clear(); redo_stack.clear();
+    bd.clear(); to_move = Stone::BLACK;
     // Xoá lịch sử và redo
-    consecutive_passes = 0;
+    history.clear(); redo_stack.clear();
     // Xoá đếm PASS liên tiếp
+    consecutive_passes = 0;
 }
 
-bool Game::undo() {
 // Hoàn tác 1 nước đi (nếu có)
-    if (history.empty()) return false;
+bool Game::undo() {
     // Không có gì để undo
-    Move mv = history.back(); history.pop_back();
+    if (history.empty()) return false;
     // Lấy nước cuối cùng khỏi history
+    Move mv = history.back(); history.pop_back();
     if (mv.is_pass) {
-        to_move = opposite(to_move);
         // Với pass: chỉ đảo lượt lại
-        if (consecutive_passes > 0) --consecutive_passes;
-        // Giảm số pass đã đến liên tiếp nếu > 0
-    } else {
-        bd.set(mv.r, mv.c, Stone::EMPTY);
-        // Gỡ quân vừa đặt ở (r, c)
         to_move = opposite(to_move);
+        // Giảm số pass đã đến liên tiếp nếu > 0
+        if (consecutive_passes > 0) --consecutive_passes;
+    } else {
+        // Gỡ quân vừa đặt ở (r, c)
+        bd.set(mv.r, mv.c, Stone::EMPTY);
         // Đảo lượt lại cho bên vừa đi
-        consecutive_passes = 0;
+        to_move = opposite(to_move);
         // Một nước đặt quân sẽ reset chuỗi pass
+        consecutive_passes = 0;
     }
-    redo_stack.push_back(mv);
     // Đưa nước vừa hoàn tác vào redo_stack để có thể redo
+    redo_stack.push_back(mv);
     return true;
 }
 
@@ -105,8 +105,10 @@ bool Game::redo() {
 
 // Thực hiện hành động pass
 void Game::pass() {
+    // Set previousBd equal to the current board
+    previousBd = bd;
     // Ghi vào lịch sử một nước is_pass = true
-    history.push_back(Move{0,0,true});
+    history.push_back( Move{0,0,true} );
     // Sau khi có nước mới (kể cả pass), redo_stack bị xoá
     redo_stack.clear();
     // Tăng số lượng pass liên tiếp
@@ -122,7 +124,17 @@ bool Game::legal(const Move& m) const {
     // Ngoài biên -> không hợp lệ
     if (!bd.in_bounds(m.r, m.c)) return false;
     // Ô phải đang trống
-    return bd.get(m.r, m.c) == Stone::EMPTY;
+    if (bd.get(m.r, m.c) != Stone::EMPTY) return false;
+
+    // Rule: Prohibition of suicide (capturing own stones)
+    Board futureBoard = bd;
+    // Check if any of own's stones will be captured
+    if (!futureBoard.set(m.r, m.c, to_move)) return false;
+
+    // Ko rule: One may not play in such a way as to recreate the board position following one's previous move.
+    if (previousBd == futureBoard) return false;
+
+    return true;
 }
 
 // Thực hiện nước đi nếu hợp lệ
@@ -131,9 +143,19 @@ bool Game::play(const Move& m) {
     if (!legal(m)) return false;
     // Nếu là pass thì dùng logic pass ở trên, xong trả về true
     if (m.is_pass) { pass(); return true; }
-    
+
+    // Set previousBd equal to the current board
+    previousBd = bd;
     // Đặt quân của bên tới lượt vào ô (r, c), thực hiện tất cả logic về bàn cờ và quân cờ
     bd.set(m.r, m.c, to_move);
+    
+    // Add points based on how many stones were captured
+    if (to_move == Stone::BLACK) {
+        whitesCaptured += bd.countCaptured(previousBd, to_move);
+    } else if (to_move == Stone::WHITE) {
+        blacksCaptured += bd.countCaptured(previousBd, to_move);
+    }
+    
     // Ghi vào lịch sử để có thể undo
     history.push_back(m);
     // Có nước mới thì không thể redo các nước cũ
@@ -145,6 +167,8 @@ bool Game::play(const Move& m) {
     
     return true;
 }
+
+
 
 // Xuất trạng thái game thành chuỗi (để ghi file)
 std::string Game::serialize() const {
@@ -273,57 +297,57 @@ bool Game::deserialize(const std::string& data) {
     }
 }
 
-Move Game::parse_move(const std::string& raw, int N) {
 // Chuyển chuỗi nhập (vd "D4", "pass") thành Move (r, c)
-    std::string s = trim(raw);
+Move Game::parse_move(const std::string& raw, int N) {
     // Chuẩn hoá bằng cách bỏ khoảng trắng đầu/ cuối
-    for (char& ch : s) if (ch >= 'a' && ch <= 'z') ch = char(ch - 'a' + 'A');
+    std::string s = trim(raw);
     // Đổi chữ thường thành hoa
-    if (s == "PASS" || s == "RESIGN") return {0,0,true};
+    for (char& ch : s) if (ch >= 'a' && ch <= 'z') ch = char(ch - 'a' + 'A');
     // PASS/ RESIGN thì xem là pass
-    if (s.size() < 2) return {0,0,true};
+    if (s == "PASS" || s == "RESIGN") return {0,0,true};
     // Nếu quả ngắn để parse thành cột với số thì coi như PASS
-    int c = col_from_char(s[0]);
+    if (s.size() < 2) return {0,0,true};
     // Lấy cột (A...T) chuyển thành chỉ số 
-    int r = std::stoi(s.substr(1)) - 1;
+    int c = col_from_char(s[0]);
     // Lấy hàng là số phía sau
-    if (c < 0 || r < 0 || r >= N) return {0,0,true};
+    int r = std::stoi(s.substr(1)) - 1;
     // Nếu cột/ hàng nằm ngoài phạm vi thì trả về PASS
-    return {r, c, false};
+    if (c < 0 || r < 0 || r >= N) return {0,0,true};
     // Hợp lệ -> trả về Move với is_pass = false
+    return {r, c, false};
 }
 
-std::string Game::render_ascii() const {
 // Vẽ bàn ra chuỗi ASCII có cột và hàng hai bên
-    std::ostringstream oss;
+std::string Game::render_ascii() const {
     // Kết quả buffer
-    oss << "   ";
+    std::ostringstream oss;
     // Lề trái cho nhãn cột phía trên
-    for (int c = 0; c < N; ++c) oss << char_from_col(c) << ' ';
+    oss << "   ";
     // In A..T với khoảng cách
-    oss << "\n";
+    for (int c = 0; c < N; ++c) oss << char_from_col(c) << ' ';
     // Xuống dòng sau hàng nhãn cột trên
+    oss << "\n";
 
     for (int r = 0; r < N; ++r) {
-        int rowLabel = N - r;
         // Nhãn row: Số giảm dần từ N xuống 1
-        if (rowLabel < 10) oss << ' ';
+        int rowLabel = N - r;
         // Căn lề cho số có 1 chữ số
-        oss << rowLabel << ' ';
+        if (rowLabel < 10) oss << ' ';
         // In row bên phải
+        oss << rowLabel << ' ';
+        // In từng ô: '.', 'X', 'O' cùng khoảng trắng
         for (int c = 0; c < N; ++c)
             oss << stone_char(bd.get(r, c)) << ' ';
-        // In từng ô: '.', 'X', 'O' cùng khoảng trắng
-        oss << ' ' << rowLabel << '\n';
         // In nhãn row bên phải cùng newline
+        oss << ' ' << rowLabel << '\n';
     }
 
-    oss << "   ";
     // Lề trái cho nhãn column phía dưới
+    oss << "   ";
+    // Lặp lại nhãn column dưới
     for (int c = 0; c < N; ++c) oss << char_from_col(c) << ' ';
-    //Lặp lại nhãn column dưới
-    oss << "\n";
     // Kết thúc bằng newline
-    return oss.str();
+    oss << "\n";
     // Trả về chuỗi ASCII board
+    return oss.str();
 }

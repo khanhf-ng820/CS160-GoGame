@@ -34,6 +34,8 @@ public:
     explicit Board(int n = 19);
     // Trả về kích thước của bàn cờ (Giúp truy vấn kích thước của bàn cờ)
     int  size() const;
+    // Returns the grid vector<Stone>
+    std::vector<Stone> getGrid() const;
     // Returns 1D index of 2D coordinates (r, c)
     int  idx1D(int r, int c) const;
     // Kiểm tra toạ độ (r, c) có nằm trong bàn cờ không
@@ -43,7 +45,9 @@ public:
     // Lấy quân cờ tại vị trí (r, c)
     Stone get(int r, int c) const;
     // Đặt quân cờ Stone s vào (r, c), thực hiện tất cả logic về bàn cờ và quân cờ
-    void  set(int r, int c, Stone s);
+    // Rule: Prohibition of suicide (capturing own stones). Function checks if it's suicide move
+    // Returns true if it's non-suicide move, false if it's suicide move
+    bool  set(int r, int c, Stone s);
     // Hàm giúp xoá toàn bộ bàn cờ, reset hết về EMPTY
     void clear();
     // Hàm này giúp đếm số quân trắng và quân đen hiện có
@@ -53,7 +57,12 @@ public:
     // Check liberties of all intersections and output them to the hasLiberty vector
     void checkLiberty();
     // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
-    std::vector<std::pair<int, int>> toBeCaptured(Stone player) const;
+    std::vector<std::pair<int, int>> toBeCaptured(Stone player);
+
+    // COMPARE BOARDS
+    bool operator==(const Board& board2) const;
+    // Count how many stones were captured after playing a move
+    int countCaptured(const Board& previousBoard, Stone played) const;
 
     // SERIALIZE
     // Hàm này giúp trả toàn bộ bàn cờ dưới dạng chuỗi (dòng text) để lưu file
@@ -73,6 +82,6 @@ private:
     // 1D vector to denote whether an intersection has liberty or not
     std::vector<Liberty> hasLiberty;
 
-    // Recursive DFS algorithm function for Board::checkLiberty() member function
+    // Recursive DFS algorithm function only for Board::checkLiberty() member function
     void dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const;
 };

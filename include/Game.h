@@ -28,16 +28,16 @@ Hàm chính:
 #include <sstream> // ostringstream, istringstream trong serialize, deserialize á
 #include "Board.h" // Dùng Board, Stone với 1 số cái như opposite, trim,...
 
-enum class GameMode { PVP, PVE };
 // 2 kiểu chế độ chơi, PvP hoặc PvE
+enum class GameMode { PVP, PVE };
 
-struct Move { int r = 0, c = 0; bool is_pass = false; };
 // Cái này mô tả 1 nước đi hàng r cột c hoặc là is_pass = true nếu skip
-struct Score { int black = 0, white = 0; };
+struct Move { int r = 0, c = 0; bool is_pass = false; };
 // Đếm đơn giản số ô đen với trắng
+struct Score { int black = 0, white = 0; };
 
-class Game {
 // Class game này quản lý trạng thái với luật cơ bản của ván cờ (kiểu luân phiên, tính hợp lệ hay lịch sử)
+class Game {
 public:
     // Khởi tạo ván game mới với bàn cờ 19x19
     explicit Game(int n = 19);
@@ -65,6 +65,7 @@ public:
     bool legal(const Move& m) const;
     // Thực hiện nước đi nếu valid bao gồm đặt quân, ghi history, xoá redo_stack, đổi lượt,...
     bool play(const Move& m);
+    
     // Xuất toàn bộ trạng thái trò chơi thành chuỗi
     std::string serialize() const;
     // Nạp lại trạng thái từ chuỗi
@@ -74,19 +75,22 @@ public:
     // Vẽ bàn ra chuỗi "ASCII art" (nhãn A...T, số hàng, ...)
     std::string render_ascii() const;
 
-
-    // Điểm bù cho trắng
+    // Điểm bù cho trắng (WHITE)
     double komi = 6.5;
 
 private:
     // Kích thước bàn
     int   N;
     // Bàn cờ: mảng ô Stone
-    Board bd;
+    Board bd, previousBd;
     // Màu quân đang tới lượt
     Stone to_move;
     // Số lượt pass liên tiếp
     int   consecutive_passes = 0;
+    // Points: number of white & black stones captured by opponents
+    int   whitesCaptured = 0, blacksCaptured = 0;
+    // History of all boards played
+    std::vector<Board> boardHistory;
     // Lịch sử các nước đã chơi
     std::vector<Move> history;
     // Các nước hoàn tác gần nhất

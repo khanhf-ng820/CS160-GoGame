@@ -72,6 +72,9 @@ Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY), hasLiberty(n * n, Liberty
 // Hàm này sẽ trả về kích thước bảng, giúp truy vấn...
 int Board::size() const { return N; }
 
+// Returns the grid vector<Stone>
+std::vector<Stone> Board::getGrid() const { return grid; }
+
 // Returns 1D index of 2D coordinates (r, c)
 int Board::idx1D(int r, int c) const { return c + N * r; }
 
@@ -84,7 +87,7 @@ bool Board::in_bounds(int r, int c) const {
 // Get the coordinates of an intersection's neighbors (stones adjacent to it)
 std::vector<std::pair<int, int>> Board::getNeighbors(int r, int c) const {
     std::vector<std::pair<int, int>> neighbors;
-    
+
     for (const auto& [dx, dy] : offsets) {
         if (in_bounds(r + dx, c + dy)) {
             neighbors.push_back(std::make_pair(r + dx, c + dy));
@@ -101,20 +104,27 @@ Stone Board::get(int r, int c) const {
     return grid[r * N + c];
 }
 
-// Hàm này gán quân s vào ô (r, c)
-void Board::set(int r, int c, Stone s) {
+// Hàm này gán quân s vào ô (r, c), thực hiện tất cả logic về bàn cờ và quân cờ
+// Rule: Prohibition of suicide (capturing own stones). Function checks if it's suicide move
+// Returns true if it's non-suicide move, false if it's suicide move
+bool Board::set(int r, int c, Stone s) {
     // Phải check vị trí có nằm valid ko
     assert(in_bounds(r, c));
     // Xong sẽ gán vào mảng 1D như trên thôi
+
     // Step 1: Playing a stone
     grid[r * N + c] = s;
     // Step 2: Capture opponent's stones with no liberties
-    checkLiberty();
     std::vector<std::pair<int, int>> opponentCaptured = toBeCaptured(opposite(s));
-    for (const auto& [r0, c0] : opponentCaptured) { grid[idx1D(r0, c0)] = Stone::EMPTY; }
+    for (const auto& [r0, c0] : opponentCaptured)  grid[idx1D(r0, c0)] = Stone::EMPTY;
     // Step 3: Capture own stones with no liberties
     std::vector<std::pair<int, int>> ownCaptured = toBeCaptured(s);
-    for (const auto& [r0, c0] : ownCaptured) { grid[idx1D(r0, c0)] = Stone::EMPTY; }
+    for (const auto& [r0, c0] : ownCaptured)  grid[idx1D(r0, c0)] = Stone::EMPTY;
+
+    // Prohibition of suicide: Check if any of own's stones will be captured
+    if (ownCaptured.size() > 0) return false;
+    
+    return true;
 }
 
 // Hàm giúp reset bàn cờ
@@ -192,7 +202,8 @@ void Board::checkLiberty() {
 }
 
 // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
-std::vector<std::pair<int, int>> Board::toBeCaptured(Stone player) const {
+std::vector<std::pair<int, int>> Board::toBeCaptured(Stone player) {
+    checkLiberty();
     std::vector<std::pair<int, int>> noLiberties;
 
     for (int r = 0; r < N; r++) {
@@ -205,6 +216,31 @@ std::vector<std::pair<int, int>> Board::toBeCaptured(Stone player) const {
     }
 
     return noLiberties;
+}
+
+
+
+// Compare boards
+bool Board::operator==(const Board& board2) const {
+    return grid == board2.getGrid();
+}
+
+// Count how many stones were captured after playing a move
+int Board::countCaptured(const Board& previousBoard, Stone played) const {
+    // Count black & white stones in previous board
+    int prevBlack = 0, prevWhite = 0;
+    previousBoard.count(prevBlack, prevWhite);
+    // Count black & white stones in current board
+    int curBlack = 0, curWhite = 0;
+    count(curBlack, curWhite);
+
+    // Count how many stones were captured
+    if (played == Stone::BLACK) {
+        return prevWhite - curWhite;
+    } else if (played == Stone::WHITE) {
+        return prevBlack - curBlack;
+    }
+    return 0;
 }
 
 
