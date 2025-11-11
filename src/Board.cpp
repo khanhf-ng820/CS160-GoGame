@@ -144,11 +144,11 @@ void Board::count(int& black, int& white) const {
     }
 }
 
-// Check if an intersection has liberty or not
-bool Board::interHasLiberty(int r, int c) const {
+// Check if an intersection is adjacent to a black or white stone, or an empty intersection (liberty)
+bool Board::interNearStone(int r, int c, Stone stone) const {
     std::vector<std::pair<int, int>> neighbors = getNeighbors(r, c);
     for (const auto& [r0, c0] : neighbors) {
-        if (get(r0, c0) == Stone::EMPTY) return true;
+        if (get(r0, c0) == stone) return true;
     }
     return false;
 }
@@ -157,7 +157,7 @@ bool Board::interHasLiberty(int r, int c) const {
 // Recursive DFS algorithm function for Board::checkLiberty() member function
 void Board::dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const {
     int idx = idx1D(r, c);
-    if (visited[idx]) return;
+    if (visited[idx] || get(r, c) != stone) return;
     visited[idx] = true;
     components.push_back(std::make_pair(r, c));
 
@@ -181,7 +181,7 @@ void Board::checkLiberty() {
             bool libertyExists = false;
             // Check each intersection of component whether it has liberty
             for (const auto& [r0, c0] : components) {
-                if (interHasLiberty(r0, c0)) {
+                if (interNearStone(r0, c0, Stone::EMPTY)) {
                     libertyExists = true;
                     break;
                 }
@@ -216,6 +216,43 @@ std::vector<std::pair<int, int>> Board::toBeCaptured(Stone player) {
     }
 
     return noLiberties;
+}
+
+// Count the number of intersections in a player's territory (ONLY USED FOR SCORING WHEN GAME ENDS)
+int Board::countTerritory(Stone player) const {
+    // Perform DFS to find all components of empty intersections
+    int territoryCounter = 0;
+    std::vector<bool> visited(N * N, false);
+
+    for (int r = 0; r < N; r++) {
+        for (int c = 0; c < N; c++) {
+            std::vector<std::pair<int, int>> components;
+            dfs(r, c, Stone::EMPTY, components, visited); // Perform DFS
+
+            bool inBlackTerritory = false, inWhiteTerritory = false;
+            // Check each empty intersection of component whether it's near a black stone
+            for (const auto& [r0, c0] : components) {
+                if (interNearStone(r0, c0, Stone::BLACK)) {
+                    inBlackTerritory = true;
+                    break;
+                }
+            }
+            // Check each empty intersection of component whether it's near a white stone
+            for (const auto& [r0, c0] : components) {
+                if (interNearStone(r0, c0, Stone::WHITE)) {
+                    inWhiteTerritory = true;
+                    break;
+                }
+            }
+
+            // Check if in player's territory and add to counter
+            if ((player == Stone::BLACK && inBlackTerritory  && !inWhiteTerritory) || 
+                (player == Stone::WHITE && !inBlackTerritory && inWhiteTerritory )) {
+                territoryCounter += components.size();
+            }
+        }
+    }
+    return territoryCounter;
 }
 
 

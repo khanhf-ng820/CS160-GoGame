@@ -52,12 +52,15 @@ public:
     void clear();
     // Hàm này giúp đếm số quân trắng và quân đen hiện có
     void count(int& black, int& white) const;
-    // Check if an intersection has liberty or not
-    bool interHasLiberty(int r, int c) const;
+    // Check if an intersection is adjacent to a black or white stone, or an empty intersection (liberty)
+    bool interNearStone(int r, int c, Stone stone) const;
     // Check liberties of all intersections and output them to the hasLiberty vector
     void checkLiberty();
     // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
     std::vector<std::pair<int, int>> toBeCaptured(Stone player);
+
+    // Count the number of intersections in a player's territory (ONLY USED FOR SCORING WHEN GAME ENDS)
+    int countTerritory(Stone player) const;
 
     // COMPARE BOARDS
     bool operator==(const Board& board2) const;
@@ -75,7 +78,7 @@ private:
     // Signify which intersection coordinates are considered 'adjacent'
     std::vector<std::pair<int, int>> offsets = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
-    // Kích thước của bàn cờ
+    // Kích thước của bàn cờ (N * N)
     int N;
     // Vector 1 chiều giúp lưu trạng thái của bàn cờ: Mỗi phần tử là 1 ô, có 3 trạng thái là BLACK, WHITE, EMPTY
     std::vector<Stone> grid;

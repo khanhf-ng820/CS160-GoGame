@@ -30,6 +30,10 @@ Hàm chính:
 
 // 2 kiểu chế độ chơi, PvP hoặc PvE
 enum class GameMode { PVP, PVE };
+// Game states
+enum class GameState { PLAYING, ENDED };
+// Endgame results
+enum class GameResults { BLACK_WINS, WHITE_WINS, DRAW };
 
 // Cái này mô tả 1 nước đi hàng r cột c hoặc là is_pass = true nếu skip
 struct Move { int r = 0, c = 0; bool is_pass = false; };
@@ -65,6 +69,10 @@ public:
     bool legal(const Move& m) const;
     // Thực hiện nước đi nếu valid bao gồm đặt quân, ghi history, xoá redo_stack, đổi lượt,...
     bool play(const Move& m);
+    // (ONLY USE WHEN GAME ENDS) Calculate score for both players
+    void calcScore();
+    // (ONLY USE WHEN GAME ENDS) Return game results (who wins or draws)
+    GameResults results();
     
     // Xuất toàn bộ trạng thái trò chơi thành chuỗi
     std::string serialize() const;
@@ -79,6 +87,8 @@ public:
     double komi = 6.5;
 
 private:
+    // Game state
+    GameState gameState = GameState::PLAYING;
     // Kích thước bàn
     int   N;
     // Bàn cờ: mảng ô Stone
@@ -88,11 +98,13 @@ private:
     // Số lượt pass liên tiếp
     int   consecutive_passes = 0;
     // Points: number of white & black stones captured by opponents
-    int   whitesCaptured = 0, blacksCaptured = 0;
+    int   blacksCaptured = 0, whitesCaptured = 0;
+    // Total points of each player (territory and captures)
+    int   blackScore = 0, whiteScore = 0;
     // History of all boards played
     std::vector<Board> boardHistory;
-    // Lịch sử các nước đã chơi
-    std::vector<Move> history;
-    // Các nước hoàn tác gần nhất
-    std::vector<Move> redo_stack;
+    // Lịch sử các nước đã chơi (for printing and keeping records ONLY)
+    std::vector<Move> moveHistory;
+    // Các bàn cờ hoàn tác gần nhất
+    std::vector<Board> redo_stack;
 };

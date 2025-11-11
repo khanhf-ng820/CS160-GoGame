@@ -39,10 +39,11 @@ LƯU Ý
 - Các utilities từ Board.h: trim, col_from_char/char_from_col, stone_char
 */
 #include "Game.h"
+#include <iostream>
 #include <algorithm> // Dùng std::max khi parse header,...
 
 // Khởi tạo N = n, tạo Board NxN rỗng với lượt đi đầu là BLACK
-Game::Game(int n) : N(n), bd(n), previousBd(n), to_move(Stone::BLACK) {}
+Game::Game(int n) : N(n), bd(n), previousBd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)) {}
 // Trả về kích thước bàn
 int Game::size() const { return N; }
 // Truy cập mutable tới Board (hàm khác const)
@@ -61,54 +62,103 @@ Score Game::score() const {
 
 // Đặt lại game về trạng thái ban đầu
 void Game::reset() {
+    // Game state set to Playing
+    gameState = GameState::PLAYING;
     // Xoá bàn, đặt lượt về BLACK
     bd.clear(); to_move = Stone::BLACK;
     // Xoá lịch sử và redo
-    history.clear(); redo_stack.clear();
+    boardHistory.clear();
+    moveHistory.clear();
+    redo_stack.clear();
     // Xoá đếm PASS liên tiếp
     consecutive_passes = 0;
 }
 
 // Hoàn tác 1 nước đi (nếu có)
 bool Game::undo() {
+    // Can't undo if game is ended
+    if (gameState == GameState::ENDED) return false;
     // Không có gì để undo
-    if (history.empty()) return false;
+    if (boardHistory.size() <= 1) return false;
+
+    // // Lấy nước cuối cùng khỏi history
+    // Move mv = boardHistory.back();
+    // boardHistory.pop_back();
+    // // Với pass: chỉ đảo lượt lại
+    // if (mv.is_pass) {
+    //     to_move = opposite(to_move);
+    //     // Giảm số pass đã đến liên tiếp nếu > 0
+    //     if (consecutive_passes > 0) --consecutive_passes;
+    // } else {
+    //     // Gỡ quân vừa đặt ở (r, c)
+    //     bd.set(mv.r, mv.c, Stone::EMPTY);
+    //     // Đảo lượt lại cho bên vừa đi
+    //     to_move = opposite(to_move);
+    //     // Một nước đặt quân sẽ reset chuỗi pass
+    //     consecutive_passes = 0;
+    // }
+    // // Đưa nước vừa hoàn tác vào redo_stack để có thể redo
+    // redo_stack.push_back(mv);
+    // return true;
+
     // Lấy nước cuối cùng khỏi history
-    Move mv = history.back(); history.pop_back();
-    if (mv.is_pass) {
-        // Với pass: chỉ đảo lượt lại
+    previousBd = boardHistory[boardHistory.size() - 2];
+    // Với pass: chỉ đảo lượt lại
+    if (previousBd == bd) {
         to_move = opposite(to_move);
         // Giảm số pass đã đến liên tiếp nếu > 0
         if (consecutive_passes > 0) --consecutive_passes;
     } else {
-        // Gỡ quân vừa đặt ở (r, c)
-        bd.set(mv.r, mv.c, Stone::EMPTY);
+        bd = previousBd;
         // Đảo lượt lại cho bên vừa đi
         to_move = opposite(to_move);
         // Một nước đặt quân sẽ reset chuỗi pass
         consecutive_passes = 0;
     }
     // Đưa nước vừa hoàn tác vào redo_stack để có thể redo
-    redo_stack.push_back(mv);
+    Board undoneBoard = boardHistory.back();
+    boardHistory.pop_back();
+    redo_stack.push_back(undoneBoard);
     return true;
 }
 
 // Làm lại 1 nước đã undo (nếu có)
 bool Game::redo() {
+    // Can't redo if game is ended
+    if (gameState == GameState::ENDED) return false;
     // Không có gì để redo
     if (redo_stack.empty()) return false;
-    // Lấy nước từ redo_stack và bỏ khỏi stack
-    Move mv = redo_stack.back(); redo_stack.pop_back();
+
+    // // Lấy nước từ redo_stack và bỏ khỏi stack
+    // Move mv = redo_stack.back();
+    // redo_stack.pop_back();
+    // // Áp dụng lại logic của play để làm lại nước đi
+    // return play(mv);
+
+    // Lấy bàn cờ từ redo_stack và bỏ khỏi stack
+    Board redoneBoard = redo_stack.back();
+    redo_stack.pop_back();
+
+    // Đảo lượt lại cho bên vừa đi
+    to_move = opposite(to_move);
+    // Một nước đặt quân sẽ reset chuỗi pass
+    consecutive_passes = (bd == redoneBoard);
+
     // Áp dụng lại logic của play để làm lại nước đi
-    return play(mv);
+    boardHistory.push_back(redoneBoard);
+    bd = redoneBoard;
+    return true;
 }
 
 // Thực hiện hành động pass
 void Game::pass() {
+    // Can't pass if game is ended
+    if (gameState == GameState::ENDED) return;
     // Set previousBd equal to the current board
     previousBd = bd;
     // Ghi vào lịch sử một nước is_pass = true
-    history.push_back( Move{0,0,true} );
+    boardHistory.push_back(bd);
+    moveHistory.push_back( Move{0,0,true} );
     // Sau khi có nước mới (kể cả pass), redo_stack bị xoá
     redo_stack.clear();
     // Tăng số lượng pass liên tiếp
@@ -119,6 +169,8 @@ void Game::pass() {
 
 // Kiểm tra tính hợp lệ
 bool Game::legal(const Move& m) const {
+    // Can't play if game is ended
+    if (gameState == GameState::ENDED) return false;
     // Pass luôn hợp lệ
     if (m.is_pass) return true;
     // Ngoài biên -> không hợp lệ
@@ -142,7 +194,14 @@ bool Game::play(const Move& m) {
     // Reject nếu không hợp lệ
     if (!legal(m)) return false;
     // Nếu là pass thì dùng logic pass ở trên, xong trả về true
-    if (m.is_pass) { pass(); return true; }
+    if (m.is_pass) {
+        pass();
+        // If 2 consecutive passes, GAME ENDS
+        if (is_over()) {
+            gameState = GameState::ENDED;
+        }
+        return true;
+    }
 
     // Set previousBd equal to the current board
     previousBd = bd;
@@ -157,7 +216,8 @@ bool Game::play(const Move& m) {
     }
     
     // Ghi vào lịch sử để có thể undo
-    history.push_back(m);
+    boardHistory.push_back(bd);
+    moveHistory.push_back(m);
     // Có nước mới thì không thể redo các nước cũ
     redo_stack.clear();
     // Một nước đặt quân sẽ phá chuỗi PASS
@@ -166,6 +226,32 @@ bool Game::play(const Move& m) {
     to_move = opposite(to_move);
     
     return true;
+}
+
+// (ONLY USE WHEN GAME ENDS) Calculate score for both players
+void Game::calcScore() {
+    int blackTerritory = bd.countTerritory(Stone::BLACK);
+    int whiteTerritory = bd.countTerritory(Stone::WHITE);
+    std::cout << "Black territory: " << blackTerritory << std::endl;
+    std::cout << "White territory: " << whiteTerritory << std::endl;
+    std::cout << "White stones captured by black: " << whitesCaptured << std::endl;
+    std::cout << "Black stones captured by white: " << blacksCaptured << std::endl;
+    blackScore = blackTerritory + whitesCaptured;
+    whiteScore = whiteTerritory + blacksCaptured;
+    std::cout << "Black total score: " << blackScore << std::endl;
+    std::cout << "White total score: " << whiteScore << std::endl;
+}
+
+// (ONLY USE WHEN GAME ENDS) Return game results (who wins or draws)
+GameResults Game::results() {
+    calcScore(); // Calculate score before returning game results
+    if (blackScore > whiteScore) {
+        return GameResults::BLACK_WINS;
+    } else if (blackScore < whiteScore) {
+        return GameResults::WHITE_WINS;
+    } else {
+        return GameResults::DRAW;
+    }
 }
 
 

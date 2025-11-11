@@ -422,4 +422,5 @@ CMakeFiles/GoGame.dir/src/Game.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/include/Board.h
+  /Users/admin/Desktop/HK1\ 25-26/CS160/CS160-GoGame/include/Board.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream

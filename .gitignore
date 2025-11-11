@@ -16,7 +16,15 @@ build/run_cmake.sh
 # add_submodules.sh
 remake.sh
 
-# Testing commits
+# Build folder
+build/*
+!build/assets
+!build/_deps/flac-src
+!build/_deps/freetype-src
+!build/_deps/ogg-src
+!build/_deps/vorbis-src
+
+# Testing signed commits
 testfile
 testfile.sig
 test.txt
