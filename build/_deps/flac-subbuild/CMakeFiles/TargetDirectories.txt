@@ -1,3 +1,0 @@
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/flac-populate.dir
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/edit_cache.dir
-/Users/admin/Desktop/HK1 25-26/CS160/CS160-GoGame/build/_deps/flac-subbuild/CMakeFiles/rebuild_cache.dir

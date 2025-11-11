@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../external/SFML/lib/libvorbisfile.a CMakeFiles/vorbisfile.dir/vorbisfile.c.o
-/usr/bin/ranlib ../../../external/SFML/lib/libvorbisfile.a
