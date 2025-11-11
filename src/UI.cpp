@@ -1557,6 +1557,10 @@ void UI::gui_handle_events() {
 				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
 				request_switch_mode(gridW);
 			}
+			else if (key->scancode == sf::Keyboard::Scancode::C) {
+				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+				build_theme_modal(gridW);
+			}
 
 			else if (key->scancode == sc::Num1) {
 				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
@@ -1976,8 +1980,9 @@ void UI::draw_modal() {
     }
 
     // Buttons in modal
-    for (auto& b : modalButtons) {
-        window.draw(b.rect);
-        if (b.label) window.draw(*b.label);
-    }
+	for (auto& b : modalButtons) {
+		b.rect.setFillColor(b.hovered ? sf::Color(235,220,160) : sf::Color(240,220,150));
+		window.draw(b.rect);
+		if (b.label) window.draw(*b.label);
+	}
 }
