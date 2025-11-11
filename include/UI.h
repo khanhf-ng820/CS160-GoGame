@@ -39,7 +39,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit };
 
 		void gui_handle_events();
 		void gui_update();
@@ -89,6 +89,9 @@ class UI {
 		inline sf::Vector2f to_world(sf::Vector2i px) const {
 			return window.mapPixelToCoords(px); // Current view
 		}
+		void build_confirm_quit_modal();
+		sf::Vector2u lastWinSize{0,0};
+		sf::Clock    resizeClock;
 
 		// Ultilities
 		static inline sf::Vector2f gridToPixel(int x, int y, int CELL, int MARGIN) {

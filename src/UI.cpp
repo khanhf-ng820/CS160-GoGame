@@ -190,7 +190,7 @@ void UI::run_graphical() {
 	logicalView.setViewport(sf::FloatRect({0.f, 0.f}, {1.f, 1.f}));
 
 	window.setView(logicalView);
-	window.setFramerateLimit(60);
+	// window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
 	gui_update_window_size();
 
@@ -403,10 +403,11 @@ void UI::build_main_buttons(int gridW) {
                 "Theme",
             [this, gridW]{ build_theme_modal(gridW); });
 
-        addRow2("Music",
-            [this, gridW]{ build_music_modal(gridW); },
-                "Quit",
-            [this]{ window.close(); });
+		addRow2("Music",
+			[this, gridW]{ build_music_modal(gridW); },
+			"Quit",
+			[this]{ build_confirm_quit_modal(); }
+		);
     } else {
         // Layout for 13×13 or 19×19
         addRow2("Undo",
@@ -438,7 +439,7 @@ void UI::build_main_buttons(int gridW) {
                 "Music",
             [this, gridW]{ build_music_modal(gridW); });
 
-        addSpan2("Quit", [this]{ window.close(); });
+        addSpan2("Quit", [this]{ build_confirm_quit_modal(); });
     }
 
     // gui_update_window_size();
@@ -1007,6 +1008,67 @@ void UI::build_confirm_newgame_modal(int gridW) {
 	center_modal_vertically();
 }
 
+void UI::build_confirm_quit_modal() {
+    activeModal = Modal::ConfirmQuit;
+    modalButtons.clear();
+
+    const float panelW = 260.f;
+    const float pad    = 14.f;
+
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
+
+    auto makeBtn = [&](const std::string& txt, float x, float y,
+                       std::function<void()> fn, sf::Vector2f size) {
+        Button b;
+        b.rect.setSize(size);
+        b.rect.setFillColor(sf::Color(240,220,150));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(1.f);
+        b.rect.setPosition({x, y});
+
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(16);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (size.y - lb.size.y) * 0.5f - lb.position.y });
+
+        b.onClick = std::move(fn);
+        modalButtons.push_back(std::move(b));
+    };
+
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f; // Below title
+
+    // Save and Quit: autosave then exit
+    makeBtn("Save & Quit", xLeft, y, [this]{
+        fs::create_directories("saves");
+        std::ofstream f("saves/autosave.sav", std::ios::binary);
+        if (f) f << game.serialize();
+        window.close();
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    // Quit (Don't Save)
+    makeBtn("Quit (Don't Save)", xLeft, y, [this]{
+        window.close();
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    // Cancel
+    makeBtn("Cancel", xLeft, y, [this]{
+        activeModal = Modal::None;
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    modalPanelRect.size.y = (y + pad) - panelY;
+    center_modal_vertically();
+}
+
 // Music picker
 void UI::scan_music_folder() {
 	musicFiles.clear();
@@ -1301,37 +1363,44 @@ sf::FloatRect UI::make_letterbox(sf::Vector2u win, sf::Vector2u base) {
 void UI::on_window_resized(sf::Vector2u ns) {
     if (suppressResize) return;
 
+    // Locking ratio
     if (lockAspect) {
-        const float R = baseWindow.x / float(baseWindow.y); // original ratio
-        unsigned w = ns.x, h = ns.y;
+        const float R = baseWindow.x / float(baseWindow.y ? baseWindow.y : 1);
+        unsigned reqW = ns.x, reqH = ns.y;
+        if (lastWinSize.x == 0 || lastWinSize.y == 0) lastWinSize = window.getSize();
 
-        // Calculate the height by R
-        unsigned h1 = unsigned(std::lround(w / R));
-        // If ! -> calculate again
-        if (std::abs(int(h1) - int(h)) > 1) {
-            unsigned w1 = unsigned(std::lround(h * R));
-            if (w1 != w) { w = w1; }
-            else { h = h1; }
+        int dW = std::abs(int(reqW) - int(lastWinSize.x));
+        int dH = std::abs(int(reqH) - int(lastWinSize.y));
+        bool widthLed = (dW >= dH);
+
+        unsigned w = reqW, h = reqH;
+        if (widthLed) {
+            h = (unsigned)std::lround(w / R);
         } else {
-            h = h1;
+            w = (unsigned)std::lround(h * R);
         }
 
-        if (w != ns.x || h != ns.y) {
+        // Ratio
+        if (w != reqW || h != reqH) {
             suppressResize = true;
-            window.setSize({w, h});
+            window.setSize({ w, h });
             suppressResize = false;
-            ns = {w, h};
+            ns = { w, h };
         }
+        lastWinSize = ns;
     }
 
-
+    // Viewport letterbox
     logicalView.setViewport(make_letterbox(ns, baseWindow));
     window.setView(logicalView);
 
-    int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
-    build_main_buttons(gridW);
-
-    center_modal_vertically();
+    // Smoother
+    if (resizeClock.getElapsedTime().asMilliseconds() >= 16) {
+        int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+        build_main_buttons(gridW);
+        center_modal_vertically();
+        resizeClock.restart();
+    }
 }
 
 void UI::sync_view_to_window() {
@@ -1347,7 +1416,7 @@ void UI::gui_handle_events() {
 
 		// 1) Close window
 		if (event->is<sf::Event::Closed>()) {
-			window.close();
+			build_confirm_quit_modal();
 		}
 
 		else if (const auto* rz = event->getIf<sf::Event::Resized>()) {
@@ -1390,8 +1459,9 @@ void UI::gui_handle_events() {
 					}
 					if (handled) continue;
 
-					// Click outside: close modal
-					activeModal = Modal::None;
+					if (activeModal != Modal::ConfirmQuit) {
+						activeModal = Modal::None;
+					}
 					continue;
 				}
 
@@ -1882,6 +1952,7 @@ void UI::draw_modal() {
         activeModal==Modal::ConfirmDifficulty? "Change Difficulty?" :
         activeModal==Modal::ConfirmOverwrite ? "Overwrite"          :
         activeModal==Modal::ConfirmNewGame   ? "Start New Game?"    :
+		activeModal==Modal::ConfirmQuit      ? "Quit Game?"         :
                                                "Switch Mode?"
     );
     title.setPosition({x + 12.f, y + 10.f});
