@@ -455,11 +455,36 @@ void UI::build_main_buttons(int gridW) {
 }
 
 namespace {
+    namespace fs = std::filesystem;
+
     bool file_nonempty(const std::string& p) {
         std::error_code ec;
-        return std::filesystem::exists(p, ec)
-            && std::filesystem::is_regular_file(p, ec)
-            && std::filesystem::file_size(p, ec) > 0;
+        return fs::exists(p, ec)
+            && fs::is_regular_file(p, ec)
+            && fs::file_size(p, ec) > 0;
+    }
+
+    bool file_nonempty_abs(const fs::path& p) {
+        std::error_code ec;
+        return fs::exists(p, ec)
+            && fs::is_regular_file(p, ec)
+            && fs::file_size(p, ec) > 0;
+    }
+
+    const fs::path& save_root() {
+        static fs::path root = fs::absolute("saves");
+        static bool inited = false;
+        if (!inited) {
+            std::error_code ec;
+            fs::create_directories(root, ec);
+            inited = true;
+            std::cerr << "[SAVE_ROOT] " << root.string() << "\n";
+        }
+        return root;
+    }
+
+    fs::path slot_path(int idx) {
+        return save_root() / ("slot" + std::to_string(idx) + ".sav");
     }
 }
 
@@ -498,32 +523,67 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
     const float xLeft = panelX + pad;
     float y = panelY + 40.f; // Below title
 
-    for (int i = 1; i <= SLOTS; ++i) {
-        std::string path = "saves/slot" + std::to_string(i) + ".sav";
-        bool occupied = file_nonempty(path);
-        std::string label = (type == Modal::Save)
-            ? ("Save to Slot " + std::to_string(i) + (occupied ? " (occupied)" : " (empty)"))
-            : ("Load Slot "    + std::to_string(i) + (occupied ? " (saved)"    : " (empty)"));
+	for (int i = 1; i <= SLOTS; ++i) {
+		std::filesystem::path apath = slot_path(i);
+		bool occupied = file_nonempty_abs(apath);
+		std::string label = (type == Modal::Save)
+			? ("Save to Slot " + std::to_string(i) + (occupied ? " (occupied)" : " (empty)"))
+			: ("Load Slot "    + std::to_string(i) + (occupied ? " (saved)"    : " (empty)"));
 
-        makeBtn(label, xLeft, y, [this, path, occupied, type]{
-            if (type == Modal::Save) {
-                if (occupied) { build_confirm_overwrite_modal( /*gridW*/ 0, path ); return; }
-                std::ofstream f(path, std::ios::binary);
-                if (f) {
-                    f << game.serialize();
-                    if (deferredAction) { auto act = std::move(deferredAction); deferredAction = nullptr; act(); }
-                }
-                activeModal = Modal::None;
-            } else {
-                if (occupied) {
-                    std::ifstream f(path, std::ios::binary);
-                    if (f) { std::string s((std::istreambuf_iterator<char>(f)), {}); game.deserialize(s); lastMove.reset(); }
-                }
-                activeModal = Modal::None;
-            }
-        });
-        y += 40.f;
-    }
+		makeBtn(label, xLeft, y, [this, apath, occupied, type]{
+			if (type == Modal::Save) {
+				if (occupied) { 
+					build_confirm_overwrite_modal(/*gridW*/ 0, apath.string()); 
+					return; 
+				}
+				// Empty slots
+				std::ofstream f(apath, std::ios::binary | std::ios::trunc);
+				if (f) {
+					const std::string s = game.serialize();
+					f.write(s.data(), static_cast<std::streamsize>(s.size()));
+					f.flush();
+					f.close();
+					std::cerr << "[SAVE] wrote " << s.size() << " bytes to " << apath << "\n";
+					if (deferredAction) { auto act = std::move(deferredAction); deferredAction = nullptr; act(); }
+				} else {
+					std::cerr << "[ERROR] Cannot open for saving: " << apath << "\n";
+				}
+				activeModal = Modal::None;
+				int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+				build_main_buttons(gridWLocal);
+				return;
+			} else {
+				if (occupied) {
+					std::ifstream f(apath, std::ios::binary);
+					if (!f) {
+						std::cerr << "[ERROR] Cannot open for load: " << apath << "\n";
+					} else {
+						std::string s((std::istreambuf_iterator<char>(f)), {});
+						auto fsz = std::filesystem::file_size(apath);
+						bool ok = game.deserialize(s);
+						if (!ok) {
+							std::cerr << "[ERROR] deserialize() failed for: " << apath
+									<< " | size=" << fsz << " bytes\n";
+						} else {
+							int newN = game.size();
+							if (newN == 9 || newN == 13 || newN == 19) {
+								if (BOARD_SIZE != newN) {
+									BOARD_SIZE = newN;
+									gui_update_window_size();
+								}
+							}
+							lastMove.reset();
+							std::cerr << "[LOAD] loaded " << fsz << " bytes from " << apath << "\n";
+						}
+					}
+				}
+				activeModal = Modal::None;
+				int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+				build_main_buttons(gridWLocal);
+			}
+		});
+		y += 40.f;
+	}
 
     makeBtn("Cancel", xLeft, y + 8.f, [this]{ activeModal = Modal::None; });
 	y += 8.f + 32.f;
@@ -725,15 +785,52 @@ void UI::build_confirm_overwrite_modal(int gridW, const std::string& path) {
     const float xLeft = panelX + pad;
     float y = panelY + 40.f; // Below title
 
-    // Overwrite
-	makeBtn("Overwrite", xLeft, y, [this, path]{
-		std::ofstream f(path);
-		if (f) {
-			f << game.serialize();
+	// Overwrite
+	makeBtn("Overwrite", xLeft, y, [this, path, gridW]{
+		try {
+			std::filesystem::path apath = std::filesystem::path(path);
+			std::error_code ec;
+			std::filesystem::create_directories(apath.parent_path(), ec);
+
+			std::ofstream f(apath, std::ios::binary | std::ios::trunc);
+			bool ok = false;
+			std::string s;
+			if (f) {
+				s = game.serialize();
+				f.write(s.data(), static_cast<std::streamsize>(s.size()));
+				f.flush();
+				f.close();
+
+				// VERIFY
+				std::ifstream vf(apath, std::ios::binary);
+				if (vf) {
+					std::string rb((std::istreambuf_iterator<char>(vf)), {});
+					ok = (rb == s);
+					std::cerr << "[OVERWRITE] wrote " << s.size() 
+							<< " bytes, verify=" << (ok ? "OK" : "FAIL")
+							<< " -> " << apath << "\n";
+				} else {
+					std::cerr << "[ERROR] Verify open failed: " << apath << "\n";
+				}
+			} else {
+				std::cerr << "[ERROR] Cannot open for overwrite: " << apath << "\n";
+			}
+
 			if (deferredAction) { auto act = std::move(deferredAction); deferredAction = nullptr; act(); }
+
+			activeModal = Modal::None;
+			modalButtons.clear();
+			int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+			build_main_buttons(gridWLocal);
+
+			if (!ok) std::cerr << "[INFO] Overwrite done but verify failed.\n";
+
+		} catch (...) {
+			std::cerr << "[ERROR] Exception while overwriting: " << path << "\n";
+			activeModal = Modal::None;
 		}
-		activeModal = Modal::None;
 	}, {panelW - 2*pad, 32.f});
+
 	y += 40.f;
 
 	// Cancel
@@ -1047,7 +1144,7 @@ void UI::build_confirm_quit_modal() {
     // Save and Quit: autosave then exit
     makeBtn("Save & Quit", xLeft, y, [this]{
         fs::create_directories("saves");
-        std::ofstream f("saves/autosave.sav", std::ios::binary);
+        std::ofstream f(save_root() / "autosave.sav", std::ios::binary);
         if (f) f << game.serialize();
         window.close();
     }, {panelW - 2*pad, 32.f});
