@@ -254,6 +254,18 @@ GameResults Game::results() {
     }
 }
 
+// (ONLY USE WHEN GAME ENDS) Return player's score (black or white)
+int returnScore(Stone player) const {
+    // calcScore(); // Calculate score before returning game results
+    if (player == Stone::BLACK) {
+        return blackScore;
+    } else if (player == Stone::WHITE) {
+        return whiteScore;
+    } else {
+        return -1;
+    }
+}
+
 
 
 // Xuất trạng thái game thành chuỗi (để ghi file)

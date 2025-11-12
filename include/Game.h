@@ -69,10 +69,13 @@ public:
     bool legal(const Move& m) const;
     // Thực hiện nước đi nếu valid bao gồm đặt quân, ghi history, xoá redo_stack, đổi lượt,...
     bool play(const Move& m);
+
     // (ONLY USE WHEN GAME ENDS) Calculate score for both players
     void calcScore();
     // (ONLY USE WHEN GAME ENDS) Return game results (who wins or draws)
     GameResults results();
+    // (ONLY USE WHEN GAME ENDS) Return player's score (black or white)
+    int returnScore(Stone player) const;
     
     // Xuất toàn bộ trạng thái trò chơi thành chuỗi
     std::string serialize() const;
