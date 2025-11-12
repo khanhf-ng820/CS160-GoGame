@@ -39,7 +39,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver };
 
 		void gui_handle_events();
 		void gui_update();
@@ -92,6 +92,7 @@ class UI {
 		void build_confirm_quit_modal();
 		sf::Vector2u lastWinSize{0,0};
 		sf::Clock    resizeClock;
+		void build_game_over_modal(int gridW);
 
 		// Ultilities
 		static inline sf::Vector2f gridToPixel(int x, int y, int CELL, int MARGIN) {
