@@ -12,9 +12,11 @@ external/SFML/.gitignore
 external/SFML/.gitattributes
 
 build/CMakeCache.txt
-build/run_cmake.sh
+
+# Bash files to run git and CMake
+# build/run_cmake.sh
 # add_submodules.sh
-remake.sh
+# remake.sh
 
 # Build folder
 build/*
@@ -23,6 +25,9 @@ build/*
 !build/_deps/freetype-src
 !build/_deps/ogg-src
 !build/_deps/vorbis-src
+
+# Save folder
+saves/*
 
 # Testing signed commits
 testfile
