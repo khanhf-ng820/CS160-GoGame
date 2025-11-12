@@ -21,6 +21,9 @@ build/CMakeCache.txt
 # Build folder
 build/*
 !build/assets
+!build/_deps/
+
+build/_deps/*
 !build/_deps/flac-src
 !build/_deps/freetype-src
 !build/_deps/ogg-src
