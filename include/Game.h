@@ -47,6 +47,8 @@ public:
     explicit Game(int n = 19);
     // Trả về kích thước của bàn cờ
     int size() const;
+    // Returns the game's komi
+    double komi() const;
     // Cho phép truy cập tới Board. Vd như cho UI vẽ,...
     Board&       board();
     // Truy cập const tới Board
@@ -75,7 +77,7 @@ public:
     // (ONLY USE WHEN GAME ENDS) Return game results (who wins or draws)
     GameResults results();
     // (ONLY USE WHEN GAME ENDS) Return player's score (black or white)
-    int returnScore(Stone player) const;
+    double returnScore(Stone player);
     
     // Xuất toàn bộ trạng thái trò chơi thành chuỗi
     std::string serialize() const;
@@ -86,10 +88,10 @@ public:
     // Vẽ bàn ra chuỗi "ASCII art" (nhãn A...T, số hàng, ...)
     std::string render_ascii() const;
 
-    // Điểm bù cho trắng (WHITE)
-    double komi = 6.5;
-
 private:
+    // Điểm bù cho trắng (WHITE) (Japanese komi)
+    double komiPts = 6.5;
+
     // Game state
     GameState gameState = GameState::PLAYING;
     // Kích thước bàn
@@ -103,7 +105,7 @@ private:
     // Points: number of white & black stones captured by opponents
     int   blacksCaptured = 0, whitesCaptured = 0;
     // Total points of each player (territory and captures)
-    int   blackScore = 0, whiteScore = 0;
+    double blackScore = 0, whiteScore = 0;
     // History of all boards played
     std::vector<Board> boardHistory;
     // Lịch sử các nước đã chơi (for printing and keeping records ONLY)

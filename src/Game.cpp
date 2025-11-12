@@ -46,6 +46,8 @@ LƯU Ý
 Game::Game(int n) : N(n), bd(n), previousBd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)) {}
 // Trả về kích thước bàn
 int Game::size() const { return N; }
+// Returns the game's komi
+double Game::komi() const { return komiPts; }
 // Truy cập mutable tới Board (hàm khác const)
 Board& Game::board() { return bd; }
 // Truy cập const tới Board (hàm const)
@@ -238,6 +240,7 @@ void Game::calcScore() {
     std::cout << "Black stones captured by white: " << blacksCaptured << std::endl;
     blackScore = blackTerritory + whitesCaptured;
     whiteScore = whiteTerritory + blacksCaptured;
+    whiteScore += komiPts; // Komi for white
     std::cout << "Black total score: " << blackScore << std::endl;
     std::cout << "White total score: " << whiteScore << std::endl;
 }
@@ -255,8 +258,8 @@ GameResults Game::results() {
 }
 
 // (ONLY USE WHEN GAME ENDS) Return player's score (black or white)
-int returnScore(Stone player) const {
-    // calcScore(); // Calculate score before returning game results
+double Game::returnScore(Stone player) {
+    calcScore(); // Calculate score before returning game results
     if (player == Stone::BLACK) {
         return blackScore;
     } else if (player == Stone::WHITE) {
@@ -276,7 +279,7 @@ std::string Game::serialize() const {
         // Mã hoá lượt đi (Black = 0, White = 1)
         << " side=" << (to_move == Stone::BLACK ? 0 : 1)
         // Ghi komi hiện tại
-        << " komi=" << komi
+        << " komi=" << komiPts
         // Ghi số PASS liên tiếp
         << " passes=" << consecutive_passes << "\n";
     // Viết ma trận bàn (N dòng, mỗi dòng N kí tự)
@@ -367,7 +370,7 @@ bool Game::deserialize(const std::string& data) {
 
         N = n; bd = Board(N);
         // Cập nhật kích thước và tạo board mới với kích thước N
-        komi = k;
+        komiPts = k;
         // Cập nhật komi
         to_move = (side == 0 ? Stone::BLACK : Stone::WHITE);
         // Cập nhật lượt
