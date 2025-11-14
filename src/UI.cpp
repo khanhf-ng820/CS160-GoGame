@@ -9,6 +9,8 @@
 using namespace std::chrono_literals;
 namespace fs = std::filesystem;
 
+static constexpr unsigned MIN_RESIZE_W = 126;
+static constexpr unsigned MIN_RESIZE_H = 100;
 static constexpr float PANEL_W   = 120.f;
 static constexpr float PANEL_GAP = 60.f;
 static constexpr float RIGHT_PAD = 10.f;
@@ -194,6 +196,16 @@ void UI::run_graphical() {
 	window.setVerticalSyncEnabled(true);
 	gui_update_window_size();
 
+	// Min-size
+	{
+		auto cur = window.getSize();
+		unsigned minW = std::min<unsigned>(MIN_RESIZE_W, cur.x);
+		unsigned minH = std::min<unsigned>(MIN_RESIZE_H, cur.y);
+
+		std::optional<sf::Vector2u> minSize = sf::Vector2u{ minW, minH };
+		window.setMinimumSize(minSize);
+	}
+
 	// Assets
 	(void)font.openFromFile("assets/fonts/OpenSans-Regular.ttf");
 	(void)placeBuf.loadFromFile("assets/sounds/place.wav");
@@ -310,7 +322,7 @@ void UI::build_main_buttons(int gridW) {
 		b.rect.setSize(size);
 		b.rect.setFillColor(sf::Color(220,200,120));
 		b.rect.setOutlineColor(sf::Color::Black);
-		b.rect.setOutlineThickness(1.f);
+		b.rect.setOutlineThickness(2.f);
 		b.rect.setPosition({x, y});
 
 		b.label.emplace(font);
@@ -512,7 +524,7 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
         b.rect.setSize({panelW - 2*pad, 32.f});
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
         b.label.emplace(font);
         b.label->setString(txt);
@@ -710,7 +722,7 @@ void UI::build_confirm_switch_modal(int gridW) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
         b.label.emplace(font);
         b.label->setString(txt);
@@ -774,7 +786,7 @@ void UI::build_confirm_overwrite_modal(int gridW, const std::string& path) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
         b.label.emplace(font);
         b.label->setString(txt);
@@ -868,7 +880,7 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
 
         b.label.emplace(font);
@@ -952,7 +964,7 @@ void UI::build_board_size_modal(int gridW) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
         b.label.emplace(font);
         b.label->setString(txt);
@@ -1006,7 +1018,7 @@ void UI::build_confirm_resize_modal(int newN, int gridW) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
         b.label.emplace(font);
         b.label->setString(txt);
@@ -1064,7 +1076,7 @@ void UI::build_confirm_newgame_modal(int gridW) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
 
         b.label.emplace(font);
@@ -1128,7 +1140,7 @@ void UI::build_confirm_quit_modal() {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
 
         b.label.emplace(font);
@@ -1146,12 +1158,13 @@ void UI::build_confirm_quit_modal() {
     float y = panelY + 40.f; // Below title
 
     // Save and Quit: autosave then exit
-    makeBtn("Save & Quit", xLeft, y, [this]{
-        fs::create_directories("saves");
-        std::ofstream f(save_root() / "autosave.sav", std::ios::binary);
-        if (f) f << game.serialize();
-        window.close();
-    }, {panelW - 2*pad, 32.f});
+	makeBtn("Save & Quit", xLeft, y, [this]{
+		int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+		deferredAction = [this]{
+			window.close();
+		};
+		build_save_load_modal(Modal::Save, gridWLocal);
+	}, {panelW - 2*pad, 32.f});
     y += 40.f;
 
     // Quit (Don't Save)
@@ -1306,7 +1319,7 @@ void UI::build_music_modal(int gridW) {
 		b.rect.setSize(size);
 		b.rect.setFillColor(sf::Color(240,220,150));
 		b.rect.setOutlineColor(sf::Color::Black);
-		b.rect.setOutlineThickness(1.f);
+		b.rect.setOutlineThickness(2.f);
 		b.rect.setPosition({x, y});
 
 		b.label.emplace(font);
@@ -1430,7 +1443,7 @@ void UI::build_game_over_modal(int gridW) {
         b.rect.setSize(size);
         b.rect.setFillColor(sf::Color(240,220,150));
         b.rect.setOutlineColor(sf::Color::Black);
-        b.rect.setOutlineThickness(1.f);
+        b.rect.setOutlineThickness(2.f);
         b.rect.setPosition({x, y});
 
         b.label.emplace(font);
@@ -1609,6 +1622,10 @@ void UI::gui_handle_events() {
 
 		// 1) Close window
 		if (event->is<sf::Event::Closed>()) {
+			if (!board_has_any_stone()) {
+				window.close();
+				return;
+			}
 			build_confirm_quit_modal();
 		}
 
@@ -1850,8 +1867,7 @@ sf::Vector2u UI::compute_window_px() const {
     auto desk = sf::VideoMode::getDesktopMode();
     unsigned safe = 96; // Changeable
     unsigned maxH = (desk.size.y > safe ? desk.size.y - safe : desk.size.y);
-
-    unsigned winH = std::min<unsigned>(wantH, std::max<unsigned>(MIN_WIN_H, maxH));
+    unsigned winH = std::min(wantH, maxH);
     return { winW, winH };
 }
 

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/CMakeFiles/ogg-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-build.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-download.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-install.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-test.rule"
+		},
+		{
+			"file" : "/Users/nguyenphubaokhang/Desktop/CS160-GoGame/build/_deps/ogg-subbuild/ogg-populate-prefix/src/ogg-populate-stamp/ogg-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ogg-populate"
+		],
+		"name" : "ogg-populate"
+	}
+}
