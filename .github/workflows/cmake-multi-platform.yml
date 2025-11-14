@@ -47,6 +47,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install Linux Dependencies
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+
     - name: Checkout repository and submodules
       uses: actions/checkout@v4 # Use a recent version of actions/checkout
       with:
