@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../lib/libsfml-system-s.a "CMakeFiles/sfml-system.dir/Clock.cpp.o" "CMakeFiles/sfml-system.dir/Err.cpp.o" "CMakeFiles/sfml-system.dir/Sleep.cpp.o" "CMakeFiles/sfml-system.dir/String.cpp.o" "CMakeFiles/sfml-system.dir/Utils.cpp.o" "CMakeFiles/sfml-system.dir/Vector2.cpp.o" "CMakeFiles/sfml-system.dir/Vector3.cpp.o" "CMakeFiles/sfml-system.dir/FileInputStream.cpp.o" "CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o" "CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o"
-/usr/bin/ranlib ../../../lib/libsfml-system-s.a

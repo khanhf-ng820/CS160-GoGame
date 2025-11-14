@@ -1,7 +1,9 @@
 # CS160-GoGame
 Go Game Final Project for CS160.
 
-Uses C++, CMake, and SFML.
+This project uses C++, CMake, and SFML library.
+
+This application uses the Japanese ruleset and is based on [this article](https://vnchess.com.vn/luat-choi-co-vay-co-ban/).
 
 ## Building
 

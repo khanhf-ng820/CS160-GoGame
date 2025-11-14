@@ -1,12 +1,15 @@
 [submodule "build/_deps/flac-src"]
 	path = build/_deps/flac-src
-	url = ./build/_deps/flac-src
+	url = https://github.com/xiph/flac.git
 [submodule "build/_deps/freetype-src"]
 	path = build/_deps/freetype-src
-	url = ./build/_deps/freetype-src
+	url = https://github.com/freetype/freetype.git
 [submodule "build/_deps/ogg-src"]
 	path = build/_deps/ogg-src
-	url = ./build/_deps/ogg-src
+	url = https://github.com/xiph/ogg.git
 [submodule "build/_deps/vorbis-src"]
 	path = build/_deps/vorbis-src
-	url = ./build/_deps/vorbis-src
+	url = https://github.com/xiph/vorbis.git
+[submodule "external/SFML"]
+	path = external/SFML
+	url = git@github.com:SFML/SFML.git
