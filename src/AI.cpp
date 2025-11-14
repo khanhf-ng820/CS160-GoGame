@@ -61,5 +61,5 @@ Move GoAI::choose_move_easy(const Game& game, std::mt19937& rng) {
 
 // For MEDIUM MODE
 Move GoAI::choose_move_medium(const Game& game, std::mt19937& rng) {
-    
+    return {0,0,true}; // ***** only for testing, will delete later *****
 }
