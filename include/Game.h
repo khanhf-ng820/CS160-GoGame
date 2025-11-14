@@ -97,7 +97,8 @@ private:
     // Kích thước bàn
     int   N;
     // Bàn cờ: mảng ô Stone
-    Board bd, previousBd;
+    Board bd;
+    Board previousBd;
     // Màu quân đang tới lượt
     Stone to_move;
     // Số lượt pass liên tiếp

@@ -186,7 +186,8 @@ bool Game::legal(const Move& m) const {
     if (!futureBoard.set(m.r, m.c, to_move)) return false;
 
     // Ko rule: One may not play in such a way as to recreate the board position following one's previous move.
-    if (previousBd == futureBoard) return false;
+    Board prevBoard = (boardHistory.size() > 1) ? boardHistory[boardHistory.size() - 2] : Board(N);
+    if (prevBoard == futureBoard) return false;
 
     return true;
 }
