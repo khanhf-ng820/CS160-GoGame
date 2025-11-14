@@ -47,6 +47,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v4 # Use a recent version of actions/checkout
+      with:
+        submodules: true # This is the key setting to initialize and update submodules
+        # Optionally, if your submodules are in private repositories,
+        # you might need to provide a token with appropriate permissions:
+        # token: ${{ secrets.GITHUB_TOKEN }} # Or a custom PAT if GITHUB_TOKEN lacks permissions
+
+    - name: Verify submodule status (optional)
+      run: |
+        git submodule status
+        # You can also navigate into a submodule and run commands
+        # cd path/to/your/submodule
+        # git log -1
+
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
       id: strings
