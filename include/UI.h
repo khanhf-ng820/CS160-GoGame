@@ -42,7 +42,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver };
 
 		void gui_handle_events();
 		void gui_update();
@@ -79,6 +79,23 @@ class UI {
 		void gui_update_window_size();
 		void center_modal_vertically();
 		sf::Vector2u compute_window_px() const;
+		float panelScroll = 0.f;
+		float panelScrollMax = 0.f;
+		sf::FloatRect panelViewport;
+		sf::View logicalView{};
+		sf::Vector2u baseWindow{}; // Logical size at begin
+		bool lockAspect = true;
+		bool suppressResize = false;
+
+		void on_window_resized(sf::Vector2u newSize);
+		static sf::FloatRect make_letterbox(sf::Vector2u win, sf::Vector2u base);
+		inline sf::Vector2f to_world(sf::Vector2i px) const {
+			return window.mapPixelToCoords(px); // Current view
+		}
+		void build_confirm_quit_modal();
+		sf::Vector2u lastWinSize{0,0};
+		sf::Clock    resizeClock;
+		void build_game_over_modal(int gridW);
 
 		// Ultilities
 		static inline sf::Vector2f gridToPixel(int x, int y, int CELL, int MARGIN) {
@@ -115,6 +132,8 @@ class UI {
     	void build_confirm_resize_modal(int newN, int gridW);
     	void gui_apply_board_size(int newN);
     	bool board_has_any_stone() const;
+		void sync_view_to_window();
+		sf::FloatRect view_rect() const;
 
 		std::vector<Theme> themes;
 		int themeIdx = 0;
