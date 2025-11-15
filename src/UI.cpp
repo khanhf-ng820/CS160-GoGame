@@ -422,6 +422,11 @@ void UI::build_main_buttons(int gridW) {
 		);
     } else {
         // Layout for 13×13 or 19×19
+		addRow2("Undo",
+            [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
+                "Redo",
+            [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
+			
 		addSpan2("Pass", [this, gridW]{
 			if (!aiThinking) {
 				game.pass();
