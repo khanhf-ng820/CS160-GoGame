@@ -1462,7 +1462,7 @@ void UI::build_game_over_modal(int gridW) {
     };
 
     Score sc = game.score();
-    double k = game.komi;
+    double k = game.komi();
     double bpts = sc.black;
     double wpts = sc.white + k;
 
