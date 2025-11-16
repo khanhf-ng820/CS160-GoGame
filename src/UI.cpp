@@ -142,7 +142,7 @@ void UI::run_console() {
 		if(game.is_over()){
 			Score sc = game.score();
 			std::cout << "Game over.\n";
-			std::cout << "Black: "<<sc.black<<" | White: "<<sc.white<<" (komi "<<game.komi<<")\n";
+			std::cout << "Black: "<<sc.black<<" | White: "<<sc.white<<" (komi "<<game.komi()<<")\n";
 			std::cout << ((sc.black>sc.white)?"Black wins!\n":"White wins!\n");
 		}
 		if(mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
@@ -1473,7 +1473,7 @@ void UI::build_game_over_modal(int gridW) {
     };
 
     Score sc = game.score();
-    double k = game.komi;
+    double k = game.komi();
     double bpts = sc.black;
     double wpts = sc.white + k;
 
