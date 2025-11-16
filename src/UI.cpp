@@ -142,7 +142,7 @@ void UI::run_console() {
 		if(game.is_over()){
 			Score sc = game.score();
 			std::cout << "Game over.\n";
-			std::cout << "Black: " << sc.black << " | White: " << sc.white << " (komi " << game.komi() << ")\n";
+			std::cout << "Black: "<<sc.black<<" | White: "<<sc.white<<" (komi "<<game.komi<<")\n";
 			std::cout << ((sc.black>sc.white)?"Black wins!\n":"White wins!\n");
 		}
 		if(mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
@@ -392,15 +392,24 @@ void UI::build_main_buttons(int gridW) {
                 "Redo",
             [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
 
-        addRow2("Pass",
-            [this]{
-                if (!aiThinking) {
-                    game.pass(); lastMove.reset();
-                    if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
-                }
-            },
-                "Mode",
-            [this, gridW]{ request_switch_mode(gridW); });
+		    addRow2("Pass",
+				[this, gridW]{
+					if (!aiThinking) {
+						game.pass();
+						lastMove.reset();
+
+						if (game.is_over()) {
+							build_game_over_modal(gridW);
+							return;
+						}
+
+						if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+							gui_start_ai();
+						}
+					}
+				},
+				"Mode",
+				[this, gridW]{ request_switch_mode(gridW); });
 
         addRow2("New Game",
             [this, gridW]{
@@ -426,7 +435,7 @@ void UI::build_main_buttons(int gridW) {
             [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
                 "Redo",
             [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
-			
+
 		addSpan2("Pass", [this, gridW]{
 			if (!aiThinking) {
 				game.pass();
@@ -476,8 +485,6 @@ void UI::build_main_buttons(int gridW) {
 }
 
 namespace {
-    namespace fs = std::filesystem;
-
     bool file_nonempty(const std::string& p) {
         std::error_code ec;
         return fs::exists(p, ec)
@@ -1396,7 +1403,6 @@ void UI::build_music_modal(int gridW) {
 	const float rowH   = 32.f;
 	const float rowGap = 2.f;
 
-	// FloatRect
 	musicListRect = sf::FloatRect({xLeft, listTopY}, {panelW - 2*pad, listHeight});
 
 	const int total = (int)musicFiles.size();
@@ -1467,7 +1473,7 @@ void UI::build_game_over_modal(int gridW) {
     };
 
     Score sc = game.score();
-    double k = game.komi();
+    double k = game.komi;
     double bpts = sc.black;
     double wpts = sc.white + k;
 
@@ -1675,7 +1681,8 @@ void UI::gui_handle_events() {
 					}
 					if (handled) continue;
 
-					if (activeModal != Modal::ConfirmQuit) {
+					if (activeModal != Modal::ConfirmQuit && activeModal != Modal::GameOver)
+					{
 						activeModal = Modal::None;
 					}
 					continue;
@@ -1748,10 +1755,17 @@ void UI::gui_handle_events() {
 		// 6) Click button
 		else if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
 			using sc = sf::Keyboard::Scancode;
-
+			if (activeModal == Modal::GameOver) {
+				continue;
+			}
+			
 			// Esc: Close modal if opening
 			if (key->scancode == sc::Escape) {
-				if (activeModal != Modal::None) { activeModal = Modal::None; continue; }
+				if (activeModal != Modal::None && activeModal != Modal::GameOver)
+				{
+					activeModal = Modal::None;
+					continue;
+				}
 			}
 
 			if (key->scancode == sc::Z) {
@@ -1762,8 +1776,15 @@ void UI::gui_handle_events() {
 			}
 			else if (key->scancode == sc::Space) {
 				if (!aiThinking) {
-					game.pass(); lastMove.reset();
-					if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
+					game.pass();
+					lastMove.reset();
+
+					if (game.is_over()) {
+						int gridW = MARGIN*2 + CELL*(BOARD_SIZE - 1);
+						build_game_over_modal(gridW);
+					} else if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+						gui_start_ai();
+					}
 				}
 			}
 			else if (key->scancode == sc::N) {

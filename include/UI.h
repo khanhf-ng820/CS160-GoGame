@@ -11,10 +11,7 @@
 #include "Game.h"
 #include "AI.h"
 
-enum class UIType {
-	CONSOLE,
-	GRAPHICAL
-};
+enum class UIType { CONSOLE, GRAPHICAL };
 
 class UI {
 	public: 
@@ -42,7 +39,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver, EndGame };
 
 		void gui_handle_events();
 		void gui_update();
