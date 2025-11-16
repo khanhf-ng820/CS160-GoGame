@@ -5,6 +5,8 @@
 #include <chrono>
 #include <filesystem>
 #include <cmath>
+#include <sstream>
+#include <iomanip>
 
 using namespace std::chrono_literals;
 namespace fs = std::filesystem;
@@ -139,12 +141,22 @@ void UI::run_console() {
 	print_menu();
 	while(true) {
 		std::cout << game.render_ascii();
-		if(game.is_over()){
-			Score sc = game.score();
+
+		if (game.is_over()) {
 			std::cout << "Game over.\n";
-			std::cout << "Black: "<<sc.black<<" | White: "<<sc.white<<" (komi "<<game.komi()<<")\n";
-			std::cout << ((sc.black>sc.white)?"Black wins!\n":"White wins!\n");
+			double bpts = game.returnScore(Stone::BLACK);
+			double wpts = game.returnScore(Stone::WHITE);
+			double k    = game.komi();
+
+			std::cout << "Black: " << bpts
+					<< " | White: " << wpts
+					<< " (komi " << k << ")\n";
+
+			if (bpts > wpts)      std::cout << "Black wins!\n";
+			else if (wpts > bpts) std::cout << "White wins!\n";
+			else                  std::cout << "Draw!\n";
 		}
+
 		if(mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
 			ai_turn();
 			continue;
@@ -1436,6 +1448,12 @@ void UI::build_music_modal(int gridW) {
 	center_modal_vertically();
 }
 
+auto fmt_score = [](double x) {
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(1) << x;
+    return oss.str();
+};
+
 void UI::build_game_over_modal(int gridW) {
     activeModal = Modal::GameOver;
     modalButtons.clear();
@@ -1472,17 +1490,21 @@ void UI::build_game_over_modal(int gridW) {
         modalButtons.push_back(std::move(b));
     };
 
-    Score sc = game.score();
-    double k = game.komi();
-    double bpts = sc.black;
-    double wpts = sc.white + k;
+	double bpts = game.returnScore(Stone::BLACK);
+	double wpts = game.returnScore(Stone::WHITE);
+	double k    = game.komi();
 
-    std::string line1 = "Black: " + std::to_string(sc.black);
-    std::string line2 = "White: " + std::to_string(sc.white) + " + komi " + std::to_string(k);
-    std::string line3 = (bpts > wpts) ? "Result: Black wins"
-                      : (wpts > bpts) ? "Result: White wins"
-                                      : "Result: Draw";
+	auto fmt_score = [](double x) {
+		std::ostringstream oss;
+		oss << std::fixed << std::setprecision(1) << x;
+		return oss.str();
+	};
 
+	std::string line1 = "Black: " + fmt_score(bpts);
+	std::string line2 = "White: " + fmt_score(wpts) + " (includes komi " + fmt_score(k) + ")";
+	std::string line3 = (bpts > wpts) ? "Result: Black wins"
+						: (wpts > bpts) ? "Result: White wins"
+										: "Result: Draw";
     const float xLeft = panelX + pad;
     float y = panelY + 40.f;
 
