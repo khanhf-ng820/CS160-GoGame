@@ -37,14 +37,13 @@ float UI::panel_min_height() const {
 
     float y = panel_top_y();
 
-    if (BOARD_SIZE == 9) {
-        // Size
-        y += BTN_H + ROW_GAP;
-        y += (BTN_H + ROW_GAP) * 5; // Undo/ Redo, Pass/ Mode, NewGame/ Save, Load/ Theme, Music/ Quit
-        y += 8.f;
-    } else {
-        // Size, Undo/ Redo, Pass, Mode
-        // New Game, Save/ Load, Theme/ Music, Quit
+	if (BOARD_SIZE == 9) {
+		// Size
+		y += BTN_H + ROW_GAP;
+		// Undo/Redo, Pass/Resign, Mode, New/Save, Load/Theme, Music/Quit
+		y += (BTN_H + ROW_GAP) * 6;
+		y += 16.f;
+	} else {
         const int span_rows = 5;
         const int pair_rows = 3;
 
@@ -421,8 +420,17 @@ void UI::build_main_buttons(int gridW) {
 						}
 					}
 				},
-				"Mode",
-				[this, gridW]{ request_switch_mode(gridW); });
+				"Resign",
+				[this, gridW]{
+					if (!aiThinking) {
+						Stone loser = game.side_to_move();
+						game.resign(loser);
+						build_game_over_modal(gridW);
+					}
+				});
+
+		addSpan2("Mode",
+			[this, gridW]{ request_switch_mode(gridW); });
 
         addRow2("New Game",
             [this, gridW]{
@@ -466,6 +474,14 @@ void UI::build_main_buttons(int gridW) {
 		});
 
         addSpan2("Mode", [this, gridW]{ request_switch_mode(gridW); });
+
+		addSpan2("Resign", [this, gridW]{
+			if (!aiThinking) {
+				Stone loser = game.side_to_move();
+				game.resign(loser);
+				build_game_over_modal(gridW);
+			}
+		});
 
         addSpan2("New Game", [this, gridW]{
             if (board_has_any_stone()) build_confirm_newgame_modal(gridW);
@@ -1621,11 +1637,30 @@ void UI::build_game_over_modal(int gridW) {
 		return oss.str();
 	};
 
-	std::string line1 = "Black: " + fmt_score(bpts);
-	std::string line2 = "White: " + fmt_score(wpts) + " (includes komi " + fmt_score(k) + ")";
-	std::string line3 = (bpts > wpts) ? "Result: Black wins"
-						: (wpts > bpts) ? "Result: White wins"
-										: "Result: Draw";
+	bool resigned = game.ended_by_resign();
+
+	std::string line1, line2, line3;
+
+	if (resigned) {
+		// No write komi
+		line1 = "Black: " + fmt_score(bpts);
+		line2 = "White: " + fmt_score(wpts);
+
+		if (bpts > wpts)
+			line3 = "Result: Black wins by resignation";
+		else if (wpts > bpts)
+			line3 = "Result: White wins by resignation";
+		else
+			line3 = "Result: Game ended by resignation";
+	} else {
+		// Normal ending
+		line1 = "Black: " + fmt_score(bpts);
+		line2 = "White: " + fmt_score(wpts) + " (includes komi " + fmt_score(k) + ")";
+		line3 = (bpts > wpts) ? "Result: Black wins"
+							: (wpts > bpts) ? "Result: White wins"
+											: "Result: Draw";
+	}
+
     const float xLeft = panelX + pad;
     float y = panelY + 40.f;
 
