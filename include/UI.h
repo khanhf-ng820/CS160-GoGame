@@ -11,10 +11,7 @@
 #include "Game.h"
 #include "AI.h"
 
-enum class UIType {
-	CONSOLE,
-	GRAPHICAL
-};
+enum class UIType { CONSOLE, GRAPHICAL };
 
 class UI {
 	public: 
@@ -42,7 +39,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver, EndGame };
 
 		void gui_handle_events();
 		void gui_update();
@@ -135,6 +132,9 @@ class UI {
 		void sync_view_to_window();
 		sf::FloatRect view_rect() const;
 
+		void build_main_menu();
+        void draw_main_menu();
+
 		std::vector<Theme> themes;
 		int themeIdx = 0;
 		Theme theme { sf::Color(219, 178, 92), sf::Color(185, 147, 77),
@@ -156,9 +156,13 @@ class UI {
 		float trackFadeSpeed = 300.f; // Alpha per second
 		sf::Clock trackFadeClock;
 
+        enum class Screen { MainMenu, LoadMenu, Playing };
+        Screen screen = Screen::MainMenu;
+
 		// Buttons
 		std::vector<Button> buttons; // Right side buttons
 		std::vector<Button> modalButtons; // Popup modal buttons
+		std::vector<Button> mainMenuButtons; // Main menu buttons
 		Modal activeModal = Modal::None;
 
 		// Highlight last move

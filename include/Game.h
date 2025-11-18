@@ -91,6 +91,12 @@ public:
     // Vẽ bàn ra chuỗi "ASCII art" (nhãn A...T, số hàng, ...)
     std::string render_ascii() const;
 
+    // Resign
+    void resign(Stone loser);
+
+    // Check if ended by resign
+    bool ended_by_resign() const;
+
 private:
     // Điểm bù cho trắng (WHITE) (Japanese komi)
     double komiPts = 6.5;
@@ -109,6 +115,8 @@ private:
     int   blacksCaptured = 0, whitesCaptured = 0;
     // Total points of each player (territory and captures)
     double blackScore = 0, whiteScore = 0;
+    // If resgined, no calculate territory again
+    bool endedByResign = false;
     // History of all boards played
     std::vector<Board> boardHistory;
     // Lịch sử các nước đã chơi (for printing and keeping records ONLY)

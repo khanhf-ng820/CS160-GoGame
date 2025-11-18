@@ -5,6 +5,8 @@
 #include <chrono>
 #include <filesystem>
 #include <cmath>
+#include <sstream>
+#include <iomanip>
 
 using namespace std::chrono_literals;
 namespace fs = std::filesystem;
@@ -35,14 +37,13 @@ float UI::panel_min_height() const {
 
     float y = panel_top_y();
 
-    if (BOARD_SIZE == 9) {
-        // Size
-        y += BTN_H + ROW_GAP;
-        y += (BTN_H + ROW_GAP) * 5; // Undo/ Redo, Pass/ Mode, NewGame/ Save, Load/ Theme, Music/ Quit
-        y += 8.f;
-    } else {
-        // Size, Undo/ Redo, Pass, Mode
-        // New Game, Save/ Load, Theme/ Music, Quit
+	if (BOARD_SIZE == 9) {
+		// Size
+		y += BTN_H + ROW_GAP;
+		// Undo/Redo, Pass/Resign, Mode, New/Save, Load/Theme, Music/Quit
+		y += (BTN_H + ROW_GAP) * 6;
+		y += 16.f;
+	} else {
         const int span_rows = 5;
         const int pair_rows = 3;
 
@@ -139,12 +140,22 @@ void UI::run_console() {
 	print_menu();
 	while(true) {
 		std::cout << game.render_ascii();
-		if(game.is_over()){
-			Score sc = game.score();
+
+		if (game.is_over()) {
 			std::cout << "Game over.\n";
-			std::cout << "Black: " << sc.black << " | White: " << sc.white << " (komi " << game.komi() << ")\n";
-			std::cout << ((sc.black>sc.white)?"Black wins!\n":"White wins!\n");
+			double bpts = game.returnScore(Stone::BLACK);
+			double wpts = game.returnScore(Stone::WHITE);
+			double k    = game.komi();
+
+			std::cout << "Black: " << bpts
+					<< " | White: " << wpts
+					<< " (komi " << k << ")\n";
+
+			if (bpts > wpts)      std::cout << "Black wins!\n";
+			else if (wpts > bpts) std::cout << "White wins!\n";
+			else                  std::cout << "Draw!\n";
 		}
+
 		if(mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
 			ai_turn();
 			continue;
@@ -301,14 +312,15 @@ void UI::run_graphical() {
 	thinkingText->setString("AI thinking...");
 	thinkingText->setPosition({float(gridW - 160.f), 12.f});
 
-	// Main Buttons (Right)
-	build_main_buttons(gridW);
+    // Start at main menu instead of in-game
+    screen = Screen::MainMenu;
+    build_main_menu();
 
-	while (window.isOpen()) {
-		gui_handle_events();
-		gui_update();
-		gui_render();
-	}
+    while (window.isOpen()) {
+        gui_handle_events();
+        gui_update();
+        gui_render();
+    }
 }
 
 void UI::build_main_buttons(int gridW) {
@@ -392,15 +404,33 @@ void UI::build_main_buttons(int gridW) {
                 "Redo",
             [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
 
-        addRow2("Pass",
-            [this]{
-                if (!aiThinking) {
-                    game.pass(); lastMove.reset();
-                    if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
-                }
-            },
-                "Mode",
-            [this, gridW]{ request_switch_mode(gridW); });
+		    addRow2("Pass",
+				[this, gridW]{
+					if (!aiThinking) {
+						game.pass();
+						lastMove.reset();
+
+						if (game.is_over()) {
+							build_game_over_modal(gridW);
+							return;
+						}
+
+						if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+							gui_start_ai();
+						}
+					}
+				},
+				"Resign",
+				[this, gridW]{
+					if (!aiThinking) {
+						Stone loser = game.side_to_move();
+						game.resign(loser);
+						build_game_over_modal(gridW);
+					}
+				});
+
+		addSpan2("Mode",
+			[this, gridW]{ request_switch_mode(gridW); });
 
         addRow2("New Game",
             [this, gridW]{
@@ -426,7 +456,7 @@ void UI::build_main_buttons(int gridW) {
             [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
                 "Redo",
             [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
-			
+
 		addSpan2("Pass", [this, gridW]{
 			if (!aiThinking) {
 				game.pass();
@@ -444,6 +474,14 @@ void UI::build_main_buttons(int gridW) {
 		});
 
         addSpan2("Mode", [this, gridW]{ request_switch_mode(gridW); });
+
+		addSpan2("Resign", [this, gridW]{
+			if (!aiThinking) {
+				Stone loser = game.side_to_move();
+				game.resign(loser);
+				build_game_over_modal(gridW);
+			}
+		});
 
         addSpan2("New Game", [this, gridW]{
             if (board_has_any_stone()) build_confirm_newgame_modal(gridW);
@@ -475,9 +513,110 @@ void UI::build_main_buttons(int gridW) {
 	panelViewport = sf::FloatRect({ bx, topY }, { PANEL_W, std::max(0.f, visibleH) });
 }
 
-namespace {
-    namespace fs = std::filesystem;
+void UI::build_main_menu() {
+    mainMenuButtons.clear();
 
+    auto sz = window.getSize();
+    float winW = static_cast<float>(sz.x);
+    float winH = static_cast<float>(sz.y);
+
+    auto makeBtn = [&](const std::string& txt, float x, float y,
+                       std::function<void()> fn,
+                       sf::Vector2f size = {200.f, 40.f})
+    {
+        Button b;
+        b.rect.setSize(size);
+        b.rect.setFillColor(sf::Color(220,200,120));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(2.f);
+        b.rect.setPosition({x, y});
+
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(22);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({
+            x + (size.x - lb.size.x) * 0.5f - lb.position.x,
+            y + (size.y - lb.size.y) * 0.5f - lb.position.y
+        });
+
+        b.onClick = std::move(fn);
+        mainMenuButtons.push_back(std::move(b));
+    };
+
+    const float BTN_W   = 220.f;
+    const float BTN_H   = 42.f;
+    const float GAP     = 16.f;
+    const float centerX = winW * 0.5f;
+    float totalH = 3 * BTN_H + 2 * GAP;
+    float startY = winH * 0.5f - totalH * 0.5f;
+    float x = centerX - BTN_W * 0.5f;
+
+    int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+
+    // New Game
+    makeBtn("New Game", x, startY, [this, gridWLocal]{
+        screen = Screen::Playing;
+        gui_reset();
+        panelScroll = 0.f;
+        panelScrollMax = 0.f;
+        buttons.clear();
+        build_main_buttons(gridWLocal);
+        activeModal = Modal::None;
+    });
+
+	// Load Game
+	makeBtn("Load Game", x, startY + (BTN_H + GAP), [this, gridWLocal]{
+		screen = Screen::LoadMenu;
+		panelScroll = 0.f;
+		panelScrollMax = 0.f;
+		buttons.clear();
+		build_save_load_modal(Modal::Load, gridWLocal);
+	});
+
+    // Quit
+    makeBtn("Quit", x, startY + 2 * (BTN_H + GAP), [this]{
+        window.close();
+    });
+}
+
+void UI::draw_main_menu() {
+    auto sz = window.getSize();
+    float winW = static_cast<float>(sz.x);
+    float winH = static_cast<float>(sz.y);
+
+    // Title
+    sf::Text title(font);
+    title.setString("Go Game");
+    title.setCharacterSize(40);
+    title.setStyle(sf::Text::Bold);
+    title.setFillColor(sf::Color::Black);
+    auto tb = title.getLocalBounds();
+    title.setOrigin({ tb.position.x + tb.size.x * 0.5f, tb.position.y });
+    title.setPosition({ winW * 0.5f, winH * 0.25f });
+    window.draw(title);
+
+    // Subtitle
+    sf::Text sub(font);
+    sub.setString("Click a button to start");
+    sub.setCharacterSize(18);
+    sub.setFillColor(sf::Color(50,50,50));
+    auto sb = sub.getLocalBounds();
+    sub.setOrigin({ sb.position.x + sb.size.x * 0.5f, sb.position.y });
+    sub.setPosition({ winW * 0.5f, winH * 0.25f + 40.f });
+    window.draw(sub);
+
+    // Buttons
+    for (auto& b : mainMenuButtons) {
+        b.rect.setFillColor(b.hovered ? sf::Color(235,220,160)
+                                      : sf::Color(220,200,120));
+        window.draw(b.rect);
+        if (b.label) window.draw(*b.label);
+    }
+}
+
+namespace {
     bool file_nonempty(const std::string& p) {
         std::error_code ec;
         return fs::exists(p, ec)
@@ -517,12 +656,18 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
     const int SLOTS = 6;
 
     const float panelW = 260.f;
-	auto vr   = view_rect();
-	float panelX = vr.position.x + vr.size.x - panelW - 20.f;
-	float panelY = vr.position.y + 160.f;
     const float pad    = 14.f;
+	auto vr   = view_rect();
+	float panelY = vr.position.y + 160.f;
 
-    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
+	float panelX;
+	if (screen == Screen::LoadMenu) {
+		panelX = vr.position.x + (vr.size.x - panelW) * 0.5f;
+	} else {
+		panelX = vr.position.x + vr.size.x - panelW - 20.f;
+	}
+
+	modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0});
 
     auto makeBtn = [&](const std::string& txt, float x, float y, std::function<void()> fn) {
         Button b;
@@ -599,6 +744,11 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
 					}
 				}
 				activeModal = Modal::None;
+
+				screen = Screen::Playing;
+				panelScroll = 0.f;
+				panelScrollMax = 0.f;
+
 				int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
 				build_main_buttons(gridWLocal);
 			}
@@ -606,7 +756,13 @@ void UI::build_save_load_modal(Modal type, int /*gridW*/) {
 		y += 40.f;
 	}
 
-    makeBtn("Cancel", xLeft, y + 8.f, [this]{ activeModal = Modal::None; });
+    makeBtn("Cancel", xLeft, y + 8.f, [this]{
+		activeModal = Modal::None;
+		if (screen == Screen::LoadMenu) {
+			screen = Screen::MainMenu;
+			build_main_menu();
+		}
+	});
 	y += 8.f + 32.f;
 
 	// Update panel size
@@ -1396,7 +1552,6 @@ void UI::build_music_modal(int gridW) {
 	const float rowH   = 32.f;
 	const float rowGap = 2.f;
 
-	// FloatRect
 	musicListRect = sf::FloatRect({xLeft, listTopY}, {panelW - 2*pad, listHeight});
 
 	const int total = (int)musicFiles.size();
@@ -1429,6 +1584,12 @@ void UI::build_music_modal(int gridW) {
 
 	center_modal_vertically();
 }
+
+auto fmt_score = [](double x) {
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(1) << x;
+    return oss.str();
+};
 
 void UI::build_game_over_modal(int gridW) {
     activeModal = Modal::GameOver;
@@ -1466,16 +1627,39 @@ void UI::build_game_over_modal(int gridW) {
         modalButtons.push_back(std::move(b));
     };
 
-    Score sc = game.score();
-    double k = game.komi();
-    double bpts = sc.black;
-    double wpts = sc.white + k;
+	double bpts = game.returnScore(Stone::BLACK);
+	double wpts = game.returnScore(Stone::WHITE);
+	double k    = game.komi();
 
-    std::string line1 = "Black: " + std::to_string(sc.black);
-    std::string line2 = "White: " + std::to_string(sc.white) + " + komi " + std::to_string(k);
-    std::string line3 = (bpts > wpts) ? "Result: Black wins"
-                      : (wpts > bpts) ? "Result: White wins"
-                                      : "Result: Draw";
+	auto fmt_score = [](double x) {
+		std::ostringstream oss;
+		oss << std::fixed << std::setprecision(1) << x;
+		return oss.str();
+	};
+
+	bool resigned = game.ended_by_resign();
+
+	std::string line1, line2, line3;
+
+	if (resigned) {
+		// No write komi
+		line1 = "Black: " + fmt_score(bpts);
+		line2 = "White: " + fmt_score(wpts);
+
+		if (bpts > wpts)
+			line3 = "Result: Black wins by resignation";
+		else if (wpts > bpts)
+			line3 = "Result: White wins by resignation";
+		else
+			line3 = "Result: Game ended by resignation";
+	} else {
+		// Normal ending
+		line1 = "Black: " + fmt_score(bpts);
+		line2 = "White: " + fmt_score(wpts) + " (includes komi " + fmt_score(k) + ")";
+		line3 = (bpts > wpts) ? "Result: Black wins"
+							: (wpts > bpts) ? "Result: White wins"
+											: "Result: Draw";
+	}
 
     const float xLeft = panelX + pad;
     float y = panelY + 40.f;
@@ -1607,12 +1791,20 @@ void UI::on_window_resized(sf::Vector2u ns) {
     window.setView(logicalView);
 
     // Smoother
-    if (resizeClock.getElapsedTime().asMilliseconds() >= 16) {
-        int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
-        build_main_buttons(gridW);
-        center_modal_vertically();
-        resizeClock.restart();
-    }
+	if (resizeClock.getElapsedTime().asMilliseconds() >= 16) {
+		int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+		if (screen == Screen::Playing) {
+			build_main_buttons(gridW);
+			center_modal_vertically();
+		} else if (screen == Screen::MainMenu) {
+			build_main_menu();
+		} else if (screen == Screen::LoadMenu) {
+			// Rebuild lại panel load cho đúng vị trí
+			build_save_load_modal(Modal::Load, gridW);
+			center_modal_vertically();
+		}
+		resizeClock.restart();
+	}
 }
 
 void UI::sync_view_to_window() {
@@ -1624,7 +1816,36 @@ void UI::sync_view_to_window() {
 }
 
 void UI::gui_handle_events() {
-	while (const auto event = window.pollEvent()) {
+    while (const auto event = window.pollEvent()) {
+        if (screen == Screen::MainMenu) {
+            if (event->is<sf::Event::Closed>()) {
+                window.close();
+                return;
+            }
+            else if (const auto* rz = event->getIf<sf::Event::Resized>()) {
+                on_window_resized(rz->size);
+                build_main_menu();
+            }
+            else if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
+                if (mb->button == sf::Mouse::Button::Left) {
+                    sf::Vector2f mp = to_world({ mb->position.x, mb->position.y });
+                    for (auto& b : mainMenuButtons) {
+                        if (b.rect.getGlobalBounds().contains(mp) && b.onClick) {
+                            b.onClick();
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
+                using sc = sf::Keyboard::Scancode;
+                if (key->scancode == sc::Escape) {
+                    window.close();
+                    return;
+                }
+            }
+            continue;
+        }
 
 		// 1) Close window
 		if (event->is<sf::Event::Closed>()) {
@@ -1675,7 +1896,10 @@ void UI::gui_handle_events() {
 					}
 					if (handled) continue;
 
-					if (activeModal != Modal::ConfirmQuit) {
+					if (screen != Screen::LoadMenu &&
+						activeModal != Modal::ConfirmQuit &&
+						activeModal != Modal::GameOver)
+					{
 						activeModal = Modal::None;
 					}
 					continue;
@@ -1748,10 +1972,17 @@ void UI::gui_handle_events() {
 		// 6) Click button
 		else if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
 			using sc = sf::Keyboard::Scancode;
-
+			if (activeModal == Modal::GameOver) {
+				continue;
+			}
+			
 			// Esc: Close modal if opening
 			if (key->scancode == sc::Escape) {
-				if (activeModal != Modal::None) { activeModal = Modal::None; continue; }
+				if (activeModal != Modal::None && activeModal != Modal::GameOver)
+				{
+					activeModal = Modal::None;
+					continue;
+				}
 			}
 
 			if (key->scancode == sc::Z) {
@@ -1762,8 +1993,15 @@ void UI::gui_handle_events() {
 			}
 			else if (key->scancode == sc::Space) {
 				if (!aiThinking) {
-					game.pass(); lastMove.reset();
-					if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
+					game.pass();
+					lastMove.reset();
+
+					if (game.is_over()) {
+						int gridW = MARGIN*2 + CELL*(BOARD_SIZE - 1);
+						build_game_over_modal(gridW);
+					} else if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+						gui_start_ai();
+					}
 				}
 			}
 			else if (key->scancode == sc::N) {
@@ -1839,18 +2077,22 @@ void UI::gui_update() {
 }
 
 void UI::update_hover_state() {
-	// Take mouse's position (relative)
-	auto p = sf::Mouse::getPosition(window);
-	mousePos = to_world({ p.x, p.y });
+    auto p = sf::Mouse::getPosition(window);
+    mousePos = to_world({ p.x, p.y });
 
-	auto refresh = [&](std::vector<Button>& arr){
-		for (auto& b : arr) {
-			b.hovered = b.rect.getGlobalBounds().contains(mousePos);
-		}
-	};
+    auto refresh = [&](std::vector<Button>& arr){
+        for (auto& b : arr) {
+            b.hovered = b.rect.getGlobalBounds().contains(mousePos);
+        }
+    };
 
-	if (activeModal != Modal::None) refresh(modalButtons);
-	else							refresh(buttons);
+    if (activeModal != Modal::None) {
+        refresh(modalButtons);
+    } else if (screen == Screen::MainMenu) {
+        refresh(mainMenuButtons);
+    } else {
+        refresh(buttons);
+    }
 }
 
 bool UI::board_has_any_stone() const {
@@ -1891,12 +2133,20 @@ void UI::gui_update_window_size() {
 }
 
 void UI::gui_render() {
-	window.clear(theme.border);
-	draw_board();
-	draw_stones();
-	draw_hud();
-	draw_modal();
-	window.display();
+    window.clear(theme.border);
+
+    if (screen == Screen::Playing) {
+        draw_board();
+        draw_stones();
+        draw_hud();
+        draw_modal();
+    } else if (screen == Screen::MainMenu) {
+        draw_main_menu();
+    } else if (screen == Screen::LoadMenu) {
+        draw_modal();
+    }
+
+    window.display();
 }
 
 void UI::gui_start_ai() {

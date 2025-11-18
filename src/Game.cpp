@@ -74,6 +74,15 @@ void Game::reset() {
     redo_stack.clear();
     // Xoá đếm PASS liên tiếp
     consecutive_passes = 0;
+
+    blacksCaptured = whitesCaptured = 0;
+    blackScore = whiteScore = 0;
+    endedByResign = false;
+}
+
+// Resign
+bool Game::ended_by_resign() const {
+    return endedByResign;
 }
 
 // Hoàn tác 1 nước đi (nếu có)
@@ -233,6 +242,7 @@ bool Game::play(const Move& m) {
 
 // (ONLY USE WHEN GAME ENDS) Calculate score for both players
 void Game::calcScore() {
+    if (endedByResign) return;
     int blackTerritory = bd.countTerritory(Stone::BLACK);
     int whiteTerritory = bd.countTerritory(Stone::WHITE);
     std::cout << "[SCORE] Black territory: " << blackTerritory << std::endl;
@@ -483,4 +493,17 @@ std::string Game::render_ascii() const {
     oss << "\n";
     // Trả về chuỗi ASCII board
     return oss.str();
+}
+
+// Resign
+void Game::resign(Stone loser) {
+    gameState = GameState::ENDED;
+    endedByResign = true;
+    if (loser == Stone::BLACK) {
+        blackScore = 0;
+        whiteScore = 10000;
+    } else if (loser == Stone::WHITE) {
+        whiteScore = 0;
+        blackScore = 10000;
+    }
 }
