@@ -298,9 +298,9 @@ std::string Game::serialize() const {
         // Ghi số PASS liên tiếp
         << " passes=" << consecutive_passes
         // Write number of BLACK stones captured
-
+        << " blacksCaptured=" << blacksCaptured
         // Write number of WHITE stones captured
-
+        << " whitesCaptured=" << whitesCaptured
         << "\n";
     // Viết ma trận bàn (N dòng, mỗi dòng N kí tự)
     oss << bd.dump_rows();
@@ -387,6 +387,10 @@ bool Game::deserialize(const std::string& data) {
         if (auto s = take("komi="))   k = std::stod(*s);
         // Lấy số PASS liên tiếp và ép nó ≥ 0
         if (auto s = take("passes=")) passes = std::max(0, std::stoi(*s));
+        // Take the # of BLACK stones captured
+        if (auto s = take("blacksCaptured=")) blacksCaptured = std::max(0, std::stoi(*s));
+        // Take the # of WHITE stones captured
+        if (auto s = take("whitesCaptured=")) whitesCaptured = std::max(0, std::stoi(*s));
 
         // Cập nhật kích thước và tạo board mới với kích thước N
         N = n; bd = Board(N);
