@@ -43,7 +43,7 @@ LƯU Ý
 #include <algorithm> // Dùng std::max khi parse header,...
 
 // Khởi tạo N = n, tạo Board NxN rỗng với lượt đi đầu là BLACK
-Game::Game(int n) : N(n), bd(n), previousBd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)) {}
+Game::Game(int n) : N(n), bd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)) {}
 // Trả về kích thước bàn
 int Game::size() const { return N; }
 // Returns the game's komi
@@ -104,7 +104,7 @@ bool Game::undo() {
     // return true;
 
     // Lấy nước cuối cùng khỏi history
-    previousBd = boardHistory[boardHistory.size() - 2];
+    Board previousBd = boardHistory[boardHistory.size() - 2];
     // Với pass: chỉ đảo lượt lại
     if (previousBd == bd) {
         to_move = opposite(to_move);
@@ -157,7 +157,7 @@ void Game::pass() {
     // Can't pass if game is ended
     if (gameState == GameState::ENDED) return;
     // Set previousBd equal to the current board
-    previousBd = bd;
+    Board previousBd = bd;
     // Ghi vào lịch sử một nước is_pass = true
     boardHistory.push_back(bd);
     moveHistory.push_back( Move{0,0,true} );
@@ -207,7 +207,7 @@ bool Game::play(const Move& m) {
     }
 
     // Set previousBd equal to the current board
-    previousBd = bd;
+    Board previousBd = bd;
     // Đặt quân của bên tới lượt vào ô (r, c), thực hiện tất cả logic về bàn cờ và quân cờ
     bd.set(m.r, m.c, to_move);
     
@@ -235,15 +235,15 @@ bool Game::play(const Move& m) {
 void Game::calcScore() {
     int blackTerritory = bd.countTerritory(Stone::BLACK);
     int whiteTerritory = bd.countTerritory(Stone::WHITE);
-    std::cout << "Black territory: " << blackTerritory << std::endl;
-    std::cout << "White territory: " << whiteTerritory << std::endl;
-    std::cout << "White stones captured by black: " << whitesCaptured << std::endl;
-    std::cout << "Black stones captured by white: " << blacksCaptured << std::endl;
+    std::cout << "[SCORE] Black territory: " << blackTerritory << std::endl;
+    std::cout << "[SCORE] White territory: " << whiteTerritory << std::endl;
+    std::cout << "[SCORE] White stones captured by black: " << whitesCaptured << std::endl;
+    std::cout << "[SCORE] Black stones captured by white: " << blacksCaptured << std::endl;
     blackScore = blackTerritory + whitesCaptured;
     whiteScore = whiteTerritory + blacksCaptured;
     whiteScore += komiPts; // Komi for white
-    std::cout << "Black total score: " << blackScore << std::endl;
-    std::cout << "White total score: " << whiteScore << std::endl;
+    std::cout << "[SCORE] Black total score: " << blackScore << std::endl;
+    std::cout << "[SCORE] White total score: " << whiteScore << std::endl;
 }
 
 // (ONLY USE WHEN GAME ENDS) Return game results (who wins or draws)
@@ -270,6 +270,20 @@ double Game::returnScore(Stone player) {
     }
 }
 
+// Clear history of boards and moves
+void Game::clearHistory() {
+    boardHistory.clear();
+    moveHistory.clear();
+    redo_stack.clear();
+    gameState = GameState::PLAYING;
+}
+
+// Load a new board to the game (when loading a saved game)
+void Game::loadNewBdToHistory(Board board) {
+    clearHistory();
+    boardHistory.push_back(board);
+}
+
 
 
 // Xuất trạng thái game thành chuỗi (để ghi file)
@@ -282,7 +296,12 @@ std::string Game::serialize() const {
         // Ghi komi hiện tại
         << " komi=" << komiPts
         // Ghi số PASS liên tiếp
-        << " passes=" << consecutive_passes << "\n";
+        << " passes=" << consecutive_passes
+        // Write number of BLACK stones captured
+
+        // Write number of WHITE stones captured
+
+        << "\n";
     // Viết ma trận bàn (N dòng, mỗi dòng N kí tự)
     oss << bd.dump_rows();
     // Trả về chuỗi kết quả
@@ -303,7 +322,7 @@ bool Game::deserialize(const std::string& data) {
         (unsigned char)first[1] == 0xBB &&
         (unsigned char)first[2] == 0xBF)
         first.erase(0, 3);
-    // Gỡ Byte Order Mark (BOM UTF-8)
+    // Remove Byte Order Mark (BOM UTF-8)
 
     // Hàm Lambda giúp loại bỏ '\r' ở cuối dòng nếu có để tương thích
     auto rstrip_cr = [](std::string& s){
@@ -360,42 +379,50 @@ bool Game::deserialize(const std::string& data) {
             return header.substr(pos, e - pos);
         };
         // Tách giá trị theo kiểu "N=", "side=", "komi=", "passes=" từ header
-        if (auto s = take("N="))      n = std::max(1, std::stoi(*s));
         // Lấy N và ép nó ≥ 1
-        if (auto s = take("side="))   side = std::stoi(*s);
+        if (auto s = take("N="))      n = std::max(1, std::stoi(*s));
         // Lấy lượt (0=Black, 1=White)
-        if (auto s = take("komi="))   k = std::stod(*s);
+        if (auto s = take("side="))   side = std::stoi(*s);
         // Lấy komi
-        if (auto s = take("passes=")) passes = std::max(0, std::stoi(*s));
+        if (auto s = take("komi="))   k = std::stod(*s);
         // Lấy số PASS liên tiếp và ép nó ≥ 0
+        if (auto s = take("passes=")) passes = std::max(0, std::stoi(*s));
 
-        N = n; bd = Board(N);
         // Cập nhật kích thước và tạo board mới với kích thước N
-        komiPts = k;
+        N = n; bd = Board(N);
         // Cập nhật komi
-        to_move = (side == 0 ? Stone::BLACK : Stone::WHITE);
+        komiPts = k;
         // Cập nhật lượt
-        consecutive_passes = passes;
+        to_move = (side == 0 ? Stone::BLACK : Stone::WHITE);
         // Cập nhật số pass liên tiếp
+        consecutive_passes = passes;
 
-        std::vector<std::string> rows; rows.reserve(N);
         // Chuẩn bị đọc N dòng ma trận
+        std::vector<std::string> rows; rows.reserve(N);
         while ((int)rows.size() < N) {
             std::string line;
-            if (!std::getline(iss, line)) return false;
             // Thiếu dòng thì ra lỗi
-            rstrip_cr(line);
+            if (!std::getline(iss, line)) return false;
             // Bỏ qua CR nếu có
-            if ((int)line.size() < N) continue;
+            rstrip_cr(line);
             // Bỏ qua các dòng ngắn hơn N
-            rows.push_back(line.substr(0, N));
+            if ((int)line.size() < N) continue;
             // Lấy đúng N kí tự mỗi dòng
+            rows.push_back(line.substr(0, N));
         }
-        return bd.load_rows(rows);
+        // Check if loading rows is successful
+        bool loadRowsOK = bd.load_rows(rows);
+        // Clear history and load new board into game history
+        if (loadRowsOK) loadNewBdToHistory(bd);
         // Nạp vào board và trả về kết quả là true hay false
+        return loadRowsOK;
     } else {
-        return only_rows(first);
+        // Check if loading rows is successful
+        bool loadOnlyRowsOK = only_rows(first);
+        // Clear history and load new board into game history
+        if (loadOnlyRowsOK) loadNewBdToHistory(bd);
         // Không có HEADER thì xử lý như file chỉ gồm ma trận
+        return loadOnlyRowsOK;
     }
 }
 

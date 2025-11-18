@@ -509,7 +509,7 @@ namespace {
     }
 }
 
-// Save/ load modal
+// Save / load modal
 void UI::build_save_load_modal(Modal type, int /*gridW*/) {
     activeModal = type;
     modalButtons.clear();

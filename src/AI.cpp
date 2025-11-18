@@ -34,7 +34,9 @@ Move GoAI::choose_move(const Game& game, std::mt19937& rng){
     case AIDifficulty::EASY:
         return choose_move_easy(game, rng);
     case AIDifficulty::MEDIUM:
-        return choose_move_medium(game, rng);
+        return choose_move_easy(game, rng);
+    case AIDifficulty::HARD:
+        return choose_move_easy(game, rng);
     }
     return choose_move_easy(game, rng);
 }
@@ -61,5 +63,5 @@ Move GoAI::choose_move_easy(const Game& game, std::mt19937& rng) {
 
 // For MEDIUM MODE
 Move GoAI::choose_move_medium(const Game& game, std::mt19937& rng) {
-    
+    return {0,0,true}; // ***** PLACEHOLDER, WILL DELETE LATER *****
 }

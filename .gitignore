@@ -32,6 +32,8 @@ build/_deps/*
 # Save folder
 saves/*
 
+assets\ 2/*
+
 # Testing signed commits
 testfile
 testfile.sig

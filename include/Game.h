@@ -78,7 +78,10 @@ public:
     GameResults results();
     // (ONLY USE WHEN GAME ENDS) Return player's score (black or white)
     double returnScore(Stone player);
-    
+
+    // Load a new board to the game (WHEN LOADING A SAVED GAME)
+    void loadNewBdToHistory(Board board);
+
     // Xuất toàn bộ trạng thái trò chơi thành chuỗi
     std::string serialize() const;
     // Nạp lại trạng thái từ chuỗi
@@ -98,7 +101,6 @@ private:
     int   N;
     // Bàn cờ: mảng ô Stone
     Board bd;
-    Board previousBd;
     // Màu quân đang tới lượt
     Stone to_move;
     // Số lượt pass liên tiếp
@@ -113,4 +115,8 @@ private:
     std::vector<Move> moveHistory;
     // Các bàn cờ hoàn tác gần nhất
     std::vector<Board> redo_stack;
+
+
+    // Clear history of boards and moves
+    void clearHistory();
 };
