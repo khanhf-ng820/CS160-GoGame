@@ -429,8 +429,8 @@ void UI::build_main_buttons(int gridW) {
 					}
 				});
 
-		addSpan2("Mode",
-			[this, gridW]{ request_switch_mode(gridW); });
+		// addSpan2("Mode",
+		// 	[this, gridW]{ request_switch_mode(gridW); });
 
         addRow2("New Game",
             [this, gridW]{
@@ -473,7 +473,7 @@ void UI::build_main_buttons(int gridW) {
 			}
 		});
 
-        addSpan2("Mode", [this, gridW]{ request_switch_mode(gridW); });
+        // addSpan2("Mode", [this, gridW]{ request_switch_mode(gridW); });
 
 		addSpan2("Resign", [this, gridW]{
 			if (!aiThinking) {
@@ -2007,27 +2007,29 @@ void UI::gui_handle_events() {
 			else if (key->scancode == sc::N) {
 				gui_reset();
 			}
-			else if (key->scancode == sc::M) {
-				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
-				request_switch_mode(gridW);
-			}
+			// Don't allow to switch mode PVP and PVE
+			// else if (key->scancode == sc::M) {
+			// 	int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+			// 	request_switch_mode(gridW);
+			// }
 			else if (key->scancode == sf::Keyboard::Scancode::C) {
 				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
 				build_theme_modal(gridW);
 			}
 
-			else if (key->scancode == sc::Num1) {
-				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
-				build_confirm_diff_modal(AIDifficulty::EASY, gridW);
-			}
-			else if (key->scancode == sc::Num2) {
-				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
-				build_confirm_diff_modal(AIDifficulty::MEDIUM, gridW);
-			}
-			else if (key->scancode == sc::Num3) {
-				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
-				build_confirm_diff_modal(AIDifficulty::HARD, gridW);
-			}
+			// Don't allow to switch AI difficulty (because AI not implemented yet)
+			// else if (key->scancode == sc::Num1) {
+			// 	int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+			// 	build_confirm_diff_modal(AIDifficulty::EASY, gridW);
+			// }
+			// else if (key->scancode == sc::Num2) {
+			// 	int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+			// 	build_confirm_diff_modal(AIDifficulty::MEDIUM, gridW);
+			// }
+			// else if (key->scancode == sc::Num3) {
+			// 	int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
+			// 	build_confirm_diff_modal(AIDifficulty::HARD, gridW);
+			// }
 
 			// Background music: Turn on/ Pause
 			else if (key->scancode == sc::V) {
@@ -2322,7 +2324,7 @@ void UI::draw_hud() {
 		// "Turn:"
 		turnText->setString("Turn:");
 		turnText->setCharacterSize(22);
-		turnText->setFillColor(sf::Color(20, 80, 160));
+		turnText->setFillColor(sf::Color(69, 147, 195));
 		turnText->setOutlineColor(sf::Color::Black);
 		turnText->setOutlineThickness(1.2f);
 		turnText->setStyle(sf::Text::Style::Bold);
@@ -2359,10 +2361,10 @@ void UI::draw_hud() {
 		auto modeStr = (mode==GameMode::PVP ? "PVP" : "PVE");
 		auto diffStr = (diff==AIDifficulty::HARD ? "Hard" : diff==AIDifficulty::MEDIUM ? "Medium" : "Easy");
 		infoText->setString(
-			std::string("Mode (M): ") + modeStr +
-			"\nAI (1/2/3): " + diffStr +
-			"\nTheme (C): change" +
-			"\nMusic (V): play/pause"
+			// std::string("Mode (M): ") + modeStr +
+			// "\nAI (1/2/3): " + diffStr +
+			std::string("\nTheme (C): change") +
+			std::string("\nMusic (V): play/pause")
 		);
 		infoText->setCharacterSize(18);
 		infoText->setFillColor(sf::Color::Black);
