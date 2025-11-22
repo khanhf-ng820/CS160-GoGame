@@ -184,6 +184,30 @@ std::vector<sf::Vector2i> UI::hoshi_points(int N) {
 void UI::run_graphical() {
 	BOARD_SIZE = game.size();
 
+    // Scale cell to fit screen
+    {
+        auto desk = sf::VideoMode::getDesktopMode();
+        unsigned safeH = 96;
+        unsigned safeW = 80;
+        unsigned maxH  = (desk.size.y > safeH ? desk.size.y - safeH : desk.size.y);
+        unsigned maxW  = (desk.size.x > safeW ? desk.size.x - safeW : desk.size.x);
+
+        int tmpCell = CELL;
+        while (tmpCell > 20) {
+            int gridW = MARGIN * 2 + tmpCell * (BOARD_SIZE - 1);
+            int gridH = MARGIN * 2 + tmpCell * (BOARD_SIZE - 1);
+
+            unsigned winW = static_cast<unsigned>(gridW + PANEL_GAP + PANEL_W + RIGHT_PAD);
+            unsigned winH = static_cast<unsigned>(gridH);
+
+            if (winW <= maxW && winH <= maxH) {
+                break;
+            }
+            --tmpCell;
+        }
+        CELL = tmpCell;
+    }
+
 	const int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
 	const int gridH = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
 
@@ -516,9 +540,12 @@ void UI::build_main_buttons(int gridW) {
 void UI::build_main_menu() {
     mainMenuButtons.clear();
 
-    auto sz = window.getSize();
-    float winW = static_cast<float>(sz.x);
-    float winH = static_cast<float>(sz.y);
+    // View logic
+    auto vr = view_rect();
+    float winW = vr.size.x;
+    float winH = vr.size.y;
+    float originX = vr.position.x;
+    float originY = vr.position.y;
 
     auto makeBtn = [&](const std::string& txt, float x, float y,
                        std::function<void()> fn,
@@ -548,10 +575,11 @@ void UI::build_main_menu() {
     const float BTN_W   = 220.f;
     const float BTN_H   = 42.f;
     const float GAP     = 16.f;
-    const float centerX = winW * 0.5f;
+    const float centerX = originX + winW * 0.5f;
+
     float totalH = 3 * BTN_H + 2 * GAP;
-    float startY = winH * 0.5f - totalH * 0.5f;
-    float x = centerX - BTN_W * 0.5f;
+    float startY = originY + winH * 0.5f - totalH * 0.5f;
+    float x      = centerX - BTN_W * 0.5f;
 
     int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
 
@@ -566,14 +594,14 @@ void UI::build_main_menu() {
         activeModal = Modal::None;
     });
 
-	// Load Game
-	makeBtn("Load Game", x, startY + (BTN_H + GAP), [this, gridWLocal]{
-		screen = Screen::LoadMenu;
-		panelScroll = 0.f;
-		panelScrollMax = 0.f;
-		buttons.clear();
-		build_save_load_modal(Modal::Load, gridWLocal);
-	});
+    // Load Game
+    makeBtn("Load Game", x, startY + (BTN_H + GAP), [this, gridWLocal]{
+        screen = Screen::LoadMenu;
+        panelScroll = 0.f;
+        panelScrollMax = 0.f;
+        buttons.clear();
+        build_save_load_modal(Modal::Load, gridWLocal);
+    });
 
     // Quit
     makeBtn("Quit", x, startY + 2 * (BTN_H + GAP), [this]{
@@ -582,19 +610,21 @@ void UI::build_main_menu() {
 }
 
 void UI::draw_main_menu() {
-    auto sz = window.getSize();
-    float winW = static_cast<float>(sz.x);
-    float winH = static_cast<float>(sz.y);
+    auto vr = view_rect();
+    float winW = vr.size.x;
+    float winH = vr.size.y;
+    float originX = vr.position.x;
+    float originY = vr.position.y;
 
     // Title
     sf::Text title(font);
-    title.setString("Go Game");
+    title.setString("CS 160 - Go Game Project");
     title.setCharacterSize(40);
     title.setStyle(sf::Text::Bold);
     title.setFillColor(sf::Color::Black);
     auto tb = title.getLocalBounds();
     title.setOrigin({ tb.position.x + tb.size.x * 0.5f, tb.position.y });
-    title.setPosition({ winW * 0.5f, winH * 0.25f });
+    title.setPosition({ originX + winW * 0.5f, originY + winH * 0.25f });
     window.draw(title);
 
     // Subtitle
@@ -604,7 +634,7 @@ void UI::draw_main_menu() {
     sub.setFillColor(sf::Color(50,50,50));
     auto sb = sub.getLocalBounds();
     sub.setOrigin({ sb.position.x + sb.size.x * 0.5f, sb.position.y });
-    sub.setPosition({ winW * 0.5f, winH * 0.25f + 40.f });
+    sub.setPosition({ originX + winW * 0.5f, originY + winH * 0.25f + 40.f });
     window.draw(sub);
 
     // Buttons
