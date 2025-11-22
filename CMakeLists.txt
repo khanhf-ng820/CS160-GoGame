@@ -28,6 +28,13 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build
 )
 
+
+add_custom_target(copy_assets
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_DIR}/copy_assets.cmake
+)
+add_dependencies(GoGame copy_assets)
+
+
 # macOS: ensure frameworks and rpaths are set
 #if(APPLE)
 #    set_target_properties(${PROJECT_NAME} PROPERTIES
