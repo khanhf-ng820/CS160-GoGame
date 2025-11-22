@@ -56,11 +56,6 @@ const Board& Game::board() const { return bd; }
 Stone Game::side_to_move() const { return to_move; }
 // Ván kết thúc nếu có ≥ 2 lượt pass liên tiếp
 bool Game::is_over() const { return consecutive_passes >= 2; }
-// Đếm tổng quân đen/ trắng hiện trên bàn (không tính TERRITORY)
-Score Game::score() const {
-    // Gọi Board::count để lấy số lượng quân mỗi bên
-    Score s{}; bd.count(s.black, s.white); return s;
-}
 
 // Đặt lại game về trạng thái ban đầu
 void Game::reset() {
@@ -194,7 +189,8 @@ bool Game::legal(const Move& m) const {
     // Check if any of own's stones will be captured
     if (!futureBoard.set(m.r, m.c, to_move)) return false;
 
-    // Ko rule: One may not play in such a way as to recreate the board position following one's previous move.
+    // Ko rule: One may not play in such a way as to recreate the board position
+    // following one's previous move.
     Board prevBoard = (boardHistory.size() > 1) ? boardHistory[boardHistory.size() - 2] : Board(N);
     if (prevBoard == futureBoard) return false;
 
@@ -398,9 +394,9 @@ bool Game::deserialize(const std::string& data) {
         // Lấy số PASS liên tiếp và ép nó ≥ 0
         if (auto s = take("passes=")) passes = std::max(0, std::stoi(*s));
         // Take the # of BLACK stones captured
-        if (auto s = take("blacksCaptured=")) blacksCaptured = std::max(0, std::stoi(*s));
+        if (auto s = take("blacksCaptured="))   blacksCaptured = std::max(0, std::stoi(*s));
         // Take the # of WHITE stones captured
-        if (auto s = take("whitesCaptured=")) whitesCaptured = std::max(0, std::stoi(*s));
+        if (auto s = take("whitesCaptured="))   whitesCaptured = std::max(0, std::stoi(*s));
 
         // Cập nhật kích thước và tạo board mới với kích thước N
         N = n; bd = Board(N);

@@ -22,25 +22,24 @@ Hàm chính:
 */
 #pragma once
 #include <string>
-#include <vector> // Dùng cho lịch sử nước đi (history), redo,...
-#include <optional> // Thêm hờ thôi chứ vẫn chưa sử dụng trong đây
-#include <random> // Có mỗi AI là xài cái này nhma cứ bỏ hết đại đi=))
-#include <sstream> // ostringstream, istringstream trong serialize, deserialize á
-#include "Board.h" // Dùng Board, Stone với 1 số cái như opposite, trim,...
+#include <vector>
+#include <optional>
+#include <random>
+#include <sstream>
+#include "Board.h"
 
-// 2 kiểu chế độ chơi, PvP hoặc PvE
+// 2 gamemodes: PvP, PvE
 enum class GameMode { PVP, PVE };
 // Game states
 enum class GameState { PLAYING, ENDED };
 // Endgame results
 enum class GameResults { BLACK_WINS, WHITE_WINS, DRAW };
 
-// Cái này mô tả 1 nước đi hàng r cột c hoặc là is_pass = true nếu skip
+// Represent a move of row r, column c, is_pass = true if move is pass
 struct Move { int r = 0, c = 0; bool is_pass = false; };
-// Đếm đơn giản số ô đen với trắng
-struct Score { int black = 0, white = 0; };
 
-// Class game này quản lý trạng thái với luật cơ bản của ván cờ (kiểu luân phiên, tính hợp lệ hay lịch sử)
+
+// GAME CLASS này quản lý trạng thái với luật cơ bản của ván cờ (kiểu luân phiên, tính hợp lệ hay lịch sử)
 class Game {
 public:
     // Khởi tạo ván game mới với bàn cờ 19x19
@@ -57,8 +56,6 @@ public:
     Stone side_to_move() const;
     // Trả về true nếu ván đã kết thúc (ở đây chưa có gì nhiều)
     bool  is_over() const;
-    // Đếm số quân đen, trắng hiện có (không có đếm vùng, chỉ mới đếm quân đặt)
-    Score score() const;
     // Xoá bàn cờ, đưa về trạng thái bắt đầu, đặt lại history
     void reset();
     // Hoàn tác 1 nước (trả quân, đảo lượt, giảm pass,...)
@@ -82,7 +79,7 @@ public:
     // Load a new board to the game (WHEN LOADING A SAVED GAME)
     void loadNewBdToHistory(Board board);
 
-    // Xuất toàn bộ trạng thái trò chơi thành chuỗi
+    // Returns string (as text) to save the game state into text file
     std::string serialize() const;
     // Nạp lại trạng thái từ chuỗi
     bool        deserialize(const std::string& data);
@@ -98,30 +95,30 @@ public:
     bool ended_by_resign() const;
 
 private:
-    // Điểm bù cho trắng (WHITE) (Japanese komi)
+    // Japanese komi for WHITE
     double komiPts = 6.5;
 
     // Game state
     GameState gameState = GameState::PLAYING;
-    // Kích thước bàn
+    // Board size
     int   N;
-    // Bàn cờ: mảng ô Stone
+    // Board object
     Board bd;
-    // Màu quân đang tới lượt
+    // Color of player to move
     Stone to_move;
-    // Số lượt pass liên tiếp
+    // Consecutive passes
     int   consecutive_passes = 0;
     // Points: number of white & black stones captured by opponents
     int   blacksCaptured = 0, whitesCaptured = 0;
     // Total points of each player (territory and captures)
     double blackScore = 0, whiteScore = 0;
-    // If resgined, no calculate territory again
+    // If resigned, don't calculate territory again
     bool endedByResign = false;
     // History of all boards played
     std::vector<Board> boardHistory;
-    // Lịch sử các nước đã chơi (for printing and keeping records ONLY)
+    // History of all moves played (for printing and keeping records ONLY)
     std::vector<Move> moveHistory;
-    // Các bàn cờ hoàn tác gần nhất
+    // Stack of undone boards
     std::vector<Board> redo_stack;
 
 
