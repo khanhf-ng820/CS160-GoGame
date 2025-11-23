@@ -1,9 +1,3 @@
-/*
-    Board để lưu trạng thái bàn cờ
-    Board.h sẽ khai báo tất cả thư viện và hàm cần dùng
-    Board.cpp chỉ cần chạy các hàm thôi, #include "Board.h" là được
-*/
-
 #pragma once
 #include <vector>
 #include <string>
