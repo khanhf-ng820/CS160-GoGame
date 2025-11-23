@@ -33,14 +33,3 @@ add_custom_target(copy_assets
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_DIR}/copy_assets.cmake
 )
 add_dependencies(GoGame copy_assets)
-
-
-# macOS: ensure frameworks and rpaths are set
-#if(APPLE)
-#    set_target_properties(${PROJECT_NAME} PROPERTIES
-#        MACOSX_BUNDLE TRUE
-#        MACOSX_BUNDLE_GUI_IDENTIFIER my.sfml.app
-#        RESOURCE "${CMAKE_SOURCE_DIR}/resources"
-#    )
-#endif()
-

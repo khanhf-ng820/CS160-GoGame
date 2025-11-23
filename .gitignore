@@ -34,6 +34,11 @@ saves/*
 
 assets\ 2/*
 
+# Bash files to make
+add_submodules.sh
+remake.sh
+run_cmake.sh
+
 # Testing signed commits
 testfile
 testfile.sig
