@@ -371,14 +371,15 @@ bool Game::deserialize(const std::string& data) {
         return bd.load_rows(rows);
     };
 
-    // Trường hợp file không có HEADER GOSAVE mà chỉ có ma trận N dòng
+    // In case the save file doesn't have GOSAVE HEADER and only have matrix with N rows
+    // If first line contains string "GO SAVE" -> HEADER exists
     if (first.rfind("GOSAVE", 0) == 0) {
-    // Nếu dòng đầu bắt đầu bằng "GO SAVE" = có HEADER
+        // Trim whitespace chars
         std::string header = trim(first);
-        // Bỏ khoảng trắng dư thừa 2 đầu dòng
+        // Default values of N, side-to-move, komi and consecutive passes
         int n = 19, side = 0, passes = 0; double k = 6.5;
-        // Giá trị mặc định là n, lượt, komi là số lượt pass
 
+        // Take lambda function
         auto take = [&](const std::string& key)->std::optional<std::string>{
             auto pos = header.find(key);
             if (pos == std::string::npos) return std::nullopt;
@@ -387,59 +388,59 @@ bool Game::deserialize(const std::string& data) {
             if (e == std::string::npos) e = header.size();
             return header.substr(pos, e - pos);
         };
-        // Tách giá trị theo kiểu "N=", "side=", "komi=", "passes=" từ header
-        // Lấy N và ép nó ≥ 1
+        // Fetch important data: "N=", "side=", "komi=", "passes=" from HEADER
+        // Get N and clamp N above 1 ( >= 1 )
         if (auto s = take("N="))      n = std::max(1, std::stoi(*s));
-        // Lấy lượt (0=Black, 1=White)
+        // Get the current player to move (0 = Black, 1 = White)
         if (auto s = take("side="))   side = std::stoi(*s);
-        // Lấy komi
+        // Get komi
         if (auto s = take("komi="))   k = std::stod(*s);
-        // Lấy số PASS liên tiếp và ép nó ≥ 0
+        // Get number of consecutive PASSES and clamp above 0 ( >= 0 )
         if (auto s = take("passes=")) passes = std::max(0, std::stoi(*s));
-        // Take the # of BLACK stones captured
+        // Get the # of BLACK stones captured
         if (auto s = take("blacksCaptured="))   blacksCaptured = std::max(0, std::stoi(*s));
-        // Take the # of WHITE stones captured
+        // Get the # of WHITE stones captured
         if (auto s = take("whitesCaptured="))   whitesCaptured = std::max(0, std::stoi(*s));
 
-        // Cập nhật kích thước và tạo board mới với kích thước N
+        // Update size N and create new board of size N
         N = n; bd = Board(N);
-        // Cập nhật komi
+        // Update komi value
         komiPts = k;
-        // Cập nhật lượt
+        // Update side-to-move value
         to_move = (side == 0 ? Stone::BLACK : Stone::WHITE);
-        // Cập nhật số pass liên tiếp
+        // Update number of consecutive PASSES
         consecutive_passes = passes;
 
-        // Chuẩn bị đọc N dòng ma trận
+        // Read the N-row matrix
         std::vector<std::string> rows; rows.reserve(N);
         while ((int)rows.size() < N) {
             std::string line;
-            // Thiếu dòng thì ra lỗi
+            // If fewer than N rows, return false (error)
             if (!std::getline(iss, line)) return false;
-            // Bỏ qua CR nếu có
+            // Strip '\r' chars
             rstrip_cr(line);
-            // Bỏ qua các dòng ngắn hơn N
+            // Skip all lines of fewer than N chars
             if ((int)line.size() < N) continue;
-            // Lấy đúng N kí tự mỗi dòng
+            // Only take the first N chars for each line
             rows.push_back(line.substr(0, N));
         }
         // Check if loading rows is successful
         bool loadRowsOK = bd.load_rows(rows);
         // Clear history and load new board into game history
         if (loadRowsOK) loadNewBdToHistory(bd);
-        // Nạp vào board và trả về kết quả là true hay false
+        // Loaded into 'board' and return boolean value as result
         return loadRowsOK;
     } else {
         // Check if loading rows is successful
         bool loadOnlyRowsOK = only_rows(first);
         // Clear history and load new board into game history
         if (loadOnlyRowsOK) loadNewBdToHistory(bd);
-        // Không có HEADER thì xử lý như file chỉ gồm ma trận
+        // If HEADER doesn't exist, then deserialize savefile with matrix only
         return loadOnlyRowsOK;
     }
 }
 
-// Chuyển chuỗi nhập (vd "D4", "pass") thành Move (r, c)
+// Turn move strings: "D4", "Q11", pass, etc. into Move objects of size N
 Move Game::parse_move(const std::string& raw, int N) {
     // Chuẩn hoá bằng cách bỏ khoảng trắng đầu/ cuối
     std::string s = trim(raw);
