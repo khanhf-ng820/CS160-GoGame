@@ -26,4 +26,5 @@ public:
 private:
     AIDifficulty diff;
     int medium_search_depth = 2;
+    int hard_search_depth = 4;
 };

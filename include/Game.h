@@ -39,34 +39,34 @@ enum class GameResults { BLACK_WINS, WHITE_WINS, DRAW };
 struct Move { int r = 0, c = 0; bool is_pass = false; };
 
 
-// GAME CLASS này quản lý trạng thái với luật cơ bản của ván cờ (kiểu luân phiên, tính hợp lệ hay lịch sử)
+// GAME CLASS controls game state and implements game logic
 class Game {
 public:
-    // Khởi tạo ván game mới với bàn cờ 19x19
+    // Create new game with board of size 19x19
     explicit Game(int n = 19);
-    // Trả về kích thước của bàn cờ
+    // Returns size of board
     int size() const;
     // Returns the game's komi
     double komi() const;
-    // Cho phép truy cập tới Board. Vd như cho UI vẽ,...
+    // Returns mutable Board for query
     Board&       board();
-    // Truy cập const tới Board
+    // Returns const Board for query
     const Board& board() const;
-    // Trả về màu quân đang tới lượt
+    // Returns player to move
     Stone side_to_move() const;
-    // Trả về true nếu ván đã kết thúc (ở đây chưa có gì nhiều)
+    // Returns true if game is ended
     bool  is_over() const;
-    // Xoá bàn cờ, đưa về trạng thái bắt đầu, đặt lại history
+    // Clear the game, board, and game state
     void reset();
-    // Hoàn tác 1 nước (trả quân, đảo lượt, giảm pass,...)
+    // Undo a move (undo placing stone, revert turn, decrement pass counter,...)
     bool undo();
-    // Làm lại 1 nước mới undo (nếu có trong redo_stack)
+    // Redo an undone move (if move is in redo_stack)
     bool redo();
-    // Thực hiện hành động pass, ghi vào history, đổi lượt,...
+    // Pass action
     void pass();
-    // Kiểm tra tính hợp lệ của nước đi (trong biên và ô trống/ pass)
+    // Check if move is legal (move in bounds, pass move,...)
     bool legal(const Move& m) const;
-    // Thực hiện nước đi nếu valid bao gồm đặt quân, ghi history, xoá redo_stack, đổi lượt,...
+    // Play the move if valid: place stone, write history, clear redo_stack, alternate turns,...
     bool play(const Move& m);
 
     // (ONLY USE WHEN GAME ENDS) Calculate score for both players
@@ -81,11 +81,11 @@ public:
 
     // Returns string (as text) to save the game state into text file
     std::string serialize() const;
-    // Nạp lại trạng thái từ chuỗi
+    // Load saved game state from text string
     bool        deserialize(const std::string& data);
-    // Chuyển chuỗi "D4", "Q11", pass, ... thành Move theo kích thước N
+    // Turn move strings: "D4", "Q11", pass, etc. into Move objects of size N
     static Move parse_move(const std::string& raw, int N);
-    // Vẽ bàn ra chuỗi "ASCII art" (nhãn A...T, số hàng, ...)
+    // Draw the board into "ASCII art" (letters A...T, rows, ...)
     std::string render_ascii() const;
 
     // Resign
