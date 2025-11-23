@@ -440,7 +440,6 @@ bool Game::deserialize(const std::string& data) {
     }
 }
 
-// Chuyển chuỗi nhập (vd "D4", "pass") thành Move (r, c)
 // Turn move strings: "D4", "Q11", pass, etc. into Move objects of size N
 Move Game::parse_move(const std::string& raw, int N) {
     // Chuẩn hoá bằng cách bỏ khoảng trắng đầu/ cuối
