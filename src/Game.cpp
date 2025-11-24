@@ -442,56 +442,56 @@ bool Game::deserialize(const std::string& data) {
 
 // Turn move strings: "D4", "Q11", pass, etc. into Move objects of size N
 Move Game::parse_move(const std::string& raw, int N) {
-    // Chuẩn hoá bằng cách bỏ khoảng trắng đầu/ cuối
+    // Trim whitespace chars
     std::string s = trim(raw);
-    // Đổi chữ thường thành hoa
+    // Make letters uppercase
     for (char& ch : s) if (ch >= 'a' && ch <= 'z') ch = char(ch - 'a' + 'A');
-    // PASS/ RESIGN thì xem là pass
+    // PASS / RESIGN are considered PASS moves
     if (s == "PASS" || s == "RESIGN") return {0,0,true};
-    // Nếu quả ngắn để parse thành cột với số thì coi như PASS
+    // If it's too short to be considered a move string, make it a PASS move
     if (s.size() < 2) return {0,0,true};
-    // Lấy cột (A...T) chuyển thành chỉ số 
+    // Turn column (A...T) into index
     int c = col_from_char(s[0]);
-    // Lấy hàng là số phía sau
+    // Convert the integer number to be the row index
     int r = std::stoi(s.substr(1)) - 1;
-    // Nếu cột/ hàng nằm ngoài phạm vi thì trả về PASS
+    // If row/column out of bounds, consider it a PASS move
     if (c < 0 || r < 0 || r >= N) return {0,0,true};
-    // Hợp lệ -> trả về Move với is_pass = false
+    // Valid -> return Move object with is_pass = false
     return {r, c, false};
 }
 
-// Vẽ bàn ra chuỗi ASCII có cột và hàng hai bên
+// Draw the board into "ASCII art" (letters A...T, rows, ...)
 std::string Game::render_ascii() const {
-    // Kết quả buffer
+    // Result buffer
     std::ostringstream oss;
-    // Lề trái cho nhãn cột phía trên
+    // The column labels at the top
     oss << "   ";
-    // In A..T với khoảng cách
+    // Print A..T with spaces
     for (int c = 0; c < N; ++c) oss << char_from_col(c) << ' ';
-    // Xuống dòng sau hàng nhãn cột trên
+    // New line after the column top labels
     oss << "\n";
 
     for (int r = 0; r < N; ++r) {
-        // Nhãn row: Số giảm dần từ N xuống 1
+        // Row labels: Numbers decreasing from N to 1
         int rowLabel = N - r;
-        // Căn lề cho số có 1 chữ số
+        // Add left padding for 1-digit numbers
         if (rowLabel < 10) oss << ' ';
-        // In row bên phải
+        // Print row labels on the left
         oss << rowLabel << ' ';
-        // In từng ô: '.', 'X', 'O' cùng khoảng trắng
+        // Print each intersection of the board: '.', 'X', 'O' with spaces
         for (int c = 0; c < N; ++c)
             oss << stone_char(bd.get(r, c)) << ' ';
-        // In nhãn row bên phải cùng newline
+        // Print row labels on the right, with newline
         oss << ' ' << rowLabel << '\n';
     }
 
-    // Lề trái cho nhãn column phía dưới
+    // The column labels at the bottom
     oss << "   ";
-    // Lặp lại nhãn column dưới
+    // Print A..T with spaces
     for (int c = 0; c < N; ++c) oss << char_from_col(c) << ' ';
-    // Kết thúc bằng newline
+    // End with newline
     oss << "\n";
-    // Trả về chuỗi ASCII board
+    // Return board ASCII string
     return oss.str();
 }
 
