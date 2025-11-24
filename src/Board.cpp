@@ -18,46 +18,46 @@ TÓM TẮT TRƯỚC CÁC HÀM
 
 // ULTILITIES
 Stone opposite(Stone s) {
-// Đây là hàm trả về quân đối, kiểu BLACK trả về WHITE và ngược lại
-// *** Lưu ý là nếu truyền EMPTY nó vẫn trả về BLACK để tiện cho luân phiên lượt, nhưng mà cái này hiếm trong trường hợp bthuong=)) ***
+// Returns the opposite stone color (Black -> White, White -> Black)
+// *** NOTE: EMPTY still returns BLACK to make it easier to alternate turns ***
     return (s == Stone::BLACK ? Stone::WHITE : Stone::BLACK);
 }
 
+// Returns char representing an intersection ('X': BLACK, 'O': WHITE, '.': EMPTY)
 char stone_char(Stone s) {
-// Đây là hàm chuyển Stone thành kí tự, ví dụ quân đen <-> 'X' và quân trắng <-> 'O', trống thì <-> '.'
     if (s == Stone::BLACK) return 'X';
     if (s == Stone::WHITE) return 'O';
     return '.';
 }
 
+// Turns column char (A, B, C, ..., T, ignore I due to standards) into column int
 int col_from_char(char ch) {
-// Chuyển kí tự cột thành chỉ số cột
+    // Turns ch into uppercase
     if (ch >= 'a' && ch <= 'z') ch = char(ch - 'a' + 'A');
-    // Chuẩn hoá ở đây, chuyển kí tự thường thành kí tự in hoa, ví dụ a -> A
+    // If not alphabet letter, returns -1 (Invalid value)
     if (!(ch >= 'A' && ch <= 'Z')) return -1;
-    // Nếu không phải chữ cái thì trả về -1 (Invalid value)
+    // Ignore 'I' due to Go standards
+    // If ch ≥ 'J', subtract 1
     if (ch >= 'J') return (ch - 'A') - 1;
-    // Theo quy ước chuẩn của cờ vây thì ta bỏ 'I'
-    // Nếu mà kí tự ≥ 'J' thì trừ 1 để nhảy qua 'I' luôn
+    // If ch in range (AB..H) just return ch - 'A'
     return ch - 'A';
-    // Với kí tự (AB..H) mà không qua I thì chỉ cần ch - 'A' là được
 }
 
-// Ngược lại từ chỉ số cột thành kí tự cột, vai trò giống trên thôi
+// Opposite of the function above
 char char_from_col(int c) {
     char col = char('A' + c);
     if (col >= 'I') col++;
     return col;
 }
 
-// Hàm giúp cắt khoảng trắng thừa ở đầu/ cuối chuỗi
+// Trim whitespaces at the start and end of string (For playing using CLI, reading save file, etc.)
 std::string trim(std::string s) {
-    // a sẽ chạy từ đầu chuỗi còn b chạy từ cuối chuỗi
+    // Index a starts from beginning of string, b starts from end of string
     size_t a = 0, b = s.size();
-    // Tăng a tới khi gặp kí tự không phải khoảng trắng, ở dưới thì ngược lại giảm b
+    // Increase a, decrease b, delete whitespaces
     while (a < b && std::isspace((unsigned char)s[a])) ++a;
     while (b > a && std::isspace((unsigned char)s[b - 1])) --b;
-    // Xong sẽ trả về đoạn [a, b)
+    // Returns substring [a, b)
     return s.substr(a, b - a);
 }
 
@@ -66,10 +66,10 @@ std::string trim(std::string s) {
 // ********************
 // BOARD IMPLEMENTATION
 // ********************
-// Đây là constructor, nó lưu kích thước N của bảng, và tạo mảng (grid, hasLiberty) có NxN phần tử, tất cả đều ở dạng EMPTY
+// Constructor saves size N of board, creates 1D vectors (grid, hasLiberty) of size NxN, full of EMPTY
 Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY), hasLiberty(n * n, Liberty::EMPTY) {}
 
-// Hàm này sẽ trả về kích thước bảng, giúp truy vấn...
+// Returns the size N of the board: number of intersections on one side (For query purposes)
 int Board::size() const { return N; }
 
 // Returns the grid vector<Stone>
@@ -78,7 +78,7 @@ std::vector<Stone> Board::getGrid() const { return grid; }
 // Returns 1D index of 2D coordinates (r, c)
 int Board::idx1D(int r, int c) const { return c + N * r; }
 
-// Đây là hàm sẽ kiểm tra toạ độ (r, c) có nằm trong phạm vi của bảng không
+// Check if (r, c) is inside the board
 bool Board::in_bounds(int r, int c) const {
     // Valid nếu 0 ≤ r, c ≤ N
     return r >= 0 && r < N && c >= 0 && c < N;
@@ -96,21 +96,20 @@ std::vector<std::pair<int, int>> Board::getNeighbors(int r, int c) const {
     return neighbors;
 }
 
-// Hàm này sẽ lấy (touch, get) quân ở ô (r, c)
+// Get intersection state at (r, c)
 Stone Board::get(int r, int c) const {
-    // Nó đảm bảo việc chỉ lấy quân như vậy khi vị trí đúng (valid)
+    // Check if valid, in-bound coordinates
     assert(in_bounds(r, c));
-    // Chuyển ánh xạ 2D -> 1D theo công thức chuẩn là index = r*N + c á
+    // Turn 2D coordinates -> 1D coordinates
     return grid[r * N + c];
 }
 
-// Hàm này gán quân s vào ô (r, c), thực hiện tất cả logic về bàn cờ và quân cờ
+// Place Stone s at (r, c), applies board and stone logic in Go
 // Rule: Prohibition of suicide (capturing own stones). Function checks if it's suicide move
 // Returns true if it's non-suicide move, false if it's suicide move
 bool Board::set(int r, int c, Stone s) {
-    // Phải check vị trí có nằm valid ko
+    // Check if valid, in-bound coordinates
     assert(in_bounds(r, c));
-    // Xong sẽ gán vào mảng 1D như trên thôi
 
     // Step 1: Playing a stone
     grid[r * N + c] = s;
@@ -124,22 +123,23 @@ bool Board::set(int r, int c, Stone s) {
     // Prohibition of suicide: Check if any of own's stones will be captured
     if (ownCaptured.size() > 0) return false;
     
-    return true;
+    return true; // Valid, non-suicide move
 }
 
-// Hàm giúp reset bàn cờ
+// Clear the board, reset all vectors to EMPTY
 void Board::clear() {
-    // std::fill để đảm bảo mọi ô đều về EMPTY
+    // std::fill EMPTY values
     std::fill(grid.begin(), grid.end(), Stone::EMPTY);
+    std::fill(hasLiberty.begin(), hasLiberty.end(), Liberty::EMPTY);
 }
 
-// Hàm này sẽ đếm số quân đen/ trắng hiện có trên bàn cờ
+// Count BLACK and WHITE stones on board
 void Board::count(int& black, int& white) const {
-    // Reset bộ đếm ban đầu là 0
+    // Reset counter to 0
     black = white = 0;
-    // Duyệt qua mọi ô trong grid
+    // Loop through grid
     for (auto s : grid) {
-        if (s == Stone::BLACK) ++black; // Đếm như bthuong thôi
+        if (s == Stone::BLACK) ++black;
         else if (s == Stone::WHITE) ++white;
     }
 }
@@ -153,7 +153,7 @@ bool Board::interNearStone(int r, int c, Stone stone) const {
     return false;
 }
 
-// private member of Board class
+// PRIVATE member of Board class
 // Recursive DFS algorithm function for Board::checkLiberty() member function
 void Board::dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const {
     int idx = idx1D(r, c);
@@ -282,46 +282,41 @@ int Board::countCaptured(const Board& previousBoard, Stone played) const {
 
 
 
-// *** SERIALIZE
-// Hàm này để Serialize, kiểu xuất toàn bộ bàn này những dòng text á
+// *** SERIALIZE ***
+// Returns string (as text) to save the board state into text file
 std::string Board::dump_rows() const {
-    // Dự trù dung lượng: kiểu N dòng, mỗi dòng có N kí tự + 1 dòng mới (newline)
+    // Reserve N lines, each line has N chars + 1 newline char
     std::string out; out.reserve(N * (N + 1));
-    // Quét qua từng row
+    // Loop through rows
     for (int r = 0; r < N; ++r) {
-        // Quét qua từng column
+        // Loop through columns
         for (int c = 0; c < N; ++c)
-            // Thêm kí tự đại diện cho từng ô (./X/O)
+            // Add intersection char (./X/O)
             out.push_back(stone_char(get(r, c)));
-        // Kết thúc dòng bằng newline
+        // Add newline
         out.push_back('\n');
     }
-    // Trả về chuỗi kết quả
     return out;
 }
 
-// Hàm nạp bàn cờ từ mảng chuỗi (trong đó mỗi chuỗi là 1 dòng)
+// Load board state from string (when loading saved game)
 bool Board::load_rows(const std::vector<std::string>& rows) {
-    // Bắt buộc phải có đúng N dòng
+    // Check if exactly N lines
     if ((int)rows.size() != N) return false;
-    // Duyệt qua từng dòng
+    // Loop through lines
     for (int r = 0; r < N; ++r) {
-        // Mỗi dòng phải có đúng N kí tự
+        // Each line must have exactly N chars
         if ((int)rows[r].size() != N) return false;
-        // Duyệt từng cột trên dòng
+        // Loop through columns in row
         for (int c = 0; c < N; ++c) {
-            // Lấy kí tự ch tại vị trí (r, c)
             char ch = rows[r][c];
-            // Mặc định gốc là EMPTY
             Stone s = Stone::EMPTY;
-            // Nếu kí tự đó là 'X' thì sẽ gán là quân đen
             if (ch == 'X') s = Stone::BLACK;
-            // Nếu kí tự đó là 'O' thì sẽ gán là quân trắng
             else if (ch == 'O') s = Stone::WHITE;
-            // Gán lại vào board
-            set(r, c, s);
+            // Set stone back to board
+            // set(r, c, s);
+            grid[r * N + c] = s;
         }
     }
-    return true;
-    // Nếu mọi thứ ok, valid hết thì trả về true
+    return true; // Everything valid
 }

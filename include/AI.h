@@ -11,6 +11,11 @@ public:
     // Heuristic function for Go board
     double heuristic(const Game& game);
 
+    // For minimax algorithm
+    double max_value(Board bd);
+    double min_value(Board bd);
+
+    // Choose move depending on difficulty
     Move choose_move(const Game& game, std::mt19937& rng);
 
     // For three difficulties
@@ -21,4 +26,5 @@ public:
 private:
     AIDifficulty diff;
     int medium_search_depth = 2;
+    int hard_search_depth = 4;
 };
