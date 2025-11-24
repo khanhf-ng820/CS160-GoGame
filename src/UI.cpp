@@ -2352,7 +2352,7 @@ void UI::draw_hud() {
 		// "Turn:"
 		turnText->setString("Turn:");
 		turnText->setCharacterSize(22);
-		turnText->setFillColor(sf::Color(20, 80, 160));
+		turnText->setFillColor(sf::Color(69, 147, 195));
 		turnText->setOutlineColor(sf::Color::Black);
 		turnText->setOutlineThickness(1.2f);
 		turnText->setStyle(sf::Text::Style::Bold);
