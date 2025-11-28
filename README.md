@@ -14,6 +14,7 @@ Make sure you have:
 - git (version 2.50.1 or higher)
 - [CMake](https://cmake.org/download/) (version 3.16 or higher)
 - A C++ compiler (GCC, Clang, MinGW-w64, or MSVC)
+
 Make sure all of them are available in PATH.
 
 Clone this repository using git:
