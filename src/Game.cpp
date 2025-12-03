@@ -45,7 +45,7 @@ LƯU Ý
 // GAME CLASS controls game state and implements game logic
 // Create new game with board of size n x n
 // Initialize N = n, create empty Board NxN, BLACK moves first
-Game::Game(int n) : N(n), bd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)) {}
+Game::Game(int n) : N(n), bd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)), captureHistory(1, {0,0}) {}
 // Returns size of board
 int Game::size() const { return N; }
 // Returns the game's komi
@@ -67,8 +67,10 @@ void Game::reset() {
     bd.clear(); to_move = Stone::BLACK;
     // Clear history and redo_stack
     boardHistory.clear();
+    captureHistory.clear();
     moveHistory.clear();
     redo_stack.clear();
+    capture_redoStack.clear();
     // Clear pass counter
     consecutive_passes = 0;
 
@@ -111,6 +113,10 @@ bool Game::undo() {
 
     // Get last board state from history
     Board previousBd = boardHistory[boardHistory.size() - 2];
+    // Revert the number of BLACK and WHITE stones captured
+    Captured capturedStones = captureHistory[captureHistory.size() - 2];
+    blacksCaptured = capturedStones.black;
+    whitesCaptured = capturedStones.white;
     // If pass move: Just alternate the turn
     if (previousBd == bd) {
         to_move = opposite(to_move);
@@ -127,6 +133,10 @@ bool Game::undo() {
     Board undoneBoard = boardHistory.back();
     boardHistory.pop_back();
     redo_stack.push_back(undoneBoard);
+    // Add undone captures to capture_redoStack to be redone later
+    Captured undoneCaptures = captureHistory.back();
+    captureHistory.pop_back();
+    capture_redoStack.push_back(undoneCaptures);
     return true;
 }
 
@@ -146,6 +156,9 @@ bool Game::redo() {
     // Pop board state from redo_stack
     Board redoneBoard = redo_stack.back();
     redo_stack.pop_back();
+    // Pop the number of BLACK and WHITE stones captured from capture_redoStack
+    Captured capturedStones = capture_redoStack.back();
+    capture_redoStack.pop_back();
 
     // Alternate turns
     to_move = opposite(to_move);
@@ -156,6 +169,10 @@ bool Game::redo() {
     // Push redone move to game history
     boardHistory.push_back(redoneBoard);
     bd = redoneBoard;
+    // Push the number of BLACK and WHITE stones captured to captureHistory
+    captureHistory.push_back(capturedStones);
+    blacksCaptured = capturedStones.black;
+    whitesCaptured = capturedStones.white;
     return true;
 }
 
@@ -167,9 +184,11 @@ void Game::pass() {
     Board previousBd = bd;
     // Push to board history and move history where move.is_pass = true
     boardHistory.push_back(bd);
+    captureHistory.push_back( {blacksCaptured, whitesCaptured} );
     moveHistory.push_back( Move{0,0,true} );
-    // When playing new move (even pass), redo_stack is cleared
+    // When playing new move (even pass), redo stacks is cleared
     redo_stack.clear();
+    capture_redoStack.clear();
     // Increment consecutive_passes counter
     ++consecutive_passes;
     // Alternate turns
@@ -220,17 +239,20 @@ bool Game::play(const Move& m) {
     bd.set(m.r, m.c, to_move);
     
     // Add points based on how many stones were captured
+    int capturedStones = bd.countCaptured(previousBd, to_move);
     if (to_move == Stone::BLACK) {
-        whitesCaptured += bd.countCaptured(previousBd, to_move);
+        whitesCaptured += capturedStones;
     } else if (to_move == Stone::WHITE) {
-        blacksCaptured += bd.countCaptured(previousBd, to_move);
+        blacksCaptured += capturedStones;
     }
     
     // Write to history to be able to undo
     boardHistory.push_back(bd);
+    captureHistory.push_back( {blacksCaptured, whitesCaptured} );
     moveHistory.push_back(m);
     // Done new move -> Can't redo anything
     redo_stack.clear();
+    capture_redoStack.clear();
     // A "placing stone" move with clear PASS counter
     consecutive_passes = 0;
     // Alternate turns
@@ -282,8 +304,10 @@ double Game::returnScore(Stone player) {
 // Clear history of boards and moves
 void Game::clearHistory() {
     boardHistory.clear();
+    captureHistory.clear();
     moveHistory.clear();
     redo_stack.clear();
+    capture_redoStack.clear();
     gameState = GameState::PLAYING;
 }
 

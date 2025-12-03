@@ -220,7 +220,8 @@ std::vector<std::pair<int, int>> Board::toBeCaptured(Stone player) {
 
 // Count the number of intersections in a player's territory (ONLY USED FOR SCORING WHEN GAME ENDS)
 int Board::countTerritory(Stone player) const {
-    // Perform DFS to find all components of empty intersections
+    if (player == Stone::EMPTY) return 0;
+    // *** Perform DFS to find all components of empty intersections
     int territoryCounter = 0;
     std::vector<bool> visited(N * N, false);
 
