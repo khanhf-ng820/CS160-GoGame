@@ -37,6 +37,8 @@ enum class GameResults { BLACK_WINS, WHITE_WINS, DRAW };
 
 // Represent a move of row r, column c, is_pass = true if move is pass
 struct Move { int r = 0, c = 0; bool is_pass = false; };
+// Represent the number of BLACK and WHITE stones captured
+struct Captured { int black = 0, white = 0; };
 
 
 // GAME CLASS controls game state and implements game logic
@@ -114,12 +116,14 @@ private:
     double blackScore = 0, whiteScore = 0;
     // If resigned, don't calculate territory again
     bool endedByResign = false;
-    // History of all boards played
+    // History of all boards played and all stones captured
     std::vector<Board> boardHistory;
+    std::vector<Captured> captureHistory;
     // History of all moves played (for printing and keeping records ONLY)
     std::vector<Move> moveHistory;
-    // Stack of undone boards
+    // Stack of undone boards and captured stones
     std::vector<Board> redo_stack;
+    std::vector<Captured> capture_redoStack;
 
 
     // Clear history of boards and moves

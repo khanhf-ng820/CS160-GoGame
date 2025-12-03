@@ -6,7 +6,7 @@
 #include <cassert>
 
 // ULTILITIES
-// Define enum class Stone to represent state of an intersection
+// Define enum class Stone to represent state of an intersection / a player (EMPTY means no player)
 enum class Stone { EMPTY = 0, BLACK = 1, WHITE = 2 };
 // Define enum class Liberty to denote if an intersection has liberty or not (EMPTY means intersection with NO STONES)
 enum class Liberty { EMPTY = 0, HAS_LIBERTY = 1, NO_LIBERTY = 2 };
@@ -62,7 +62,7 @@ public:
 
     // COMPARE BOARDS
     bool operator==(const Board& board2) const;
-    // Count how many stones were captured after playing a move
+    // Count how many stones were captured AFTER playing a move
     int countCaptured(const Board& previousBoard, Stone played) const;
 
     // SERIALIZE
@@ -72,14 +72,16 @@ public:
     bool        load_rows(const std::vector<std::string>& rows);
 
 
-private:
+protected:
     // Size of the board (N * N)
     int N;
     // 1D vector to save the board's state: Each element is an intersection, with 3 states: BLACK, WHITE, EMPTY
     std::vector<Stone> grid;
+
+private:
     // 1D vector to denote whether an intersection has liberty or not
     std::vector<Liberty> hasLiberty;
 
-    // Recursive DFS algorithm function ONLY for Board::checkLiberty() member function
+    // Recursive DFS algorithm function to put all intersections of 'stone' from (r, c) into 'components'
     void dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const;
 };
