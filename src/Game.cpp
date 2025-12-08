@@ -42,10 +42,13 @@ LƯU Ý
 #include <iostream>
 #include <algorithm> // Use std::max when parsing header,...
 
+
+
 // GAME CLASS controls game state and implements game logic
 // Create new game with board of size n x n
-// Initialize N = n, create empty Board NxN, BLACK moves first
+// CONSTRUCTOR: Initialize N = n, create empty Board NxN, BLACK moves first
 Game::Game(int n) : N(n), bd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)), captureHistory(1, {0,0}) {}
+// === QUERY METHODS ===
 // Returns size of board
 int Game::size() const { return N; }
 // Returns the game's komi
@@ -58,6 +61,24 @@ const Board& Game::board() const { return bd; }
 Stone Game::side_to_move() const { return to_move; }
 // Returns true if game is ended (Game ends if 2 or more consecutive passes)
 bool Game::is_over() const { return consecutive_passes >= 2; }
+// Get the number of consecutive passes
+int Game::get_consecutive_passes() const { return consecutive_passes; }
+// Check if game history is empty (excluding the current board)
+bool Game::history_is_empty() const { return boardHistory.size() <= 1; }
+// Get the most recent previous board in game history (ASSUMING HISTORY SIZE >= 2)
+Board Game::get_prev_board() const { return boardHistory[boardHistory.size() - 2]; }
+// Get the number of stones a player has captured
+int Game::get_captured_stones(Stone player) const {
+    switch (player) {
+    case Stone::WHITE:
+        return blacksCaptured;
+    case Stone::BLACK:
+        return whitesCaptured;
+    default:
+        return 0;
+    }
+}
+
 
 // Clear the game, board, and game state
 void Game::reset() {
@@ -182,11 +203,11 @@ void Game::pass() {
     if (gameState == GameState::ENDED) return;
     // Set previousBd equal to the current board
     Board previousBd = bd;
-    // Push to board history and move history where move.is_pass = true
+    // Push to board history, capture history and move history where move.is_pass = true
     boardHistory.push_back(bd);
     captureHistory.push_back( {blacksCaptured, whitesCaptured} );
     moveHistory.push_back( Move{0,0,true} );
-    // When playing new move (even pass), redo stacks is cleared
+    // When playing new move (even pass), all redo stacks is cleared
     redo_stack.clear();
     capture_redoStack.clear();
     // Increment consecutive_passes counter

@@ -44,8 +44,9 @@ struct Captured { int black = 0, white = 0; };
 // GAME CLASS controls game state and implements game logic
 class Game {
 public:
-    // Create new game with board of size 19x19
+    // CONSTRUCTOR: Create new game with board of size 19x19
     explicit Game(int n = 19);
+    // === QUERY METHODS ===
     // Returns size of board
     int size() const;
     // Returns the game's komi
@@ -58,6 +59,15 @@ public:
     Stone side_to_move() const;
     // Returns true if game is ended
     bool  is_over() const;
+    // Get the number of consecutive passes
+    int get_consecutive_passes() const;
+    // Check if game history is empty
+    bool history_is_empty() const;
+    // Get the most recent previous board in game history (ASSUMING HISTORY SIZE >= 2)
+    Board get_prev_board() const;
+    // Get the number of stones a player has captured
+    int get_captured_stones(Stone player) const;
+
     // Clear the game, board, and game state
     void reset();
     // Undo a move (undo placing stone, revert turn, decrement pass counter,...)
@@ -92,7 +102,6 @@ public:
 
     // Resign
     void resign(Stone loser);
-
     // Check if ended by resign
     bool ended_by_resign() const;
 

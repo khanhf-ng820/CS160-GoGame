@@ -52,8 +52,6 @@ public:
     void count(int& black, int& white) const;
     // Check if an intersection is adjacent to a black or white stone, or an empty intersection (liberty)
     bool interNearStone(int r, int c, Stone stone) const;
-    // Check liberties of all intersections and output them to the hasLiberty vector
-    void checkLiberty();
     // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
     std::vector<std::pair<int, int>> toBeCaptured(Stone player);
 
@@ -84,4 +82,6 @@ private:
 
     // Recursive DFS algorithm function to put all intersections of 'stone' from (r, c) into 'components'
     void dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const;
+    // Check for each intersection, if it has liberty or not, and output them to the 'hasLiberty' vector
+    void checkLiberty();
 };
