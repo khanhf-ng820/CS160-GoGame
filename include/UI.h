@@ -11,6 +11,10 @@
 #include "Game.h"
 #include "AI.h"
 
+
+// Directories
+const std::string MUSIC_DIR = std::string(ASSET_DIR) + "/music";
+
 enum class UIType { CONSOLE, GRAPHICAL };
 
 class UI {

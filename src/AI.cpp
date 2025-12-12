@@ -190,15 +190,7 @@ double GoAI::evaluate(const GamePosition& game_state) {
     // If it's a non-terminal state
     // Using the same scoring function instead of hand-crafted heuristic
     double whiteScore = game_state.calcScore(Stone::WHITE), blackScore = game_state.calcScore(Stone::BLACK);
-    return (blackScore - whiteScore) / (blackScore + whiteScore);
-    // if (blackScore > whiteScore) {
-    //     return 1;
-    // } else if (blackScore < whiteScore) {
-    //     return -1;
-    // } else
-    //     return 0;
-
-    return 0; // ***** PLACEHOLDER *****
+    return (blackScore - whiteScore) / (blackScore + whiteScore + 0.001);
 }
 
 // Minimax value functions
@@ -231,7 +223,7 @@ double GoAI::min_value(const GamePosition& game_state, int depth, std::mt19937& 
 }
 
 // Minimax value function with depth-limited minimax, NO ALPHA-BETA PRUNING
-double GoAI::depth_minimax(const GamePosition& game_state, int depth, Stone player, std::mt19937& rng) {
+double GoAI::naive_minimax(const GamePosition& game_state, int depth, Stone player, std::mt19937& rng) {
     if (player == Stone::BLACK) {
         // If it's maximizing player's turn
         return max_value(game_state, depth, rng);
@@ -313,12 +305,11 @@ Move GoAI::choose_move(const Game& game, std::mt19937& rng){
     case AIDifficulty::MEDIUM:
         return choose_move_medium(game, rng);
     case AIDifficulty::HARD:
-        return choose_move_easy(game, rng);
+        return choose_move_hard(game, rng);
     };
-    return choose_move_easy(game, rng);
 }
 
-// For EASY MODE
+// ===== For EASY MODE =====
 Move GoAI::choose_move_easy(const Game& game, std::mt19937& rng) {
     const int N = game.size();
     std::vector<Move> legalMoves; legalMoves.reserve(N * N + 1);
@@ -338,7 +329,7 @@ Move GoAI::choose_move_easy(const Game& game, std::mt19937& rng) {
     return legalMoves[distrib(rng)];
 }
 
-// For MEDIUM MODE
+// ===== For MEDIUM MODE =====
 Move GoAI::choose_move_medium(const Game& game, std::mt19937& rng) {
     GamePosition game_state = GamePosition(game);
     std::vector<Move> allActions = reasonableActions(game_state, rng);
@@ -346,7 +337,7 @@ Move GoAI::choose_move_medium(const Game& game, std::mt19937& rng) {
     Move bestMove = _PASS_MOVE_;
     double bestValue = (game.side_to_move() == Stone::BLACK) ? _NEGATIVE_INF_ : _POSITIVE_INF_;
     for (const Move& mv : allActions) {
-        double childValue = depth_minimax(result(game_state, mv), medium_search_depth - 1, opposite(game.side_to_move()), rng);
+        double childValue = naive_minimax(result(game_state, mv), medium_search_depth - 1, opposite(game.side_to_move()), rng);
         // DEBUG
         // std::cout <<"Move: "<< mv.r<<' '<<mv.c<<' '<<mv.is_pass << " childValue: " << childValue << " bestValue: " << bestValue << '\n';
         if ((game.side_to_move() == Stone::BLACK && childValue > bestValue)
@@ -363,8 +354,28 @@ Move GoAI::choose_move_medium(const Game& game, std::mt19937& rng) {
     return _PASS_MOVE_; // ***** PLACEHOLDER, WILL DELETE LATER *****
 }
 
-// For HARD MODE
+// ===== For HARD MODE =====
 Move GoAI::choose_move_hard(const Game& game, std::mt19937& rng) {
+    GamePosition game_state = GamePosition(game);
+    std::vector<Move> allActions = reasonableActions(game_state, rng);
+
+    Move bestMove = _PASS_MOVE_;
+    double bestValue = (game.side_to_move() == Stone::BLACK) ? _NEGATIVE_INF_ : _POSITIVE_INF_;
+    for (const Move& mv : allActions) {
+        double childValue = alpha_beta(result(game_state, mv), hard_search_depth - 1, _NEGATIVE_INF_, _POSITIVE_INF_, opposite(game.side_to_move()), rng);
+        // DEBUG
+        // std::cout <<"Move: "<< mv.r<<' '<<mv.c<<' '<<mv.is_pass << " childValue: " << childValue << " bestValue: " << bestValue << '\n';
+        if ((game.side_to_move() == Stone::BLACK && childValue > bestValue)
+        || (game.side_to_move() == Stone::WHITE && childValue < bestValue)) {
+            bestMove = mv;
+            bestValue = childValue;
+        }
+    }
+    // DEBUG
+    std::cout <<"Move: "<< bestMove.r<<' '<<bestMove.c<<' '<<bestMove.is_pass << " bestValue: " << bestValue << '\n';
+
+    return bestMove;
+
     return _PASS_MOVE_; // ***** PLACEHOLDER, WILL DELETE LATER *****
 }
 
@@ -372,7 +383,7 @@ Move GoAI::choose_move_hard(const Game& game, std::mt19937& rng) {
 
 
 
-// === PRIVATE METHODS ===
+// === OTHER NECESSARY METHODS ===
 int GoAI::manhattan_dist(int r0, int c0, int r1, int c1) {
     return abs(r0-r1) + abs(c0-c1);
 }

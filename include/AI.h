@@ -69,7 +69,21 @@ public:
 
     AIDifficulty getDiff() const;
 
-    // ***** For minimax algorithm *****
+    // Choose move depending on difficulty
+    Move choose_move(const Game& game, std::mt19937& rng);
+
+
+private:
+    // AI difficulty
+    AIDifficulty diff;
+    // Depth limit for minimax algorithm
+    int medium_search_depth = 2;
+    int hard_search_depth = 3;
+
+    // Get Manhattan distance between two points on the board
+    int manhattan_dist(int r0, int c0, int r1, int c1);
+
+    // ***** FOR MINIMAX ALGORITHM *****
     // Terminal function (when game ends)
     bool terminal(const GamePosition& game_state);
     // Action function
@@ -78,6 +92,7 @@ public:
     // Action function that returns the MOST REASONABLE moves
     // === These moves are considered reasonable moves: ===
     // 1. Influence: Only consider empty points within Manhattan distance <= 2-3 of any stone
+    // 
     std::vector<Move> reasonableActions(const GamePosition& game_state, std::mt19937 rng);
     // Result function (new game state from old game state + a legal move/pass)
     GamePosition result(const GamePosition& game_state, const Move& move);
@@ -90,25 +105,12 @@ public:
     double min_value(const GamePosition& game_state, int depth, std::mt19937& rng);
 
     // Minimax value function with depth-limited minimax, NO ALPHA-BETA PRUNING
-    double depth_minimax(const GamePosition& game_state, int depth, Stone player, std::mt19937& rng);
-    // Minimax value function with depth-limited minimax, with ALPHA-BETA PRUNING
+    double naive_minimax(const GamePosition& game_state, int depth, Stone player, std::mt19937& rng);
+    // Minimax value function with depth-limited minimax, WITH ALPHA-BETA PRUNING
     double alpha_beta(const GamePosition& game_state, int depth, double alpha, double beta, Stone player, std::mt19937& rng);
 
-
-    // Choose move depending on difficulty
-    Move choose_move(const Game& game, std::mt19937& rng);
-
-    // For three difficulties
+    // Choose move for three difficulties
     Move choose_move_easy(const Game& game, std::mt19937& rng);
     Move choose_move_medium(const Game& game, std::mt19937& rng);
     Move choose_move_hard(const Game& game, std::mt19937& rng);
-
-private:
-    AIDifficulty diff;
-    // Depth limit for minimax algorithm
-    int medium_search_depth = 2;
-    int hard_search_depth = 2;
-
-    // Get Manhattan distance between two points on the board
-    int manhattan_dist(int r0, int c0, int r1, int c1);
 };

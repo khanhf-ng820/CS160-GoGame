@@ -242,8 +242,8 @@ void UI::run_graphical() {
 	}
 
 	// Assets
-	(void)font.openFromFile("assets/fonts/OpenSans-Regular.ttf");
-	(void)placeBuf.loadFromFile("assets/sounds/place.wav");
+	(void)font.openFromFile(std::string(ASSET_DIR) + "/fonts/OpenSans-Regular.ttf");
+	(void)placeBuf.loadFromFile(std::string(ASSET_DIR) + "/sounds/place.wav");
 
 	// Init pool
 	if (placeBuf.getSampleCount() > 0) {
@@ -274,7 +274,7 @@ void UI::run_graphical() {
 	trackText->setString("Now playing: (none)");
 
 	// Sound
-	hasMusic = bgm.openFromFile("assets/music/bg_music.ogg");
+	hasMusic = bgm.openFromFile(std::string(ASSET_DIR) + "/music/bg_music.ogg");
 	if (hasMusic) {
 		bgm.setLooping(true);
 		bgm.play();
@@ -662,7 +662,8 @@ namespace {
     }
 
     const fs::path& save_root() {
-        static fs::path root = fs::absolute("saves");
+        // static fs::path root = fs::absolute("saves");
+        static fs::path root = SAVEGAME_DIR;
         static bool inited = false;
         if (!inited) {
             std::error_code ec;
@@ -1378,8 +1379,8 @@ void UI::build_confirm_quit_modal() {
 void UI::scan_music_folder() {
 	musicFiles.clear();
 	try {
-		if (!fs::exists("assets/music")) return;
-		for (auto& p : fs::directory_iterator("assets/music")) {
+		if (!fs::exists(MUSIC_DIR)) return;
+		for (auto& p : fs::directory_iterator(MUSIC_DIR)) {
 			if (!p.is_regular_file()) continue;
 			auto ext = p.path().extension().string();
 			std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
@@ -1387,7 +1388,10 @@ void UI::scan_music_folder() {
 				musicFiles.push_back(p.path().string());
 		}
 		std::sort(musicFiles.begin(), musicFiles.end());
-	} catch (...) { /* ignore errors if have */ }
+	} catch (...) {
+		std::cerr << "Error scanning music folder!" << std::endl;
+		/* ignore errors if exists */
+	}
 }
 
 void UI::play_music_at(int idx) {

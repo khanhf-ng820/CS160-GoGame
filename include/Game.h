@@ -105,6 +105,7 @@ public:
     // Check if ended by resign
     bool ended_by_resign() const;
 
+
 private:
     // Japanese komi for WHITE
     double komiPts = 6.5;
