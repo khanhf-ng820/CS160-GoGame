@@ -33,10 +33,10 @@ target_compile_definitions(GoGame PRIVATE ASSET_DIR="${CMAKE_SOURCE_DIR}/assets"
 target_compile_definitions(GoGame PRIVATE SAVEGAME_DIR="${CMAKE_SOURCE_DIR}/saves")
 
 
-add_custom_target(copy_assets
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_DIR}/copy_assets.cmake
-)
-add_dependencies(GoGame copy_assets)
+# add_custom_target(copy_assets
+#     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_DIR}/copy_assets.cmake
+# )
+# add_dependencies(GoGame copy_assets)
 
 
 # macOS: ensure frameworks and rpaths are set
