@@ -10,15 +10,17 @@
 #include "Game.h"
 
 // Constants
-constexpr double _POSITIVE_INF_ = 10000;
-constexpr double _NEGATIVE_INF_ = -10000;
+constexpr double _POSITIVE_INF_ = 100000;
+constexpr double _NEGATIVE_INF_ = -100000;
 constexpr double _EPSILON_ = 1e-9;
 constexpr Move   _PASS_MOVE_ = {0,0,true};
+constexpr size_t _MAX_PLIES_ = 1024;
 
 // Structs for easier storing
 struct Branch {
-    Move move; double evaluation;
-    Branch(Move mv, double eval): move(mv), evaluation(eval) {};
+    Move move; int eval;
+    Branch(Move mv): move(mv), eval(0) {};
+    Branch(Move mv, int eval): move(mv), eval(eval) {};
 };
 
 // Enum class for AI difficulty
@@ -42,16 +44,25 @@ public:
     bool gameEnded() const;
     // Get the previous board
     Board getPrevBoard() const;
+    // Count how many a player's stones have been captured
+    int getCaptured(Stone player) const;
 
     // Check if move is legal
     bool legal(const Move& mv) const;
     // Play a move
     bool play(const Move& mv);
+    // Check if a move will capture stone(s) if played
+    bool isCapture(const Move& mv) const;
+    // Count how many stones will be captured after playing a move
+    int willCapture(const Move& mv) const;
+    // Count how many liberties each individual stone has, and sum up
+    void countIndividualLiberty(int& black, int& white) const;
+    // Count how many stones in atari each player has
+    void countAtari(int& black, int& white) const;
+    // Calculate the Euler number of the board with respect to each individual player
+    void calcEuler(double& black, double& white) const;
     // Return the game score for a player
     double calcScore(Stone player) const;
-
-    // Count how many stones were captured after playing a move
-    // int countCaptured(const GamePosition& previousBoard, Stone played) const;
 
 
 private:
@@ -67,36 +78,14 @@ private:
     bool prevBoardIsNull = true;
     // Points: number of white & black stones captured by opponents
     int blacksCaptured = 0, whitesCaptured = 0;
+
+    // Examine 2x2 window on board to check if it's Q1, Q3, Qd pattern
+    bool isQ1(Stone a[4], Stone player) const;
+    bool isQ3(Stone a[4], Stone player) const;
+    bool isQd(Stone a[4], Stone player) const;
 };
 
 
-
-// ***** Class for ZOBRIST HASHES *****
-// class ZobristHash {
-// public:
-//     // Constructor
-//     explicit ZobristHash(); // Generate a random one
-//     explicit ZobristHash(uint64_t hashValue);
-//     // Get the hash
-//     uint64_t getHash() const;
-//     // XOR operator
-//     ZobristHash operator^(const ZobristHash& rightOperand) const;
-
-// private:
-//     uint64_t hash;
-// };
-
-// // Generating bitstrings for each possible element of the game
-// uint64_t generateRandom64() {
-//     // static ensures the engine is initialized only once.
-//     // thread_local makes this safe for multi-threaded use.
-//     thread_local static std::mt19937_64 gen(std::random_device{}());
-    
-//     // Distribution for the full 64-bit range [0, 2^64 - 1]
-//     static std::uniform_int_distribution<uint64_t> dis;
-    
-//     return dis(gen);
-// }
 
 
 
@@ -121,15 +110,15 @@ private:
     unsigned int medium_search_depth = 2;
     unsigned int hard_search_depth = 3;
 
-    // Limit for Manhattan distance for MEDIUM/HARD modes (must be around 2 or 3)
+    // Limit for Manhattan/Chebyshev distance for MEDIUM/HARD modes (must be around 2 or 3)
     int          maxManDistMedium = 3;
-    int          maxCheDistHard = 2;
+    int          maxCheDistHard = 3;
     // Limit of branching factor
-    unsigned int branchingFactorLimit = 15;
-    // Number of killer moves stored in AI
-    unsigned int killerMoveStorage = 2;
-    // Storing the killer moves (FOR ALPHA-BETA PRUNING)
-    std::vector<std::vector<Move>> killerMoves = std::vector<std::vector<Move>>(hard_search_depth, std::vector<Move>());
+    unsigned int branchingFactorLimit = 25;
+    // Number of killer moves stored in AI (commonly set to 2)
+    static const unsigned int killerMoveStorage = 2;
+    // Storing the killer moves FOR ALPHA-BETA PRUNING (each ply has a primary and secondary killer move)
+    std::vector<std::vector<Move>> killerMoves = std::vector<std::vector<Move>>(_MAX_PLIES_, std::vector<Move>());
 
     // Get Manhattan distance between two points on the board
     int manhattan_dist(int r0, int c0, int r1, int c1);
@@ -145,12 +134,26 @@ private:
     // === These moves are considered REASONABLE moves: ===
     // 1. Influence: Only consider empty points within Manhattan distance <= 2-3 of any stone
     // 2. (HARD MODE ONLY) Influence: Only consider empty points within Manhattan distance <= 3 of the most recently placed stone
-    std::vector<Move> reasonableActions(const GamePosition& game_state, std::mt19937& rng);
+    // ===== Action function for MEDIUM MODE ONLY =====
+    std::vector<Move> reasonableActionsMedium(const GamePosition& game_state, std::mt19937& rng);
+    // ===== Action function for HARD MODE ONLY =====
+    std::vector<Move> reasonableActionsHard(const GamePosition& game_state, unsigned int ply, std::mt19937& rng);
     // Result function (new game state from old game state + a legal move/pass)
     GamePosition result(const GamePosition& game_state, const Move& move);
 
+    // Cheap evaluation function ONLY for MOVE ORDERING
+    int    cheap_evaluate(const GamePosition& game_state, const Move& move, unsigned int ply);
+    // Calculate evaluation value based on Score, Liberties, Stones, stones in Atari, Euler
+    double calc_eval(double score, int libs, int stones, int atari, double euler) const;
     // Evaluation function (heuristic function) for Go board (range: [-1, 1])
     double evaluate(const GamePosition& game_state);
+
+    // Clear killer move list before every new search
+    void clearKiller();
+    // Insert killer move when there's alpha/beta cutoff
+    void insertKiller(unsigned int ply, const Move& move);
+    // Check if a move in a move list is a killer move when performing move ordering
+    void checkKiller(unsigned int ply, std::vector<Move>& legalMoves);
 
     // Minimax value functions
     double max_value(const GamePosition& game_state, unsigned int depth, std::mt19937& rng);
@@ -159,11 +162,11 @@ private:
     // Minimax value function with depth-limited minimax, NO ALPHA-BETA PRUNING
     double naive_minimax(const GamePosition& game_state, unsigned int depth, Stone player, std::mt19937& rng);
     // Minimax value function with depth-limited minimax, WITH ALPHA-BETA PRUNING
-    double alpha_beta(const GamePosition& game_state, unsigned int depth, double alpha, double beta, Stone player, std::mt19937& rng);
+    double alpha_beta(const GamePosition& game_state, unsigned int depth, double alpha, double beta, Stone player, unsigned int ply, std::mt19937& rng);
 
 
     // Choose move for three difficulties
     Move choose_move_easy(const Game& game, std::mt19937& rng);
     Move choose_move_medium(const Game& game, std::mt19937& rng);
-    Move choose_move_hard(const Game& game, std::mt19937& rng);
+    Move choose_move_hard(const Game& game, unsigned int ply, std::mt19937& rng);
 };

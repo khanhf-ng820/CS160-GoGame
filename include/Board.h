@@ -25,7 +25,7 @@ std::string  trim(std::string s);
 
 // CONSTS
 // Signify which intersection coordinates are considered 'adjacent'
-const std::vector<Intersection> offsets = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+const std::vector<Intersection> _OFFSETS_ = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
 // BOARD CLASS
 class Board {
@@ -36,6 +36,8 @@ public:
     int  size() const;
     // Returns the grid vector<Stone>
     std::vector<Stone> getGrid() const;
+    // Returns the libertyCount vector
+    std::vector<int> getLibertyCnt() const;
     // Returns 1D index of 2D coordinates (r, c): r * N + c
     int  idx1D(int r, int c) const;
     // Check if (r, c) is inside the board
@@ -57,6 +59,8 @@ public:
     // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
     std::vector<Intersection> toBeCaptured(Stone player);
 
+    // Check for each intersection, if it has liberty or not, and output them to the 'libertyCount' vector
+    void checkLiberty();
     // Count the number of intersections in a player's territory (ONLY USED FOR SCORING WHEN GAME ENDS)
     int countTerritory(Stone player) const;
 
@@ -77,13 +81,10 @@ protected:
     int N;
     // 1D vector to save the board's state: Each element is an intersection, with 3 states: BLACK, WHITE, EMPTY
     std::vector<Stone> grid;
-
-private:
     // 1D vector to denote how many liberties an intersection has
     std::vector<int> libertyCount;
 
+private:
     // Recursive DFS algorithm function to put all intersections of 'stone' from (r, c) into 'components'
     void dfs(int r, int c, Stone stone, std::vector<Intersection>& components, std::vector<bool>& visited) const;
-    // Check for each intersection, if it has liberty or not, and output them to the 'hasLiberty' vector
-    void checkLiberty();
 };

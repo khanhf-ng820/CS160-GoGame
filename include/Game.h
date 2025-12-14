@@ -36,7 +36,15 @@ enum class GameState { PLAYING, ENDED };
 enum class GameResults { BLACK_WINS, WHITE_WINS, DRAW };
 
 // Represent a move of row r, column c, is_pass = true if move is pass
-struct Move { int r = 0, c = 0; bool is_pass = false; };
+struct Move {
+    int r = 0, c = 0; bool is_pass = false;
+
+    bool operator==(const Move& other) const {
+        // You decide which members make a move "equal"
+        return ((r == other.r) && (c == other.c) && !is_pass && !other.is_pass)
+            || (is_pass && other.is_pass);
+    }
+};
 // Represent the number of BLACK and WHITE stones captured
 struct Captured { int black = 0, white = 0; };
 
@@ -63,6 +71,8 @@ public:
     int get_consecutive_passes() const;
     // Check if game history is empty
     bool history_is_empty() const;
+    // Get the size (how many boards/game states) of game history
+    size_t history_size() const;
     // Get the most recent previous board in game history (ASSUMING HISTORY SIZE >= 2)
     Board get_prev_board() const;
     // Get the number of stones a player has captured

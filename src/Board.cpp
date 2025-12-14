@@ -75,6 +75,9 @@ int Board::size() const { return N; }
 // Returns the grid vector<Stone>
 std::vector<Stone> Board::getGrid() const { return grid; }
 
+// Returns the libertyCount vector
+std::vector<int> Board::getLibertyCnt() const { return libertyCount; }
+
 // Returns 1D index of 2D coordinates (r, c)
 int Board::idx1D(int r, int c) const { return c + N * r; }
 
@@ -88,7 +91,7 @@ bool Board::in_bounds(int r, int c) const {
 std::vector<Intersection> Board::getNeighbors(int r, int c) const {
     std::vector<Intersection> neighbors;
 
-    for (const auto& [dx, dy] : offsets) {
+    for (const auto& [dx, dy] : _OFFSETS_) {
         if (in_bounds(r + dx, c + dy)) {
             neighbors.push_back(Intersection(r + dx, c + dy));
         }

@@ -17,6 +17,8 @@ Download and make sure you have:
 
 Make sure all of them are available in PATH in order to be used in the Terminal.
 
+Also make sure you have Internet connect while following these building steps.
+
 Clone this repository using git:
 ```bash
 git clone --single-branch --branch main https://github.com/khanhf-ng820/CS160-GoGame.git
@@ -31,9 +33,9 @@ git submodule status --recursive
 ```
 
 ### 2. Build the project
-Open a terminal in the **project root folder** and run:
+Open the Terminal in the **project root folder** and run:
 
-macOS:
+**macOS** and **Linux:**
 ```bash
 #!/bin/bash
 
@@ -48,7 +50,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -S .. -B .
 cmake --build .
 ```
 
-Windows:
+**Windows:**
 ```bash
 #!/bin/bash
 
@@ -67,7 +69,7 @@ cmake --build .
 ```
 
 ### 3. Running the program
-Open a terminal in the **project root folder** and run:
+You can run the program by double-clicking the application in the ```build/``` folder inside the project's directory in File Explorer/Finder, or by open the Terminal in the **project root folder** and run:
 
 macOS:
 ```bash
