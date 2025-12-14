@@ -284,6 +284,14 @@ std::vector<Move> GoAI::reasonableActionsMedium(const GamePosition& game_state, 
 
     legalMoves.push_back( _PASS_MOVE_ ); // Pass is always included
 
+    // If there's no stone on the board, just play a random move
+    if (legalMoves.size() == 1) {
+        // Pick a random placing-stone move
+        std::uniform_int_distribution<int> distrib(0, game_state.size() - 1);
+        Move randomMove = {distrib(rng), distrib(rng), false};
+        legalMoves[0] = randomMove;
+    }
+
     // Shuffle all ALLOWED legal moves RANDOMLY
     std::shuffle(legalMoves.begin(), legalMoves.end(), rng);
 
@@ -680,7 +688,7 @@ Move GoAI::choose_move_medium(const Game& game, std::mt19937& rng) {
     std::cout << "whiteEuler: " << whiteEuler << std::endl;
     std::cout << "whiteAtari: " << whiteAtari << std::endl;
     std::cout << "=> whiteEval: " << whiteEval << std::endl;
-    std::cout << (blackEval - whiteEval) / (blackEval + whiteEval + 0.001) << std::endl;
+    std::cout << "==> eval: " << (blackEval - whiteEval) / (blackEval + whiteEval + 0.001) << std::endl;
 
     return bestMove;
 }
