@@ -525,12 +525,6 @@ void UI::build_main_buttons(int gridW) {
 		addSpan2("Mode",
 			[this, gridW]{ request_switch_mode(gridW); });
 
-		if (mode == GameMode::PVE) {
-			addSpan2("Side",
-				[this, gridW]{
-					build_choose_side_modal(gridW);
-				});
-		}
         addRow2("New Game",
             [this, gridW]{
                 if (board_has_any_stone()) build_confirm_newgame_modal(gridW);
@@ -2637,19 +2631,50 @@ void UI::draw_hud() {
 	if (thinkingText) {
 		thinkingText->setCharacterSize(18);
 		thinkingText->setFillColor(sf::Color(200,32,32));
-		thinkingText->setPosition({ panelX, panelY });
 
-		if (aiThinking) {
-			thinkingText->setString("AI thinking...");
-			window.draw(*thinkingText);
-			auto tb = thinkingText->getGlobalBounds();
-			panelY = tb.position.y + tb.size.y + 10.f;
-		} else if (!aiStatus.empty() &&
-				aiStatusClock.getElapsedTime().asSeconds() <= aiStatusSeconds) {
-			thinkingText->setString(aiStatus);
-			window.draw(*thinkingText);
-			auto tb = thinkingText->getGlobalBounds();
-			panelY = tb.position.y + tb.size.y + 10.f;
+		// 9x9l
+		const bool underBoard = (BOARD_SIZE == 9);
+
+		if (underBoard) {
+			float boardCenterX = float(MARGIN + (BOARD_SIZE - 1) * CELL * 0.5f);
+			float yUnderBoard  = float(MARGIN + (BOARD_SIZE - 1) * CELL + 22.f);
+
+			thinkingText->setString(aiThinking ? "AI thinking..." : aiStatus);
+
+			// center align
+			auto lb = thinkingText->getLocalBounds();
+			thinkingText->setOrigin({ lb.position.x + lb.size.x * 0.5f, 0.f });
+
+			// clamp to view bottom to avoid cropping on small windows
+			auto vr = view_rect();
+			float maxY = vr.position.y + vr.size.y - lb.size.y - 6.f;
+			if (yUnderBoard > maxY) yUnderBoard = maxY;
+
+			thinkingText->setPosition({ boardCenterX, yUnderBoard });
+
+			// draw only when needed
+			if (aiThinking) {
+				window.draw(*thinkingText);
+			} else if (!aiStatus.empty() &&
+					aiStatusClock.getElapsedTime().asSeconds() <= aiStatusSeconds) {
+				window.draw(*thinkingText);
+			}
+
+		} else {
+			thinkingText->setPosition({ panelX, panelY });
+
+			if (aiThinking) {
+				thinkingText->setString("AI thinking...");
+				window.draw(*thinkingText);
+				auto tb = thinkingText->getGlobalBounds();
+				panelY = tb.position.y + tb.size.y + 10.f;
+			} else if (!aiStatus.empty() &&
+					aiStatusClock.getElapsedTime().asSeconds() <= aiStatusSeconds) {
+				thinkingText->setString(aiStatus);
+				window.draw(*thinkingText);
+				auto tb = thinkingText->getGlobalBounds();
+				panelY = tb.position.y + tb.size.y + 10.f;
+			}
 		}
 	}
 }
