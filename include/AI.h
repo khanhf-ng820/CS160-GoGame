@@ -133,7 +133,7 @@ private:
     // Action functions that returns the MOST REASONABLE moves (for MEDIUM/HARD modes)
     // === These moves are considered REASONABLE moves: ===
     // 1. Influence: Only consider empty points within Manhattan distance <= 2-3 of any stone
-    // 2. (HARD MODE ONLY) Influence: Only consider empty points within Manhattan distance <= 3 of the most recently placed stone
+    // 2. (HARD MODE ONLY) Influence: Only consider empty points within Manhattan distance <= 3 of the most recently placed stone, and then take the best k moves
     // ===== Action function for MEDIUM MODE ONLY =====
     std::vector<Move> reasonableActionsMedium(const GamePosition& game_state, std::mt19937& rng);
     // ===== Action function for HARD MODE ONLY =====
