@@ -6,17 +6,20 @@ out
 .vscode
 .DS_Store
 
-#external/SFML/.git
-#external/SFML/.github
-#external/SFML/.gitignore
-#external/SFML/.gitattributes
+# external/SFML/.git
+# external/SFML/.github
+# external/SFML/.gitignore
+# external/SFML/.gitattributes
 
-#build/CMakeCache.txt
+# build/CMakeCache.txt
 
-# Bash files to run git and CMake
+# Bash files and build instructions to run git and CMake
 # build/run_cmake.sh
 # add_submodules.sh
 # remake.sh
+# run_cmake.sh
+copy_assets.cmake
+GoGameProjectBuild.sublime-build
 
 # Build folder
 build/*

@@ -6,10 +6,12 @@
 #include <cassert>
 
 // ULTILITIES
-// Define enum class Stone to represent state of an intersection
+// Define a class to represent the coordinates of an intersection
+struct Intersection { int row = 0, col = 0; Intersection(int r, int c): row(r), col(c) {};};
+// Define enum class Stone to represent state of an intersection / a player (EMPTY means no player)
 enum class Stone { EMPTY = 0, BLACK = 1, WHITE = 2 };
 // Define enum class Liberty to denote if an intersection has liberty or not (EMPTY means intersection with NO STONES)
-enum class Liberty { EMPTY = 0, HAS_LIBERTY = 1, NO_LIBERTY = 2 };
+// enum class Liberty { EMPTY = 0, HAS_LIBERTY = 1, NO_LIBERTY = 2 };
 // Returns the opposite stone color (Black -> White, White -> Black)
 Stone        opposite(Stone s);
 // Returns char representing an intersection ('X': BLACK, 'O': WHITE, '.': EMPTY)
@@ -23,7 +25,7 @@ std::string  trim(std::string s);
 
 // CONSTS
 // Signify which intersection coordinates are considered 'adjacent'
-const std::vector<std::pair<int, int>> offsets = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+const std::vector<Intersection> _OFFSETS_ = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
 // BOARD CLASS
 class Board {
@@ -34,12 +36,14 @@ public:
     int  size() const;
     // Returns the grid vector<Stone>
     std::vector<Stone> getGrid() const;
+    // Returns the libertyCount vector
+    std::vector<int> getLibertyCnt() const;
     // Returns 1D index of 2D coordinates (r, c): r * N + c
     int  idx1D(int r, int c) const;
     // Check if (r, c) is inside the board
     bool in_bounds(int r, int c) const;
     // Get the coordinates of an intersection's neighbors (stones adjacent to it)
-    std::vector<std::pair<int, int>> getNeighbors(int r, int c) const;
+    std::vector<Intersection> getNeighbors(int r, int c) const;
     // Get intersection state at (r, c)
     Stone get(int r, int c) const;
     // Place Stone s at (r, c), applies board and stone logic in Go
@@ -50,19 +54,19 @@ public:
     void clear();
     // Count BLACK and WHITE stones on board
     void count(int& black, int& white) const;
-    // Check if an intersection is adjacent to a black or white stone, or an empty intersection (liberty)
-    bool interNearStone(int r, int c, Stone stone) const;
-    // Check liberties of all intersections and output them to the hasLiberty vector
-    void checkLiberty();
+    // Count if an intersection is adjacent how many black or white stone(s), or empty intersection(s) (liberty)
+    int interNearStone(int r, int c, Stone stone) const;
     // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
-    std::vector<std::pair<int, int>> toBeCaptured(Stone player);
+    std::vector<Intersection> toBeCaptured(Stone player);
 
+    // Check for each intersection, if it has liberty or not, and output them to the 'libertyCount' vector
+    void checkLiberty();
     // Count the number of intersections in a player's territory (ONLY USED FOR SCORING WHEN GAME ENDS)
     int countTerritory(Stone player) const;
 
     // COMPARE BOARDS
     bool operator==(const Board& board2) const;
-    // Count how many stones were captured after playing a move
+    // Count how many stones were captured AFTER playing a move
     int countCaptured(const Board& previousBoard, Stone played) const;
 
     // SERIALIZE
@@ -72,14 +76,15 @@ public:
     bool        load_rows(const std::vector<std::string>& rows);
 
 
-private:
+protected:
     // Size of the board (N * N)
     int N;
     // 1D vector to save the board's state: Each element is an intersection, with 3 states: BLACK, WHITE, EMPTY
     std::vector<Stone> grid;
-    // 1D vector to denote whether an intersection has liberty or not
-    std::vector<Liberty> hasLiberty;
+    // 1D vector to denote how many liberties an intersection has
+    std::vector<int> libertyCount;
 
-    // Recursive DFS algorithm function ONLY for Board::checkLiberty() member function
-    void dfs(int r, int c, Stone stone, std::vector<std::pair<int, int>>& components, std::vector<bool>& visited) const;
+private:
+    // Recursive DFS algorithm function to put all intersections of 'stone' from (r, c) into 'components'
+    void dfs(int r, int c, Stone stone, std::vector<Intersection>& components, std::vector<bool>& visited) const;
 };

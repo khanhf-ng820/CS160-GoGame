@@ -19,7 +19,7 @@ static constexpr float RIGHT_PAD = 10.f;
 static constexpr unsigned MIN_WIN_H = 720;
 
 float UI::panel_top_y() const {
-    float floorY = (BOARD_SIZE == 9 ? 120.f : 170.f);
+    float floorY = (BOARD_SIZE == 9 ? 120.f : 155.f);
     if (infoText) {
         auto gb = infoText->getGlobalBounds();
         float extra =
@@ -34,23 +34,21 @@ float UI::panel_top_y() const {
 float UI::panel_min_height() const {
     const float BTN_H   = 32.f;
     const float ROW_GAP = (BOARD_SIZE == 9 ? 8.f : 10.f);
-
     float y = panel_top_y();
 
-	if (BOARD_SIZE == 9) {
-		// Size
-		y += BTN_H + ROW_GAP;
-		// Undo/Redo, Pass/Resign, Mode, New/Save, Load/Theme, Music/Quit
-		y += (BTN_H + ROW_GAP) * 6;
-		y += 16.f;
-	} else {
-        const int span_rows = 5;
+    if (BOARD_SIZE == 9) {
+        y += BTN_H + ROW_GAP;
+        y += (BTN_H + ROW_GAP) * 6;
+        y += 16.f;
+    } else {
+        const int span_rows = 6;
         const int pair_rows = 3;
-
         y += (BTN_H + ROW_GAP) * span_rows;
         y += (BTN_H + ROW_GAP) * pair_rows;
         y += 10.f;
     }
+
+    y += 60.f;
     return y;
 }
 
@@ -156,7 +154,7 @@ void UI::run_console() {
 			else                  std::cout << "Draw!\n";
 		}
 
-		if(mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+		if (mode==GameMode::PVE && game.side_to_move() != humanSide) {
 			ai_turn();
 			continue;
 		}
@@ -179,6 +177,39 @@ std::vector<sf::Vector2i> UI::hoshi_points(int N) {
 	if (N == 13) pts.push_back({6, 6});
 	if (N == 9)  pts.push_back({4, 4});
 	return pts;
+}
+
+void UI::abort_ai() {
+    ++aiGeneration;
+    aiThinking = false;
+    aiFuture = std::future<Move>{};
+    set_ai_status("", 0.f);
+}
+
+void UI::set_ai_status(const std::string& msg, float seconds) {
+    aiStatus = msg;
+    aiStatusSeconds = seconds;
+    aiStatusClock.restart();
+}
+
+void UI::pve_undo() {
+    if (aiThinking) abort_ai();
+    lastMove.reset();
+    lastCaptured.clear();
+    set_ai_status("", 0.f);
+    for (int i = 0; i < 2; ++i) {
+        if (!game.undo()) break;
+    }
+}
+
+void UI::pve_redo() {
+    if (aiThinking) abort_ai();
+    lastMove.reset();
+    lastCaptured.clear();
+    set_ai_status("", 0.f);
+    for (int i = 0; i < 2; ++i) {
+        if (!game.redo()) break;
+    }
 }
 
 void UI::run_graphical() {
@@ -242,8 +273,8 @@ void UI::run_graphical() {
 	}
 
 	// Assets
-	(void)font.openFromFile("assets/fonts/OpenSans-Regular.ttf");
-	(void)placeBuf.loadFromFile("assets/sounds/place.wav");
+	(void)font.openFromFile(std::string(ASSET_DIR) + "/fonts/OpenSans-Regular.ttf");
+	(void)placeBuf.loadFromFile(std::string(ASSET_DIR) + "/sounds/place.wav");
 
 	// Init pool
 	if (placeBuf.getSampleCount() > 0) {
@@ -274,7 +305,7 @@ void UI::run_graphical() {
 	trackText->setString("Now playing: (none)");
 
 	// Sound
-	hasMusic = bgm.openFromFile("assets/music/bg_music.ogg");
+	hasMusic = bgm.openFromFile(std::string(ASSET_DIR) + "/music/bg_music.ogg");
 	if (hasMusic) {
 		bgm.setLooping(true);
 		bgm.play();
@@ -334,7 +365,7 @@ void UI::run_graphical() {
 	thinkingText->setCharacterSize(18);
 	thinkingText->setFillColor(sf::Color(200,32,32));
 	thinkingText->setString("AI thinking...");
-	thinkingText->setPosition({float(gridW - 160.f), 12.f});
+	// thinkingText->setPosition({float(gridW - 160.f), 12.f});
 
     // Start at main menu instead of in-game
     screen = Screen::MainMenu;
@@ -396,6 +427,25 @@ void UI::build_main_buttons(int gridW) {
 		buttons.push_back(std::move(b));
 	};
 
+	auto pve_undo = [this, gridW]{
+		if (aiThinking) return;
+		int steps = (mode == GameMode::PVE ? 2 : 1);
+		for (int i = 0; i < steps; ++i) {
+			if (!game.undo()) break;
+		}
+		lastMove.reset();
+		if (mode == GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
+	};
+	auto pve_redo = [this, gridW]{
+		if (aiThinking) return;
+		int steps = (mode == GameMode::PVE ? 2 : 1);
+		for (int i = 0; i < steps; ++i) {
+			if (!game.redo()) break;
+		}
+		lastMove.reset();
+		if (mode == GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
+	};
+
     const float bx = float(MARGIN + (BOARD_SIZE - 1) * CELL + PANEL_GAP);
     float y = panel_top_y() - panelScroll;
 
@@ -423,35 +473,54 @@ void UI::build_main_buttons(int gridW) {
 
     if (BOARD_SIZE == 9) {
         // 5-5 layout
-        addRow2("Undo",
-            [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
-                "Redo",
-            [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
+		addRow2(
+			"Undo",
+			[this]{
+				if (mode == GameMode::PVE) {
+					this->pve_undo();
+				} else if (!aiThinking) {
+					abort_ai();
+					game.undo();
+					lastMove.reset();
+					lastCaptured.clear();
+				}
+			},
+			"Redo",
+			[this]{
+				if (mode == GameMode::PVE) {
+					this->pve_redo();
+				} else if (!aiThinking) {
+					abort_ai();
+					game.redo();
+					lastMove.reset();
+					lastCaptured.clear();
+				}
+			}
+		);
+		addRow2("Pass",
+			[this, gridW]{
+				if (!aiThinking) {
+					game.pass();
+					lastMove.reset();
 
-		    addRow2("Pass",
-				[this, gridW]{
-					if (!aiThinking) {
-						game.pass();
-						lastMove.reset();
-
-						if (game.is_over()) {
-							build_game_over_modal(gridW);
-							return;
-						}
-
-						if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
-							gui_start_ai();
-						}
-					}
-				},
-				"Resign",
-				[this, gridW]{
-					if (!aiThinking) {
-						Stone loser = game.side_to_move();
-						game.resign(loser);
+					if (game.is_over()) {
 						build_game_over_modal(gridW);
+						return;
 					}
-				});
+
+					if (mode==GameMode::PVE && game.side_to_move() != humanSide) {
+						gui_start_ai();
+					}
+				}
+			},
+			"Resign",
+			[this, gridW]{
+				if (!aiThinking) {
+					Stone loser = game.side_to_move();
+					game.resign(loser);
+					build_game_over_modal(gridW);
+				}
+			});
 
 		addSpan2("Mode",
 			[this, gridW]{ request_switch_mode(gridW); });
@@ -476,10 +545,30 @@ void UI::build_main_buttons(int gridW) {
 		);
     } else {
         // Layout for 13×13 or 19×19
-		addRow2("Undo",
-            [this]{ if (!aiThinking) { game.undo(); lastMove.reset(); } },
-                "Redo",
-            [this]{ if (!aiThinking) { game.redo(); lastMove.reset(); } });
+		addRow2(
+			"Undo",
+			[this]{
+				if (mode == GameMode::PVE) {
+					this->pve_undo();
+				} else if (!aiThinking) {
+					abort_ai();
+					game.undo();
+					lastMove.reset();
+					lastCaptured.clear();
+				}
+			},
+			"Redo",
+			[this]{
+				if (mode == GameMode::PVE) {
+					this->pve_redo();
+				} else if (!aiThinking) {
+					abort_ai();
+					game.redo();
+					lastMove.reset();
+					lastCaptured.clear();
+				}
+			}
+		);
 
 		addSpan2("Pass", [this, gridW]{
 			if (!aiThinking) {
@@ -491,7 +580,7 @@ void UI::build_main_buttons(int gridW) {
 					return;
 				}
 
-				if (mode == GameMode::PVE && game.side_to_move() == Stone::WHITE) {
+				if (mode == GameMode::PVE && game.side_to_move() != humanSide) {
 					gui_start_ai();
 				}
 			}
@@ -662,7 +751,8 @@ namespace {
     }
 
     const fs::path& save_root() {
-        static fs::path root = fs::absolute("saves");
+        // static fs::path root = fs::absolute("saves");
+        static fs::path root = SAVEGAME_DIR;
         static bool inited = false;
         if (!inited) {
             std::error_code ec;
@@ -883,12 +973,16 @@ void UI::build_theme_modal(int /*gridW*/) {
 
 void UI::request_switch_mode(int gridW) {
     // Check whether play or not
-    if (!lastMove) {
-        mode = (mode==GameMode::PVP ? GameMode::PVE : GameMode::PVP);
-        gui_reset();
-        if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
-        return;
-    }
+	if (!lastMove) {
+		mode = (mode==GameMode::PVP ? GameMode::PVE : GameMode::PVP);
+		gui_reset();
+
+	if (mode == GameMode::PVE) {
+		chooseSideCancelToPVP = true;
+		build_choose_side_modal(gridW);
+	}
+		return;
+	}
 
     // Ask
     build_confirm_switch_modal(gridW);
@@ -934,7 +1028,7 @@ void UI::build_confirm_switch_modal(int gridW) {
         deferredAction = [this]{
             mode = (mode==GameMode::PVP ? GameMode::PVE : GameMode::PVP);
             gui_reset();
-            if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
+            if (mode==GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
             activeModal = Modal::None;
         };
         build_save_load_modal(Modal::Save, gridW);
@@ -944,7 +1038,7 @@ void UI::build_confirm_switch_modal(int gridW) {
     makeBtn("Switch (Don't Save)", xLeft, y, [this]{
         mode = (mode==GameMode::PVP ? GameMode::PVE : GameMode::PVP);
         gui_reset();
-        if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) gui_start_ai();
+        if (mode==GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
         activeModal = Modal::None;
     }, {panelW - 2*pad, 32.f}); y += 40.f;
 
@@ -956,6 +1050,72 @@ void UI::build_confirm_switch_modal(int gridW) {
     modalPanelRect.size.y = (y + pad) - panelY;
 
 	center_modal_vertically();
+}
+
+void UI::build_choose_side_modal(int gridW) {
+    activeModal = Modal::ChooseSide;
+    modalButtons.clear();
+
+    const float panelW = 260.f;
+    const float pad    = 14.f;
+
+    auto vr   = view_rect();
+    float panelX = vr.position.x + vr.size.x - panelW - 20.f;
+    float panelY = vr.position.y + 160.f;
+
+    modalPanelRect = sf::FloatRect({panelX, panelY}, {panelW, 0.f});
+
+    auto makeBtn = [&](const std::string& txt, float x, float y,
+                       std::function<void()> fn, sf::Vector2f size) {
+        Button b;
+        b.rect.setSize(size);
+        b.rect.setFillColor(sf::Color(240,220,150));
+        b.rect.setOutlineColor(sf::Color::Black);
+        b.rect.setOutlineThickness(2.f);
+        b.rect.setPosition({x, y});
+        b.label.emplace(font);
+        b.label->setString(txt);
+        b.label->setCharacterSize(16);
+        b.label->setFillColor(sf::Color::Black);
+        auto lb = b.label->getLocalBounds();
+        b.label->setPosition({ x + 10.f, y + (size.y - lb.size.y) * 0.5f - lb.position.y });
+        b.onClick = std::move(fn);
+        modalButtons.push_back(std::move(b));
+    };
+
+    const float xLeft = panelX + pad;
+    float y = panelY + 40.f;
+
+    makeBtn("Play as Black", xLeft, y, [this, gridW]{
+        humanSide = Stone::BLACK;
+        gui_reset();
+        activeModal = Modal::None;
+        build_main_buttons(gridW);
+        if (mode == GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    makeBtn("Play as White", xLeft, y, [this, gridW]{
+        humanSide = Stone::WHITE;
+        gui_reset();
+        activeModal = Modal::None;
+        build_main_buttons(gridW);
+        if (mode == GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
+    }, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+	makeBtn("Cancel", xLeft, y, [this, gridW]{
+		if (chooseSideCancelToPVP) {
+			mode = GameMode::PVP;
+			gui_reset();
+		}
+		activeModal = Modal::None;
+		build_main_buttons(gridW);
+	}, {panelW - 2*pad, 32.f});
+    y += 40.f;
+
+    modalPanelRect.size.y = (y + pad) - panelY;
+    center_modal_vertically();
 }
 
 void UI::build_confirm_overwrite_modal(int gridW, const std::string& path) {
@@ -1092,28 +1252,40 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
     float y = panelY + 40.f;
 
     // 1) Save & Change
-    makeBtn("Save & Change", xLeft, y, [this, newDiff, gridW]{
-        deferredAction = [this, newDiff] {
-            diff = newDiff;
-            ai = GoAI(diff);
-            gui_reset();
-            if (mode == GameMode::PVE && game.side_to_move() == Stone::WHITE)
-                gui_start_ai();
-            activeModal = Modal::None;
-        };
-        build_save_load_modal(Modal::Save, gridW);
-    }, {panelW - 2*pad, 32.f});
+	makeBtn("Save & Change", xLeft, y, [this, newDiff, gridW]{
+		deferredAction = [this, newDiff]{
+			diff = newDiff;
+			ai = GoAI(diff);
+
+			if (mode == GameMode::PVE) {
+				chooseSideCancelToPVP = false;
+				int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+				build_choose_side_modal(gridWLocal);
+			} else {
+				gui_reset();
+				activeModal = Modal::None;
+				int gridWLocal = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
+				build_main_buttons(gridWLocal);
+			}
+		};
+		build_save_load_modal(Modal::Save, gridW);
+	}, {panelW - 2*pad, 32.f});
     y += 40.f;
 
     // 2) Change (Don't Save)
-    makeBtn("Change (Don't Save)", xLeft, y, [this, newDiff] {
-        diff = newDiff;
-        ai = GoAI(diff);
-        gui_reset();
-        if (mode == GameMode::PVE && game.side_to_move() == Stone::WHITE)
-            gui_start_ai();
-        activeModal = Modal::None;
-    }, {panelW - 2*pad, 32.f});
+	makeBtn("Change (Don't Save)", xLeft, y, [this, newDiff, gridW]{
+		diff = newDiff;
+		ai = GoAI(diff);
+
+		if (mode == GameMode::PVE) {
+			chooseSideCancelToPVP = false;
+			build_choose_side_modal(gridW);
+		} else {
+			gui_reset();
+			activeModal = Modal::None;
+			build_main_buttons(gridW);
+		}
+	}, {panelW - 2*pad, 32.f});
     y += 40.f;
 
     // 3) Cancel
@@ -1128,13 +1300,19 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
 
 void UI::gui_apply_board_size(int newN) {
     if (newN != 9 && newN != 13 && newN != 19) return;
+    abort_ai();
     BOARD_SIZE = newN;
-	gui_update_window_size();
-    gui_reset(); // Reset game
+    gui_update_window_size();
+    gui_reset();
     int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
     build_main_buttons(gridW);
     activeModal = Modal::None;
+
+    if (mode == GameMode::PVE && game.side_to_move() != humanSide) {
+        gui_start_ai();
+    }
 }
+
 
 void UI::build_board_size_modal(int gridW) {
     activeModal = Modal::BoardSize;
@@ -1378,8 +1556,8 @@ void UI::build_confirm_quit_modal() {
 void UI::scan_music_folder() {
 	musicFiles.clear();
 	try {
-		if (!fs::exists("assets/music")) return;
-		for (auto& p : fs::directory_iterator("assets/music")) {
+		if (!fs::exists(MUSIC_DIR)) return;
+		for (auto& p : fs::directory_iterator(MUSIC_DIR)) {
 			if (!p.is_regular_file()) continue;
 			auto ext = p.path().extension().string();
 			std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
@@ -1387,7 +1565,10 @@ void UI::scan_music_folder() {
 				musicFiles.push_back(p.path().string());
 		}
 		std::sort(musicFiles.begin(), musicFiles.end());
-	} catch (...) { /* ignore errors if have */ }
+	} catch (...) {
+		std::cerr << "Error scanning music folder!" << std::endl;
+		/* ignore errors if exists */
+	}
 }
 
 void UI::play_music_at(int idx) {
@@ -1890,6 +2071,11 @@ void UI::gui_handle_events() {
 			on_window_resized(rz->size);
 		}
 
+		else if (aiThinking) {
+			volDragging = false;
+			continue;
+		}
+
 		// 2) Left-mouse click
 		else if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
 			if (mb->button == sf::Mouse::Button::Left) {
@@ -1937,15 +2123,17 @@ void UI::gui_handle_events() {
 
 				// If not open modal: Handle right modal + stone
 				// 2a) Click right button (panel)
-				for (auto& b : buttons) {
-					if (b.rect.getGlobalBounds().contains(mp) && b.onClick) {
-						b.onClick();
-						goto after_mouse_press; // Fast exit MousePressed branch
+				if (panelViewport.contains(mp)) {
+					for (auto& b : buttons) {
+						if (b.rect.getGlobalBounds().contains(mp) && b.onClick) {
+							b.onClick();
+							goto after_mouse_press;
+						}
 					}
 				}
 
 				// 2b) Put stone on board if not AI turn
-				if (!aiThinking) {
+				if (!aiThinking && (mode != GameMode::PVE || game.side_to_move() == humanSide)) {
 					int gx = int(std::round((mp.x - float(MARGIN)) / float(CELL)));
 					int gy = int(std::round((mp.y - float(MARGIN)) / float(CELL)));
 					if (gx>=0 && gy>=0 && gx<BOARD_SIZE && gy<BOARD_SIZE) {
@@ -1953,7 +2141,7 @@ void UI::gui_handle_events() {
 						if (game.legal(m) && game.play(m)) {
 							play_place_sound();
 							lastMove = sf::Vector2i(gx, gy);
-							if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+							if (mode==GameMode::PVE && game.side_to_move() != humanSide) {
 								gui_start_ai();
 							}
 						}
@@ -2016,10 +2204,20 @@ void UI::gui_handle_events() {
 			}
 
 			if (key->scancode == sc::Z) {
-				if (!aiThinking) { game.undo(); lastMove.reset(); }
+				if (!aiThinking) {
+					int steps = (mode == GameMode::PVE ? 2 : 1);
+					for (int i = 0; i < steps; ++i) { if (!game.undo()) break; }
+					lastMove.reset();
+					if (mode == GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
+				}
 			}
 			else if (key->scancode == sc::Y) {
-				if (!aiThinking) { game.redo(); lastMove.reset(); }
+				if (!aiThinking) {
+					int steps = (mode == GameMode::PVE ? 2 : 1);
+					for (int i = 0; i < steps; ++i) { if (!game.redo()) break; }
+					lastMove.reset();
+					if (mode == GameMode::PVE && game.side_to_move() != humanSide) gui_start_ai();
+				}
 			}
 			else if (key->scancode == sc::Space) {
 				if (!aiThinking) {
@@ -2029,7 +2227,7 @@ void UI::gui_handle_events() {
 					if (game.is_over()) {
 						int gridW = MARGIN*2 + CELL*(BOARD_SIZE - 1);
 						build_game_over_modal(gridW);
-					} else if (mode==GameMode::PVE && game.side_to_move()==Stone::WHITE) {
+					} else if (mode==GameMode::PVE && game.side_to_move() != humanSide) {
 						gui_start_ai();
 					}
 				}
@@ -2120,9 +2318,12 @@ void UI::update_hover_state() {
         refresh(modalButtons);
     } else if (screen == Screen::MainMenu) {
         refresh(mainMenuButtons);
-    } else {
-        refresh(buttons);
-    }
+	} else {
+		bool inPanel = panelViewport.contains(mousePos);
+		for (auto& b : buttons) {
+			b.hovered = inPanel && b.rect.getGlobalBounds().contains(mousePos);
+		}
+	}
 }
 
 bool UI::board_has_any_stone() const {
@@ -2145,7 +2346,7 @@ sf::Vector2u UI::compute_window_px() const {
     auto desk = sf::VideoMode::getDesktopMode();
     unsigned safe = 96; // Changeable
     unsigned maxH = (desk.size.y > safe ? desk.size.y - safe : desk.size.y);
-    unsigned winH = std::min(wantH, maxH);
+    unsigned winH = wantH;
     return { winW, winH };
 }
 
@@ -2180,13 +2381,18 @@ void UI::gui_render() {
 }
 
 void UI::gui_start_ai() {
-	if (aiThinking) return;
-	ai = GoAI(diff);
-	Game snapshot = game;
-	aiThinking = true;
-	aiFuture = std::async(std::launch::async, [this, snapshot]() mutable {
-		return ai.choose_move(snapshot, rng);
-	});
+    if (aiThinking) return;
+    ai = GoAI(diff);
+    Game snapshot = game;
+    aiFutureGeneration = aiGeneration;
+    aiThinking = true;
+
+    GoAI aiLocal = ai;
+    std::uint32_t seed = (std::uint32_t)rng();
+    aiFuture = std::async(std::launch::async, [snapshot, aiLocal, seed]() mutable {
+        std::mt19937 localRng(seed);
+        return aiLocal.choose_move(snapshot, localRng);
+    });
 }
 
 void UI::gui_poll_ai() {
@@ -2194,13 +2400,22 @@ void UI::gui_poll_ai() {
 	if (aiFuture.wait_for(0ms) == std::future_status::ready) {
 		aiThinking = false;
 		Move mv = aiFuture.get();
+		if (aiFutureGeneration != aiGeneration) {
+			return;
+		}
 		if (!mv.is_pass && game.legal(mv)) {
 			game.play(mv);
 			lastMove = sf::Vector2i(mv.c, mv.r);
 			play_place_sound();
+
+			char col = char_from_col(mv.c);
+			int row = BOARD_SIZE - mv.r;
+			set_ai_status("AI played " + std::string(1, col) + std::to_string(row), 2.0f);
 		} else {
 			game.pass();
 			lastMove.reset();
+
+			set_ai_status("AI passed", 2.0f);
 
 			if (game.is_over()) {
 				int gridW = MARGIN*2 + CELL*(BOARD_SIZE-1);
@@ -2211,10 +2426,17 @@ void UI::gui_poll_ai() {
 }
 
 void UI::gui_reset() {
-	aiThinking = false;
-	lastMove.reset();
-	game = Game(BOARD_SIZE);
+    abort_ai();
+    lastMove.reset();
+    lastCaptured.clear();
+    set_ai_status("", 0.f);
+    game = Game(BOARD_SIZE);
+
+    if (mode == GameMode::PVE && game.side_to_move() != humanSide) {
+        gui_start_ai();
+    }
 }
+
 
 void UI::gui_change_theme(int idx) {
 	themeIdx = idx % int(themes.size());
@@ -2410,9 +2632,62 @@ void UI::draw_hud() {
 		if (b.label) window.draw(*b.label);
 	}
 
+	float buttonsBottom = panelY;
+	for (auto& b : buttons) {
+		auto rb = b.rect.getGlobalBounds();
+		buttonsBottom = std::max(buttonsBottom, rb.position.y + rb.size.y);
+	}
+	panelY = buttonsBottom + 10.f;
 	// AI Thinking
-	if (aiThinking && thinkingText)
-		window.draw(*thinkingText);
+	if (thinkingText) {
+		thinkingText->setCharacterSize(18);
+		thinkingText->setFillColor(sf::Color(200,32,32));
+
+		// 9x9l
+		const bool underBoard = (BOARD_SIZE == 9);
+
+		if (underBoard) {
+			float boardCenterX = float(MARGIN + (BOARD_SIZE - 1) * CELL * 0.5f);
+			float yUnderBoard  = float(MARGIN + (BOARD_SIZE - 1) * CELL + 22.f);
+
+			thinkingText->setString(aiThinking ? "AI thinking..." : aiStatus);
+
+			// center align
+			auto lb = thinkingText->getLocalBounds();
+			thinkingText->setOrigin({ lb.position.x + lb.size.x * 0.5f, 0.f });
+
+			// clamp to view bottom to avoid cropping on small windows
+			auto vr = view_rect();
+			float maxY = vr.position.y + vr.size.y - lb.size.y - 6.f;
+			if (yUnderBoard > maxY) yUnderBoard = maxY;
+
+			thinkingText->setPosition({ boardCenterX, yUnderBoard });
+
+			// draw only when needed
+			if (aiThinking) {
+				window.draw(*thinkingText);
+			} else if (!aiStatus.empty() &&
+					aiStatusClock.getElapsedTime().asSeconds() <= aiStatusSeconds) {
+				window.draw(*thinkingText);
+			}
+
+		} else {
+			thinkingText->setPosition({ panelX, panelY });
+
+			if (aiThinking) {
+				thinkingText->setString("AI thinking...");
+				window.draw(*thinkingText);
+				auto tb = thinkingText->getGlobalBounds();
+				panelY = tb.position.y + tb.size.y + 10.f;
+			} else if (!aiStatus.empty() &&
+					aiStatusClock.getElapsedTime().asSeconds() <= aiStatusSeconds) {
+				thinkingText->setString(aiStatus);
+				window.draw(*thinkingText);
+				auto tb = thinkingText->getGlobalBounds();
+				panelY = tb.position.y + tb.size.y + 10.f;
+			}
+		}
+	}
 }
 
 void UI::draw_modal() {
@@ -2458,6 +2733,7 @@ void UI::draw_modal() {
         activeModal==Modal::ConfirmNewGame   ? "Start New Game?"    :
 		activeModal==Modal::ConfirmQuit      ? "Quit Game?"         :
 		activeModal==Modal::GameOver         ? "Game Over"          :
+		activeModal==Modal::ChooseSide       ? "Choose Side"        :
                                                "Switch Mode?"
     );
     title.setPosition({x + 12.f, y + 10.f});
