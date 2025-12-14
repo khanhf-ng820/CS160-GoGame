@@ -17,6 +17,8 @@ out
 # build/run_cmake.sh
 # add_submodules.sh
 # remake.sh
+# run_cmake.sh
+copy_assets.cmake
 GoGameProjectBuild.sublime-build
 
 # Build folder

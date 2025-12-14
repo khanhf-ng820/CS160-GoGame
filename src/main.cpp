@@ -8,8 +8,8 @@ int main() {
 	// Core setup
 	Game game(19);
 	AIDifficulty d = AIDifficulty::EASY;
-	GoAI ai(d);
 	std::mt19937 rng{std::random_device{}()};
+	GoAI ai(d);
 
 	// Run GUI
 	UI ui(game, ai, rng);

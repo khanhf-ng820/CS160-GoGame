@@ -65,6 +65,8 @@ bool Game::is_over() const { return consecutive_passes >= 2; }
 int Game::get_consecutive_passes() const { return consecutive_passes; }
 // Check if game history is empty (excluding the current board)
 bool Game::history_is_empty() const { return boardHistory.size() <= 1; }
+// Get the size (how many boards/game states) of game history
+size_t Game::history_size() const { return boardHistory.size(); }
 // Get the most recent previous board in game history (ASSUMING HISTORY SIZE >= 2)
 Board Game::get_prev_board() const { return boardHistory[boardHistory.size() - 2]; }
 // Get the number of stones a player has captured

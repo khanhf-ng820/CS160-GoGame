@@ -66,14 +66,17 @@ std::string trim(std::string s) {
 // ********************
 // BOARD IMPLEMENTATION
 // ********************
-// Constructor saves size N of board, creates 1D vectors (grid, hasLiberty) of size NxN, full of EMPTY
-Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY), hasLiberty(n * n, Liberty::EMPTY) {}
+// Constructor saves size N of board, creates 1D vectors (grid, libertyCount) of size NxN, full of EMPTY
+Board::Board(int n) : N(n), grid(n * n, Stone::EMPTY), libertyCount(n * n, 0) {}
 
 // Returns the size N of the board: number of intersections on one side (For query purposes)
 int Board::size() const { return N; }
 
 // Returns the grid vector<Stone>
 std::vector<Stone> Board::getGrid() const { return grid; }
+
+// Returns the libertyCount vector
+std::vector<int> Board::getLibertyCnt() const { return libertyCount; }
 
 // Returns 1D index of 2D coordinates (r, c)
 int Board::idx1D(int r, int c) const { return c + N * r; }
@@ -88,7 +91,7 @@ bool Board::in_bounds(int r, int c) const {
 std::vector<Intersection> Board::getNeighbors(int r, int c) const {
     std::vector<Intersection> neighbors;
 
-    for (const auto& [dx, dy] : offsets) {
+    for (const auto& [dx, dy] : _OFFSETS_) {
         if (in_bounds(r + dx, c + dy)) {
             neighbors.push_back(Intersection(r + dx, c + dy));
         }
@@ -130,7 +133,7 @@ bool Board::set(int r, int c, Stone s) {
 void Board::clear() {
     // std::fill EMPTY values
     std::fill(grid.begin(), grid.end(), Stone::EMPTY);
-    std::fill(hasLiberty.begin(), hasLiberty.end(), Liberty::EMPTY);
+    std::fill(libertyCount.begin(), libertyCount.end(), 0);
 }
 
 // Count BLACK and WHITE stones on board
@@ -144,13 +147,14 @@ void Board::count(int& black, int& white) const {
     }
 }
 
-// Check if an intersection is adjacent to a black or white stone, or an empty intersection (liberty)
-bool Board::interNearStone(int r, int c, Stone stone) const {
+// Check if an intersection is adjacent to how many black or white stone(s), or empty intersection(s) (liberty)
+int Board::interNearStone(int r, int c, Stone stone) const {
     std::vector<Intersection> neighbors = getNeighbors(r, c);
+    int counter = 0;
     for (const auto& [r0, c0] : neighbors) {
-        if (get(r0, c0) == stone) return true;
+        if (get(r0, c0) == stone) counter++;
     }
-    return false;
+    return counter;
 }
 
 // PRIVATE member of Board class
@@ -167,7 +171,7 @@ void Board::dfs(int r, int c, Stone stone, std::vector<Intersection>& components
     }
 }
 
-// Check liberties of all intersections and output them to the hasLiberty vector
+// Check liberties of all intersections and output them to the libertyCount vector
 void Board::checkLiberty() {
     // Perform DFS to find all components of intersections of the same type
     std::vector<bool> visited(N * N, false);
@@ -178,23 +182,23 @@ void Board::checkLiberty() {
             Stone componentStone = get(r, c);
             dfs(r, c, componentStone, components, visited); // Perform DFS
 
-            bool libertyExists = false;
+            int libertyCounter = 0;
             // Check each intersection of component whether it has liberty
             for (const auto& [r0, c0] : components) {
-                if (interNearStone(r0, c0, Stone::EMPTY)) {
-                    libertyExists = true;
-                    break;
+                int libs = interNearStone(r0, c0, Stone::EMPTY);
+                if (libs) {
+                    libertyCounter += libs;
                 }
             }
 
-            // Output results to the hasLiberty vector
+            // Output results to the libertyCount vector
             for (const auto& [r0, c0] : components) {
                 int idx0 = idx1D(r0, c0);
                 // We only care about liberties of stones, not liberties of an empty space
                 if (componentStone == Stone::EMPTY) {
-                    hasLiberty[idx0] = Liberty::EMPTY;
+                    libertyCount[idx0] = 0;
                 } else {
-                    hasLiberty[idx0] = (libertyExists ? Liberty::HAS_LIBERTY : Liberty::NO_LIBERTY);
+                    libertyCount[idx0] = libertyCounter;
                 }
             }
         }
@@ -210,7 +214,7 @@ std::vector<Intersection> Board::toBeCaptured(Stone player) {
         for (int c = 0; c < N; c++) {
             int idx = idx1D(r, c);
             // Check if stone has no liberties and belongs to player
-            if (hasLiberty[idx] == Liberty::NO_LIBERTY && get(r, c) == player)
+            if (libertyCount[idx] == 0 && get(r, c) == player)
                 noLiberties.push_back(Intersection(r, c));
         }
     }
