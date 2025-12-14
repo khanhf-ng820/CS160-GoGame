@@ -19,7 +19,7 @@ static constexpr float RIGHT_PAD = 10.f;
 static constexpr unsigned MIN_WIN_H = 720;
 
 float UI::panel_top_y() const {
-    float floorY = (BOARD_SIZE == 9 ? 120.f : 170.f);
+    float floorY = (BOARD_SIZE == 9 ? 120.f : 155.f);
     if (infoText) {
         auto gb = infoText->getGlobalBounds();
         float extra =
@@ -34,23 +34,21 @@ float UI::panel_top_y() const {
 float UI::panel_min_height() const {
     const float BTN_H   = 32.f;
     const float ROW_GAP = (BOARD_SIZE == 9 ? 8.f : 10.f);
-
     float y = panel_top_y();
 
-	if (BOARD_SIZE == 9) {
-		// Size
-		y += BTN_H + ROW_GAP;
-		// Undo/Redo, Pass/Resign, Mode, New/Save, Load/Theme, Music/Quit
-		y += (BTN_H + ROW_GAP) * 6;
-		y += 16.f;
-	} else {
+    if (BOARD_SIZE == 9) {
+        y += BTN_H + ROW_GAP;
+        y += (BTN_H + ROW_GAP) * 6;
+        y += 16.f;
+    } else {
         const int span_rows = 6;
         const int pair_rows = 3;
-
         y += (BTN_H + ROW_GAP) * span_rows;
         y += (BTN_H + ROW_GAP) * pair_rows;
         y += 10.f;
     }
+
+    y += 60.f;
     return y;
 }
 
