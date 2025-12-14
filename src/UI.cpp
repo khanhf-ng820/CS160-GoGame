@@ -2071,6 +2071,11 @@ void UI::gui_handle_events() {
 			on_window_resized(rz->size);
 		}
 
+		else if (aiThinking) {
+			volDragging = false;
+			continue;
+		}
+
 		// 2) Left-mouse click
 		else if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
 			if (mb->button == sf::Mouse::Button::Left) {
@@ -2341,7 +2346,7 @@ sf::Vector2u UI::compute_window_px() const {
     auto desk = sf::VideoMode::getDesktopMode();
     unsigned safe = 96; // Changeable
     unsigned maxH = (desk.size.y > safe ? desk.size.y - safe : desk.size.y);
-    unsigned winH = std::min(wantH, maxH);
+    unsigned winH = wantH;
     return { winW, winH };
 }
 
