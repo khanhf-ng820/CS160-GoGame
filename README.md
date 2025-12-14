@@ -17,7 +17,7 @@ Download and make sure you have:
 
 Make sure all of them are available in PATH in order to be used in the Terminal.
 
-Also make sure you have Internet connect while following these building steps.
+Also make sure you have Internet connection while following these building steps.
 
 Clone this repository using git:
 ```bash
