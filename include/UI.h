@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include <optional>
 #include <future>
+#include <cstdint>
 #include <random>
 #include <string>
 #include <iostream>
@@ -43,7 +44,7 @@ class UI {
 		};
 
 		// Modals
-		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver, EndGame };
+		enum class Modal { None, Save, Load, Theme, Music, ConfirmSwitch, ConfirmDifficulty, ConfirmOverwrite, ConfirmNewGame, BoardSize, ConfirmResize, ConfirmQuit, GameOver, EndGame, ChooseSide };
 
 		void gui_handle_events();
 		void gui_update();
@@ -52,6 +53,8 @@ class UI {
 		void gui_start_ai();
 		void gui_poll_ai();
 		void gui_reset();
+        void pve_undo();
+        void pve_redo();
 		void gui_change_theme(int idx);
 
 		void build_main_buttons(int gridW);
@@ -171,6 +174,7 @@ class UI {
 
 		// Highlight last move
 		std::optional<sf::Vector2i> lastMove;
+		std::vector<sf::Vector2i> lastCaptured;
 
 		// Music list and playback
 		std::vector<std::string> musicFiles;
@@ -196,6 +200,20 @@ class UI {
 		// AI async
 		bool aiThinking = false;
 		std::future<Move> aiFuture;
+		std::uint64_t aiGeneration = 0;
+		std::uint64_t aiFutureGeneration = 0;
 
+		void abort_ai();
+
+		std::string aiStatus;
+		sf::Clock aiStatusClock;
+		float aiStatusSeconds = 0.f;
+
+		void set_ai_status(const std::string& msg, float seconds);
+		Stone humanSide = Stone::BLACK;
+		void build_choose_side_modal(int gridW);
+
+		bool chooseSideCancelToPVP = false;
+		
 		std::function<void()> deferredAction = nullptr;
 };
