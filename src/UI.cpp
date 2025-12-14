@@ -184,6 +184,8 @@ std::vector<sf::Vector2i> UI::hoshi_points(int N) {
 void UI::abort_ai() {
     ++aiGeneration;
     aiThinking = false;
+    aiFuture = std::future<Move>{};
+    set_ai_status("", 0.f);
 }
 
 void UI::set_ai_status(const std::string& msg, float seconds) {
@@ -1300,13 +1302,19 @@ void UI::build_confirm_diff_modal(AIDifficulty newDiff, int gridW) {
 
 void UI::gui_apply_board_size(int newN) {
     if (newN != 9 && newN != 13 && newN != 19) return;
+    abort_ai();
     BOARD_SIZE = newN;
-	gui_update_window_size();
-    gui_reset(); // Reset game
+    gui_update_window_size();
+    gui_reset();
     int gridW = MARGIN * 2 + CELL * (BOARD_SIZE - 1);
     build_main_buttons(gridW);
     activeModal = Modal::None;
+
+    if (mode == GameMode::PVE && game.side_to_move() != humanSide) {
+        gui_start_ai();
+    }
 }
+
 
 void UI::build_board_size_modal(int gridW) {
     activeModal = Modal::BoardSize;
@@ -2425,7 +2433,12 @@ void UI::gui_reset() {
     lastCaptured.clear();
     set_ai_status("", 0.f);
     game = Game(BOARD_SIZE);
+
+    if (mode == GameMode::PVE && game.side_to_move() != humanSide) {
+        gui_start_ai();
+    }
 }
+
 
 void UI::gui_change_theme(int idx) {
 	themeIdx = idx % int(themes.size());
