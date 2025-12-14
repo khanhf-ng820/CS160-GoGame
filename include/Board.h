@@ -11,7 +11,7 @@ struct Intersection { int row = 0, col = 0; Intersection(int r, int c): row(r), 
 // Define enum class Stone to represent state of an intersection / a player (EMPTY means no player)
 enum class Stone { EMPTY = 0, BLACK = 1, WHITE = 2 };
 // Define enum class Liberty to denote if an intersection has liberty or not (EMPTY means intersection with NO STONES)
-enum class Liberty { EMPTY = 0, HAS_LIBERTY = 1, NO_LIBERTY = 2 };
+// enum class Liberty { EMPTY = 0, HAS_LIBERTY = 1, NO_LIBERTY = 2 };
 // Returns the opposite stone color (Black -> White, White -> Black)
 Stone        opposite(Stone s);
 // Returns char representing an intersection ('X': BLACK, 'O': WHITE, '.': EMPTY)
@@ -52,8 +52,8 @@ public:
     void clear();
     // Count BLACK and WHITE stones on board
     void count(int& black, int& white) const;
-    // Check if an intersection is adjacent to a black or white stone, or an empty intersection (liberty)
-    bool interNearStone(int r, int c, Stone stone) const;
+    // Count if an intersection is adjacent how many black or white stone(s), or empty intersection(s) (liberty)
+    int interNearStone(int r, int c, Stone stone) const;
     // Returns a vector of all stones of a player that will be captured (removed) due to no liberties
     std::vector<Intersection> toBeCaptured(Stone player);
 
@@ -79,8 +79,8 @@ protected:
     std::vector<Stone> grid;
 
 private:
-    // 1D vector to denote whether an intersection has liberty or not
-    std::vector<Liberty> hasLiberty;
+    // 1D vector to denote how many liberties an intersection has
+    std::vector<int> libertyCount;
 
     // Recursive DFS algorithm function to put all intersections of 'stone' from (r, c) into 'components'
     void dfs(int r, int c, Stone stone, std::vector<Intersection>& components, std::vector<bool>& visited) const;

@@ -15,12 +15,16 @@ GamePosition::GamePosition(const Game& game) : Board(game.board().size()), prevB
 }
 // Get the board from a game state (game position) pointer
 Board GamePosition::getBd(const GamePosition* game_state) const { return * (Board*) game_state; }
+// Get the color of player to-move
+Stone GamePosition::getPlayerToMove() const { return to_move; }
 // Get the number of consecutive passes
 int GamePosition::getConsPasses() const { return consecutive_passes; }
 // Increment the number of consecutive passes
 void GamePosition::incConsPasses() { consecutive_passes++; }
 // Check if game ends (>= 2 consecutive passes)
 bool GamePosition::gameEnded() const { return consecutive_passes >= 2; }
+// Get the previous board
+Board GamePosition::getPrevBoard() const { return prevBoard; }
 
 // Check legality of move
 bool GamePosition::legal(const Move& mv) const {
@@ -131,39 +135,115 @@ std::vector<Move> GoAI::action(const GamePosition& game_state, std::mt19937& rng
     return legalMoves;
 }
 
-// Action function that returns the MOST REASONABLE moves
+// Action function that returns the MOST REASONABLE moves (for MEDIUM/HARD modes)
 // Considerations for REASONABLE moves are written as comments in "AI.h"
-std::vector<Move> GoAI::reasonableActions(const GamePosition& game_state, std::mt19937 rng) {
+std::vector<Move> GoAI::reasonableActions(const GamePosition& game_state, std::mt19937& rng) {
     size_t N = game_state.size();
     std::vector<Move> legalMoves; legalMoves.reserve(N * N + 1);
 
-    // Consider all possible legal moves
-    for (int r = 0; r < N; r++) {
-        for (int c = 0; c < N; c++) {
-            Move mv = {r,c,false};
-            // Ignore illegal move
-            if (!(game_state.get(r, c) == Stone::EMPTY && game_state.legal(mv)))
-                continue;
-
-            // === Influence: Only consider empty points within Manhattan distance <= 3 of any stone
-            bool includeMove = false;
-            for (int r0 = r-3; r0 <= r+3; r0++) {
-                if (includeMove) break;
-                for (int c0 = c-3; c0 <= c+3; c0++) {
-                    // Check Manhattan distance of 3
-                    if (game_state.in_bounds(r0, c0) && manhattan_dist(r, c, r0, c0) <= 3
-                    && game_state.get(r0, c0) != Stone::EMPTY)
-                        includeMove = true;
+    // ===== Action function for MEDIUM MODE ONLY =====
+    if (diff == AIDifficulty::MEDIUM)   {
+        // Consider all possible REASONABLE legal moves
+        for (int r = 0; r < N; r++) {
+            for (int c = 0; c < N; c++) {
+                Move mv = {r,c,false};
+                // Ignore illegal move
+                if (!(game_state.get(r, c) == Stone::EMPTY && game_state.legal(mv)))
+                    continue;
+    
+                // === Influence: Only consider empty points within Manhattan distance <= maxManDistMedium of any stone
+                bool includeMove = false;
+                for (int r0 = r-maxManDistMedium; r0 <= r+maxManDistMedium; r0++) {
+                    if (includeMove) break;
+                    for (int c0 = c-maxManDistMedium; c0 <= c+maxManDistMedium; c0++) {
+                        // Check Manhattan distance of maxManDistMedium
+                        if (game_state.in_bounds(r0, c0) && manhattan_dist(r, c, r0, c0) <= maxManDistMedium
+                        && game_state.get(r0, c0) != Stone::EMPTY)
+                            includeMove = true;
+                    }
+                }
+    
+                if (includeMove) legalMoves.push_back(mv);
+            }
+        }
+    
+        legalMoves.push_back( _PASS_MOVE_ ); // Pass is always included
+    
+        // Shuffle all ALLOWED legal moves RANDOMLY
+        std::shuffle(legalMoves.begin(), legalMoves.end(), rng);
+    
+    
+    
+        // === Limit to top k moves (by cheap heuristic function)
+        // std::sort(legalMoves.begin(), legalMoves.end(), [this, &game_state](const Move& a, const Move& b) {
+        //     double evalA = evaluate(result(game_state, a)), evalB = evaluate(result(game_state, b));
+        //     if (game_state.getPlayerToMove() == Stone::BLACK) {
+        //         return evalA > evalB;
+        //     } else if (game_state.getPlayerToMove() == Stone::WHITE) {
+        //         return evalA < evalB;
+        //     } else { return true; } // Null player
+        // });
+        // size_t maxNumOfMoves = std::min(static_cast<size_t>(branchingFactorLimit), legalMoves.size());
+        // legalMoves.resize(maxNumOfMoves);
+    } else if (diff == AIDifficulty::HARD) {
+        // ===== Action function for HARD MODE ONLY =====
+        // == Consider all possible REASONABLE legal moves
+        // Take the most recent move (most recently placed stone / pass)
+        Move mostRecentMove = _PASS_MOVE_;
+        bool foundMostRecentMv = false;
+        for (int r = 0; r < N; r++) {
+            if (foundMostRecentMv) break;
+            for (int c = 0; c < N; c++) {
+                if (game_state.get(r, c) != Stone::EMPTY && game_state.getPrevBoard().get(r, c) == Stone::EMPTY) {
+                    mostRecentMove = {r,c,false};
+                    foundMostRecentMv = true;
                 }
             }
-            if (includeMove) legalMoves.push_back(mv);
         }
+
+        // If the most recent move is a PASS move
+        if (mostRecentMove.is_pass) {
+            // Pick a random move
+            std::uniform_int_distribution<int> distrib(0, game_state.size() - 1);
+            mostRecentMove = {distrib(rng), distrib(rng), false};
+        }
+        // Move: placing a stone with Chebyshev distance <= maxCheDistHard from mostRecentMove
+        for (int r_offset = -maxCheDistHard; r_offset <= maxCheDistHard; r_offset++) {
+            for (int c_offset = -maxCheDistHard; c_offset <= maxCheDistHard; c_offset++) {
+                int r = mostRecentMove.r, c = mostRecentMove.c;
+                int r0 = r + r_offset, c0 = c + c_offset;
+                Move mv = {r0, c0, false};
+                // Check Chebyshev distance of maxCheDistHard and check legal move
+                if (game_state.in_bounds(r0, c0)
+                // && manhattan_dist(r, c, r0, c0) <= maxCheDistHard
+                && game_state.get(r0, c0) == Stone::EMPTY && game_state.legal(mv))
+                    legalMoves.push_back(mv);
+            }
+        }
+
+        legalMoves.push_back( _PASS_MOVE_ ); // Pass is always included
+    
+        // Shuffle all ALLOWED legal moves RANDOMLY
+        std::shuffle(legalMoves.begin(), legalMoves.end(), rng);
+    
+    
+    
+        // === Limit to top k moves (by evaluation function)
+        // std::sort(legalMoves.begin(), legalMoves.end(), [this, &game_state](const Move& a, const Move& b) {
+        //     double evalA = evaluate(result(game_state, a)), evalB = evaluate(result(game_state, b));
+        //     if (game_state.getPlayerToMove() == Stone::BLACK) {
+        //         return evalA > evalB;
+        //     } else if (game_state.getPlayerToMove() == Stone::WHITE) {
+        //         return evalA < evalB;
+        //     } else { return true; } // Null player
+        // });
+        // size_t maxNumOfMoves = std::min(static_cast<size_t>(branchingFactorLimit), legalMoves.size());
+        // legalMoves.resize(maxNumOfMoves);
     }
-    legalMoves.push_back( _PASS_MOVE_ ); // Pass is always included
+
     // DEBUG
     // std::cout << legalMoves.size() << std::endl;
 
-    std::shuffle(legalMoves.begin(), legalMoves.end(), rng);
     return legalMoves;
 }
 
@@ -195,7 +275,7 @@ double GoAI::evaluate(const GamePosition& game_state) {
 
 // Minimax value functions
 // Max value function
-double GoAI::max_value(const GamePosition& game_state, int depth, std::mt19937& rng) {
+double GoAI::max_value(const GamePosition& game_state, unsigned int depth, std::mt19937& rng) {
     if (depth == 0 || terminal(game_state)) {
         return evaluate(game_state);
     }
@@ -209,7 +289,7 @@ double GoAI::max_value(const GamePosition& game_state, int depth, std::mt19937& 
 }
 
 // Min value function
-double GoAI::min_value(const GamePosition& game_state, int depth, std::mt19937& rng) {
+double GoAI::min_value(const GamePosition& game_state, unsigned int depth, std::mt19937& rng) {
     if (depth == 0 || terminal(game_state)) {
         return evaluate(game_state);
     }
@@ -223,20 +303,22 @@ double GoAI::min_value(const GamePosition& game_state, int depth, std::mt19937& 
 }
 
 // Minimax value function with depth-limited minimax, NO ALPHA-BETA PRUNING
-double GoAI::naive_minimax(const GamePosition& game_state, int depth, Stone player, std::mt19937& rng) {
-    if (player == Stone::BLACK) {
+double GoAI::naive_minimax(const GamePosition& game_state, unsigned int depth, Stone player, std::mt19937& rng) {
+    switch (player) {
+    case Stone::BLACK:
         // If it's maximizing player's turn
         return max_value(game_state, depth, rng);
-    } else if (player == Stone::WHITE) {
+    case Stone::WHITE:
         // If it's minimizing player's turn
         return min_value(game_state, depth, rng);
-    } else { // Null player
+    default:
+        // No player
         return 0;
     }
 }
 
 // Minimax value function with depth-limited minimax, with ALPHA-BETA PRUNING
-double GoAI::alpha_beta(const GamePosition& game_state, int depth, double alpha, double beta, Stone player, std::mt19937& rng) {
+double GoAI::alpha_beta(const GamePosition& game_state, unsigned int depth, double alpha, double beta, Stone player, std::mt19937& rng) {
     if (depth == 0 || terminal(game_state)) {
         return evaluate(game_state);
     }
@@ -311,18 +393,8 @@ Move GoAI::choose_move(const Game& game, std::mt19937& rng){
 
 // ===== For EASY MODE =====
 Move GoAI::choose_move_easy(const Game& game, std::mt19937& rng) {
-    const int N = game.size();
-    std::vector<Move> legalMoves; legalMoves.reserve(N * N + 1);
-
-    // Consider all possible legal moves
-    for (int r = 0; r < N; r++) {
-        for (int c = 0; c < N; c++) {
-            Move mv = {r,c,false};
-            if (game.board().get(r, c) == Stone::EMPTY && game.legal(mv))
-                legalMoves.push_back(mv);
-        }
-    }
-    legalMoves.push_back( _PASS_MOVE_ ); // Pass
+    GamePosition game_state = GamePosition(game);
+    std::vector<Move> legalMoves = action(game_state, rng);
 
     // Pick a random move
     std::uniform_int_distribution<int> distrib(0, static_cast<int>(legalMoves.size()) - 1);
