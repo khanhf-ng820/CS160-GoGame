@@ -19,6 +19,8 @@ Make sure all of them are available in PATH in order to be used in the Terminal.
 
 Also make sure you have Internet connection while following these building steps.
 
+Move to **Step 2** if you already downloaded this project using the attached ```.zip``` file in the release notes.
+
 Clone this repository using git:
 ```bash
 git clone --single-branch --branch main https://github.com/khanhf-ng820/CS160-GoGame.git
