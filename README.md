@@ -73,7 +73,7 @@ cmake --build .
 ### 3. Running the program
 You can run the program by double-clicking the application in the ```build/``` folder inside the project's directory in File Explorer/Finder, or by open the Terminal in the **project root folder** and run:
 
-**macOS:**
+**macOS** and **Linux:**
 ```bash
 ./build/GoGame
 ```
