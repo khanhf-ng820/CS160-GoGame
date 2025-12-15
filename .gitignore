@@ -15,9 +15,9 @@ out
 
 # Bash files and build instructions to run git and CMake
 # build/run_cmake.sh
-# add_submodules.sh
-# remake.sh
-# run_cmake.sh
+add_submodules.sh
+remake.sh
+run_cmake.sh
 copy_assets.cmake
 GoGameProjectBuild.sublime-build
 
