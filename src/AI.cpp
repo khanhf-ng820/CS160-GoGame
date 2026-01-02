@@ -569,6 +569,8 @@ Move GoAI::choose_move_negamax(const Game& game, unsigned int depth, std::mt1993
             bestMove = mv;
         }
     }
+    // DEBUG
+    std::cout <<"Move: "<< bestMove.r<<' '<<bestMove.c<<' '<<bestMove.is_pass << " bestValue: " << bestValue << '\n';
 
     return bestMove;
 }
@@ -594,6 +596,8 @@ Move GoAI::choose_move_negamaxAB(const Game& game, unsigned int depth, std::mt19
         }
         alpha = std::max(alpha, childValue);
     }
+    // DEBUG
+    std::cout <<"Move: "<< bestMove.r<<' '<<bestMove.c<<' '<<bestMove.is_pass << " bestValue: " << bestValue << '\n';
 
     return bestMove;
 }
