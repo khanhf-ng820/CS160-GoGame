@@ -16,7 +16,7 @@
 // Directories
 const std::string MUSIC_DIR = std::string(ASSET_DIR) + "/music";
 
-enum class UIType { CONSOLE, GRAPHICAL };
+enum class UIType : unsigned char { CONSOLE, GRAPHICAL };
 
 class UI {
 	public: 

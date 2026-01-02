@@ -52,7 +52,7 @@ Game::Game(int n) : N(n), bd(n), to_move(Stone::BLACK), boardHistory(1, Board(n)
 // Returns size of board
 int Game::size() const { return N; }
 // Returns the game's komi
-double Game::komi() const { return komiPts; }
+const double& Game::komi() const { return komiPts; }
 // Returns mutable Board for query (method is not const)
 Board& Game::board() { return bd; }
 // Returns const Board for query (const method)

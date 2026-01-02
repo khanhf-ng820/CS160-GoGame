@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cassert>
 #include <iomanip>
 #include <limits>
 #include <vector>
@@ -8,13 +9,17 @@
 #include <random>
 #include "Board.h"
 #include "Game.h"
+#include "AI_Utils/GamePosition.h"
+#include "AI_Utils/ZobristHasher.h"
+#include "AI_Utils/TranspositionTable.h"
+
 
 // Constants
 constexpr double _POSITIVE_INF_ = 100000;
 constexpr double _NEGATIVE_INF_ = -100000;
-constexpr double _EPSILON_ = 1e-9;
-constexpr Move   _PASS_MOVE_ = {0,0,true};
-constexpr size_t _MAX_PLIES_ = 1024;
+constexpr double _EPSILON_      = 1e-9;
+constexpr Move   _PASS_MOVE_    = {0,0,true};
+constexpr size_t _MAX_PLIES_    = 1024;
 
 // Structs for easier storing
 struct Branch {
@@ -24,66 +29,7 @@ struct Branch {
 };
 
 // Enum class for AI difficulty
-enum class AIDifficulty { EASY, MEDIUM, HARD };
-
-// ***** Class for a Game State (Game position) *****
-class GamePosition : public Board {
-public:
-    // Constructor
-    explicit GamePosition(Board bd, Stone to_move, double komi);
-    explicit GamePosition(const Game& game);
-    // Get the board from a game state (game position) pointer
-    Board getBd(const GamePosition* game_state) const;
-    // Get the color of player to-move
-    Stone getPlayerToMove() const;
-    // Get the number of consecutive passes
-    int getConsPasses() const;
-    // Increment the number of consecutive passes
-    void incConsPasses();
-    // Check if game ends (>= 2 consecutive passes)
-    bool gameEnded() const;
-    // Get the previous board
-    Board getPrevBoard() const;
-    // Count how many a player's stones have been captured
-    int getCaptured(Stone player) const;
-
-    // Check if move is legal
-    bool legal(const Move& mv) const;
-    // Play a move
-    bool play(const Move& mv);
-    // Check if a move will capture stone(s) if played
-    bool isCapture(const Move& mv) const;
-    // Count how many stones will be captured after playing a move
-    int willCapture(const Move& mv) const;
-    // Count how many liberties each individual stone has, and sum up
-    void countIndividualLiberty(int& black, int& white) const;
-    // Count how many stones in atari each player has
-    void countAtari(int& black, int& white) const;
-    // Calculate the Euler number of the board with respect to each individual player
-    void calcEuler(double& black, double& white) const;
-    // Return the game score for a player
-    double calcScore(Stone player) const;
-
-
-private:
-    // Default Japanese komi
-    double komi = 6.5;
-    // Color of player to-move
-    Stone to_move;
-    // Number of consecutive passes
-    int consecutive_passes = 0;
-    // The previous board
-    Board prevBoard;
-    // If the previous board is null, meaning it's the very beginning of the game
-    bool prevBoardIsNull = true;
-    // Points: number of white & black stones captured by opponents
-    int blacksCaptured = 0, whitesCaptured = 0;
-
-    // Examine 2x2 window on board to check if it's Q1, Q3, Qd pattern
-    bool isQ1(Stone a[4], Stone player) const;
-    bool isQ3(Stone a[4], Stone player) const;
-    bool isQd(Stone a[4], Stone player) const;
-};
+enum class AIDifficulty : unsigned char { EASY, MEDIUM, HARD };
 
 
 
@@ -94,8 +40,7 @@ private:
 // ***** Class for the Go AI opponent *****
 class GoAI {
 public:
-    explicit GoAI(AIDifficulty d=AIDifficulty::EASY);
-    // explicit GoAI(AIDifficulty d=AIDifficulty::EASY, std::mt19937& rng);
+    explicit GoAI(AIDifficulty d=AIDifficulty::EASY, std::mt19937* rng_ptr=nullptr, std::mt19937_64* rng64_ptr=nullptr);
 
     AIDifficulty getDiff() const;
 
@@ -106,19 +51,29 @@ public:
 private:
     // AI difficulty
     AIDifficulty diff;
-    // Depth limits for minimax algorithm
-    unsigned int medium_search_depth = 2;
-    unsigned int hard_search_depth = 3;
+	// RNG pointers
+	std::mt19937* rng_ptr;
+	std::mt19937_64* rng64_ptr;
+	// Depth limits for minimax algorithm
+    static constexpr unsigned int medium_search_depth = 2;
+    static constexpr unsigned int hard_search_depth = 3;
 
     // Limit for Manhattan/Chebyshev distance for MEDIUM/HARD modes (must be around 2 or 3)
-    int          maxManDistMedium = 3;
-    int          maxCheDistHard = 3;
+    static constexpr int          maxManDistMedium = 3;
+    static constexpr int          maxCheDistHard = 3;
     // Limit of branching factor
-    unsigned int branchingFactorLimit = 25;
+    static constexpr unsigned int branchingFactorLimit = 25;
+    // Weights for hand-crafted evaluation function (heuristic function)
+    static constexpr double       scoreWeight  = 1.5;
+    static constexpr double       libsWeight   = 1.0;
+    static constexpr double       stonesWeight = 5.0;
+    static constexpr double       atariWeight  = -20.0;
+    static constexpr double       eulerWeight  = -4.0;
     // Number of killer moves stored in AI (commonly set to 2)
-    static const unsigned int killerMoveStorage = 2;
+    static constexpr unsigned int killerMoveStorage = 2;
     // Storing the killer moves FOR ALPHA-BETA PRUNING (each ply has a primary and secondary killer move)
     std::vector<std::vector<Move>> killerMoves = std::vector<std::vector<Move>>(_MAX_PLIES_, std::vector<Move>());
+
 
     // Get Manhattan distance between two points on the board
     int manhattan_dist(int r0, int c0, int r1, int c1);
@@ -145,7 +100,7 @@ private:
     int    cheap_evaluate(const GamePosition& game_state, const Move& move, unsigned int ply);
     // Calculate evaluation value based on Score, Liberties, Stones, stones in Atari, Euler
     double calc_eval(double score, int libs, int stones, int atari, double euler) const;
-    // Evaluation function (heuristic function) for Go board (range: [-1, 1])
+    // Evaluation function (heuristic function) for Go board (range: [-10000, 10000])
     double evaluate(const GamePosition& game_state);
 
     // Clear killer move list before every new search
@@ -154,6 +109,7 @@ private:
     void insertKiller(unsigned int ply, const Move& move);
     // Check if a move in a move list is a killer move when performing move ordering
     void checkKiller(unsigned int ply, std::vector<Move>& legalMoves);
+
 
     // Minimax value functions
     double max_value(const GamePosition& game_state, unsigned int depth, std::mt19937& rng);
@@ -165,8 +121,20 @@ private:
     double alpha_beta(const GamePosition& game_state, unsigned int depth, double alpha, double beta, Stone player, unsigned int ply, std::mt19937& rng);
 
 
+    // Negamax value function, depth-limited, NO ALPHA-BETA PRUNING
+    double naive_negamax(const GamePosition& game_state, unsigned int depth, int8_t color, std::mt19937& rng);
+    // Negamax value function, depth-limited, WITH ALPHA-BETA PRUNING
+    double negamax_AB(const GamePosition& game_state, unsigned int depth, double alpha, double beta, int8_t color, std::mt19937& rng);
+
+
     // Choose move for three difficulties
     Move choose_move_easy(const Game& game, std::mt19937& rng);
     Move choose_move_medium(const Game& game, std::mt19937& rng);
     Move choose_move_hard(const Game& game, unsigned int ply, std::mt19937& rng);
+
+    // Other 'choose move' functions, based on different AI techniques
+    // --- Negamax approaches ---
+    Move choose_move_negamax(const Game& game, unsigned int depth, std::mt19937& rng);
+    Move choose_move_negamaxAB(const Game& game, unsigned int depth, std::mt19937& rng);
+    Move choose_move_negamaxTT(const Game& game, std::mt19937& rng);
 };

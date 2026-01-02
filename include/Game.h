@@ -29,11 +29,11 @@ Hàm chính:
 #include "Board.h"
 
 // 2 gamemodes: PvP, PvE
-enum class GameMode { PVP, PVE };
+enum class GameMode : unsigned char { PVP, PVE };
 // Game states
-enum class GameState { PLAYING, ENDED };
+enum class GameState : unsigned char { PLAYING, ENDED };
 // Endgame results
-enum class GameResults { BLACK_WINS, WHITE_WINS, DRAW };
+enum class GameResults : unsigned char { BLACK_WINS, WHITE_WINS, DRAW };
 
 // Represent a move of row r, column c, is_pass = true if move is pass
 struct Move {
@@ -58,11 +58,11 @@ public:
     // Returns size of board
     int size() const;
     // Returns the game's komi
-    double komi() const;
+    const double& komi() const;
     // Returns mutable Board for query
-    Board&       board();
+    Board&        board();
     // Returns const Board for query
-    const Board& board() const;
+    const Board&  board() const;
     // Returns player to move
     Stone side_to_move() const;
     // Returns true if game is ended

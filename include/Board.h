@@ -7,9 +7,12 @@
 
 // ULTILITIES
 // Define a class to represent the coordinates of an intersection
-struct Intersection { int row = 0, col = 0; Intersection(int r, int c): row(r), col(c) {};};
+struct Intersection {
+    int row = 0, col = 0;
+    Intersection(int r, int c): row(r), col(c) {};
+};
 // Define enum class Stone to represent state of an intersection / a player (EMPTY means no player)
-enum class Stone { EMPTY = 0, BLACK = 1, WHITE = 2 };
+enum class Stone : unsigned char { EMPTY = 0, BLACK = 1, WHITE = 2 };
 // Define enum class Liberty to denote if an intersection has liberty or not (EMPTY means intersection with NO STONES)
 // enum class Liberty { EMPTY = 0, HAS_LIBERTY = 1, NO_LIBERTY = 2 };
 // Returns the opposite stone color (Black -> White, White -> Black)
