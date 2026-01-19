@@ -1,9 +1,11 @@
 # CS160-GoGame
 Go Game Final Project for CS160.
 
-This project uses C++, CMake, and the SFML 3.0.2 library.
+This project uses **C++**, **CMake**, and the **SFML 3.0.2** library.
 
 This application uses (most of) the Japanese ruleset and is based on [this Vietnamese article](https://vnchess.com.vn/luat-choi-co-vay-co-ban/) and [this Wikipedia article](https://en.wikipedia.org/wiki/Rules_of_Go).
+
+This application includes a **PVP** mode and a **PVE** mode, which includes an AI opponent that utilizes **minimax** and **alpha-beta pruning** algorithms.
 
 ## Building
 
@@ -25,8 +27,13 @@ Clone this repository using git:
 ```bash
 git clone --single-branch --branch main https://github.com/khanhf-ng820/CS160-GoGame.git
 ```
-Download and update all submodules in the local repository:
+***If you don't have your SSH key set up in Git locally, do this:***
 ```bash
+git config --global url."https://github.com/".insteadOf "git@github.com:"
+```
+Enter the repository folder and download and update all submodules in the local repository:
+```bash
+cd CS160-GoGame
 git submodule update --init --recursive
 ```
 Verify the status of all submodules:
