@@ -10,10 +10,23 @@ add_subdirectory(external/SFML)
 # Add include directory
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-# Add your source files
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp")
+# Add source files
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    "${PROJECT_SOURCE_DIR}/src/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/AI_Utils/*.cpp"
+)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+# Add assets and save files
+file(GLOB_RECURSE RESOURCES CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/assets"
+    "${CMAKE_SOURCE_DIR}/saves"
+)
+
+# Create the executable
+add_executable(${PROJECT_NAME}
+    # MACOSX_BUNDLE
+    ${SOURCES}
+)
 
 # Link SFML (graphics, window, system)
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -43,8 +56,13 @@ target_compile_definitions(GoGame PRIVATE SAVEGAME_DIR="${CMAKE_SOURCE_DIR}/save
 # if(APPLE)
 #     set_target_properties(${PROJECT_NAME} PROPERTIES
 #         MACOSX_BUNDLE TRUE
+#         MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
 #         MACOSX_BUNDLE_GUI_IDENTIFIER my.sfml.app
+#         MACOSX_BUNDLE_BUNDLE_VERSION "1.0.0"
+#         MACOSX_BUNDLE_SHORT_VERSION_STRING "1.0"
 #         RESOURCE "${CMAKE_SOURCE_DIR}/resources"
 #     )
+#     # Place the file into .app/Contents/Resources
+#     set_source_files_properties(${RESOURCES} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 # endif()
 
