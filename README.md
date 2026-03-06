@@ -86,6 +86,6 @@ You can run the program by double-clicking the application in the ```build/``` f
 ```
 
 **Windows:**
-```bash
+```powershell
 .\build\GoGame.exe
 ```
